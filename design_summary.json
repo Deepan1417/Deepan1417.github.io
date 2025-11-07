@@ -1,0 +1,15 @@
+{
+  "id": "str",
+  "name": "str",
+  "settings": "dict (len=15)",
+  "placeholders": "dict (len=0)",
+  "framework": "str",
+  "assets": "dict (len=4)",
+  "pages": "dict (len=3)",
+  "collections": "list (len=3)",
+  "colorMode": "str",
+  "colorModeOverrides": "dict (len=2)",
+  "reflow": "str",
+  "reflowLocale": "str",
+  "reflowTestMode": "str"
+}
