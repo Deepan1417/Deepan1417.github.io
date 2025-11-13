@@ -1,10 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Blog Name</title>
+<style>
+
+    body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: #f7f9fc;
+        color: #222;
+        line-height: 1.6;
+    }
+
+    /* --- NAVBAR --- */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 40px;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .navbar a {
+        text-decoration: none;
+        font-weight: 600;
+        color: #333;
+        margin-left: 24px;
+    }
+
+    /* --- HERO SECTION --- */
+    .hero {
+        padding: 80px 40px;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .hero h1 {
+        font-size: 50px;
+        margin: 0;
+    }
+
+    .hero p {
+        font-size: 20px;
+        color: #555;
+    }
+
+    /* --- ABOUT SECTION --- */
+    .about {
+        max-width: 900px;
+        margin: 60px auto;
+        background: white;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    }
+
+    /* --- BLOG SECTION --- */
+    .blog {
+        max-width: 900px;
+        margin: 60px auto;
+    }
+
+    .post-card {
+        background: white;
+        padding: 30px;
+        margin-bottom: 25px;
+        border-radius: 14px;
+        box-shadow: 0 3px 16px rgba(0,0,0,0.06);
+        transition: transform 0.2s ease;
+    }
+
+    .post-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .post-card h2 {
+        margin-top: 0;
+        font-size: 26px;
+    }
+
+    .post-card .date {
+        color: #777;
+        font-size: 14px;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+        text-align: center;
+        padding: 30px;
+        margin-top: 80px;
+        color: #777;
+        font-size: 14px;
+    }
+
+</style>
 </head>
 <body>
-    <h1>Hello from GitHub Pages!</h1>
-    <p>This website is hosted for free.</p>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo"><strong>Your Name</strong></div>
+    <div>
+        <a href="#">Home</a>
+        <a href="#blog">Blog</a>
+        <a href="#about">About</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Hello, I'm <span style="color:#4a61dd">Your Name</span>.</h1>
+    <p>A student, builder, and lifelong learner.  
+    This is my personal space on the internet where I write about what I study, build, and explore.</p>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="about">
+    <h2>About Me</h2>
+    <p>
+        Write a short paragraph about who you are:  
+        - your branch  
+        - your interests (embedded systems, digital electronics, etc.)  
+        - your journey  
+        - why you started this blog  
+    </p>
+</section>
+
+<!-- BLOG SECTION -->
+<section id="blog" class="blog">
+    <h2>Recent Posts</h2>
+
+    <!-- Blog Post Template (Duplicate this block for more posts) -->
+    <div class="post-card">
+        <div class="date">November 2025</div>
+        <h2>My First Blog Post</h2>
+        <p>This is where you give a short intro of your blog post. Keep it personal and simple.</p>
+        <a href="post1.html">Read more →</a>
+    </div>
+
+    <div class="post-card">
+        <div class="date">October 2025</div>
+        <h2>What I'm Learning Right Now</h2>
+        <p>Write about new concepts, projects, or notes you're exploring.</p>
+        <a href="post2.html">Read more →</a>
+    </div>
+
+</section>
+
+<footer>
+    © 2025 Your Name — Built with ❤️ using GitHub Pages
+</footer>
+
 </body>
 </html>
