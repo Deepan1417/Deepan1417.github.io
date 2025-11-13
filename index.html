@@ -13,6 +13,39 @@
         color: #222;
         line-height: 1.6;
     }
+/* --- FULLSCREEN BACKGROUND HERO --- */
+.hero-bg {
+    width: 100%;
+    height: 100vh;
+    background-image: url('https://github.com/Deepan1417/Deepan1417.github.io/blob/main/CYRbkAI.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* gives the smooth parallax feel */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.55);
+    padding: 40px 50px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 700px;
+    color: white;
+    backdrop-filter: blur(4px);
+}
+
+.hero-overlay h1 {
+    font-size: 48px;
+    margin: 0 0 20px;
+}
+
+.hero-overlay p {
+    font-size: 20px;
+    line-height: 1.6;
+}
 
     /* --- NAVBAR --- */
     .navbar {
@@ -112,12 +145,15 @@
     </div>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-    <h1>Hello, I'm <span style="color:#4a61dd">Your Name</span>.</h1>
-    <p>A student, builder, and lifelong learner.  
-    This is my personal space on the internet where I write about what I study, build, and explore.</p>
+<!-- HERO (Background Image Hero Section) -->
+<section class="hero-bg">
+    <div class="hero-overlay">
+        <h1>Hello, I'm <span style="color:#dce3ff">Your Name</span>.</h1>
+        <p>A student, builder, and lifelong learner.  
+        This is my personal space on the internet where I write about what I study, build, and explore.</p>
+    </div>
 </section>
+
 
 <!-- ABOUT SECTION -->
 <section id="about" class="about">
