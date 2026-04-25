@@ -4923,8 +4923,1200 @@ optionExplanations: [
           ]
         }
       ]
+    },{
+      name: "Unit 6: Encapsulation and Data Abstraction",
+      questions: [
+        {
+          "question": "What is the primary definition of 'Encapsulation' in Object-Oriented Programming?",
+          "options": [
+            "Splitting a large program into smaller, independent executable files.",
+            "Bundling data together with the functions that operate on it, while protecting both from external interference.",
+            "Creating a completely abstract class that cannot be instantiated.",
+            "A single function taking multiple forms depending on the passed arguments."
+          ],
+          "correct": 1,
+          "explanation": "Encapsulation is a key OOP concept that integrates (or bundles) data and the functions that manipulate it into a single unit (like a capsule), while protecting both from external interference and misuse.",
+          "optionExplanations": [
+            "Why A is wrong — This describes modularity or file separation, not encapsulation.",
+            "Why B is correct — Bundling data and functions while restricting external access is the exact definition of encapsulation.",
+            "Why C is wrong — This describes abstraction (specifically, abstract classes), not encapsulation.",
+            "Why D is wrong — This describes compile-time polymorphism (function overloading)."
+          ]
+        },
+        {
+          "question": "How is 'Data Hiding' directly related to Encapsulation?",
+          "options": [
+            "Data hiding is the process of compressing object sizes in memory.",
+            "Data hiding ensures that class attributes are kept completely public for easier debugging.",
+            "Data hiding is achieved by making member data private, ensuring it can only be handled or modified via controlled member functions.",
+            "Data hiding converts C++ variables into Java interfaces."
+          ],
+          "correct": 2,
+          "explanation": "Data hiding is a core principle tied to encapsulation. By marking data as `private`, it is hidden from the outside world and protected from unauthorized direct access or misuse, meaning it can only be modified through controlled public methods.",
+          "optionExplanations": [
+            "Why A is wrong — Data hiding is an architectural security concept, not a memory compression technique.",
+            "Why B is wrong — Public attributes destroy data hiding because anyone can access them directly.",
+            "Why C is correct — Marking data as private and using methods to control access is the essence of data hiding.",
+            "Why D is wrong — Data hiding exists in both languages and has nothing to do with converting variables to interfaces."
+          ]
+        },
+        {
+          "question": "What is the primary purpose of using 'Setter' methods (accessor functions) in an encapsulated class?",
+          "options": [
+            "To completely block any outside class from ever modifying the object's data.",
+            "To allow external code to directly change the memory addresses of private variables.",
+            "To safely modify private member data while providing an opportunity to apply validation rules before the assignment.",
+            "To convert an abstract class into a concrete class."
+          ],
+          "correct": 2,
+          "explanation": "Setter functions are controlled public methods that assign values to private data. Their primary advantage is validation; for example, a `setGrade()` method can ensure only grades 'A' through 'F' are assigned, rejecting invalid inputs.",
+          "optionExplanations": [
+            "Why A is wrong — Setters actively *allow* modification, but in a controlled way.",
+            "Why B is wrong — Setters modify values, not memory addresses.",
+            "Why C is correct — They act as gatekeepers, validating data before applying it to private variables.",
+            "Why D is wrong — Converting an abstract class to concrete requires overriding abstract methods, not just using setters."
+          ]
+        },
+        {
+          "question": "In a C++ class, if no access specifier (public, private, protected) is explicitly written before a member variable, what is its default accessibility?",
+          "options": [
+            "public",
+            "protected",
+            "private",
+            "virtual"
+          ],
+          "correct": 2,
+          "explanation": "By default, all items defined in a C++ `class` are `private` unless explicitly specified otherwise. (Note: in a C++ `struct`, the default is public).",
+          "optionExplanations": [
+            "Why A is wrong — `public` is the default for C++ structs, not classes.",
+            "Why B is wrong — `protected` is never the default access specifier.",
+            "Why C is correct — Classes default to strict encapsulation (`private`).",
+            "Why D is wrong — `virtual` relates to polymorphic functions, not data accessibility."
+          ]
+        },
+        {
+          "question": "Consider a Java class `Animal` with a private variable `private int age;`. If the `main` method in another class attempts to execute `animalObj.age = 15;`, what will happen?",
+          "options": [
+            "The age variable is successfully updated to 15.",
+            "The JVM dynamically generates a setter function to apply the value.",
+            "A compilation error occurs because the variable is private and inaccessible from outside the class.",
+            "A runtime exception triggers an identity hashmap collision."
+          ],
+          "correct": 2,
+          "explanation": "Because `age` is declared as `private`, it is strictly hidden from any outside class. Direct access via the dot operator (`obj.age`) results in a compilation error. It must be accessed via a public `setAge()` method.",
+          "optionExplanations": [
+            "Why A is wrong — Private variables cannot be accessed externally via the dot operator.",
+            "Why B is wrong — The JVM does not auto-generate missing code to bypass security.",
+            "Why C is correct — Strict encapsulation blocks external access, failing at compile-time.",
+            "Why D is wrong — This is a compile-time visibility issue, not a runtime hashmap issue."
+          ]
+        },
+        {
+          "question": "What is the fundamental difference between Data Encapsulation and Data Abstraction?",
+          "options": [
+            "Encapsulation is used in Java, while abstraction is exclusively used in C++.",
+            "Encapsulation bundles data and restricts direct access, whereas abstraction hides complex implementation details and exposes only the necessary high-level functionality.",
+            "Abstraction bundles data, while encapsulation is the process of writing pure virtual functions.",
+            "There is no difference; they are synonymous terms for defining classes."
+          ],
+          "correct": 1,
+          "explanation": "Encapsulation is the physical bundling of data and methods (the 'capsule') and restricting access. Abstraction is the conceptual hiding of complexity (the 'interface'), exposing only what a user needs to know to operate the system (like pressing a button on a remote without knowing the circuitry).",
+          "optionExplanations": [
+            "Why A is wrong — Both concepts are fundamental to both OOP languages.",
+            "Why B is correct — This accurately contrasts physical bundling/hiding (encapsulation) with conceptual simplification (abstraction).",
+            "Why C is wrong — The definitions are swapped and incorrectly applied.",
+            "Why D is wrong — They are distinct, complementary OOP principles."
+          ]
+        },
+        {
+          "question": "How does the 'Getter' function safely interact with encapsulated data?",
+          "options": [
+            "It deletes the private variable after reading it to free up memory.",
+            "It returns a copy or the value of the private member variable without allowing the external user to directly modify the internal memory state.",
+            "It permanently converts private variables into public variables.",
+            "It automatically casts integer variables to doubles."
+          ],
+          "correct": 1,
+          "explanation": "A Getter function (e.g., `getAge()`) simply reads the internal private data and returns it to the caller. It provides read-only access to the outside world, preserving data security.",
+          "optionExplanations": [
+            "Why A is wrong — Reading data does not delete it.",
+            "Why B is correct — Getters provide safe, read-only access to internal state.",
+            "Why C is wrong — Access modifiers are compile-time constants; getters don't change them.",
+            "Why D is wrong — Typecasting is unrelated to the purpose of a getter."
+          ]
+        },
+        {
+          "question": "When designing a Bank Account system, why is `balance` typically declared as `private` rather than `public`?",
+          "options": [
+            "To save memory on the execution stack.",
+            "To force the compiler to use late binding.",
+            "To prevent unauthorized or arbitrary code from directly changing the balance (e.g., `balance = 1000000;`), forcing all changes through secure `deposit` and `withdraw` methods.",
+            "Because Java requires all double variables to be private."
+          ],
+          "correct": 2,
+          "explanation": "Making `balance` private ensures tight control. If it were public, anyone could write `account.balance = 1000000;`. By making it private, money can only be moved through `deposit()` or `withdraw()` methods, which can enforce business logic (like checking for insufficient funds).",
+          "optionExplanations": [
+            "Why A is wrong — Access modifiers do not change memory size.",
+            "Why B is wrong — Access modifiers do not control polymorphic binding.",
+            "Why C is correct — It prevents unauthorized tampering and enforces controlled validation.",
+            "Why D is wrong — Java has no rule restricting variable types to specific access modifiers."
+          ]
+        },
+        {
+          "question": "Which software design goal does Encapsulation directly support by reducing dependencies between different parts of a program?",
+          "options": [
+            "Tight Coupling",
+            "Loose Coupling",
+            "Multiple Inheritance",
+            "Procedural Sequencing"
+          ],
+          "correct": 1,
+          "explanation": "Encapsulation promotes 'Loose Coupling'. Because internal data is hidden and accessed only via standard public methods, you can change the internal implementation of a class without breaking the external code that relies on it.",
+          "optionExplanations": [
+            "Why A is wrong — Tight coupling is bad; it means classes are heavily dependent on each other's internal structures.",
+            "Why B is correct — Loose coupling ensures that components interact through standardized interfaces, independent of internal implementations.",
+            "Why C is wrong — Multiple inheritance is a structural hierarchy concept, not a dependency management goal.",
+            "Why D is wrong — OOP is the opposite of strict procedural sequencing."
+          ]
+        },
+        {
+          "question": "What is the defining characteristic of a 'Pure Virtual Function' in C++?",
+          "options": [
+            "It is a function that contains no local variables.",
+            "It is a function declared in a base class with no definition (assigned `= 0`), acting purely as a placeholder that derived classes must override.",
+            "It is a function that is completely invisible to the compiler.",
+            "It is a function that can only return primitive data types."
+          ],
+          "correct": 1,
+          "explanation": "A pure virtual function (e.g., `virtual void draw() = 0;`) has no body. It serves strictly as a contractual placeholder, enforcing that any concrete derived class must provide its own specific implementation.",
+          "optionExplanations": [
+            "Why A is wrong — Virtual functions relate to polymorphism, not variable content.",
+            "Why B is correct — The `= 0` syntax makes it a 'do-nothing' abstract placeholder.",
+            "Why C is wrong — The compiler strictly tracks it to enforce overriding.",
+            "Why D is wrong — Pure virtual functions can return objects, pointers, or void."
+          ]
+        },
+        {
+          "question": "If a C++ class contains at least one Pure Virtual Function, what does the class become?",
+          "options": [
+            "A Concrete Class",
+            "A Friend Class",
+            "An Abstract Base Class",
+            "A Static Class"
+          ],
+          "correct": 2,
+          "explanation": "The presence of a single pure virtual function renders the entire class incomplete. It becomes an Abstract Base Class, meaning it exists only to be inherited from and cannot be instantiated directly.",
+          "optionExplanations": [
+            "Why A is wrong — Concrete classes have full implementations for all methods.",
+            "Why B is wrong — Friendship dictates access visibility, not structural implementation.",
+            "Why C is correct — Unimplemented functions force the class to become abstract.",
+            "Why D is wrong — Static classes are not an OOP concept related to pure virtual functions."
+          ]
+        },
+        {
+          "question": "Examine this C++ code snippet:\n```cpp\nclass Shape { public: virtual void draw() = 0; };\nint main() {\n  Shape s;\n  s.draw();\n}\n```\nWhat will occur when this is compiled?",
+          "options": [
+            "It will run silently without drawing anything.",
+            "A compilation error will occur because an Abstract Base Class cannot be instantiated.",
+            "It will dynamically allocate memory on the heap.",
+            "The compiler will automatically generate a default `draw` method."
+          ],
+          "correct": 1,
+          "explanation": "Because `Shape` contains the pure virtual function `draw() = 0`, it is an Abstract Base Class. Attempting to create an object directly (`Shape s;`) is illegal and throws a severe compilation error.",
+          "optionExplanations": [
+            "Why A is wrong — The compiler will not even allow the program to build.",
+            "Why B is correct — You cannot instantiate an abstract class.",
+            "Why C is wrong — Memory allocation is halted by the abstract class error.",
+            "Why D is wrong — The purpose of pure virtual functions is to force the programmer to write the implementation, not the compiler."
+          ]
+        },
+        {
+          "question": "How is a Pure Virtual Function in C++ visually differentiated from a standard Virtual Function?",
+          "options": [
+            "By the use of the `abstract` keyword at the end of the line.",
+            "By prepending the `pure` keyword before `virtual`.",
+            "By assigning the function declaration to zero (e.g., `= 0;`).",
+            "By returning a null pointer."
+          ],
+          "correct": 2,
+          "explanation": "In C++, the syntax `virtual void func() = 0;` specifically tells the compiler that the function is pure abstract and lacks a body. A standard virtual function simply has `{ ... }` curly braces with a definition.",
+          "optionExplanations": [
+            "Why A is wrong — `abstract` is a Java keyword.",
+            "Why B is wrong — There is no `pure` keyword in standard C++.",
+            "Why C is correct — The `= 0` assignment is the strict C++ syntax for a pure virtual function.",
+            "Why D is wrong — Returning null is a runtime operation, not a structural declaration."
+          ]
+        },
+        {
+          "question": "When a derived class publicly inherits an Abstract Base Class in C++, what MUST it do to become a concrete class that can be instantiated?",
+          "options": [
+            "It must declare its own friend functions.",
+            "It must override and provide an implementation for EVERY pure virtual function inherited from the base class.",
+            "It must delete the base class constructor.",
+            "It must change all inherited private variables to public."
+          ],
+          "correct": 1,
+          "explanation": "Abstract base classes establish a strict contract. If a derived class fails to provide an implementation body for even one pure virtual function, the derived class itself remains abstract and cannot be instantiated.",
+          "optionExplanations": [
+            "Why A is wrong — Friendship is unrelated to abstraction implementation.",
+            "Why B is correct — Fulfilling the abstract contract by providing implementations creates a concrete class.",
+            "Why C is wrong — Constructors are required to initialize the base parts of an object.",
+            "Why D is wrong — Access modifiers do not resolve abstract method requirements."
+          ]
+        },
+        {
+          "question": "In Java, what is the primary keyword used to explicitly declare a class as abstract?",
+          "options": [
+            "virtual",
+            "interface",
+            "abstract",
+            "implements"
+          ],
+          "correct": 2,
+          "explanation": "Unlike C++ which relies on pure virtual functions (`=0`), Java explicitly uses the `abstract` keyword in the class definition (e.g., `abstract class Animal { }`) to indicate the class cannot be instantiated.",
+          "optionExplanations": [
+            "Why A is wrong — Java does not use the `virtual` keyword; methods are virtual by default.",
+            "Why B is wrong — `interface` is used for 100% pure abstract contracts, which is technically different from an abstract class.",
+            "Why C is correct — `abstract` is the dedicated Java keyword for this structure.",
+            "Why D is wrong — `implements` links a class to an interface."
+          ]
+        },
+        {
+          "question": "What is true about the composition of a Java `abstract class`?",
+          "options": [
+            "It can only contain abstract methods with no bodies.",
+            "It can contain both abstract methods (without bodies) and non-abstract methods (with regular bodies).",
+            "It cannot have a constructor.",
+            "It completely replaces the need for standard inheritance."
+          ],
+          "correct": 1,
+          "explanation": "A Java `abstract class` provides a mixture of behavior. It allows 0 to 100% abstraction, meaning developers can write standard methods with fully functioning logic alongside abstract methods that force child classes to implement specific tasks.",
+          "optionExplanations": [
+            "Why A is wrong — This strictly describes a Java `interface` (prior to Java 8 default methods), not an abstract class.",
+            "Why B is correct — Abstract classes allow a blend of concrete logic and abstract contracts.",
+            "Why C is wrong — Abstract classes can have constructors to initialize their own member variables.",
+            "Why D is wrong — Abstract classes heavily rely on inheritance (`extends`) to be useful."
+          ]
+        },
+        {
+          "question": "Examine this Java code snippet:\n```java\nabstract class Bike {\n  abstract void run();\n}\nclass Honda extends Bike {\n  // Missing run() method\n}\n```\nWhat will the Java compiler do?",
+          "options": [
+            "It will compile successfully but throw a runtime error if `run()` is called.",
+            "It will automatically generate an empty `run()` method for `Honda`.",
+            "It will throw a compilation error because `Honda` is not declared abstract and does not override the abstract method `run()`.",
+            "It will ignore `Bike` and treat `Honda` as an independent base class."
+          ],
+          "correct": 2,
+          "explanation": "When extending a Java abstract class, the concrete child class must override all abstract methods. Since `Honda` fails to define `run()` and is not marked as `abstract` itself, the compiler throws an error.",
+          "optionExplanations": [
+            "Why A is wrong — Java enforces implementation checks strictly at compile time.",
+            "Why B is wrong — The compiler never writes custom behavior logic automatically.",
+            "Why C is correct — Fulfilling the abstract contract is mandatory to create a concrete class.",
+            "Why D is wrong — The `extends` keyword strictly enforces the inheritance bond."
+          ]
+        },
+        {
+          "question": "What is a major structural limitation of abstract classes in Java that `interfaces` help resolve?",
+          "options": [
+            "Abstract classes cannot have private variables.",
+            "Abstract classes cannot use the `extends` keyword.",
+            "Java forbids a class from extending more than one abstract class (Multiple Inheritance limit), whereas a class can implement multiple interfaces.",
+            "Abstract classes take up too much memory dynamically."
+          ],
+          "correct": 2,
+          "explanation": "Java outright bans multiple class inheritance to prevent the Diamond Problem ambiguity. Because interfaces contain no method bodies (100% abstraction), implementing multiple interfaces avoids ambiguity, safely allowing multiple inheritance of behavior.",
+          "optionExplanations": [
+            "Why A is wrong — Abstract classes can have private member data.",
+            "Why B is wrong — Abstract classes can extend other classes.",
+            "Why C is correct — Interfaces provide the only safe mechanism for multiple inheritance in Java.",
+            "Why D is wrong — Memory allocation is not the architectural reason for interfaces."
+          ]
+        },
+        {
+          "question": "What is a Java `interface` fundamentally designed to represent?",
+          "options": [
+            "A memory management structure that replaces the Garbage Collector.",
+            "A blueprint or design plan of a class containing strictly 100% abstraction (abstract methods and static constants).",
+            "A replacement for the `main()` driver method.",
+            "A technique to bypass private data encapsulation."
+          ],
+          "correct": 1,
+          "explanation": "An interface is a pure contractual blueprint. It defines exactly *what* a class must do (the method names) but provides zero implementation of *how* to do it, achieving full abstraction.",
+          "optionExplanations": [
+            "Why A is wrong — Interfaces have nothing to do with garbage collection.",
+            "Why B is correct — Interfaces provide a 100% abstract blueprint for classes to follow.",
+            "Why C is wrong — Programs still require a `main()` method.",
+            "Why D is wrong — Interfaces do not bypass encapsulation rules."
+          ]
+        },
+        {
+          "question": "When defining variables inside a Java `interface` (e.g., `int MIN = 100;`), what access and state modifiers does the compiler implicitly attach to them?",
+          "options": [
+            "`private static`",
+            "`public abstract`",
+            "`protected final`",
+            "`public static final`"
+          ],
+          "correct": 3,
+          "explanation": "Variables defined inside a Java interface are automatically assumed to be global constants. Even if you only type `int MIN = 100;`, the compiler treats it exactly as `public static final int MIN = 100;`.",
+          "optionExplanations": [
+            "Why A is wrong — Interfaces cannot have private instance variables; they are meant to be global contracts.",
+            "Why B is wrong — `public abstract` applies implicitly to interface *methods*, not variables.",
+            "Why C is wrong — Variables must be accessible universally, so `protected` is invalid.",
+            "Why D is correct — They are public constants shared statically."
+          ]
+        },
+        {
+          "question": "Which keyword is used to establish a relationship where a concrete Java class adopts the blueprint of an `interface`?",
+          "options": [
+            "extends",
+            "implements",
+            "inherits",
+            "abstracts"
+          ],
+          "correct": 1,
+          "explanation": "In Java, a class uses the `implements` keyword to promise it will provide the code for the abstract methods defined inside an interface.",
+          "optionExplanations": [
+            "Why A is wrong — `extends` is used for class-to-class inheritance or interface-to-interface inheritance.",
+            "Why B is correct — `implements` connects a concrete class to an interface contract.",
+            "Why C is wrong — `inherits` is not a valid Java keyword.",
+            "Why D is wrong — `abstracts` is not a valid keyword."
+          ]
+        },
+        {
+          "question": "Examine this Java hierarchy scenario:\n- Interface `Printable`\n- Interface `Showable`\nIf you want a single class `Document` to use both blueprints, what is the correct syntax?",
+          "options": [
+            "class Document extends Printable, Showable { ... }",
+            "class Document implements Printable implements Showable { ... }",
+            "class Document implements Printable, Showable { ... }",
+            "class Document extends Printable implements Showable { ... }"
+          ],
+          "correct": 2,
+          "explanation": "A Java class can implement multiple interfaces separated by commas. This safely resolves the multiple inheritance limitation in Java.",
+          "optionExplanations": [
+            "Why A is wrong — `extends` cannot be used by a class to inherit an interface.",
+            "Why B is wrong — The `implements` keyword should only be written once.",
+            "Why C is correct — Commas properly separate multiple interfaces.",
+            "Why D is wrong — A class cannot extend an interface."
+          ]
+        },
+        {
+          "question": "What syntax is used when one Java `interface` wants to inherit the methods of another `interface`?",
+          "options": [
+            "interface Int2 implements Int1",
+            "interface Int2 extends Int1",
+            "class Int2 implements Int1",
+            "interface Int2 abstracts Int1"
+          ],
+          "correct": 1,
+          "explanation": "When an interface inherits from another interface, the relationships are of the exact same type (interface-to-interface). Therefore, the `extends` keyword is required, not `implements`.",
+          "optionExplanations": [
+            "Why A is wrong — Interfaces cannot 'implement' anything, as they cannot provide method bodies.",
+            "Why B is correct — Interfaces 'extend' other interfaces to expand the blueprint.",
+            "Why C is wrong — This syntax mixes classes and interfaces incorrectly for interface inheritance.",
+            "Why D is wrong — `abstracts` is not a valid keyword."
+          ]
+        },
+        {
+          "question": "What architectural issue does the use of Java `interfaces` bypass entirely, allowing safe multiple inheritance?",
+          "options": [
+            "The Memory Overflow Error",
+            "The Encapsulation Leak Problem",
+            "The Diamond Problem (Ambiguity from duplicate implementations)",
+            "The Static Binding Delay"
+          ],
+          "correct": 2,
+          "explanation": "The Diamond Problem occurs in hybrid inheritance when a class inherits two identical concrete methods from two different parents, causing ambiguity. Because interfaces contain no method bodies, a class inheriting two identical interface methods only needs to provide one implementation, completely eliminating the ambiguity.",
+          "optionExplanations": [
+            "Why A is wrong — This is a dynamic memory issue, not an architectural inheritance issue.",
+            "Why B is wrong — This is a fabricated term.",
+            "Why C is correct — Interfaces eliminate implementation ambiguity.",
+            "Why D is wrong — This is unrelated to multiple inheritance architecture."
+          ]
+        },
+        {
+          "question": "In C++, what is the primary purpose of creating a Virtual Function within a Base Class?",
+          "options": [
+            "To hide the function permanently from all derived classes.",
+            "To ensure that an overriding function in a derived class is called at run-time when accessed through a base class pointer or reference.",
+            "To compress the function execution speed using early binding.",
+            "To allow the function to return a virtual null pointer."
+          ],
+          "correct": 1,
+          "explanation": "Virtual functions enable Run-Time Polymorphism (Dynamic Method Dispatch). If a base class pointer points to a derived object, the `virtual` keyword ensures the program looks up the object's actual type at run-time and calls the derived overriding method, rather than defaulting to the base method.",
+          "optionExplanations": [
+            "Why A is wrong — Virtual functions are meant to be overridden and used, not hidden.",
+            "Why B is correct — This defines dynamic dispatch / late binding.",
+            "Why C is wrong — Virtual functions use late binding, which is slightly slower, not faster early binding.",
+            "Why D is wrong — Return types are not impacted by the `virtual` status."
+          ]
+        },
+        {
+          "question": "What hidden, internal compiler mechanism is primarily responsible for resolving Virtual Function calls at runtime in C++?",
+          "options": [
+            "The Access Modifier Firewall",
+            "The Virtual Table (vtable) and Virtual Pointer (vptr)",
+            "The Identity Hashmap",
+            "The Scope Resolution Compiler"
+          ],
+          "correct": 1,
+          "explanation": "To achieve dynamic dispatch, the C++ compiler creates a hidden Virtual Table (vtable) for the class, storing function pointers. Every instantiated object gets a hidden Virtual Pointer (vptr) that points to the correct vtable, routing the execution to the correct overridden method at runtime.",
+          "optionExplanations": [
+            "Why A is wrong — Access modifiers manage visibility, not execution routing.",
+            "Why B is correct — The vtable/vptr architecture is the standard C++ mechanism for late binding.",
+            "Why C is wrong — Hashmaps are used in Java for object tracking, not C++ polymorphic routing.",
+            "Why D is wrong — Scope resolution (`::`) is for static, compile-time routing."
+          ]
+        },
+        {
+          "question": "Consider this C++ code:\n```cpp\nclass Animal { public: void sound() { cout << \"Animal\"; } };\nclass Dog : public Animal { public: void sound() { cout << \"Dog\"; } };\nint main() { Animal* a = new Dog(); a->sound(); }\n```\nWhat is the output, and why?",
+          "options": [
+            "\"Animal\", because `sound()` is not virtual, so the compiler uses early binding based purely on the pointer type `Animal*`.",
+            "\"Dog\", because the compiler automatically detects the `new Dog()` object.",
+            "A compilation error due to a missing `virtual` keyword.",
+            "A runtime crash due to a missing vtable."
+          ],
+          "correct": 0,
+          "explanation": "Because the `virtual` keyword is missing in the base class, the compiler statically binds the function call at compile-time. It looks at the pointer type (`Animal*`) and directly wires the call to `Animal::sound()`, ignoring the actual `Dog` object instantiated on the heap.",
+          "optionExplanations": [
+            "Why A is correct — Missing `virtual` forces static early binding based on the reference type.",
+            "Why B is wrong — Dynamic detection requires the `virtual` keyword.",
+            "Why C is wrong — It compiles legally, it just doesn't behave polymorphically.",
+            "Why D is wrong — Code lacking virtual functions simply doesn't generate a vtable; it runs fine statically."
+          ]
+        },
+        {
+          "question": "If we change the previous C++ code to include `virtual void sound()` in the `Animal` class, what will `a->sound();` print?",
+          "options": [
+            "\"Animal\"",
+            "\"Dog\"",
+            "A compilation error",
+            "\"AnimalDog\""
+          ],
+          "correct": 1,
+          "explanation": "Adding `virtual` instructs the compiler to use late binding. At runtime, the program follows the `vptr` inside the object to determine that it is actually a `Dog`, and executes the overridden `Dog::sound()` method.",
+          "optionExplanations": [
+            "Why A is wrong — Early binding is bypassed.",
+            "Why B is correct — Late binding resolves the true object type.",
+            "Why C is wrong — The code is perfectly valid.",
+            "Why D is wrong — Only the overridden method executes."
+          ]
+        },
+        {
+          "question": "In object-oriented design, what is 'Tight Coupling'?",
+          "options": [
+            "When objects are tightly secured using the `private` access modifier.",
+            "When multiple classes are heavily dependent on each other's concrete implementations, meaning a change in one class forces major rewrites in another.",
+            "When abstract classes bundle data very close together in memory.",
+            "When an interface inherits from multiple other interfaces."
+          ],
+          "correct": 1,
+          "explanation": "Tight coupling refers to high dependency between modules. If Class A directly manipulates the internal logic of Class B, modifying Class B will break Class A. Good OOP design avoids this.",
+          "optionExplanations": [
+            "Why A is wrong — This refers to encapsulation security, not coupling architecture.",
+            "Why B is correct — High dependency between concrete implementations defines tight coupling.",
+            "Why C is wrong — Abstract classes do not compress memory.",
+            "Why D is wrong — This is interface inheritance, unrelated to dependency coupling."
+          ]
+        },
+        {
+          "question": "How do Encapsulation and Data Abstraction solve the problem of Tight Coupling?",
+          "options": [
+            "By converting all classes to procedural C functions.",
+            "By forcing the compiler to run faster.",
+            "By exposing only stable public interfaces (getters/setters/abstract methods) and hiding unstable internal details, allowing classes to interact without relying on internal concrete logic (Loose Coupling).",
+            "By dynamically generating Identity Hashmaps for every variable."
+          ],
+          "correct": 2,
+          "explanation": "Loose Coupling is achieved when components communicate strictly through well-defined public interfaces. If the internal logic of a class changes, external classes don't break because they only interact with the abstraction layer.",
+          "optionExplanations": [
+            "Why A is wrong — Reverting to procedural code breaks OOP entirely.",
+            "Why B is wrong — Execution speed is a compiler optimization, not an architectural benefit.",
+            "Why C is correct — Hiding internal logic guarantees stability for dependent classes.",
+            "Why D is wrong — Hashmaps are Java mechanisms unrelated to architectural coupling."
+          ]
+        },
+        {
+          "question": "What is the primary visual difference between declaring an abstract method in a Java abstract class versus declaring a pure virtual function in a C++ abstract class?",
+          "options": [
+            "Java uses the `interface` keyword, C++ uses the `virtual` keyword.",
+            "Java prepends the `abstract` keyword and ends with a semicolon (e.g., `abstract void draw();`), whereas C++ prepends `virtual` and assigns the signature to zero (e.g., `virtual void draw() = 0;`).",
+            "Java methods must throw exceptions, C++ methods must use pointers.",
+            "There is no syntactical difference."
+          ],
+          "correct": 1,
+          "explanation": "Java explicitly uses the `abstract` keyword for abstract methods. C++ has no `abstract` keyword; instead, it identifies pure abstract functions by appending `= 0` to a virtual function declaration.",
+          "optionExplanations": [
+            "Why A is wrong — Abstract classes in Java use `abstract`, not `interface`.",
+            "Why B is correct — This accurately describes the exact syntactical rules for both languages.",
+            "Why C is wrong — Exceptions and pointers are unrelated to the syntax of abstraction declarations.",
+            "Why D is wrong — The syntax differs fundamentally between the two languages."
+          ]
+        },
+        {
+          "question": "In a C++ polymorphic system using base class pointers, why is it critical to declare the Base Class Destructor as `virtual`?",
+          "options": [
+            "To prevent the compiler from throwing a syntax error.",
+            "To allow the destructor to be overloaded with parameters.",
+            "To ensure that when `delete` is called on a base pointer pointing to a derived object, the derived class's destructor runs first, preventing resource memory leaks.",
+            "To convert the destructor into a pure virtual function."
+          ],
+          "correct": 2,
+          "explanation": "If the base destructor is not virtual, deleting a base class pointer only destroys the base part of the object, leaking any heap memory allocated specifically by the derived class. A `virtual` destructor ensures the destruction process correctly cascades from Derived to Base.",
+          "optionExplanations": [
+            "Why A is wrong — The code will compile fine, it will just leak memory.",
+            "Why B is wrong — Destructors can never take parameters or be overloaded.",
+            "Why C is correct — It forces late binding during destruction, ensuring full cleanup.",
+            "Why D is wrong — Destructors usually shouldn't be pure virtual unless carefully designed."
+          ]
+        },
+        {
+          "question": "A developer writes a Java class `Manager` that attempts to access a `private double salary;` variable inside the base class `Employee`. This throws a compilation error. What is the safest OOP approach to fix this while maintaining Encapsulation?",
+          "options": [
+            "Change `private double salary;` to `public double salary;`.",
+            "Remove the `Employee` base class entirely.",
+            "Provide a `protected double getSalary()` or `public double getSalary()` getter method inside the `Employee` class.",
+            "Use the C++ `friend` keyword."
+          ],
+          "correct": 2,
+          "explanation": "To preserve data hiding, private variables should remain private. A getter method provides controlled, secure read access to derived classes or external users without exposing the variable to arbitrary modification.",
+          "optionExplanations": [
+            "Why A is wrong — Making it public destroys encapsulation and exposes it globally.",
+            "Why B is wrong — Removing inheritance defeats the architecture.",
+            "Why C is correct — Getter methods provide safe, read-only access while preserving encapsulation.",
+            "Why D is wrong — `friend` is a C++ keyword, not valid in Java."
+          ]
+        },
+        {
+          "question": "What is meant by an 'accessor' function and a 'mutator' function?",
+          "options": [
+            "Accessor creates objects; mutator deletes objects.",
+            "Accessor refers to a 'Getter' (reading data); mutator refers to a 'Setter' (modifying data).",
+            "Accessor converts public data to private; mutator converts private to public.",
+            "Accessor allocates dynamic memory; mutator runs the garbage collector."
+          ],
+          "correct": 1,
+          "explanation": "In standard OOP terminology, Getters are called accessors because they access the state. Setters are called mutators because they mutate (change) the internal state.",
+          "optionExplanations": [
+            "Why A is wrong — Constructors create, destructors delete.",
+            "Why B is correct — This matches standard getter/setter terminology.",
+            "Why C is wrong — Access modifiers handle visibility at compile time, not functions.",
+            "Why D is wrong — `new` allocates memory, GC handles cleanup automatically."
+          ]
+        },
+        {
+          "question": "Which of the following lines correctly defines a Pure Virtual Function in C++?",
+          "options": [
+            "virtual void calculateArea() {}",
+            "abstract void calculateArea();",
+            "virtual void calculateArea() = 0;",
+            "void virtual calculateArea();"
+          ],
+          "correct": 2,
+          "explanation": "The `= 0` syntax strictly defines a pure virtual function in C++, rendering the class abstract.",
+          "optionExplanations": [
+            "Why A is wrong — This is a standard virtual function with an empty body, not a pure virtual function.",
+            "Why B is wrong — This is Java syntax.",
+            "Why C is correct — `= 0` is the exact syntax for pure virtual.",
+            "Why D is wrong — This is missing the `= 0` required for pure abstraction."
+          ]
+        },
+        {
+          "question": "Consider a Java scenario: Class `Smartphone` extends Abstract Class `Computer` and implements Interface `Camera`. What OOP principles are actively demonstrated?",
+          "options": [
+            "Encapsulation and Data Hiding.",
+            "Single Inheritance and Multiple Inheritance workaround via Interfaces.",
+            "Operator Overloading.",
+            "Pure Virtual Routing."
+          ],
+          "correct": 1,
+          "explanation": "Extending one class (`Computer`) is Single Inheritance. Implementing an interface (`Camera`) allows the `Smartphone` to inherit a second set of behaviors, providing a safe Multiple Inheritance architecture in Java.",
+          "optionExplanations": [
+            "Why A is wrong — While likely present, the specific keywords `extends` and `implements` relate to inheritance structure.",
+            "Why B is correct — Extending a class and implementing an interface is the classic Java multiple-inheritance workaround.",
+            "Why C is wrong — Operator overloading is not supported in Java.",
+            "Why D is wrong — Pure virtual functions are C++ terminology."
+          ]
+        },
+        {
+          "question": "In Java, what happens if an `interface` declares a variable `int speedLimit = 120;` and a class implementing that interface attempts to execute `speedLimit = 150;`?",
+          "options": [
+            "The limit successfully updates to 150.",
+            "A compilation error occurs because interface variables are implicitly `final` (constant) and cannot be reassigned.",
+            "The JVM dynamically generates a setter function to bypass the restriction.",
+            "An ambiguity error occurs."
+          ],
+          "correct": 1,
+          "explanation": "Variables declared in a Java interface are implicitly `public static final`. Because they are `final`, they act as constant values and cannot be modified or reassigned by implementing classes.",
+          "optionExplanations": [
+            "Why A is wrong — Final variables are constants.",
+            "Why B is correct — The compiler strictly enforces the implicit `final` constraint, throwing an assignment error.",
+            "Why C is wrong — The JVM does not bypass constants.",
+            "Why D is wrong — There is no ambiguity, just a straightforward mutability error."
+          ]
+        },
+        {
+          "question": "How is a 'Concrete Class' defined relative to an 'Abstract Class'?",
+          "options": [
+            "A concrete class contains pure virtual functions, while an abstract class does not.",
+            "A concrete class is identical to an interface.",
+            "A concrete class provides a complete, specific implementation for all its methods, including any inherited abstract methods, allowing it to be fully instantiated.",
+            "A concrete class cannot be instantiated using the `new` operator."
+          ],
+          "correct": 2,
+          "explanation": "A concrete class fulfills all abstract contracts. Because it has zero missing definitions (no pure virtual/abstract methods left), the compiler knows exactly how to build it in memory, allowing safe instantiation.",
+          "optionExplanations": [
+            "Why A is wrong — Abstract classes contain pure virtual functions.",
+            "Why B is wrong — Interfaces are 100% abstract, the opposite of concrete.",
+            "Why C is correct — Providing full implementations defines a concrete class.",
+            "Why D is wrong — Abstract classes cannot be instantiated; concrete classes can."
+          ]
+        },
+        {
+          "question": "In C++, if you want to allow a specific external function to bypass the `private` access firewall and read hidden variables, what keyword is used?",
+          "options": [
+            "virtual",
+            "friend",
+            "override",
+            "protected"
+          ],
+          "correct": 1,
+          "explanation": "The `friend` keyword in C++ explicitly grants a non-member function or another class the permission to access the `private` and `protected` encapsulation boundaries of the granting class.",
+          "optionExplanations": [
+            "Why A is wrong — `virtual` relates to method overriding.",
+            "Why B is correct — A `friend` acts as a permitted exception to strict data hiding.",
+            "Why C is wrong — `override` ensures polymorphic signatures match.",
+            "Why D is wrong — `protected` modifies vertical inheritance visibility, not horizontal external function access."
+          ]
+        },
+        {
+          "question": "Why does a C++ compiler use a 'vtable' (Virtual Table)?",
+          "options": [
+            "To map private variables to public getter functions.",
+            "To store an array of function pointers that route dynamic polymorphic method calls to the correct derived class implementation at runtime.",
+            "To optimize standard math loops like factorials.",
+            "To automatically handle garbage collection."
+          ],
+          "correct": 1,
+          "explanation": "A vtable is the internal array created by the compiler for any class containing virtual functions. It holds function pointers that dynamically route execution (via the object's vptr) to the most specific overridden method.",
+          "optionExplanations": [
+            "Why A is wrong — Encapsulation routing is handled at compile time, not via a vtable.",
+            "Why B is correct — This is the mechanical definition of how C++ achieves late binding.",
+            "Why C is wrong — Virtual tables deal with polymorphism, not basic loop optimization.",
+            "Why D is wrong — C++ doesn't have automatic garbage collection."
+          ]
+        },
+        {
+          "question": "If a C++ programmer writes `class Car : public Vehicle`, and the `Vehicle` base class has a private variable `int engineSerial;`, what is the visibility of `engineSerial` inside `Car`?",
+          "options": [
+            "It is completely inaccessible and hidden from `Car`.",
+            "It becomes protected inside `Car`.",
+            "It becomes public inside `Car`.",
+            "It triggers a friend function compilation."
+          ],
+          "correct": 0,
+          "explanation": "Private members of a base class are never inherited directly in a way that makes them accessible. They remain strictly private to the base class, meaning the derived class `Car` cannot read or write them directly.",
+          "optionExplanations": [
+            "Why A is correct — Strict encapsulation blocks derived classes from touching private parent data.",
+            "Why B is wrong — This would happen if the variable was originally `protected`.",
+            "Why C is wrong — Private never upgrades to public.",
+            "Why D is wrong — Friendship must be explicitly declared."
+          ]
+        },
+        {
+          "question": "Examine this abstract structure in a research paper analogy: The 'Abstract' section summarizes what the paper does without giving away the deep proofs. This corresponds to which OOP programming concept?",
+          "options": [
+            "Operator Overloading",
+            "Data Hiding via Private Variables",
+            "Data Abstraction via Abstract Classes or Interfaces",
+            "Memory Destructors"
+          ],
+          "correct": 2,
+          "explanation": "Data Abstraction is like an abstract in a paper—it exposes the high-level intent (function declarations/interfaces) while hiding the complex implementation details (function bodies/proofs) from the user.",
+          "optionExplanations": [
+            "Why A is wrong — Operator overloading redefines symbols.",
+            "Why B is wrong — Data hiding is encapsulation (locking variables away).",
+            "Why C is correct — Abstraction focuses on exposing only essential features.",
+            "Why D is wrong — Destructors handle memory cleanup."
+          ]
+        },
+        {
+          "question": "In Java, what happens if a `class Employee` implements an `interface Payroll` but leaves out the implementation for the interface's `calculateSalary()` method?",
+          "options": [
+            "The compiler automatically generates an empty body for the method.",
+            "The JVM performs late binding and ignores the error.",
+            "The class `Employee` must be declared as `abstract`, otherwise a compilation error occurs.",
+            "The program crashes at runtime only when `calculateSalary()` is invoked."
+          ],
+          "correct": 2,
+          "explanation": "If a concrete class implements an interface, it is contractually obligated to define EVERY method. If it fails to do so, it is incomplete and MUST be marked with the `abstract` keyword, effectively kicking the responsibility down to its subclasses.",
+          "optionExplanations": [
+            "Why A is wrong — Compilers don't write custom business logic.",
+            "Why B is wrong — This is a strict compile-time check.",
+            "Why C is correct — Incomplete concrete classes throw compilation errors unless explicitly marked abstract.",
+            "Why D is wrong — The code will never reach runtime because it fails to compile."
+          ]
+        },
+        {
+          "question": "What is the key difference between a Java `abstract class` and a Java `interface` regarding inheritance?",
+          "options": [
+            "A class can extend multiple abstract classes, but only implement one interface.",
+            "A class can extend only ONE abstract class, but can implement MULTIPLE interfaces.",
+            "Abstract classes use the `implements` keyword, while interfaces use the `extends` keyword.",
+            "There is no difference; both suffer from the Diamond Problem."
+          ],
+          "correct": 1,
+          "explanation": "Java strictly limits class inheritance to a single parent (`extends` one class/abstract class) to prevent ambiguity. However, a class can implement an unlimited number of interfaces simultaneously to achieve safe multiple inheritance behavior.",
+          "optionExplanations": [
+            "Why A is wrong — This is the exact opposite of Java's rule.",
+            "Why B is correct — Single class inheritance vs. multiple interface implementation.",
+            "Why C is wrong — Abstract classes use `extends`, interfaces are adopted via `implements`.",
+            "Why D is wrong — Interfaces prevent the diamond problem by lacking conflicting method bodies."
+          ]
+        },
+        {
+          "question": "In C++, which keyword guarantees that an overriding function properly matches a virtual function signature in the base class, catching typos at compile-time?",
+          "options": [
+            "virtual",
+            "abstract",
+            "override",
+            "implements"
+          ],
+          "correct": 2,
+          "explanation": "Introduced in C++11, appending the `override` keyword to a derived class function explicitly tells the compiler to check that it perfectly matches a virtual function in the base class. If there's a typo, compilation fails immediately.",
+          "optionExplanations": [
+            "Why A is wrong — `virtual` declares dynamic dispatch, it doesn't enforce overriding correctness checks down the chain.",
+            "Why B is wrong — `abstract` is a Java keyword.",
+            "Why C is correct — `override` ensures signature safety.",
+            "Why D is wrong — `implements` is a Java keyword."
+          ]
+        },
+        {
+          "question": "How does Encapsulation effectively defend an object from getting into an 'invalid state'?",
+          "options": [
+            "By converting the program into a multi-threaded process.",
+            "By hiding private variables and running inputs through conditional validation checks inside public setter functions before assigning them.",
+            "By generating a virtual table for all private variables.",
+            "By inheriting from Java interfaces."
+          ],
+          "correct": 1,
+          "explanation": "The primary security benefit of encapsulation is validation. If a user tries to set an age to -5, the public setter `setAge(int a)` can run an `if (a > 0)` check and reject the bad data, ensuring the private `age` variable never holds an invalid value.",
+          "optionExplanations": [
+            "Why A is wrong — Multithreading handles concurrent execution, not variable validation.",
+            "Why B is correct — Setter methods act as gatekeepers to protect the internal state.",
+            "Why C is wrong — Virtual tables handle polymorphic function routing.",
+            "Why D is wrong — Interfaces handle abstraction, not state validation."
+          ]
+        },
+        {
+          "question": "What is the output of the following Java interface scenario?\n```java\ninterface Printer { void print(); }\nclass Laser implements Printer { \n  public void print() { System.out.print(\"Zing\"); } \n}\nclass Main {\n  public static void main(String[] args) {\n    Printer p = new Laser(); p.print();\n  }\n}\n```",
+          "options": [
+            "A compilation error because `Printer` cannot be instantiated.",
+            "A compilation error because `Printer p` is an invalid reference type.",
+            "It dynamically dispatches and prints \"Zing\".",
+            "It prints nothing."
+          ],
+          "correct": 2,
+          "explanation": "This demonstrates upcasting with an interface. The reference variable `p` is of the interface type `Printer`, but the physical object is a `Laser`. The JVM uses dynamic method dispatch to execute the overridden `print()` method inside the `Laser` class.",
+          "optionExplanations": [
+            "Why A is wrong — We are not instantiating `Printer`; we are instantiating `Laser` (`new Laser()`).",
+            "Why B is wrong — Creating a reference variable of an interface type is perfectly legal and common.",
+            "Why C is correct — Late binding routes the execution to the concrete object's method.",
+            "Why D is wrong — The code successfully executes."
+          ]
+        },
+        {
+          "question": "Which of the following is NOT an advantage of defining private data members with public getter/setter methods (Encapsulation)?",
+          "options": [
+            "It allows a class to make data purely read-only by omitting the setter.",
+            "It allows validation logic to be injected before data is modified.",
+            "It exposes the internal architecture directly, leading to tighter coupling between classes.",
+            "It allows the internal implementation to change without breaking external code that relies on the getters."
+          ],
+          "correct": 2,
+          "explanation": "Encapsulation specifically AVOIDS tight coupling by HIDING the internal architecture. Exposing internal structure is the exact opposite of encapsulation's goals.",
+          "optionExplanations": [
+            "Why A is wrong — This is a valid advantage. Providing a getter without a setter makes a variable read-only.",
+            "Why B is wrong — This is a valid advantage. Validation protects the state.",
+            "Why C is correct — This is a false statement. Encapsulation prevents tight coupling.",
+            "Why D is wrong — This is a valid advantage. Internal logic can evolve safely."
+          ]
+        },
+        {
+          "question": "In a C++ polymorphic array, if you need a single loop to draw multiple different shapes (e.g., `Circle`, `Square`), what type of array should you declare?",
+          "options": [
+            "An array of standard integers.",
+            "An array of pure virtual functions.",
+            "An array of Base Class pointers (e.g., `Shape* arr[]`).",
+            "An array of private member variables."
+          ],
+          "correct": 2,
+          "explanation": "To iterate through disparate derived objects polymorphically in C++, you must store them as pointers to their common Abstract Base Class. Calling `arr[i]->draw()` triggers late binding via the vtable, executing each shape's specific draw function.",
+          "optionExplanations": [
+            "Why A is wrong — Integers cannot hold objects or polymorphic types.",
+            "Why B is wrong — You cannot create arrays of functions.",
+            "Why C is correct — Base class pointers successfully hold upcasted derived objects and allow dynamic dispatch.",
+            "Why D is wrong — Variables don't facilitate polymorphic execution."
+          ]
+        },
+        {
+          "question": "If you wish to create a C++ 'Abstract Class', what is the minimum requirement?",
+          "options": [
+            "It must use the `friend` keyword.",
+            "It must contain at least one private variable.",
+            "It must contain at least one Pure Virtual Function (assigned to `= 0`).",
+            "It must publicly inherit from another class."
+          ],
+          "correct": 2,
+          "explanation": "In C++, abstraction is achieved organically. The moment the compiler detects a single pure virtual function (`= 0`) within a class, that class is flagged as an Abstract Base Class and cannot be directly instantiated.",
+          "optionExplanations": [
+            "Why A is wrong — Friendship relates to access visibility.",
+            "Why B is wrong — A class can be fully abstract without any member variables.",
+            "Why C is correct — The pure virtual function creates the abstract contract.",
+            "Why D is wrong — Base classes do not need to inherit anything to be abstract."
+          ]
+        },
+        {
+          "question": "Why is the concept of '100% Abstraction' significant when discussing Java Interfaces?",
+          "options": [
+            "It means the code executes 100% faster.",
+            "It means that literally every method declared inside the interface lacks a body, creating a pure contract devoid of any concrete logic.",
+            "It means the interface requires 100% of the computer's memory to load.",
+            "It means private variables are fully exposed."
+          ],
+          "correct": 1,
+          "explanation": "Prior to modern Java features (like default methods), interfaces represented 100% abstraction. They contained zero implementation details. Abstract classes, by contrast, could have 50% abstraction (e.g., one concrete method and one abstract method).",
+          "optionExplanations": [
+            "Why A is wrong — Abstraction is an architectural design concept, not a performance booster.",
+            "Why B is correct — It acts purely as a design blueprint, dictating 'what' without specifying 'how'.",
+            "Why C is wrong — Abstraction has no relation to massive memory consumption.",
+            "Why D is wrong — Interfaces do not expose private variables; they only contain public constants."
+          ]
+        },
+        {
+          "question": "What is the relationship between the `vptr` and an instantiated C++ object?",
+          "options": [
+            "The `vptr` deletes the object during garbage collection.",
+            "Every object of a class containing virtual functions has a hidden `vptr` injected by the compiler, which points to that specific class's `vtable`.",
+            "The `vptr` handles integer conversions to strings.",
+            "The `vptr` makes public variables private."
+          ],
+          "correct": 1,
+          "explanation": "When an object of a polymorphic class is created in C++, the compiler injects a hidden pointer (the virtual pointer, or `vptr`). This pointer points to the Virtual Table (`vtable`) belonging to the object's true class, ensuring the correct method is executed during late binding.",
+          "optionExplanations": [
+            "Why A is wrong — C++ doesn't have a garbage collector, and pointers don't auto-delete objects.",
+            "Why B is correct — The `vptr` dynamically bridges the object instance to its polymorphic method table.",
+            "Why C is wrong — Pointers do not cast primitive data types.",
+            "Why D is wrong — Access modifiers manage visibility, not the `vptr`."
+          ]
+        },
+        {
+          "question": "In a Java system, `interface I1 { void show(); }` and `interface I2 { void show(); }` are defined. A class implements both: `class MyClass implements I1, I2`. How does Java handle the identical `show()` methods?",
+          "options": [
+            "It throws a Diamond Problem ambiguity error.",
+            "The class `MyClass` only needs to provide a single implementation of `public void show() { ... }`, satisfying the contract for both interfaces without ambiguity.",
+            "The compiler forces the user to write two separate methods: `I1.show()` and `I2.show()`.",
+            "The JVM deletes one of the interfaces randomly."
+          ],
+          "correct": 1,
+          "explanation": "Because interfaces only provide the method *signature* and no concrete body, there is no conflicting logic to inherit. The class simply provides one implementation for `show()`, fulfilling the abstract requirements of both interfaces flawlessly.",
+          "optionExplanations": [
+            "Why A is wrong — Interfaces specifically solve the Diamond Problem by removing implementation ambiguity.",
+            "Why B is correct — A single concrete implementation cleanly satisfies both abstract blueprints.",
+            "Why C is wrong — Java does not support explicit interface scoping like C++.",
+            "Why D is wrong — The JVM operates strictly on logic, never random deletion."
+          ]
+        },
+        {
+          "question": "Consider a C++ scenario where `class B` privately inherits `class A`. If `class A` has a protected variable `int y`, what is its accessibility inside `class B`?",
+          "options": [
+            "It becomes public inside `class B`.",
+            "It remains protected inside `class B`.",
+            "It becomes private inside `class B`.",
+            "It becomes completely inaccessible."
+          ],
+          "correct": 2,
+          "explanation": "Under private inheritance, both public and protected members of the base class are degraded to private members within the derived class.",
+          "optionExplanations": [
+            "Why A is wrong — Visibility cannot be upgraded to public through private inheritance.",
+            "Why B is wrong — This would happen under protected or public inheritance.",
+            "Why C is correct — Private inheritance enforces the strictest lockdown, turning protected elements private.",
+            "Why D is wrong — It is still accessible by `class B` internally, it just can't be passed down further."
+          ]
+        },
+        {
+          "question": "Which of the following is an INCORRECT statement regarding Java Abstract Classes?",
+          "options": [
+            "An abstract class can contain both instance variables and static constants.",
+            "An abstract class can have constructors to initialize its internal state.",
+            "An abstract class must be instantiated using the `new` keyword before its static methods can be used.",
+            "An abstract class can contain both fully implemented methods and abstract methods."
+          ],
+          "correct": 2,
+          "explanation": "An abstract class can NEVER be directly instantiated using the `new` keyword (e.g., `new AbstractAnimal()`). However, you can call its static methods without instantiating it, just like any other class.",
+          "optionExplanations": [
+            "Why A is wrong — This is a true statement. Unlike interfaces, abstract classes can have normal state variables.",
+            "Why B is wrong — This is a true statement. Constructors initialize base data.",
+            "Why C is correct — This statement is FALSE. Abstract classes cannot be instantiated.",
+            "Why D is wrong — This is a true statement. They support partial abstraction."
+          ]
+        },
+        {
+          "question": "If a C++ programmer wants to dynamically track a derived object through a base class pointer, why should they avoid making all functions statically bound (non-virtual)?",
+          "options": [
+            "Because static binding will crash the compiler.",
+            "Because static binding deletes the base class.",
+            "Because static binding forces the compiler to rely on the pointer's declaration type at compile-time, completely ignoring the dynamic derived object's specific overridden methods.",
+            "Because static binding converts classes into structs."
+          ],
+          "correct": 2,
+          "explanation": "Without virtual functions (late binding), the C++ compiler uses early/static binding. If you call `ptr->draw()` on a `Shape*` pointer, it will always execute `Shape::draw()`, even if the pointer is physically pointing to a `Circle` object in memory.",
+          "optionExplanations": [
+            "Why A is wrong — The code will compile and run successfully; it just won't behave polymorphically.",
+            "Why B is wrong — Binding logic doesn't delete classes.",
+            "Why C is correct — It defeats the purpose of polymorphism by tying execution to the static pointer type.",
+            "Why D is wrong — Structs are unrelated to binding resolution."
+          ]
+        },
+        {
+          "question": "In Java, what happens if you add the `@Override` annotation above a method that does not perfectly match a method in the superclass or interface?",
+          "options": [
+            "The JVM dynamically corrects the signature to match.",
+            "The compiler generates an error, acting as a safeguard to warn you that you are creating a new method rather than overriding an existing one.",
+            "The method automatically becomes abstract.",
+            "The access modifier is downgraded to private."
+          ],
+          "correct": 1,
+          "explanation": "The `@Override` annotation is a compiler directive. If the programmer makes a typo (e.g., `calulateArea` instead of `calculateArea`), the annotation causes the compiler to flag an error, preventing subtle logical bugs.",
+          "optionExplanations": [
+            "Why A is wrong — Java does not guess or auto-correct logic.",
+            "Why B is correct — It strictly enforces signature matching at compile-time.",
+            "Why C is wrong — Annotations do not dictate abstraction logic.",
+            "Why D is wrong — It has no effect on access modifiers."
+          ]
+        },
+        {
+          "question": "What specifically enables two different classes (e.g., `Circle` and `Square`) to act entirely differently when the exact same interface method (`draw()`) is called on them?",
+          "options": [
+            "Run-time Polymorphism (Dynamic Dispatch)",
+            "Compile-time Parameter Overloading",
+            "Data Hiding Encapsulation",
+            "Constructor Shadowing"
+          ],
+          "correct": 0,
+          "explanation": "Because `Circle` and `Square` provide their own unique, concrete implementations of the abstract `draw()` method, invoking it via a common interface reference triggers Run-time Polymorphism, dispatching the call to the object's specific logic.",
+          "optionExplanations": [
+            "Why A is correct — Late binding ensures the specific object's behavior executes.",
+            "Why B is wrong — Overloading deals with different parameters within the same class.",
+            "Why C is wrong — Data hiding protects variables; it doesn't route polymorphic execution.",
+            "Why D is wrong — Constructor shadowing initializes data, it doesn't control polymorphic methods."
+          ]
+        },
+        {
+          "question": "Why is 'Loose Coupling' considered an advantage in modern software engineering?",
+          "options": [
+            "It allows the program to bypass network firewalls.",
+            "It prevents classes from communicating with each other entirely.",
+            "It minimizes dependencies, meaning a change in the internal logic of one class is less likely to break other classes that interact with it.",
+            "It forces the compiler to combine all classes into a single file."
+          ],
+          "correct": 2,
+          "explanation": "Loose coupling ensures components interact via standardized interfaces (abstractions). If Class A relies on Interface B, the specific internal logic of Class B can be completely rewritten without forcing Class A to be updated.",
+          "optionExplanations": [
+            "Why A is wrong — Coupling is a code architecture concept, not a networking concept.",
+            "Why B is wrong — Classes must communicate; loose coupling just makes that communication safer.",
+            "Why C is correct — Minimizing concrete dependencies creates stable, maintainable systems.",
+            "Why D is wrong — OOP encourages breaking code into modular, separate files."
+          ]
+        },
+        {
+          "question": "Which scenario best exemplifies the use of Data Abstraction?",
+          "options": [
+            "A car driver pressing the accelerator pedal to speed up without needing to understand the complex fuel injection and combustion physics inside the engine.",
+            "A programmer writing a loop to add 10 numbers together.",
+            "A database administrator viewing every single private record in a secure table.",
+            "A compiler optimizing a recursive function into a standard loop."
+          ],
+          "correct": 0,
+          "explanation": "Abstraction hides unnecessary complexity from the user. The accelerator pedal is the simple, public interface. The engine's internal mechanics are the hidden implementation details.",
+          "optionExplanations": [
+            "Why A is correct — This perfectly captures the separation of simple interface and complex internal logic.",
+            "Why B is wrong — Writing a loop is standard procedural execution.",
+            "Why C is wrong — Viewing raw data is the opposite of abstraction.",
+            "Why D is wrong — Compiler optimization is mechanical, not an architectural design principle."
+          ]
+        },
+        {
+          "question": "In Java, what is the default modifier applied to a class if neither `public`, `private`, nor `protected` is specified?",
+          "options": [
+            "Strictly Private",
+            "Public Global",
+            "Default (Package-Private)",
+            "Abstract Interface"
+          ],
+          "correct": 2,
+          "explanation": "If no access modifier is specified in Java, the item assumes 'default' or 'package-private' visibility, meaning it can only be accessed by other classes within the exact same package folder.",
+          "optionExplanations": [
+            "Why A is wrong — It is not strictly locked to the class.",
+            "Why B is wrong — It is not universally visible to the whole project.",
+            "Why C is correct — Package-private restricts access to the local package directory.",
+            "Why D is wrong — Abstraction is declared explicitly using keywords."
+          ]
+        },
+        {
+          "question": "What problem does the C++ 'Virtual Destructor' solve when dealing with dynamic memory and abstraction?",
+          "options": [
+            "It solves the Diamond Problem ambiguity.",
+            "It guarantees that when deleting a base pointer, the derived class's destructor is dynamically dispatched and executed first, preventing memory leaks of derived components.",
+            "It clears the identity hashmap.",
+            "It allows destructors to be overloaded with integers."
+          ],
+          "correct": 1,
+          "explanation": "Without a virtual destructor, `delete basePtr;` early-binds to the base class destructor, ignoring the derived class. If the derived class allocated dynamic heap memory, that memory leaks. Virtual destructors ensure late binding destroys the object properly from the outside in.",
+          "optionExplanations": [
+            "Why A is wrong — Virtual *inheritance* solves the Diamond Problem.",
+            "Why B is correct — It prevents partial object destruction and memory leaks.",
+            "Why C is wrong — Identity hashmaps are a Java tracking concept.",
+            "Why D is wrong — Destructors can never take parameters."
+          ]
+        },
+        {
+          "question": "Examine this C++ declaration:\n`virtual double calculateSalary() const = 0;`\nWhat does the `const` keyword signify here?",
+          "options": [
+            "The method will permanently delete the object after execution.",
+            "The method promises not to modify any member variables of the object when it is called.",
+            "The method returns a constant string.",
+            "The method converts the class into a Java interface."
+          ],
+          "correct": 1,
+          "explanation": "In C++, appending `const` to a member function signature guarantees that the function will not alter the internal state (member variables) of the object invoking it. It strictly enforces read-only behavior for that method.",
+          "optionExplanations": [
+            "Why A is wrong — Methods do not self-delete objects.",
+            "Why B is correct — It is a compiler-enforced promise to keep object state immutable during execution.",
+            "Why C is wrong — The return type is `double`, not `string`.",
+            "Why D is wrong — C++ has no concept of Java interfaces."
+          ]
+        },
+        {
+          "question": "What is the primary reason an interface cannot contain instance variables (non-static member data) in Java?",
+          "options": [
+            "Because an interface cannot be instantiated, it has no physical memory object to hold an instance state.",
+            "Because the garbage collector deletes them immediately.",
+            "Because instance variables cause the compiler to use early binding.",
+            "Because they conflict with pure virtual functions."
+          ],
+          "correct": 0,
+          "explanation": "Interfaces are purely conceptual blueprints. Since you can never write `new Interface()`, an interface will never exist as an object in memory, meaning it has nowhere to physically store standard, changing instance variables. It can only hold static, global constants.",
+          "optionExplanations": [
+            "Why A is correct — Instance variables require an instantiated object, which interfaces forbid.",
+            "Why B is wrong — The garbage collector cleans heap objects; it doesn't dictate interface rules.",
+            "Why C is wrong — Binding logic relates to methods, not variable storage.",
+            "Why D is wrong — Pure virtual functions do not conflict with data structurally."
+          ]
+        },
+        {
+          "question": "If a C++ programmer writes `class Employee { private: int id; public: void setID(int x) { id = x; } };`, what OOP paradigm is being utilized?",
+          "options": [
+            "Multiple Inheritance",
+            "Encapsulation",
+            "Operator Overloading",
+            "Abstract Polymorphism"
+          ],
+          "correct": 1,
+          "explanation": "This perfectly demonstrates Encapsulation. The sensitive data (`id`) is securely hidden using `private`, and the programmer provides a controlled public entry point (`setID`) to manipulate it.",
+          "optionExplanations": [
+            "Why A is wrong — There are no derived classes present.",
+            "Why B is correct — Bundling data and a setter function represents classic encapsulation.",
+            "Why C is wrong — Operator overloading modifies symbols like `+` or `*`.",
+            "Why D is wrong — There are no virtual or abstract functions present."
+          ]
+        },
+        {
+          "question": "Which of the following describes how an external developer interacts with a fully abstract Data Abstraction layer?",
+          "options": [
+            "They must manually write the memory allocation algorithms for the system.",
+            "They interact exclusively with standard method signatures (like `play()`, `stop()`), oblivious to the complex logical loops executing underneath.",
+            "They compile their code using a C++ virtual table.",
+            "They use the `friend` keyword to hack the private variables."
+          ],
+          "correct": 1,
+          "explanation": "Data abstraction provides a clean, simple surface interface. The developer just calls `play()` and trusts the system to handle the complex rendering and decoding logic hidden underneath.",
+          "optionExplanations": [
+            "Why A is wrong — Abstraction hides memory complexities.",
+            "Why B is correct — Interacting purely via simple, exposed signatures is the goal of abstraction.",
+            "Why C is wrong — Virtual tables are compiler tools, not external developer interaction points.",
+            "Why D is wrong — Hacking private data defeats both abstraction and encapsulation."
+          ]
+        },
+        {
+          "question": "What is the structural role of the C++ `vtable` in relation to a class?",
+          "options": [
+            "Every instantiated object gets its own unique copy of the vtable.",
+            "The compiler creates one single vtable per class, and all objects of that class point to this shared array of function pointers.",
+            "The vtable stores the private variables of the class.",
+            "The vtable compiles Python code into C++."
+          ],
+          "correct": 1,
+          "explanation": "The vtable is a static array of function pointers created once per polymorphic class. Every object instantiated from that class gets a tiny `vptr` that points to this shared class vtable, saving massive amounts of memory.",
+          "optionExplanations": [
+            "Why A is wrong — Storing a full table of function pointers inside every single object would waste massive memory.",
+            "Why B is correct — One table is shared per class; objects just hold a small pointer (`vptr`) to it.",
+            "Why C is wrong — It stores function pointers, not variables.",
+            "Why D is wrong — It is a C++ execution mechanism, not a translation engine."
+          ]
+        },
+        {
+          "question": "In Java, what happens if a `class Car` attempts to use `implements` on an `abstract class Vehicle`?",
+          "options": [
+            "It compiles successfully, achieving multiple inheritance.",
+            "A compilation error occurs because classes must `extends` abstract classes, while `implements` is strictly reserved for interfaces.",
+            "The abstract class converts to an interface dynamically.",
+            "The JVM triggers the Identity Hashmap garbage collection."
+          ],
+          "correct": 1,
+          "explanation": "The keywords are strictly enforced. A class *extends* another class (concrete or abstract) to inherit its structural hierarchy. A class *implements* an interface to adopt its contractual blueprint.",
+          "optionExplanations": [
+            "Why A is wrong — The syntax is illegal.",
+            "Why B is correct — The compiler enforces the correct inheritance terminology.",
+            "Why C is wrong — Classes do not dynamically convert their architectural definitions.",
+            "Why D is wrong — Garbage collection is a memory cleanup tool, completely unrelated to syntax errors."
+          ]
+        },
+        {
+          "question": "Why does OOP prefer getter and setter methods over public variables?",
+          "options": [
+            "Public variables run significantly slower during runtime.",
+            "Public variables cause the vtable to overflow.",
+            "Getters and setters provide a chokepoint to validate data, ensure consistency, and maintain future flexibility without breaking external dependencies.",
+            "Getters and setters allow multiple inheritance to occur."
+          ],
+          "correct": 2,
+          "explanation": "If an external class relies on `obj.speed = 100`, and you later need to ensure speed never exceeds 50, you have to break and rewrite all external code. If you use `obj.setSpeed(100)`, you just add an `if` statement inside the setter, and the external code remains unbroken (Loose Coupling).",
+          "optionExplanations": [
+            "Why A is wrong — Public variables are actually slightly faster because they lack the function call overhead, but the security cost is too high.",
+            "Why B is wrong — Variables are not stored in the vtable.",
+            "Why C is correct — Controlled chokepoints ensure safety and structural flexibility.",
+            "Why D is wrong — Access modifiers do not enable multiple inheritance."
+          ]
+        },
+        {
+          "question": "Consider a Java Interface:\n```java\ninterface Animal {\n  void eat();\n}\n```\nHow does the compiler technically interpret the `void eat();` line?",
+          "options": [
+            "As `private void eat() { }`",
+            "As `public abstract void eat();`",
+            "As `protected final void eat();`",
+            "As `static virtual void eat();`"
+          ],
+          "correct": 1,
+          "explanation": "In a Java interface, methods are intended to be universal contracts. Therefore, the compiler silently injects `public` (so anyone can access it) and `abstract` (since it has no body) to every method declaration.",
+          "optionExplanations": [
+            "Why A is wrong — Interface methods cannot be private or have bodies.",
+            "Why B is correct — The compiler assumes all interface methods are public and abstract by definition.",
+            "Why C is wrong — Protected restricts access, and final prevents overriding, which ruins the interface's purpose.",
+            "Why D is wrong — Virtual is a C++ keyword, and static methods cannot be abstract."
+          ]
+        }
+      ]
     }
   ]
 };
-
-
