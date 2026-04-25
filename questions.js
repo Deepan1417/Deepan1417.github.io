@@ -3898,6 +3898,1031 @@ optionExplanations: [
           ]
         }
       ]
+    },
+    {
+      name: "Unit 5: Polymorphism — Overloading and Overriding",
+      questions: [
+        {
+          "question": "What is the literal meaning of the word 'Polymorphism' in the context of Object-Oriented Programming?",
+          "options": [
+            "Single process executing multiple threads.",
+            "Many forms; a single entity taking on multiple forms.",
+            "Hiding data inside multiple abstract classes.",
+            "Inheriting properties from multiple base classes."
+          ],
+          "correct": 1,
+          "explanation": "The term polymorphism comes from 'poly' meaning 'many' and 'morph' meaning 'forms'. It refers to the ability of a single entity (like a function or operator) to take on multiple forms and behaviors depending on the context.",
+          "optionExplanations": [
+            "Why A is wrong — This describes multithreading, not polymorphism.",
+            "Why B is correct — This is the exact definition of polymorphism taught in the course.",
+            "Why C is wrong — This describes encapsulation and abstraction.",
+            "Why D is wrong — This describes multiple inheritance."
+          ]
+        },
+        {
+          "question": "Which of the following pairs correctly categorizes the two primary types of polymorphism in C++ and Java?",
+          "options": [
+            "Static polymorphism and Inherited polymorphism.",
+            "Compile-time polymorphism and Run-time polymorphism.",
+            "Encapsulated polymorphism and Abstract polymorphism.",
+            "Overloaded polymorphism and Operator polymorphism."
+          ],
+          "correct": 1,
+          "explanation": "Polymorphism is broadly divided into two categories based on when the method call is resolved: Compile-time (early binding) and Run-time (late binding).",
+          "optionExplanations": [
+            "Why A is wrong — 'Inherited polymorphism' is not a standard categorization term.",
+            "Why B is correct — Compile-time and Run-time are the two universal standard categories of polymorphism.",
+            "Why C is wrong — These are fabricated terms mixing OOP concepts.",
+            "Why D is wrong — Overloading and operators are mechanisms of compile-time polymorphism, not the broad categories themselves."
+          ]
+        },
+        {
+          "question": "What is another common terminology used to describe 'Compile-time Polymorphism'?",
+          "options": [
+            "Late binding",
+            "Dynamic Method Dispatch",
+            "Early binding or Static binding",
+            "Virtual mapping"
+          ],
+          "correct": 2,
+          "explanation": "Because the compiler determines exactly which function to execute during the compilation phase, compile-time polymorphism is also known as early binding or static binding.",
+          "optionExplanations": [
+            "Why A is wrong — Late binding refers to run-time polymorphism.",
+            "Why B is wrong — Dynamic method dispatch is a run-time mechanism.",
+            "Why C is correct — Early/static binding occurs when the function call is resolved at compile time.",
+            "Why D is wrong — Virtual mapping is associated with run-time resolution via v-tables."
+          ]
+        },
+        {
+          "question": "Which programming feature is the primary mechanism for achieving Compile-time Polymorphism in C++?",
+          "options": [
+            "Function Overriding",
+            "Function Overloading",
+            "Virtual Functions",
+            "Abstract Classes"
+          ],
+          "correct": 1,
+          "explanation": "Function overloading (having multiple functions with the same name but different parameters) is resolved by the compiler at compile time, making it the primary mechanism for compile-time polymorphism.",
+          "optionExplanations": [
+            "Why A is wrong — Overriding is resolved at run-time.",
+            "Why B is correct — Overloading provides compile-time polymorphism.",
+            "Why C is wrong — Virtual functions are used to achieve run-time polymorphism.",
+            "Why D is wrong — Abstract classes enforce overriding contracts for run-time polymorphism."
+          ]
+        },
+        {
+          "question": "In C++, how must overloaded functions strictly differ so the compiler can distinguish them?",
+          "options": [
+            "They must have different return types only.",
+            "They must differ in the number of arguments, or the data type of the arguments, or both.",
+            "They must belong to different access specifiers (public vs private).",
+            "They must be defined in entirely separate classes."
+          ],
+          "correct": 1,
+          "explanation": "For function overloading to be valid, the method signatures must differ in their parameter lists (number of arguments or types of arguments). Changing only the return type will cause a compilation error.",
+          "optionExplanations": [
+            "Why A is wrong — The return type alone cannot distinguish overloaded functions.",
+            "Why B is correct — Differing parameter lists allow the compiler to bind the correct function call.",
+            "Why C is wrong — Access modifiers do not affect overloading resolution.",
+            "Why D is wrong — Overloading specifically refers to multiple functions with the same name *within the same scope/class*."
+          ]
+        },
+        {
+          "question": "Examine this C++ function overloading scenario:\n\nint max(int a, int b) { return (a > b) ? a : b; }\ndouble max(double a, double b) { return (a > b) ? a : b; }\n\nIf the driver program executes `cout << max(5.5, 2.2);`, which concept ensures the second function executes?",
+          "options": [
+            "Dynamic Method Dispatch",
+            "Run-time Polymorphism",
+            "Static Binding",
+            "Variable Shadowing"
+          ],
+          "correct": 2,
+          "explanation": "The compiler sees `5.5` and `2.2` as `double` values and immediately binds the call to the `double max` function during compilation. This is static binding (compile-time polymorphism).",
+          "optionExplanations": [
+            "Why A is wrong — Dynamic dispatch applies to overridden methods at runtime.",
+            "Why B is wrong — This resolution happens at compile-time, not run-time.",
+            "Why C is correct — The compiler statically binds the function call based on the passed argument types.",
+            "Why D is wrong — Shadowing is a scope naming conflict, unrelated to this overload resolution."
+          ]
+        },
+        {
+          "question": "What is 'Operator Overloading' in C++?",
+          "options": [
+            "Assigning a single operator to perform different custom operations depending on the user-defined object types it operates on.",
+            "Creating new symbols on the keyboard to act as operators.",
+            "Forcing standard integer addition to perform subtraction instead.",
+            "Allowing Java interfaces to bypass C++ memory restrictions."
+          ],
+          "correct": 0,
+          "explanation": "Operator overloading allows standard C++ operators (like `+`, `*`, `++`) to be redefined so they can work directly with user-defined classes and objects in a customized way (e.g., adding two matrix objects).",
+          "optionExplanations": [
+            "Why A is correct — This accurately defines operator overloading for user-defined objects.",
+            "Why B is wrong — You cannot invent new operator symbols; you can only overload existing ones.",
+            "Why C is wrong — Operator overloading cannot change how operators work on built-in primitive types like `int`.",
+            "Why D is wrong — This mixes C++ and Java concepts randomly."
+          ]
+        },
+        {
+          "question": "Which of the following correctly depicts the syntax for declaring an overloaded increment `++` operator inside a C++ class?",
+          "options": [
+            "void ++operator() { ... }",
+            "void operator++() { ... }",
+            "operator void++() { ... }",
+            "++ void operator() { ... }"
+          ],
+          "correct": 1,
+          "explanation": "The strict syntax for overloading an operator requires the return type, followed by the keyword `operator`, followed by the symbol being overloaded, and then the parameter list: `void operator++() { ... }`.",
+          "optionExplanations": [
+            "Why A is wrong — The symbol must come after the keyword `operator`.",
+            "Why B is correct — This matches the exact standard C++ operator overloading syntax.",
+            "Why C is wrong — The return type `void` must precede the `operator` keyword.",
+            "Why D is wrong — This is invalid syntax."
+          ]
+        },
+        {
+          "question": "Consider a C++ class `Test` that overloads the prefix `++` operator to increment a member variable `num` by 2. If `Test tt;` initializes `num` to 8, what is the value of `num` after executing `++tt;`?",
+          "options": [
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "correct": 2,
+          "explanation": "Because the `++` operator was explicitly overloaded to execute `num = num + 2;`, calling `++tt` will invoke this specific member function, adding 2 to 8, resulting in 10.",
+          "optionExplanations": [
+            "Why A is wrong — The value was incremented.",
+            "Why B is wrong — Standard increment adds 1, but the custom overloaded operator adds 2.",
+            "Why C is correct — The overloaded function explicitly adds 2, turning 8 into 10.",
+            "Why D is wrong — The math evaluates to 10."
+          ]
+        },
+        {
+          "question": "In the C++ Matrix case study, the code `Matrix result = matrix1 * matrix2;` successfully multiplies two matrices. Which specific OOP feature makes this clean syntax possible?",
+          "options": [
+            "Constructor Overloading",
+            "Method Overriding",
+            "Operator Overloading",
+            "Dynamic Dispatch"
+          ],
+          "correct": 2,
+          "explanation": "By utilizing Operator Overloading on the `*` symbol, the developer can seamlessly multiply two complex `Matrix` objects using the intuitive `*` syntax, rather than writing a verbose `matrix1.multiply(matrix2)` method.",
+          "optionExplanations": [
+            "Why A is wrong — Constructors initialize objects; they do not handle multiplication operations between existing objects.",
+            "Why B is wrong — Method overriding deals with inheritance hierarchies.",
+            "Why C is correct — The `*` operator has been overloaded to handle `Matrix` operands.",
+            "Why D is wrong — Dynamic dispatch resolves run-time polymorphism."
+          ]
+        },
+        {
+          "question": "Can Java programs utilize C++ style Operator Overloading (e.g., overriding the `+` sign for custom objects)?",
+          "options": [
+            "Yes, using the `operator` keyword.",
+            "Yes, but only within Interface definitions.",
+            "No, Java explicitly does not support user-defined operator overloading.",
+            "No, Java only supports it for the `-` and `/` operators."
+          ],
+          "correct": 2,
+          "explanation": "Java designers explicitly chose not to support user-defined operator overloading to keep the language simpler and prevent obfuscated code.",
+          "optionExplanations": [
+            "Why A is wrong — Java does not have an `operator` keyword for this purpose.",
+            "Why B is wrong — Interfaces handle method abstraction, not operators.",
+            "Why C is correct — Java does not support user-defined operator overloading.",
+            "Why D is wrong — Java supports none of them for user-defined objects."
+          ]
+        },
+        {
+          "question": "What defines 'Constructor Overloading' in both Java and C++?",
+          "options": [
+            "Having a base class constructor and a derived class constructor with the same name.",
+            "Defining multiple constructors within the same class, differentiated by their parameter lists.",
+            "Using the `super()` keyword to overwrite the parent's memory allocation.",
+            "Creating a constructor that returns a specific data type."
+          ],
+          "correct": 1,
+          "explanation": "Constructor overloading is an application of compile-time polymorphism where a single class defines multiple constructors (e.g., a default constructor and a parameterized constructor) differing by argument number or type.",
+          "optionExplanations": [
+            "Why A is wrong — Base and derived classes inherently have different names, so their constructors have different names.",
+            "Why B is correct — Multiple constructors with different parameters in the same class defines constructor overloading.",
+            "Why C is wrong — `super()` delegates to a parent; it doesn't overload.",
+            "Why D is wrong — Constructors structurally never return data types."
+          ]
+        },
+        {
+          "question": "A Java class `Person` has `Person()` and `Person(int age)`. If a developer writes `Person p2 = new Person(49);`, how does the JVM resolve the call?",
+          "options": [
+            "It triggers dynamic binding and chooses at run-time.",
+            "It early-binds to the parameterized constructor because exactly one integer is passed.",
+            "It calls the default constructor first, then automatically executes the parameterized one.",
+            "It throws an ambiguity exception."
+          ],
+          "correct": 1,
+          "explanation": "Constructor overloading is resolved at compile-time (early binding). Because the developer passed one integer argument, the compiler directly links the call to `Person(int age)`.",
+          "optionExplanations": [
+            "Why A is wrong — Constructor overloading is a compile-time resolution process.",
+            "Why B is correct — The matching parameter list triggers early binding to the correct overloaded constructor.",
+            "Why C is wrong — It only executes the specific constructor requested.",
+            "Why D is wrong — There is no ambiguity; the signature perfectly matches."
+          ]
+        },
+        {
+          "question": "In C++, what is the primary role of the `this` pointer?",
+          "options": [
+            "It acts as an implicit parameter pointing to the memory address of the specific object that invoked the member function.",
+            "It resolves dynamic method dispatch at runtime by tracking the superclass.",
+            "It explicitly overrides private access modifiers globally.",
+            "It tracks the length of an array."
+          ],
+          "correct": 0,
+          "explanation": "The `this` keyword in C++ is a hidden pointer passed to all non-static member functions. It inherently points to the specific object instance that is currently executing the function.",
+          "optionExplanations": [
+            "Why A is correct — The `this` pointer implicitly tracks the invoking object's memory address.",
+            "Why B is wrong — Dynamic dispatch is handled by v-tables and the `virtual` keyword.",
+            "Why C is wrong — `this` operates within class scope; it does not hack access modifiers.",
+            "Why D is wrong — Arrays are tracked by pointers/size variables, not explicitly the `this` keyword."
+          ]
+        },
+        {
+          "question": "Which of the following is a primary, common use-case for utilizing the `this` pointer in object-oriented code?",
+          "options": [
+            "To allocate heap memory for objects.",
+            "To resolve 'variable shadowing' when a method parameter shares the exact same name as a class data member.",
+            "To enforce multiple inheritance safely.",
+            "To terminate a destructor cycle."
+          ],
+          "correct": 1,
+          "explanation": "Variable shadowing occurs when local parameters (e.g., `int id`) share names with class members (`int id`). Using `this->id = id;` explicitly tells the compiler that the left side is the object's member data, resolving the collision safely.",
+          "optionExplanations": [
+            "Why A is wrong — Memory allocation is done using the `new` operator.",
+            "Why B is correct — Resolving shadowing is one of the most frequent uses of the `this` keyword.",
+            "Why C is wrong — Multiple inheritance conflicts are solved via virtual base classes.",
+            "Why D is wrong — Destructors terminate objects automatically."
+          ]
+        },
+        {
+          "question": "Examine this C++ snippet:\n\nclass Employee {\npublic:\n  int id;\n  Employee(int id) {\n    this->id = id;\n  }\n};\n\nWhy is the arrow operator `->` used instead of the dot operator `.`?",
+          "options": [
+            "Because `this` is a pointer, and the arrow operator is required to dereference and access the members of a pointer.",
+            "Because C++ classes only support the arrow operator for public data.",
+            "Because the dot operator strictly triggers operator overloading.",
+            "Because `id` is a dynamically allocated integer."
+          ],
+          "correct": 0,
+          "explanation": "In C++, `this` is a pointer containing a memory address. To access the properties inside the object it points to, you must use the arrow operator `->` (which is shorthand for `(*this).id`).",
+          "optionExplanations": [
+            "Why A is correct — The arrow operator bridges a pointer to its structural members.",
+            "Why B is wrong — The dot operator is widely used for direct object access.",
+            "Why C is wrong — The dot operator accesses members; it doesn't trigger overloading.",
+            "Why D is wrong — `id` is just a standard integer variable here."
+          ]
+        },
+        {
+          "question": "In C++, if a member function wishes to return the actual object instance that invoked it (to allow for chaining), what syntax is required?",
+          "options": [
+            "return this;",
+            "return &this;",
+            "return *this;",
+            "return this->object;"
+          ],
+          "correct": 2,
+          "explanation": "Because `this` is merely a pointer (a memory address), returning `this` returns an address. To return the physical object itself (by value or reference), you must explicitly dereference the pointer using `*this`.",
+          "optionExplanations": [
+            "Why A is wrong — This returns a pointer memory address.",
+            "Why B is wrong — This returns the address of the pointer itself.",
+            "Why C is correct — The `*` dereference operator resolves the pointer back to the actual physical object.",
+            "Why D is wrong — This is invalid syntax."
+          ]
+        },
+        {
+          "question": "How does Java syntactically handle the `this` keyword differently from C++ when resolving variable shadowing?",
+          "options": [
+            "Java uses `this::variable`.",
+            "Java uses `this->variable`.",
+            "Java uses `this.variable`.",
+            "Java uses `super.variable`."
+          ],
+          "correct": 2,
+          "explanation": "In Java, `this` acts as a reference variable, not a raw pointer. Therefore, Java strictly utilizes the standard dot operator (`this.variable = variable;`) to bridge to the object's instance members.",
+          "optionExplanations": [
+            "Why A is wrong — `::` is the C++ scope resolution operator.",
+            "Why B is wrong — `->` is the C++ pointer operator.",
+            "Why C is correct — Java references use the dot operator `.`.",
+            "Why D is wrong — `super` accesses the parent class, not the current class."
+          ]
+        },
+        {
+          "question": "Which of the following defines 'Method Overloading' in Java?",
+          "options": [
+            "A subclass providing a specific implementation of a method declared in its superclass.",
+            "A class having more than one method with the exact same name, provided their parameter lists differ.",
+            "Using the `@Override` annotation above a newly defined method.",
+            "A method forcefully taking priority over garbage collection."
+          ],
+          "correct": 1,
+          "explanation": "Method overloading in Java occurs when multiple methods share the same name within a single class but possess distinct parameter lists (different number of arguments or data types).",
+          "optionExplanations": [
+            "Why A is wrong — This defines Method Overriding.",
+            "Why B is correct — This perfectly defines Method Overloading (compile-time polymorphism).",
+            "Why C is wrong — Overriding uses the annotation, not overloading.",
+            "Why D is wrong — Methods do not dictate memory garbage collection rules."
+          ]
+        },
+        {
+          "question": "Examine this Java code snippet:\n\nclass Calculator {\n  int add(int a, int b) { return a + b; }\n  double add(double a, double b) { return a + b; }\n}\n\nIf the driver executes `calc.add(10.5, 20.5);`, what occurs?",
+          "options": [
+            "A compilation error occurs because method names must be entirely unique.",
+            "The JVM performs late binding to select the double method at runtime.",
+            "The compiler performs early binding, linking the call directly to the `double` version of the method.",
+            "The integer version is executed, stripping the decimal points."
+          ],
+          "correct": 2,
+          "explanation": "This is method overloading. The Java compiler checks the passed arguments (two doubles) and statically binds (early binding) the execution path to the `double add(double, double)` method during compile-time.",
+          "optionExplanations": [
+            "Why A is wrong — Method overloading explicitly allows duplicate names with different signatures.",
+            "Why B is wrong — Overloading is resolved at compile-time (early binding), not runtime.",
+            "Why C is correct — The compiler maps the exact parameter types to the correct method.",
+            "Why D is wrong — The compiler matches the specific `double` signature perfectly; no precision is lost."
+          ]
+        },
+        {
+          "question": "What is the primary difference between 'Method Overloading' and 'Method Overriding'?",
+          "options": [
+            "Overloading happens between parent and child classes, while overriding happens within a single class.",
+            "Overloading relies on identical parameter lists, while overriding requires different parameter lists.",
+            "Overloading is resolved at compile-time and involves different parameters. Overriding is resolved at run-time and requires the exact same signature in an inheritance chain.",
+            "Overloading uses the `super` keyword, while overriding uses the `this` keyword."
+          ],
+          "correct": 2,
+          "explanation": "Overloading (Compile-time) requires the same name but different parameters within a class. Overriding (Run-time) occurs when a subclass replaces a parent class's method using the exact same signature.",
+          "optionExplanations": [
+            "Why A is wrong — This is reversed.",
+            "Why B is wrong — This is reversed.",
+            "Why C is correct — This accurately summarizes the distinct rules and binding times for both concepts.",
+            "Why D is wrong — The keywords are not the defining factors of the architectures."
+          ]
+        },
+        {
+          "question": "What defines 'Run-time Polymorphism' (Dynamic Method Dispatch) in Java?",
+          "options": [
+            "When the compiler chooses the fastest method execution path based on CPU architecture.",
+            "When the Java Virtual Machine dynamically determines the object type at runtime and executes the method belonging to that specific object.",
+            "When a parent class automatically generates an abstract method.",
+            "When variables are dynamically converted into identity hashmaps."
+          ],
+          "correct": 1,
+          "explanation": "In Run-time Polymorphism, a parent reference can point to a child object. The JVM checks the physical object in memory at run-time and executes its specific overridden method, bypassing the parent's generic method.",
+          "optionExplanations": [
+            "Why A is wrong — Polymorphism is an architectural choice, not a CPU optimization.",
+            "Why B is correct — The JVM routes the call based on the actual run-time object.",
+            "Why C is wrong — Abstract methods are generated manually by developers.",
+            "Why D is wrong — Hashmaps track identity but don't resolve method execution logic."
+          ]
+        },
+        {
+          "question": "Consider this Java code:\n\nclass Vehicle { void run() { System.out.println(\"Vehicle\"); } }\nclass Bike extends Vehicle { void run() { System.out.println(\"Bike\"); } }\n\nIf `Vehicle obj = new Bike(); obj.run();` executes, what is printed and why?",
+          "options": [
+            "'Vehicle' is printed because `obj` is of type `Vehicle`.",
+            "'Bike' is printed due to Upcasting and Dynamic Method Dispatch resolving the actual object type.",
+            "A compilation error occurs because you cannot store a `Bike` in a `Vehicle` variable.",
+            "An ambiguity error occurs because both classes share the `run` method."
+          ],
+          "correct": 1,
+          "explanation": "The reference `obj` is of type `Vehicle` (Upcasting), but the physical memory object instantiated is `new Bike()`. At runtime, the JVM detects the `Bike` object and executes its overridden `run()` method.",
+          "optionExplanations": [
+            "Why A is wrong — Java uses late binding for overridden methods, executing the object's method, not the reference's.",
+            "Why B is correct — Upcasting stores the object, and dynamic dispatch invokes the overridden method.",
+            "Why C is wrong — Upcasting (child to parent) is perfectly legal and safe.",
+            "Why D is wrong — Overriding cleanly resolves the collision at runtime; it does not cause ambiguity errors."
+          ]
+        },
+        {
+          "question": "In Java Object-Oriented design, what does the term 'Upcasting' refer to?",
+          "options": [
+            "Converting a primitive variable like `int` into a `double`.",
+            "Assigning a reference variable of a Superclass to refer to an instantiated Subclass object.",
+            "Creating a multilevel inheritance chain of more than three classes.",
+            "Using the `super` keyword to override a private access modifier."
+          ],
+          "correct": 1,
+          "explanation": "Upcasting explicitly means taking an object of a child class (Subclass) and storing it in a reference variable typed as its parent class (Superclass), such as `Animal a = new Dog();`.",
+          "optionExplanations": [
+            "Why A is wrong — This is typecasting or primitive promotion, not object upcasting.",
+            "Why B is correct — This precisely defines object upcasting.",
+            "Why C is wrong — This is a structural topology, not a casting action.",
+            "Why D is wrong — `super` accesses parent elements but cannot bypass `private` modifiers."
+          ]
+        },
+        {
+          "question": "If a Java developer writes `Animal b = new Dog();` where `Dog` extends `Animal`, why will the command `b.bark();` throw a compilation error if `bark()` only exists in the `Dog` class?",
+          "options": [
+            "Because Upcasting makes the `Dog` object entirely forget its methods.",
+            "Because the compiler checks the reference type (`Animal`) during compile-time, and `Animal` has no `bark()` method.",
+            "Because `bark()` must be a static method.",
+            "Because the JVM explicitly bans canine methods."
+          ],
+          "correct": 1,
+          "explanation": "During compilation, the compiler only verifies methods against the reference variable's type (which is `Animal`). Since `Animal` does not define `bark()`, the compiler flags it as an error, even though the actual object is a `Dog`.",
+          "optionExplanations": [
+            "Why A is wrong — The physical object retains all its methods, but the reference scope hides them.",
+            "Why B is correct — The compiler early-binds checks based on the reference type.",
+            "Why C is wrong — Being static or non-static does not resolve the reference visibility issue.",
+            "Why D is wrong — This is a humorous, incorrect distraction."
+          ]
+        },
+        {
+          "question": "How do developers solve the issue where `b.bark();` fails on an upcasted reference `Animal b = new Dog();`?",
+          "options": [
+            "They declare the `bark()` method as `private` in the `Dog` class.",
+            "They define a generic `bark()` method in the `Animal` base class, allowing the `Dog` class to override it at runtime.",
+            "They use the scope resolution operator `Animal::bark()`.",
+            "They implement multiple inheritance using C++."
+          ],
+          "correct": 1,
+          "explanation": "To allow an upcasted reference to invoke a specific subclass behavior, the base class must declare the method signature (even if abstract or empty). The compiler sees it in `Animal`, passes the check, and the JVM executes the overridden `Dog` version at runtime.",
+          "optionExplanations": [
+            "Why A is wrong — Making it private hides it further.",
+            "Why B is correct — Creating the contract in the parent class satisfies the compile-time check.",
+            "Why C is wrong — Scope resolution is C++ syntax, not Java.",
+            "Why D is wrong — Multiple inheritance is unrelated to upcasted method visibility."
+          ]
+        },
+        {
+          "question": "When a subclass method perfectly overrides a superclass method in Java, which keyword can the subclass method use to explicitly invoke the original superclass version of that method?",
+          "options": [
+            "this",
+            "base",
+            "parent",
+            "super"
+          ],
+          "correct": 3,
+          "explanation": "The `super` keyword in Java acts as a reference variable to the immediate parent class. Executing `super.methodName()` safely triggers the parent's logic, ignoring the subclass's own overridden version.",
+          "optionExplanations": [
+            "Why A is wrong — `this` invokes the current class's method, causing infinite recursion here.",
+            "Why B is wrong — `base` is used in C#, not Java.",
+            "Why C is wrong — `parent` is not a valid Java keyword.",
+            "Why D is correct — `super.methodName()` correctly invokes the parent's overridden method."
+          ]
+        },
+        {
+          "question": "Examine this Java code structure:\n\nclass X { void methodA() { print(\"X\"); } }\nclass Y extends X { void methodA() { print(\"Y\"); } }\n\nIf the code executes `X obj2 = new Y(); obj2.methodA();`, which output occurs?",
+          "options": [
+            "X",
+            "Y",
+            "XY",
+            "Compilation Error"
+          ],
+          "correct": 1,
+          "explanation": "This perfectly illustrates Upcasting and Dynamic Method Dispatch. The reference is `X`, but the instantiated object is `new Y()`. At runtime, the JVM dispatches the call to the object's specific overridden method, printing 'Y'.",
+          "optionExplanations": [
+            "Why A is wrong — The JVM ignores the reference type's method when overriding is present.",
+            "Why B is correct — Late binding executes the subclass's specific method.",
+            "Why C is wrong — Only the overridden method runs, not both concurrently.",
+            "Why D is wrong — Upcasting and overriding are completely valid standard Java code."
+          ]
+        },
+        {
+          "question": "In a C++ multiple inheritance context, what causes the 'Diamond Problem'?",
+          "options": [
+            "A base class defining purely virtual functions.",
+            "A derived class inheriting from two parent classes that both share the same base class, resulting in two duplicate copies of the base class data.",
+            "A constructor explicitly returning the `*this` pointer.",
+            "A child class hiding a base class access modifier."
+          ],
+          "correct": 1,
+          "explanation": "The Diamond Problem occurs in hybrid inheritance when a class (D) inherits from (B and C), and both (B and C) inherit from (A). D inherits two separate copies of A's members, causing massive ambiguity for the compiler.",
+          "optionExplanations": [
+            "Why A is wrong — Pure virtual functions create abstract classes, they don't cause structural duplication.",
+            "Why B is correct — The duplicate inheritance paths form a 'diamond' shape, causing ambiguity.",
+            "Why C is wrong — `*this` simply returns the current object.",
+            "Why D is wrong — Access modifier hiding is encapsulation, not the diamond problem."
+          ]
+        },
+        {
+          "question": "How does C++ elegantly solve the Diamond Problem to ensure only a single shared copy of the base class is inherited?",
+          "options": [
+            "By utilizing Java's `extends` keyword.",
+            "By converting the base class members to `private`.",
+            "By explicitly calling the `super()` method in all constructors.",
+            "By using the `virtual` keyword when inheriting the base class (Virtual Inheritance)."
+          ],
+          "correct": 3,
+          "explanation": "When intermediate classes inherit from the base class using `class B : virtual public A`, C++ employs Virtual Inheritance. This guarantees that the final derived class D only receives one single, shared instance of A.",
+          "optionExplanations": [
+            "Why A is wrong — Java syntax cannot be used in C++.",
+            "Why B is wrong — Private members are still duplicated in memory, they are just hidden.",
+            "Why C is wrong — `super` is a Java keyword.",
+            "Why D is correct — Virtual inheritance explicitly merges duplicate inheritance paths."
+          ]
+        },
+        {
+          "question": "In C++, what does a 'Pure Virtual Function' strictly signify?",
+          "options": [
+            "It signifies that the function operates entirely without allocating memory variables.",
+            "It signifies a 'do-nothing' placeholder function (`= 0`) that forces any derived class to provide a specific implementation.",
+            "It signifies a function that can exclusively utilize the `this` pointer.",
+            "It signifies that the compiler uses static binding for that specific function."
+          ],
+          "correct": 1,
+          "explanation": "A pure virtual function (e.g., `virtual void draw() = 0;`) has no definition body. It makes its parent class abstract and enforces a strict contract: child classes MUST define and override this method to be instantiated.",
+          "optionExplanations": [
+            "Why A is wrong — Virtual functions can process data and allocate variables normally in derived classes.",
+            "Why B is correct — The `= 0` syntax creates an abstract contractual placeholder.",
+            "Why C is wrong — All non-static member functions use the `this` pointer.",
+            "Why D is wrong — Virtual functions specifically trigger dynamic, late binding, not static early binding."
+          ]
+        },
+        {
+          "question": "What is the structural consequence of a C++ class containing at least one Pure Virtual Function?",
+          "options": [
+            "The class automatically becomes a friend class.",
+            "The class becomes an Abstract Base Class and cannot be instantiated directly as an object.",
+            "The class is restricted from using the scope resolution operator.",
+            "The class gains the ability to multiple-inherit without the diamond problem."
+          ],
+          "correct": 1,
+          "explanation": "If a class has a pure virtual function, it is incomplete. The compiler categorizes it as an Abstract Base Class. Attempting to instantiate an object directly from it (e.g., `Shape s;`) will trigger a compilation error.",
+          "optionExplanations": [
+            "Why A is wrong — Friendship is an access control override, unrelated to pure virtual functions.",
+            "Why B is correct — Abstract classes serve only as blueprints for inheritance, not physical objects.",
+            "Why C is wrong — Scope resolution is completely unaffected.",
+            "Why D is wrong — The diamond problem is solved by virtual inheritance, not abstract methods."
+          ]
+        },
+        {
+          "question": "How does Java architecturally mimic 100% abstraction, acting similarly to a C++ class filled entirely with pure virtual functions?",
+          "options": [
+            "By utilizing the `Interface` keyword.",
+            "By enforcing the `@Override` annotation on every method.",
+            "By defaulting all classes to the `extends` logic.",
+            "By utilizing the Identity Hashmap tracking system."
+          ],
+          "correct": 0,
+          "explanation": "An Interface in Java is a blueprint consisting entirely of abstract methods (without bodies) and static constants. It achieves 100% abstraction and forces implementing classes to define the exact behaviors.",
+          "optionExplanations": [
+            "Why A is correct — The `interface` keyword creates a fully abstract contractual blueprint.",
+            "Why B is wrong — The annotation is a compile-time checker, not the architectural framework itself.",
+            "Why C is wrong — Concrete classes are the default; they execute logic normally.",
+            "Why D is wrong — Hashmaps track specific physical object memory, not architectural class abstraction."
+          ]
+        },
+        {
+          "question": "What primary limitation of Java classes does the Java `Interface` solve?",
+          "options": [
+            "Interfaces allow dynamic memory allocation on the stack.",
+            "Interfaces allow multiple inheritance behavior, as a single class can implement multiple interfaces safely without ambiguity.",
+            "Interfaces bypass garbage collection to retain state permanently.",
+            "Interfaces override the requirement for `public static void main`."
+          ],
+          "correct": 1,
+          "explanation": "Java strictly forbids a class from extending multiple classes to avoid the Diamond Problem. However, because Interfaces have no method bodies, they cause no ambiguity, allowing a class to implement multiple interfaces safely.",
+          "optionExplanations": [
+            "Why A is wrong — Java solely uses the heap for objects.",
+            "Why B is correct — Interfaces provide the safe architectural workaround for multiple inheritance in Java.",
+            "Why C is wrong — Garbage collection operates normally on objects implementing interfaces.",
+            "Why D is wrong — A driver class is always required for program execution."
+          ]
+        },
+        {
+          "question": "Consider a generic Java Bank Account system where `BankAccount` is the superclass, and `SavingsAccount` is the subclass. If `SavingsAccount` needs to deduct tax during its specific `calculateInterest()` method, which OOP feature is utilized to replace the generic parent method?",
+          "options": [
+            "Method Overloading",
+            "Variable Shadowing",
+            "Method Overriding",
+            "Constructor Chaining"
+          ],
+          "correct": 2,
+          "explanation": "Method Overriding is used when a subclass needs to provide a specialized implementation for a method that already exists in its parent class (with the exact same signature).",
+          "optionExplanations": [
+            "Why A is wrong — Overloading uses different parameter lists.",
+            "Why B is wrong — Shadowing deals with variables of the same name.",
+            "Why C is correct — Overriding replaces the parent method's execution path dynamically.",
+            "Why D is wrong — Constructor chaining initializes parent state, it doesn't replace method logic."
+          ]
+        },
+        {
+          "question": "In Java, what happens if a subclass method attempts to override a superclass method, but the developer accidentally spells the method name incorrectly (e.g., `calulateInterest()` instead of `calculateInterest()`)?",
+          "options": [
+            "The JVM dynamically corrects the spelling at runtime.",
+            "The compiler assumes it is a completely new method specific to the subclass, and the overriding quietly fails.",
+            "The program crashes immediately due to an Identity Hashmap collision.",
+            "The superclass automatically deletes its original method."
+          ],
+          "correct": 1,
+          "explanation": "If the signature doesn't match perfectly, the compiler does not recognize it as an override. It treats it as a brand new, unrelated method in the subclass. (This is why the `@Override` annotation is highly recommended to catch such typos).",
+          "optionExplanations": [
+            "Why A is wrong — Compilers and JVMs do not auto-correct spelling.",
+            "Why B is correct — The compiler simply sees a new unique method, leading to logical bugs.",
+            "Why C is wrong — Hashmaps handle object IDs, completely unrelated to method signatures.",
+            "Why D is wrong — Superclasses are immutable to child typo errors."
+          ]
+        },
+        {
+          "question": "Which of the following is true regarding C++ pointers and the `virtual` keyword during Run-time Polymorphism?",
+          "options": [
+            "If a base class method lacks the `virtual` keyword, a base pointer referring to a derived object will execute the base class method (Early Binding).",
+            "The `virtual` keyword forces the pointer to statically bind to the base method.",
+            "The `virtual` keyword converts the pointer into a Java reference variable.",
+            "If `virtual` is omitted, the compiler throws an overriding ambiguity exception."
+          ],
+          "correct": 0,
+          "explanation": "In C++, without the `virtual` keyword, the compiler looks at the pointer's type (`Base*`) and statically early-binds the call to the Base class method, completely ignoring the physical Derived object it points to.",
+          "optionExplanations": [
+            "Why A is correct — The lack of `virtual` defaults to static early-binding based on the pointer type.",
+            "Why B is wrong — `virtual` explicitly forces late dynamic binding.",
+            "Why C is wrong — Keywords do not cross language mechanics.",
+            "Why D is wrong — It compiles flawlessly but executes the early-bound base logic."
+          ]
+        },
+        {
+          "question": "Examine this C++ scenario: `void swap(int &a, int &b) { ... }`. If a developer wishes to use the same logic for `double`, `float`, and `char`, what advanced C++ feature prevents them from manually overloading the function four separate times?",
+          "options": [
+            "Operator Overloading",
+            "Virtual Destructors",
+            "Template Functions",
+            "Dynamic Dispatch"
+          ],
+          "correct": 2,
+          "explanation": "Templates in C++ allow developers to write a single generic function (`template <typename T>`) that the compiler automatically instantiates for different data types, drastically reducing code redundancy.",
+          "optionExplanations": [
+            "Why A is wrong — Operator overloading redefines symbols, not function data types.",
+            "Why B is wrong — Destructors handle memory cleanup.",
+            "Why C is correct — Templates specifically enable type-safe code reusability across diverse data types.",
+            "Why D is wrong — Dynamic dispatch resolves overriding methods, not data type generics."
+          ]
+        },
+        {
+          "question": "What is the equivalent feature in Java that allows classes and methods to operate on specified dynamic data types, providing compile-time type safety similar to C++ Templates?",
+          "options": [
+            "Generics",
+            "Interfaces",
+            "The `@Override` Tag",
+            "The `super` Keyword"
+          ],
+          "correct": 0,
+          "explanation": "Java Generics (e.g., `class Container<T>`) provide a placeholder for types, enforcing compile-time type safety while eliminating redundant code blocks. They serve the identical architectural purpose as C++ Templates.",
+          "optionExplanations": [
+            "Why A is correct — Generics are the explicit Java equivalent of C++ Templates.",
+            "Why B is wrong — Interfaces handle multiple inheritance and abstraction, not generic data types.",
+            "Why C is wrong — Annotations enforce overriding checks.",
+            "Why D is wrong — `super` interacts with the inheritance hierarchy."
+          ]
+        },
+        {
+          "question": "When declaring a Java interface, what is the access modifier implicitly applied to all methods written within it?",
+          "options": [
+            "private",
+            "protected",
+            "public abstract",
+            "static final"
+          ],
+          "correct": 2,
+          "explanation": "By design, all methods declared inside a Java Interface are implicitly `public` and `abstract`. They represent an open contract that any implementing class must fully define.",
+          "optionExplanations": [
+            "Why A is wrong — Private methods cannot be implemented by external classes.",
+            "Why B is wrong — Protected would restrict interface implementation tightly to packages.",
+            "Why C is correct — The JVM inherently treats all interface methods as public contracts without bodies.",
+            "Why D is wrong — Interface *variables* are implicitly `public static final`, but methods are `public abstract`."
+          ]
+        },
+        {
+          "question": "Examine this C++ snippet:\n\nclass A { public: void show() { cout << \"A\"; } };\nclass B : public A { public: void show() { cout << \"B\"; } };\nint main() { A* ptr = new B(); ptr->show(); }\n\nWhat is printed to the console?",
+          "options": [
+            "A",
+            "B",
+            "AB",
+            "Compilation Error"
+          ],
+          "correct": 0,
+          "explanation": "Because `show()` in class A is NOT marked with the `virtual` keyword, the compiler uses early binding based strictly on the pointer type (`A*`). Thus, it calls A's method, printing 'A'.",
+          "optionExplanations": [
+            "Why A is correct — Static early binding relies on pointer type due to the absence of the `virtual` keyword.",
+            "Why B is wrong — 'B' would print only if A's method was marked `virtual`.",
+            "Why C is wrong — Only one method executes.",
+            "Why D is wrong — The syntax is completely legal."
+          ]
+        },
+        {
+          "question": "In the context of OOP inheritance, what defines the concept of a 'Covariant Return Type'?",
+          "options": [
+            "A subclass overriding a method and changing its return type to a primitive integer.",
+            "A subclass overriding a method but returning a subclass type of the original return type specified in the parent class.",
+            "A parent method returning a void operator.",
+            "A template function returning the dynamic memory base address."
+          ],
+          "correct": 1,
+          "explanation": "Covariant return types allow an overridden method in a derived class to return a more specific type (a subclass) than the return type declared in the parent class's original method signature, increasing type safety.",
+          "optionExplanations": [
+            "Why A is wrong — Primitive types cannot be covariant; they must be exact matches.",
+            "Why B is correct — Returning a subclass of the original return type precisely defines covariance.",
+            "Why C is wrong — Void returns have no bearing on covariance.",
+            "Why D is wrong — Template addresses deal with memory, not overriding covariance."
+          ]
+        },
+        {
+          "question": "In a Java multi-level inheritance structure where `class C extends B` and `class B extends A`, what happens if class C invokes `super.method()`?",
+          "options": [
+            "It bypasses B and immediately executes A's method.",
+            "It explicitly executes B's overridden version of the method.",
+            "It triggers a compilation exception because `super` only works in single inheritance.",
+            "It executes both A and B's methods concurrently."
+          ],
+          "correct": 1,
+          "explanation": "The `super` keyword strictly targets the immediate parent class. For class C, the immediate parent is class B. Therefore, it invokes B's method safely.",
+          "optionExplanations": [
+            "Why A is wrong — `super` looks exactly one level up, not to the grand-parent.",
+            "Why B is correct — It precisely resolves to the immediate parent's (B) scope.",
+            "Why C is wrong — `super` works flawlessly in multi-level hierarchies.",
+            "Why D is wrong — Execution is singular and linear, not concurrent."
+          ]
+        },
+        {
+          "question": "Which of the following scenarios is an example of 'Downcasting'?",
+          "options": [
+            "Assigning a child object to a parent reference variable.",
+            "Assigning a parent reference variable to a child reference variable, requiring an explicit cast.",
+            "Decreasing the memory footprint of an abstract class.",
+            "Converting a double into an integer."
+          ],
+          "correct": 1,
+          "explanation": "Downcasting occurs when a reference of a Superclass is explicitly cast down to a reference of a Subclass (e.g., `Dog d = (Dog) animalRef;`). It is inherently risky and can throw runtime exceptions if the underlying object is not actually a Dog.",
+          "optionExplanations": [
+            "Why A is wrong — This is Upcasting.",
+            "Why B is correct — Explicitly mapping a broader parent reference into a narrower child reference is Downcasting.",
+            "Why C is wrong — Memory footprints are managed by the runtime environment.",
+            "Why D is wrong — This is primitive typecasting, not object reference casting."
+          ]
+        },
+        {
+          "question": "Which specific issue does the Java keyword `implements` resolve when attached to an `interface`?",
+          "options": [
+            "It enforces static binding for improved performance.",
+            "It bypasses the need for the `main` driver class.",
+            "It provides a safe architectural workaround to support the functionality of multiple inheritance.",
+            "It generates Identity Hashmaps dynamically."
+          ],
+          "correct": 2,
+          "explanation": "Since Java outright bans multiple class inheritance to prevent ambiguity (the Diamond Problem), it uses the `implements` keyword alongside interfaces to allow a class to inherit diverse contracts safely.",
+          "optionExplanations": [
+            "Why A is wrong — Interfaces deal with overriding, which relies on dynamic late binding.",
+            "Why B is wrong — Executable programs always require a `main` entry point.",
+            "Why C is correct — Implementing multiple interfaces is Java's safe multiple inheritance structure.",
+            "Why D is wrong — Identity hashmaps are handled by the JVM internally."
+          ]
+        },
+        {
+          "question": "In the context of the C++ `this` pointer, which statement evaluates as logically TRUE?",
+          "options": [
+            "The `this` pointer is explicitly passed as a parameter in the method signature by the developer.",
+            "The `this` pointer automatically converts private attributes to public.",
+            "The `this` pointer is implicitly passed as a hidden argument to all non-static member functions by the compiler.",
+            "The `this` pointer creates virtual base classes to solve the diamond problem."
+          ],
+          "correct": 2,
+          "explanation": "Developers do not write the `this` pointer in function parameter lists. The C++ compiler implicitly injects it behind the scenes into all non-static member functions to track the invoking object's memory address.",
+          "optionExplanations": [
+            "Why A is wrong — It is passed implicitly by the compiler, not explicitly by the developer.",
+            "Why B is wrong — The pointer cannot bypass encapsulation visibility constraints.",
+            "Why C is correct — The compiler automatically injects the `this` pointer to track the specific object context.",
+            "Why D is wrong — Virtual inheritance solves the diamond problem, not the `this` pointer."
+          ]
+        },
+        {
+          "question": "Consider a Java class `Student` that utilizes Constructor Overloading:\n\n`Student() { name = \"Unknown\"; }`\n`Student(String n) { name = n; }`\n\nIf the main program runs `Student s = new Student(\"Alice\");`, which core OOP design advantage is demonstrated?",
+          "options": [
+            "Security Encapsulation",
+            "Flexibility through Compile-time Polymorphism",
+            "Run-time dynamic upcasting",
+            "Interface implementation"
+          ],
+          "correct": 1,
+          "explanation": "Constructor overloading offers immense flexibility. The compiler safely uses early binding (Compile-time Polymorphism) to route the instantiation to the correct initialization block based on the provided data.",
+          "optionExplanations": [
+            "Why A is wrong — Encapsulation relies on access modifiers (private/public), not overloading.",
+            "Why B is correct — Overloading provides flexibility and is resolved during compile-time.",
+            "Why C is wrong — Object creation is not an upcasting process.",
+            "Why D is wrong — Interfaces deal with method abstractions."
+          ]
+        },
+        {
+          "question": "A developer writes a Java method `calculateGrade(double percentage)` and another method `calculateGrade(char letterGrade)` within the same class. This represents:",
+          "options": [
+            "Method Overriding",
+            "Method Overloading",
+            "Operator Overloading",
+            "Constructor Shadowing"
+          ],
+          "correct": 1,
+          "explanation": "Because the method names are identical but the parameter types differ (`double` vs `char`), and they reside within the exact same class, this is the textbook definition of Method Overloading.",
+          "optionExplanations": [
+            "Why A is wrong — Overriding requires inheritance and identical parameters.",
+            "Why B is correct — Changing parameter types within the same class dictates Method Overloading.",
+            "Why C is wrong — Operator overloading alters operators (`+`, `-`), not methods, and is unavailable in Java.",
+            "Why D is wrong — Constructor shadowing is a fabricated term."
+          ]
+        },
+        {
+          "question": "If a C++ developer wishes to overload the `+` operator to merge two `Box` objects, which keyword must precede the `+` sign in the member function declaration?",
+          "options": [
+            "virtual",
+            "super",
+            "operator",
+            "overload"
+          ],
+          "correct": 2,
+          "explanation": "The exact syntax to implement custom operator logic in C++ strictly demands the `operator` keyword, followed immediately by the operator symbol (e.g., `Box operator+(Box b)`).",
+          "optionExplanations": [
+            "Why A is wrong — `virtual` handles run-time polymorphism for overriding.",
+            "Why B is wrong — `super` is a Java keyword.",
+            "Why C is correct — The keyword `operator` explicitly signals the compiler to overload the proceeding symbol.",
+            "Why D is wrong — `overload` is a conceptual term, not a C++ keyword."
+          ]
+        },
+        {
+          "question": "In Java, what happens if an object attempts to invoke a method that exists in its superclass, but the subclass has perfectly overridden it?",
+          "options": [
+            "The compiler flags an ambiguous method call error.",
+            "The JVM executes the subclass's overridden version of the method (Dynamic Method Dispatch).",
+            "The JVM executes the superclass's version because it acts as the primary blueprint.",
+            "Both methods execute sequentially, top-down."
+          ],
+          "correct": 1,
+          "explanation": "When an overridden method is invoked on an object, the JVM identifies the object's actual runtime type and dynamically dispatches the call to the subclass's specific implementation, completely bypassing the parent's generic code.",
+          "optionExplanations": [
+            "Why A is wrong — Overriding is an expected OOP mechanic, it does not cause compile errors.",
+            "Why B is correct — The JVM handles late binding safely to execute the child's specific overridden logic.",
+            "Why C is wrong — The base logic is explicitly substituted and ignored during overriding.",
+            "Why D is wrong — Only the overridden subclass method executes."
+          ]
+        },
+        {
+          "question": "Which of the following best describes the Java `@Override` annotation?",
+          "options": [
+            "It explicitly forces the JVM to execute the method using early binding.",
+            "It is a mandatory compile-time constraint; without it, overriding mathematically fails.",
+            "It is an optional compiler directive that verifies if a superclass method is accurately being overridden, preventing subtle typing errors.",
+            "It automatically generates interface contracts."
+          ],
+          "correct": 2,
+          "explanation": "While overriding functions naturally without `@Override`, using the annotation instructs the compiler to double-check the method signature against the parent class, catching capitalization or parameter errors immediately.",
+          "optionExplanations": [
+            "Why A is wrong — Overriding strictly relies on late dynamic binding.",
+            "Why B is wrong — The code will successfully override without the annotation if the signature is perfect.",
+            "Why C is correct — It serves as a helpful compile-time safety checker for developers.",
+            "Why D is wrong — Annotations do not generate architectural interfaces."
+          ]
+        },
+        {
+          "question": "A developer writes `return *this;` inside a C++ member function. What does `*this` evaluate to?",
+          "options": [
+            "The base memory address pointer of the object.",
+            "The physical value/instance of the current object that invoked the function.",
+            "A dynamically allocated heap instance.",
+            "The abstract class blueprint."
+          ],
+          "correct": 1,
+          "explanation": "Because `this` is a pointer (holding an address), placing the dereference operator `*` in front of it resolves the pointer, grabbing the actual physical object instance stored at that memory location.",
+          "optionExplanations": [
+            "Why A is wrong — Returning `this` yields the pointer address. The `*` changes that.",
+            "Why B is correct — Dereferencing the pointer explicitly yields the object value.",
+            "Why C is wrong — Objects can be static or dynamic; `*this` simply targets the invoking instance regardless.",
+            "Why D is wrong — Blueprints are logical structures, not memory values."
+          ]
+        },
+        {
+          "question": "In Java, what memory tracking mechanism is heavily relied upon when an unformatted object is passed to `System.out.println(obj);`?",
+          "options": [
+            "Base Memory Address mapping.",
+            "Scope Resolution routing.",
+            "The Identity Hashmap generated internally by the JVM.",
+            "Operator overloading on the `println` stream."
+          ],
+          "correct": 2,
+          "explanation": "If a developer prints a raw object reference in Java without overriding `.toString()`, the JVM outputs the class name concatenated with the object's unique tracking Identity Hashmap (e.g., `Car@732ef`).",
+          "optionExplanations": [
+            "Why A is wrong — C++ uses physical base addresses; Java explicitly abstracts them for security.",
+            "Why B is wrong — Scope resolution is C++ scope logic.",
+            "Why C is correct — The Identity Hashmap is Java's secure tracking ID output dynamically.",
+            "Why D is wrong — Java forbids operator overloading."
+          ]
+        },
+        {
+          "question": "When modeling an abstract system conceptually, what makes an Abstract Class different from a regular Concrete Class?",
+          "options": [
+            "Abstract classes consume zero hard drive space.",
+            "Abstract classes contain at least one method that acts purely as an undefined placeholder, forcing derived classes to define it.",
+            "Abstract classes require static binding for all derived subclasses.",
+            "Abstract classes can instantiate objects directly using the `new` keyword."
+          ],
+          "correct": 1,
+          "explanation": "An abstract class serves purely as an architectural contract. It declares 'what' a subclass must do (via abstract/pure virtual methods) without defining 'how', leaving the implementation strictly to the concrete child classes.",
+          "optionExplanations": [
+            "Why A is wrong — Code text always consumes drive space.",
+            "Why B is correct — Abstract methods are mandatory contracts pushed onto the subclass.",
+            "Why C is wrong — Abstract methods trigger dynamic late binding overriding.",
+            "Why D is wrong — Attempting to directly instantiate an Abstract Class throws a severe compilation error."
+          ]
+        },
+        {
+          "question": "Examine this Java inheritance tree: `Dog` extends `Animal`. In the main driver, `Animal a = new Animal();` is executed. Later, the developer attempts `Dog d = (Dog) a;`. What type of action is this, and what is the outcome?",
+          "options": [
+            "Upcasting; it compiles and runs flawlessly.",
+            "Method Overloading; it resolves statically.",
+            "Downcasting; it throws a ClassCastException at runtime because the actual object is an `Animal`, not a `Dog`.",
+            "Method Overriding; it dynamically dispatches the dog's bark."
+          ],
+          "correct": 2,
+          "explanation": "This represents Downcasting. The reference `a` strictly holds a generic `Animal` object in memory. Attempting to force it into a more specific `Dog` reference fails at runtime because the physical memory object lacks the specific `Dog` traits.",
+          "optionExplanations": [
+            "Why A is wrong — This is the opposite of Upcasting.",
+            "Why B is wrong — Overloading deals with parameters, not object casting.",
+            "Why C is correct — Downcasting a pure generic parent object into a specific child throws a runtime exception.",
+            "Why D is wrong — Overriding handles method routing, not object type conversion."
+          ]
+        },
+        {
+          "question": "If a C++ programmer writes a derived class that declares a function perfectly matching a base class's `virtual` function, what OOP mechanic takes over?",
+          "options": [
+            "Function Overriding",
+            "Constructor Shadowing",
+            "Early Static Binding",
+            "Variable Overloading"
+          ],
+          "correct": 0,
+          "explanation": "The presence of the `virtual` keyword in the base class signals the compiler to prepare for dynamic binding. When the derived class defines the exact same signature, Function Overriding securely takes over the method execution path.",
+          "optionExplanations": [
+            "Why A is correct — The matching signature explicitly overrides the base virtual placeholder.",
+            "Why B is wrong — Shadowing resolves variable naming overlaps.",
+            "Why C is wrong — Virtual strictly dictates late dynamic binding.",
+            "Why D is wrong — Overloading handles differing parameters, not matching signatures."
+          ]
+        },
+        {
+          "question": "Which of the following C++ statements accurately overloads the multiplication operator `*` for a `Complex` class?",
+          "options": [
+            "void overload* (Complex c) { }",
+            "Complex operator* (Complex c) { }",
+            "operator overload* (Complex c) { }",
+            "Complex* operator (c) { }"
+          ],
+          "correct": 1,
+          "explanation": "The proper operator overloading syntax dictates the return type (`Complex`), followed by the keyword `operator`, followed by the targeted symbol (`*`), and finally the parameter list `(Complex c)`.",
+          "optionExplanations": [
+            "Why A is wrong — `overload` is not a C++ keyword.",
+            "Why B is correct — This perfectly matches standard C++ symbol overloading syntax.",
+            "Why C is wrong — The symbol must attach directly to the `operator` keyword.",
+            "Why D is wrong — This is completely garbled syntax."
+          ]
+        },
+        {
+          "question": "Which specific run-time mechanism allows the Java Virtual Machine to track which overridden method to execute based on the actual object instantiated in memory?",
+          "options": [
+            "Identity Hashmaps",
+            "Dynamic Method Dispatch",
+            "Scope Resolution",
+            "Garbage Collection"
+          ],
+          "correct": 1,
+          "explanation": "Dynamic Method Dispatch is the formal runtime mechanism in Java where the JVM examines the actual physical object (e.g., `new Dog()`) rather than the reference pointer type, and executes that object's specific overridden method.",
+          "optionExplanations": [
+            "Why A is wrong — Hashmaps track generic memory identity, not method overriding trees.",
+            "Why B is correct — Dynamic dispatch ensures the correct polymorphic method branch is executed at runtime.",
+            "Why C is wrong — Scope resolution is a C++ compile-time linker.",
+            "Why D is wrong — Garbage collection cleans unused object memory."
+          ]
+        },
+        {
+          "question": "What is the primary visual difference between declaring an abstract method in Java versus a pure virtual function in C++?",
+          "options": [
+            "Java uses the `abstract` keyword and terminates with a semicolon, whereas C++ uses the `virtual` keyword and sets the function `= 0;`.",
+            "Java forces the method to return an integer, whereas C++ forces a void return.",
+            "Java methods must use the `extends` tag, whereas C++ methods use the `::` scope operator.",
+            "There is absolutely no syntactical difference."
+          ],
+          "correct": 0,
+          "explanation": "In Java, abstraction is declared explicitly: `abstract void draw();`. In C++, abstraction is declared using virtual assignments: `virtual void draw() = 0;`.",
+          "optionExplanations": [
+            "Why A is correct — This accurately notes the precise syntactical rules defined in the lectures.",
+            "Why B is wrong — Both languages can return any valid data type.",
+            "Why C is wrong — `extends` applies to classes, not methods.",
+            "Why D is wrong — The syntax is fundamentally unique between the two languages."
+          ]
+        },
+        {
+          "question": "A developer working on a traffic simulation overrides the `changeColor()` method across classes representing different traffic lights. Which overarching design advantage does this polymorphic approach offer?",
+          "options": [
+            "It decreases the size of the compiled binary drastically.",
+            "It prevents runtime crashes due to uninitialized arrays.",
+            "It allows a unified interface to dynamically trigger diverse, specific behaviors (like a smart pointer iterating through lights) without duplicating distinct logic loops.",
+            "It guarantees that memory allocates onto the fast execution stack rather than the heap."
+          ],
+          "correct": 2,
+          "explanation": "Polymorphism massively increases code reusability and scalability. A unified loop can call `light.changeColor()` on an array of generic light references, and dynamic binding executes the precise, unique color changes for each specialized light object.",
+          "optionExplanations": [
+            "Why A is wrong — Dynamic dispatch actually increases binary sizes slightly due to tracking tables.",
+            "Why B is wrong — It does not protect against array index errors.",
+            "Why C is correct — A clean, unified interface executing specialized diverse behaviors is the core benefit of polymorphism.",
+            "Why D is wrong — Memory allocation locations are unrelated to polymorphism."
+          ]
+        }
+      ]
     }
   ]
 };
