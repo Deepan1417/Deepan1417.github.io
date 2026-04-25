@@ -1,0 +1,247 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║        MCQ GENERATION PROMPT — NPTEL OOP (IIT Roorkee)                     ║
+║        Prof. R. Bala Subramanian · 60 Lectures · C++ / Java / Python       ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+HOW TO USE THIS PROMPT:
+  1. Copy everything between the ═══ START ═══ and ═══ END ═══ markers below
+  2. Paste it into Claude / ChatGPT / Gemini
+  3. At the bottom, specify which UNIT(s) you want generated
+  4. Copy the output → save as questions.js → drop into your quiz folder
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+═══ START PROMPT — COPY FROM HERE ═══
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You are an expert exam paper setter for the NPTEL course:
+"Fundamentals of Object Oriented Programming"
+by Prof. R. Bala Subramanian, IIT Roorkee.
+
+This course covers OOP concepts implemented across C++, Java, and Python,
+across 60 lectures grouped into the units listed below.
+
+Your task is to generate a questions.js file for the units I specify at
+the bottom of this prompt. Produce exactly 15 questions per unit.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COURSE UNIT MAP (all 12 units, lecture references included)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Unit 1: Introduction to OOP  [Lectures 1–5]
+  Topics: procedural vs OOP paradigm, OOP features (modularity, reusability,
+  encapsulation, inheritance, abstraction, polymorphism), objects and classes,
+  class as blueprint, state and behavior of objects, historical overview of OOP,
+  programming paradigms comparison, benefits of OOP, real-world analogies
+  (animals, pen, bank account).
+
+Unit 2: Classes and Objects in C++ and Java  [Lectures 2–7]
+  Topics: class definition syntax in C++ and Java, member data vs member
+  functions (methods), access specifiers (public, private, protected), object
+  instantiation, dot operator, static vs dynamic object creation (new keyword),
+  class declaration vs definition, scope resolution operator (::), 'this' keyword
+  scope, in-class and out-of-class method definitions.
+
+Unit 3: Constructors and Access Specifiers  [Lectures 8–11]
+  Topics: default constructor, parameterized constructor, copy constructor,
+  constructor overloading, destructor (~), deep copy vs shallow copy, constructor
+  chaining, access specifiers in C++ and Java (public/private/protected/default),
+  constructor in Java vs C++, 'this' keyword usage in constructors,
+  dynamic object creation with new/delete.
+
+Unit 4: Inheritance  [Lectures 12–15]
+  Topics: single inheritance, multilevel inheritance, multiple inheritance,
+  hierarchical inheritance, hybrid inheritance, base class and derived class,
+  'extends' keyword in Java, colon syntax in C++, access control in inheritance,
+  method overriding basics, super keyword in Java, constructor calling in
+  inheritance chain, diamond problem, virtual base class to solve diamond problem,
+  friend function and friend class concept.
+
+Unit 5: Polymorphism — Overloading and Overriding  [Lectures 16–20]
+  Topics: compile-time vs runtime polymorphism, function overloading,
+  operator overloading in C++, constructor overloading, 'this' keyword in C++
+  (returning *this), method overloading in Java, method overriding in Java and C++,
+  @Override annotation, dynamic dispatch, upcasting and downcasting,
+  static binding vs dynamic binding, covariant return types.
+
+Unit 6: Encapsulation and Data Abstraction  [Lectures 21–25]
+  Topics: encapsulation definition and implementation, getters and setters,
+  data hiding, tight coupling vs loose coupling, data abstraction vs encapsulation,
+  abstract class in C++ (pure virtual functions), abstract class in Java
+  (abstract keyword), interface in Java (100% abstraction), virtual functions,
+  vtable and vptr, pure virtual function (= 0 syntax), abstract vs concrete class,
+  difference between abstract class and interface.
+
+Unit 7: Exception Handling  [Lectures 26–30]
+  Topics: types of exceptions (compile-time vs runtime), try-catch-throw in C++,
+  try-catch-finally in Java, multiple catch blocks, catch block ordering
+  (specific to general), nested try blocks, custom/user-defined exceptions,
+  std::exception class hierarchy, checked vs unchecked exceptions in Java,
+  'throws' keyword in Java, 'throw' vs 'throws', finally block guarantee,
+  rethrowing exceptions, stack unwinding.
+
+Unit 8: File Handling and Serialization  [Lectures 31–35]
+  Topics: file I/O in C++ (ifstream, ofstream, fstream), file I/O in Java
+  (FileReader, FileWriter, BufferedReader, Scanner), file modes (read/write/
+  append/binary), character reading, line reading, CSV file handling, binary
+  files, serialization and deserialization in Java (Serializable interface,
+  ObjectOutputStream, ObjectInputStream), transient keyword, file pointer
+  operations (seekg, seekp, tellg, tellp), error handling in file operations.
+
+Unit 9: Templates and Generics  [Lectures 36–40]
+  Topics: function templates in C++, class templates in C++, template
+  specialization, typename vs class keyword in templates, type safety,
+  code reusability with templates, generics in Java (type parameters T/E/K/V),
+  bounded type parameters (extends), wildcard (?), generic methods, raw types,
+  type erasure in Java, generics in Python (TypeVar, Generic class),
+  difference between C++ templates and Java generics.
+
+Unit 10: Standard Template Library (STL)  [Lectures 41–45]
+  Topics: STL components (containers, iterators, algorithms), sequence containers
+  (vector, list, deque, array), associative containers (map, set, multimap,
+  multiset), unordered containers (unordered_map, unordered_set), container
+  adapters (stack, queue, priority_queue), iterators (begin/end, forward/
+  backward/random access), STL algorithms (sort, find, count, transform),
+  auto keyword with iterators, pair and make_pair, emplace_back vs push_back.
+
+Unit 11: Design Patterns  [Lectures 46–50]
+  Topics: creational patterns (Singleton, Factory Method, Abstract Factory),
+  structural patterns (Adapter, Decorator, Facade), behavioral patterns
+  (Observer, Strategy, Iterator), Singleton pattern (private constructor,
+  static instance, thread safety), Factory pattern (object creation without
+  specifying class), Observer pattern (subject-observer relationship, event
+  notification), design pattern categories, SOLID principles context,
+  UML representation of patterns, real-world use cases.
+
+Unit 12: Advanced Topics — Multithreading and Case Studies  [Lectures 51–60]
+  Topics: multithreading concepts (thread, process, concurrency), thread
+  creation in Java (Thread class, Runnable interface), thread lifecycle
+  (new/runnable/running/blocked/terminated), synchronization (synchronized
+  keyword, locks, semaphores, monitors), deadlock (causes: mutual exclusion,
+  hold-and-wait, no-preemption, circular wait), deadlock prevention strategies,
+  race condition, network programming basics (socket, ServerSocket in Java),
+  HTTP communication, case studies (Library Management, Hotel Reservation,
+  Shopping Cart, Employee Payroll — applying OOP concepts end-to-end).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+QUESTION QUALITY RULES — follow every rule strictly
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. VARIETY — atleast every 15-question MUST include all of these types:
+   • Direct recall    — definition, syntax, keyword name (2–3 questions)
+   • Conceptual       — why/how/what is the purpose of X (2–3 questions)
+   • Code reading     — given a C++/Java snippet, what is the output or error (3 questions)
+   • Application      — scenario: which concept/class/pattern to use (2 questions)
+   • Comparison       — C++ vs Java vs Python difference for same concept (1–2 questions)
+   • Negative form    — "which is NOT", "EXCEPT", "incorrect statement" (2 questions)
+   • Tricky/NPTEL-PYQ — close distractors, commonly confused pairs (2 questions)
+need to generate atleast 15 questions per topic
+2. LANGUAGE BALANCE — since the course covers C++, Java, and Python:
+   • At least 5 questions per unit must reference C++ syntax specifically
+   • At least 4 questions must reference Java syntax specifically
+   • At least 1 question should compare behavior across languages
+   • Code snippet questions must show EXACT valid C++ or Java code
+
+3. DISTRACTOR QUALITY — all 4 options must be plausible:
+   • Use real OOP terms as wrong options (not nonsense)
+   • Exploit common student confusions (e.g., overloading vs overriding,
+     abstract class vs interface, throw vs throws, deep vs shallow copy)
+   • Never make the wrong answer obviously absurd
+
+4. EXPLANATION DEPTH:
+   • "explanation" field: explain the CONCEPT fully — not just "A is correct."
+     Mention the rule, the syntax, the reason, and a real-world analogy if helpful.
+   • "optionExplanations": explain each option individually — why it's right or
+     wrong, what misconception it targets, and what the correct nuance is.
+
+5. COVERAGE — spread 15 questions across ALL subtopics of the unit.
+   Do not write 15 questions on one subtopic while ignoring others.
+
+6. DIFFICULTY MIX per unit:
+   • Easy (recall/definition): 4 questions
+   • Medium (conceptual/code reading): 7 questions
+   • Hard (tricky/comparative/NPTEL-style): 4 questions
+
+7. DO NOT use "All of the above" or "None of the above" as options.
+8. Every question must end with a question mark.
+9. Code in questions must be properly formatted — use \n for newlines inside
+   the question string if showing multi-line code.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EXACT OUTPUT FORMAT — return ONLY this JS, no extra text, no markdown fences
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+const COURSE_DATA = {
+  courseName: "Fundamentals of Object Oriented Programming",
+  subtitle: "NPTEL · Prof. R. Bala Subramanian · IIT Roorkee",
+  units: [
+    {
+      name: "Unit 1: Introduction to OOP",
+      questions: [
+        {
+          question: "Full question text ending with ?",
+          options: [
+            "Option A full text",
+            "Option B full text",
+            "Option C full text",
+            "Option D full text"
+          ],
+          correct: 0,
+          explanation: "Full concept explanation that teaches the student the underlying principle, not just restates the answer. Mention syntax or real-world analogy where helpful.",
+          optionExplanations: [
+            "Why A is correct — specific reason tied to OOP concept",
+            "Why B is wrong — which misconception this targets",
+            "Why C is wrong — what this option is actually describing",
+            "Why D is wrong — common confusion clarified"
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RULES FOR THE "correct" FIELD:
+  0 = Option A is correct
+  1 = Option B is correct
+  2 = Option C is correct
+  3 = Option D is correct
+
+CRITICAL OUTPUT RULES:
+  • Return ONLY the raw JavaScript. No markdown. No ```. No explanation.
+  • The file must be saveable directly as questions.js and work in a browser.
+  • Complete ALL 15 questions for EVERY unit requested. Never truncate.
+  • Ensure all JSON brackets, braces, quotes, and commas are syntactically valid.
+  • Do NOT include comments inside the questions array.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+► GENERATE QUESTIONS FOR THESE UNITS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[REPLACE THIS LINE with the units you want — e.g.:
+ "Generate Unit 1, Unit 2, and Unit 4"
+ OR "Generate all 12 units"
+ OR "Generate only Unit 6 and Unit 7"]
+
+═══ END PROMPT — COPY UNTIL HERE ═══
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TIPS FOR BEST RESULTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+► If generating all 12 units at once, use Claude (higher token limit).
+  For ChatGPT, do 3–4 units per run to avoid truncation.
+
+► If the AI cuts off mid-output, say:
+  "Continue the JSON exactly from where you stopped. Do not restart."
+
+► To get a SECOND SET of different questions for the same unit, add:
+  "Generate a completely different set of 15 questions for Unit X.
+  Do not repeat any question from the previous set."
+
+► To merge outputs from multiple runs into one questions.js:
+  - Run once per unit or per batch
+  - Copy just the unit object { name: "...", questions: [...] }
+    from each output and add it inside the units: [ ] array
+
+► After saving questions.js, open index.html — questions load instantly.
+  No server needed, works directly from your file system.
