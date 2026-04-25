@@ -2823,7 +2823,1083 @@ optionExplanations: [
           ]
         }
       ]
+    },{
+      name: "Unit 4: Inheritance",
+      questions: [
+        {
+          "question": "What is the primary objective of utilizing inheritance in Object-Oriented Programming?",
+          "options": [
+            "To encapsulate member data securely within a class to prevent external access.",
+            "To enable a new class to acquire and reuse the properties and methods of an existing class.",
+            "To track the unique identity of an object in physical memory.",
+            "To allow a single function name to handle varying data types at compile time."
+          ],
+          "correct": 1,
+          "explanation": "Inheritance is a core OOP feature that allows a derived class (or subclass) to inherit the attributes and methods of a base class, heavily promoting code reusability without rewriting identical logic.",
+          "optionExplanations": [
+            "Why A is wrong — Encapsulation handles data hiding and security, not inheritance.",
+            "Why B is correct — Promoting code reusability by inheriting existing properties is the definition of inheritance.",
+            "Why C is wrong — Object identity relates to memory addresses or hashmaps, not class inheritance.",
+            "Why D is wrong — Function overloading (compile-time polymorphism) handles this, not inheritance."
+          ]
+        },
+        {
+          "question": "Which of the following describes the correct syntactical operator used to define single inheritance in C++?",
+          "options": [
+            "The `extends` keyword",
+            "The scope resolution operator `::`",
+            "The colon `:` operator",
+            "The dot `.` operator"
+          ],
+          "correct": 2,
+          "explanation": "In C++, inheritance is denoted using a colon followed by the access specifier and base class name (e.g., `class Car : public Vehicle`).",
+          "optionExplanations": [
+            "Why A is wrong — `extends` is the keyword strictly used for inheritance in Java.",
+            "Why B is wrong — The scope resolution operator defines out-of-class methods or handles naming ambiguities.",
+            "Why C is correct — The colon `:` correctly establishes the inheritance relationship in C++.",
+            "Why D is wrong — The dot operator bridges an object to its member data or functions."
+          ]
+        },
+        {
+          "question": "When modeling a real-world scenario where a `GraduateStudent` class inherits from a `Student` class, and the `Student` class inherits from a `Person` class, which type of inheritance is demonstrated?",
+          "options": [
+            "Multiple Inheritance",
+            "Single Inheritance",
+            "Multilevel Inheritance",
+            "Hierarchical Inheritance"
+          ],
+          "correct": 2,
+          "explanation": "Multilevel inheritance occurs when a derived class serves as a base class for another derived class, creating a multi-tiered chain (e.g., Person -> Student -> GraduateStudent).",
+          "optionExplanations": [
+            "Why A is wrong — Multiple inheritance involves one derived class inheriting from two or more base classes simultaneously.",
+            "Why B is wrong — Single inheritance involves exactly one base class and one derived class.",
+            "Why C is correct — This forms a multi-tier hierarchy where a subclass itself becomes a superclass for another.",
+            "Why D is wrong — Hierarchical inheritance is when multiple derived classes inherit from a single base class."
+          ]
+        },
+        {
+          "question": "Examine the Java inheritance syntax. Which statement successfully enables the subclass `Car` to inherit the properties of the superclass `Vehicle`?",
+          "options": [
+            "class Car : public Vehicle {}",
+            "class Car inherits Vehicle {}",
+            "class Car extends Vehicle {}",
+            "class Vehicle implements Car {}"
+          ],
+          "correct": 2,
+          "explanation": "Java strictly uses the `extends` keyword to define inheritance between two classes, meaning the child class 'extends' the parent class's functionality.",
+          "optionExplanations": [
+            "Why A is wrong — This is the valid syntax for C++, not Java.",
+            "Why B is wrong — 'inherits' is not a valid keyword in Java.",
+            "Why C is correct — The `extends` keyword is the proper Java mechanism for class inheritance.",
+            "Why D is wrong — This reverses the relationship and uses `implements`, which is meant for interfaces, not standard classes."
+          ]
+        },
+        {
+          "question": "In C++, if no access specifier is provided when deriving a class (e.g., `class Derived : Base`), what is the default inheritance access mode?",
+          "options": [
+            "Public inheritance",
+            "Protected inheritance",
+            "Private inheritance",
+            "Virtual inheritance"
+          ],
+          "correct": 2,
+          "explanation": "If an access specifier is omitted during C++ class inheritance, the compiler defaults to `private` inheritance, meaning public and protected base members become private in the derived class.",
+          "optionExplanations": [
+            "Why A is wrong — C++ `structs` default to public inheritance, but `classes` do not.",
+            "Why B is wrong — Protected is never the default access mode in C++.",
+            "Why C is correct — C++ enforces strict security by defaulting class inheritance to private.",
+            "Why D is wrong — Virtual inheritance must be explicitly declared to solve the diamond problem."
+          ]
+        },
+        {
+          "question": "How does the `protected` access specifier differ fundamentally from the `private` access specifier within a base class?",
+          "options": [
+            "Protected members can be accessed directly from the `main()` driver function, whereas private members cannot.",
+            "Protected members are inherited and accessible within derived classes, whereas private members are completely hidden from derived classes.",
+            "Protected members automatically convert to public variables at runtime.",
+            "Protected members require the `friend` keyword to compile, whereas private members do not."
+          ],
+          "correct": 1,
+          "explanation": "The `protected` modifier is specifically designed for inheritance. It acts like `private` to the outside world (e.g., `main()`) but allows derived classes to access the inherited member data directly.",
+          "optionExplanations": [
+            "Why A is wrong — Neither protected nor private members can be accessed directly from `main()`.",
+            "Why B is correct — Protected grants access strictly downward to child classes, while private blocks all external access, including children.",
+            "Why C is wrong — Access modifiers dictate compile-time security; they do not change visibility dynamically at runtime.",
+            "Why D is wrong — Protected members do not require friend functions to be accessed by derived classes."
+          ]
+        },
+        {
+          "question": "Consider the C++ code:\n\nclass A { public: int a; };\nclass B { public: int b; };\nclass C : public A, public B { public: int c; };\n\nWhat category of inheritance is explicitly modeled by class C?",
+          "options": [
+            "Hierarchical Inheritance",
+            "Multilevel Inheritance",
+            "Hybrid Inheritance",
+            "Multiple Inheritance"
+          ],
+          "correct": 3,
+          "explanation": "Class C is inheriting directly from two independent base classes (A and B) simultaneously. This is the exact definition of Multiple Inheritance in C++.",
+          "optionExplanations": [
+            "Why A is wrong — Hierarchical is one base class with multiple derived classes branching from it.",
+            "Why B is wrong — Multilevel is a sequential chain (A -> B -> C).",
+            "Why C is wrong — Hybrid mixes multiple and hierarchical types.",
+            "Why D is correct — C inheriting both A and B side-by-side demonstrates multiple inheritance."
+          ]
+        },
+        {
+          "question": "Which of the following statements about Multiple Inheritance in Java is EXCEPTIONAL or INCORRECT?",
+          "options": [
+            "Java supports multiple inheritance conceptually using the `interface` keyword.",
+            "Java allows a single class to simultaneously use `extends` on two different superclasses to inherit state.",
+            "Java avoids the ambiguity issues of multiple inheritance by enforcing interfaces to only hold abstract methods.",
+            "Hybrid inheritance using classes is naturally unsupported in Java due to the absence of multiple inheritance."
+          ],
+          "correct": 1,
+          "explanation": "Java strictly prohibits a class from extending more than one superclass to prevent the 'Diamond Problem' (ambiguity). Multiple inheritance in Java is exclusively achieved through Interfaces, not class extensions.",
+          "optionExplanations": [
+            "Why A is wrong — This is a true statement. Interfaces resolve Java's multiple inheritance limitation.",
+            "Why B is correct — This statement is FALSE. Java syntax like `class C extends A, B` throws a compilation error.",
+            "Why C is wrong — This is true. Interfaces avoid ambiguity because the methods have no implementation to conflict.",
+            "Why D is wrong — This is true. Since multiple inheritance fails, hybrid (which requires multiple) also fails with classes."
+          ]
+        },
+        {
+          "question": "In a Java inheritance chain, the base class defines `void display() { System.out.println(\"A\"); }`. The derived class defines `void display() { System.out.println(\"B\"); }`. What OOP principle allows the derived class to replace the base behavior?",
+          "options": [
+            "Method Overloading",
+            "Constructor Chaining",
+            "Method Overriding",
+            "Data Encapsulation"
+          ],
+          "correct": 2,
+          "explanation": "When a derived class redefines a method with the exact same name, return type, and parameters as the base class, it overrides the parent's logic. This is Method Overriding (Run-time polymorphism).",
+          "optionExplanations": [
+            "Why A is wrong — Overloading occurs within the same class using different parameters.",
+            "Why B is wrong — Constructor chaining deals with object initialization, not replacing method logic.",
+            "Why C is correct — Overriding actively hides or replaces the base class method for objects of the derived class.",
+            "Why D is wrong — Encapsulation hides data via access specifiers, unrelated to modifying inherited behavior."
+          ]
+        },
+        {
+          "question": "Examine this Java snippet:\n\nclass Vehicle { int speed = 50; }\nclass Bike extends Vehicle {\n  int speed = 100;\n  void display() { System.out.println(super.speed); }\n}\n\nWhat is the expected output when `display()` is called on a `Bike` object?",
+          "options": [
+            "100",
+            "50",
+            "0",
+            "Compilation error due to duplicate variable names."
+          ],
+          "correct": 1,
+          "explanation": "The `super` keyword in Java is a reference variable used to access immediate parent class members. `super.speed` fetches the variable `speed` from `Vehicle` (50), ignoring the shadowed variable in `Bike` (100).",
+          "optionExplanations": [
+            "Why A is wrong — 100 would print if the code was `System.out.println(this.speed);` or just `speed`.",
+            "Why B is correct — `super` correctly targets the base class instance variable.",
+            "Why C is wrong — The variable is explicitly initialized in the superclass, so it does not default to 0.",
+            "Why D is wrong — OOP allows variable shadowing across inheritance boundaries safely."
+          ]
+        },
+        {
+          "question": "What happens if a Java subclass constructor does NOT explicitly call `super()` in its first line?",
+          "options": [
+            "The program throws a compilation error regarding uninitialized parent states.",
+            "The compiler automatically injects a hidden call to the default no-argument constructor of the superclass.",
+            "The subclass completely ignores the superclass constructor, breaking inheritance.",
+            "The JVM throws a runtime exception when assigning the identity hashmap."
+          ],
+          "correct": 1,
+          "explanation": "In Java, every subclass constructor must call a superclass constructor. If the programmer doesn't explicitly write `super(...)`, the compiler automatically inserts an invisible `super()` to invoke the default parent constructor.",
+          "optionExplanations": [
+            "Why A is wrong — It does not error unless the superclass lacks a default no-argument constructor.",
+            "Why B is correct — The compiler implicitly guarantees parent initialization via a hidden `super()` call.",
+            "Why C is wrong — Parent constructors are never ignored; their execution is mandatory.",
+            "Why D is wrong — This process is resolved safely at compile-time, not runtime."
+          ]
+        },
+        {
+          "question": "Consider C++ Multiple Inheritance where `class C : public A, public B`. Both `A` and `B` have a method named `show()`. If an object `c1` of class C calls `c1.show();`, what occurs?",
+          "options": [
+            "The program automatically runs both functions in alphabetical order.",
+            "The compiler throws an ambiguity error because it cannot determine which `show()` to execute.",
+            "It triggers late binding and silently executes the method from class A because it was declared first.",
+            "It runs the abstract `virtual` fallback method."
+          ],
+          "correct": 1,
+          "explanation": "This is a classic Multiple Inheritance Ambiguity problem. The compiler does not know whether to invoke `A's` show or `B's` show, resulting in a compilation error until explicitly resolved.",
+          "optionExplanations": [
+            "Why A is wrong — C++ never guesses execution order for conflicting methods.",
+            "Why B is correct — The compiler halts due to the ambiguous call path.",
+            "Why C is wrong — C++ doesn't default to declaration order for method resolution.",
+            "Why D is wrong — Virtual methods relate to overriding, not solving horizontal multiple inheritance collisions."
+          ]
+        },
+        {
+          "question": "How do C++ programmers manually resolve the ambiguity when a derived object `c1` inherits identical `show()` methods from two separate base classes?",
+          "options": [
+            "By utilizing the scope resolution operator, e.g., `c1.A::show();`",
+            "By importing the `java.util.super` library.",
+            "By marking one of the base class methods as `private`.",
+            "By utilizing the arrow operator, e.g., `c1->show();`"
+          ],
+          "correct": 0,
+          "explanation": "To resolve naming ambiguity in C++ multiple inheritance, the developer must explicitly tell the compiler which class's method to use via the scope resolution operator (`::`).",
+          "optionExplanations": [
+            "Why A is correct — `c1.A::show()` explicitly routes the execution to Class A's version of the method.",
+            "Why B is wrong — This is a fabricated Java concept applied to C++.",
+            "Why C is wrong — Access modifiers do not resolve inheritance routing logic.",
+            "Why D is wrong — The arrow operator is for pointers, not ambiguity resolution."
+          ]
+        },
+        {
+          "question": "In C++, the 'Diamond Problem' arises uniquely within which combination of inheritance types?",
+          "options": [
+            "Single and Multilevel Inheritance",
+            "Hierarchical and Multiple Inheritance (creating Hybrid Inheritance)",
+            "Private and Protected Inheritance",
+            "Compile-time and Runtime Polymorphism"
+          ],
+          "correct": 1,
+          "explanation": "The Diamond Problem occurs in Hybrid Inheritance when Class B and C hierarchically inherit from Class A, and Class D multiply inherits from both B and C. This causes Class D to receive two duplicate, ambiguous copies of Class A.",
+          "optionExplanations": [
+            "Why A is wrong — This forms a straight vertical line, causing no duplication conflicts.",
+            "Why B is correct — The branching (hierarchical) and re-joining (multiple) creates the diamond-shaped conflict.",
+            "Why C is wrong — This refers to access control, not structural architecture.",
+            "Why D is wrong — Polymorphism dictates method execution, not the structural inheritance issue of the diamond problem."
+          ]
+        },
+        {
+          "question": "How is the Diamond Problem structurally resolved in C++ to prevent a derived class from maintaining two duplicate copies of a base class?",
+          "options": [
+            "By inheriting the base class using the `virtual` keyword.",
+            "By utilizing the `this` pointer in the derived class constructor.",
+            "By changing all base class variables to `protected`.",
+            "By deleting the base class destructor."
+          ],
+          "correct": 0,
+          "explanation": "In C++, the Diamond Problem is resolved via Virtual Inheritance. By declaring `class B : virtual public A`, the compiler ensures only one shared instance of the base class A is inherited down to class D.",
+          "optionExplanations": [
+            "Why A is correct — The `virtual` keyword instructs the compiler to merge duplicate inheritance paths into a single instance.",
+            "Why B is wrong — `this` resolves local variable shadowing, not architectural inheritance duplication.",
+            "Why C is wrong — `protected` modifies external visibility, not structural duplication.",
+            "Why D is wrong — Destructors handle memory cleanup, unrelated to the inheritance pathing."
+          ]
+        },
+        {
+          "question": "A developer writes a Java class `Dog` that overrides the `move()` method from its superclass `Animal`. What occurs if the program executes `Animal b = new Dog(); b.move();`?",
+          "options": [
+            "The compiler triggers an error because a `Dog` cannot be stored in an `Animal` reference.",
+            "The `move()` method from the `Animal` class executes due to early binding.",
+            "The JVM dynamically executes the `move()` method from the `Dog` class.",
+            "The JVM crashes due to a mismatched identity hashmap."
+          ],
+          "correct": 2,
+          "explanation": "This demonstrates Upcasting and Run-time Polymorphism (Dynamic Method Dispatch). Although the reference is of type `Animal`, the physical object in memory is `Dog`. The JVM detects this at runtime and invokes the overridden `Dog` method.",
+          "optionExplanations": [
+            "Why A is wrong — Upcasting a child object into a parent reference is a fundamental, valid OOP technique.",
+            "Why B is wrong — Java resolves overridden methods at runtime (late binding), not compile-time.",
+            "Why C is correct — The JVM routes execution based on the actual object instantiated (`new Dog()`).",
+            "Why D is wrong — The identity hashmap accurately tracks the `Dog` object safely without crashing."
+          ]
+        },
+        {
+          "question": "Which of the following scenarios describes 'Hierarchical Inheritance'?",
+          "options": [
+            "A `Person` class is inherited by `Student`, which is then inherited by `GraduateStudent`.",
+            "A `Smartphone` class inherits properties from both a `Camera` class and a `Phone` class.",
+            "A `Shape` base class is inherited independently by both a `Circle` derived class and a `Rectangle` derived class.",
+            "A derived class is completely restricted from accessing its parent's protected variables."
+          ],
+          "correct": 2,
+          "explanation": "Hierarchical inheritance occurs when one single base class serves as the parent for multiple, distinct derived classes, like branches of a tree.",
+          "optionExplanations": [
+            "Why A is wrong — This represents Multilevel inheritance.",
+            "Why B is wrong — This represents Multiple inheritance.",
+            "Why C is correct — One parent (`Shape`) branching out to multiple children (`Circle`, `Rectangle`) is hierarchical.",
+            "Why D is wrong — This is a description of private inheritance access logic, not a structural topology."
+          ]
+        },
+        {
+          "question": "Examine this C++ snippet:\n\nclass Animal { public: Animal() { cout << \"A\"; } };\nclass Dog : public Animal { public: Dog() { cout << \"D\"; } };\nint main() { Dog myDog; return 0; }\n\nWhat is the exact output?",
+          "options": [
+            "D",
+            "A",
+            "DA",
+            "AD"
+          ],
+          "correct": 3,
+          "explanation": "When a derived class object is instantiated in C++, the compiler automatically invokes the constructor of the base class FIRST, followed by the derived class constructor. Thus, Animal ('A') prints before Dog ('D').",
+          "optionExplanations": [
+            "Why A is wrong — The base class constructor must execute to initialize inherited properties first.",
+            "Why B is wrong — The derived constructor also executes to initialize its own specific properties.",
+            "Why C is wrong — Derived constructors execute after Base constructors.",
+            "Why D is correct — Base constructor ('A') executes, then Derived ('D') executes."
+          ]
+        },
+        {
+          "question": "In the same C++ inheritance chain (`Dog` inherits `Animal`), what is the execution order of the Destructors when the object is destroyed?",
+          "options": [
+            "Base destructor first, then Derived destructor.",
+            "Derived destructor first, then Base destructor.",
+            "Both execute simultaneously via multithreading.",
+            "Only the Base destructor executes."
+          ],
+          "correct": 1,
+          "explanation": "Destructors execute in the exact reverse order of constructors. The derived class (`Dog`) is destroyed first, followed by the base class (`Animal`) to safely dismantle the object from the outside in.",
+          "optionExplanations": [
+            "Why A is wrong — This is the order for constructors, not destructors.",
+            "Why B is correct — The child part of the object is cleaned up before the parent part.",
+            "Why C is wrong — Destructors execute synchronously in a strict stack-unwinding order.",
+            "Why D is wrong — Both destructors must fire to prevent memory leaks."
+          ]
+        },
+        {
+          "question": "Regarding the `friend` function in C++, which statement is EXCEPTIONAL or INCORRECT?",
+          "options": [
+            "It can directly access the `private` and `protected` data members of the class it is friends with.",
+            "It is declared inside the class using the `friend` keyword but defined outside without the scope resolution operator `::`.",
+            "It is considered a true member function of the class, allowing it to utilize the `this` pointer.",
+            "It requires an object of the class to be passed as an argument to manipulate the class data."
+          ],
+          "correct": 2,
+          "explanation": "A friend function is NOT a member function of the class. It is an external function granted special access privileges. Because it is not a member function, it lacks an implicit `this` pointer.",
+          "optionExplanations": [
+            "Why A is wrong — This is true. Bypassing access modifiers is the primary purpose of a friend function.",
+            "Why B is wrong — This is true. It is declared inside with `friend` but defined globally without `ClassName::`.",
+            "Why C is correct — This statement is FALSE. Friend functions are not member functions and do not have a `this` pointer.",
+            "Why D is wrong — This is true. Lacking a `this` pointer, you must explicitly pass the target object (e.g., `display(Box b)`)."
+          ]
+        },
+        {
+          "question": "Evaluate this C++ code involving a friend function:\n\nclass Box {\n  int length;\npublic:\n  Box() { length = 0; }\n  friend void addLength(Box& b);\n};\nvoid addLength(Box& b) {\n  b.length += 10;\n  cout << b.length;\n}\nint main() { Box b1; addLength(b1); }\n\nWhy does this code successfully compile and modify the object?",
+          "options": [
+            "Because C++ classes default to public inheritance.",
+            "Because the `friend` declaration allows the external `addLength` function to bypass the private access restriction on `length`.",
+            "Because the `main()` function explicitly uses early binding to overload `length`.",
+            "Because the scope resolution operator `::` implicitly links the references."
+          ],
+          "correct": 1,
+          "explanation": "The `length` variable is private by default. However, because `addLength` is declared as a `friend` inside the class, the compiler grants this specific external function secure access to modify the private `length` data.",
+          "optionExplanations": [
+            "Why A is wrong — C++ classes default to private access, which is why the friend keyword is necessary.",
+            "Why B is correct — The `friend` keyword explicitly overrides privacy constraints for designated external functions.",
+            "Why C is wrong — Modifying a variable has nothing to do with early binding or function overloading.",
+            "Why D is wrong — Friend functions do not use the `::` scope operator; they are globally scoped."
+          ]
+        },
+        {
+          "question": "In a Java system modeling a University, the `GraduateStudent` class extends `Student`, and `Student` extends `Person`. If `GraduateStudent` calls `super.displayInfo()`, what code executes?",
+          "options": [
+            "The `displayInfo()` method residing in the `Person` class only.",
+            "The `displayInfo()` method residing in the `Student` class.",
+            "A compilation error triggers because `super` cannot be used in Multilevel inheritance.",
+            "Both the `Student` and `Person` methods concurrently."
+          ],
+          "correct": 1,
+          "explanation": "The `super` keyword in Java strictly refers to the *immediate* parent class. For `GraduateStudent`, the immediate parent is `Student`, so the `Student` class's method is invoked.",
+          "optionExplanations": [
+            "Why A is wrong — `super` only looks one level up, not to the top-level grand-parent.",
+            "Why B is correct — `super` safely targets the immediate parent's overridden method.",
+            "Why C is wrong — `super` works flawlessly across all levels of a multilevel hierarchy.",
+            "Why D is wrong — Java does not execute inherited methods concurrently; execution follows strict invocation."
+          ]
+        },
+        {
+          "question": "Which of the following describes the difference between an Abstract Class in C++ and an Interface in Java regarding Multiple Inheritance?",
+          "options": [
+            "Java Interfaces contain pure physical memory allocations, while C++ Abstract Classes use Identity Hashmaps.",
+            "Java classes can implement multiple Interfaces to safely achieve multiple inheritance, whereas C++ uses classes with virtual inheritance.",
+            "C++ Abstract Classes force static variable creation, while Java Interfaces force procedural dependencies.",
+            "There is no difference; both languages use the `implements` keyword to solve the diamond problem."
+          ],
+          "correct": 1,
+          "explanation": "Java strictly forbids extending multiple classes to avoid ambiguity, using `implements Interface1, Interface2` to safely achieve multiple inheritance behavior. C++ permits extending multiple classes directly and resolves ambiguity using `virtual` base classes.",
+          "optionExplanations": [
+            "Why A is wrong — Interfaces do not allocate memory for variables; they act as abstract blueprints.",
+            "Why B is correct — This accurately contrasts Java's interface-based workaround with C++'s direct class-based multiple inheritance.",
+            "Why C is wrong — Interfaces and abstract classes mandate polymorphic design, not procedural dependency.",
+            "Why D is wrong — C++ does not possess an `implements` keyword or formal 'Interface' construct."
+          ]
+        },
+        {
+          "question": "A Java programmer writes: `class SavingsAccount extends BankAccount`. Inside `SavingsAccount`, a method calculates interest differently than the base class. Which OOP feature makes this possible?",
+          "options": [
+            "Encapsulation",
+            "Compile-time polymorphism",
+            "Method Overriding",
+            "Abstract Data Typing"
+          ],
+          "correct": 2,
+          "explanation": "Method Overriding allows a subclass (`SavingsAccount`) to provide a specific, customized implementation for a method already defined in its superclass (`BankAccount`), achieving dynamic run-time polymorphism.",
+          "optionExplanations": [
+            "Why A is wrong — Encapsulation restricts variable access; it doesn't replace logical execution paths.",
+            "Why B is wrong — Compile-time polymorphism (overloading) involves using the same name with different parameters, not overriding parent methods.",
+            "Why C is correct — Overriding actively substitutes the base logic with the child's dynamic pricing logic.",
+            "Why D is wrong — ADT refers to general data modeling, not explicitly substituting inherited methods."
+          ]
+        },
+        {
+          "question": "If you design a C++ class `Account` with a `protected: float balance;`, what is the visibility of `balance` to the globally declared `int main()` function?",
+          "options": [
+            "It is fully accessible via the dot operator.",
+            "It is inaccessible and throws a compilation error upon access.",
+            "It is only accessible if the `extends` keyword is used in `main()`.",
+            "It prompts the compiler to create an identity hashmap."
+          ],
+          "correct": 1,
+          "explanation": "The `protected` access specifier hides members from external functions like `main()` exactly as `private` does. It only grants access to its own class and its derived child classes.",
+          "optionExplanations": [
+            "Why A is wrong — The dot operator cannot bypass `protected` restrictions from a global scope.",
+            "Why B is correct — `protected` enforces external data hiding, throwing an access visibility error.",
+            "Why C is wrong — `extends` is Java syntax and cannot be used in a C++ `main()` function.",
+            "Why D is wrong — Hashmaps are Java mechanisms unrelated to C++ access control."
+          ]
+        },
+        {
+          "question": "Consider this Java constructor scenario:\n\nclass Animal { Animal(String name) { ... } }\nclass Dog extends Animal { Dog() { /* Line X */ } }\n\nIf Line X is empty, why will the `Dog` class fail to compile?",
+          "options": [
+            "Because Java restricts `Dog` from inheriting non-virtual classes.",
+            "Because the compiler inserts an implicit `super()` call, but `Animal` lacks a default no-argument constructor.",
+            "Because the `extends` keyword cannot be used with parameterized base classes.",
+            "Because `Dog` must declare an identity hashmap explicitly."
+          ],
+          "correct": 1,
+          "explanation": "The compiler automatically inserts `super();` (no arguments) into the child constructor. Since `Animal` only has a parameterized constructor `Animal(String name)`, the default `super()` call fails to find a matching target, throwing an error.",
+          "optionExplanations": [
+            "Why A is wrong — Java classes are inheritable by default; 'virtual' is a C++ keyword.",
+            "Why B is correct — The implicit `super()` attempts to call a non-existent default constructor in the parent.",
+            "Why C is wrong — `extends` works perfectly fine; the programmer simply needs to manually write `super(\"Buddy\")`.",
+            "Why D is wrong — Identity hashmaps are handled automatically by the JVM."
+          ]
+        },
+        {
+          "question": "In Java, what syntax allows a subclass to invoke its parent's parameterized constructor?",
+          "options": [
+            "parent(parameters);",
+            "base::constructor(parameters);",
+            "super(parameters);",
+            "this.super(parameters);"
+          ],
+          "correct": 2,
+          "explanation": "The `super(arguments)` statement is explicitly used inside a Java subclass constructor to route data up to the matching parameterized constructor of the immediate superclass.",
+          "optionExplanations": [
+            "Why A is wrong — Java does not use the parent class name to invoke its constructor from a child.",
+            "Why B is wrong — This resembles C++ scope resolution syntax.",
+            "Why C is correct — `super(parameters)` effectively passes data to the parent's constructor.",
+            "Why D is wrong — `this` refers to the current object; chaining it with `super` is invalid syntax."
+          ]
+        },
+        {
+          "question": "Which of the following is NOT a form of inheritance supported directly by C++ classes?",
+          "options": [
+            "Single Inheritance",
+            "Multilevel Inheritance",
+            "Interface Inheritance",
+            "Hierarchical Inheritance"
+          ],
+          "correct": 2,
+          "explanation": "C++ does not have a formal `interface` keyword or strict Interface Inheritance mechanism like Java does. It achieves interface-like behavior using Abstract classes with pure virtual functions.",
+          "optionExplanations": [
+            "Why A is wrong — Single inheritance is fully supported via `class B : public A`.",
+            "Why B is wrong — Multilevel inheritance is fully supported via chaining.",
+            "Why C is correct — Interface inheritance is a Java-specific construct (`implements Interface`).",
+            "Why D is wrong — Hierarchical inheritance is fully supported."
+          ]
+        },
+        {
+          "question": "A developer writes a C++ program defining `class Base { void show() { cout << \"Base\"; } };` and `class Derived : public Base { void show() { cout << \"Derived\"; } };`. If they execute `Derived d; d.show();`, what is the output?",
+          "options": [
+            "Base",
+            "Derived",
+            "BaseDerived",
+            "Compilation Error"
+          ],
+          "correct": 1,
+          "explanation": "This demonstrates function overriding. Because the object `d` is strictly of type `Derived`, it calls its own specific version of the `show()` method, ignoring the base class version.",
+          "optionExplanations": [
+            "Why A is wrong — The base class method is hidden/overridden by the derived class's method.",
+            "Why B is correct — The specific child object prioritizes its own overridden method logic.",
+            "Why C is wrong — It does not execute both simultaneously.",
+            "Why D is wrong — Variable shadowing/overriding is a standard, valid OOP process."
+          ]
+        },
+        {
+          "question": "How does C++ achieve the initialization of base class variables from a derived class constructor?",
+          "options": [
+            "By utilizing the `super` keyword inside the constructor body.",
+            "By invoking the identity hashmap.",
+            "By using a Constructor Initializer List containing the base class call.",
+            "By relying on Java's `extends` parameter pass."
+          ],
+          "correct": 2,
+          "explanation": "In C++, a derived class passes arguments to its base class constructor using an initializer list: `Derived(int a, int b) : Base(a) { derived_var = b; }`.",
+          "optionExplanations": [
+            "Why A is wrong — The `super` keyword does not exist in standard C++.",
+            "Why B is wrong — Identity hashmaps are a JVM tracking feature.",
+            "Why C is correct — The colon `:` initializer list accurately delegates data up to the Base constructor.",
+            "Why D is wrong — `extends` is a Java keyword."
+          ]
+        },
+        {
+          "question": "Which statement precisely encapsulates the concept of a 'Friend Class' in C++?",
+          "options": [
+            "It is a class that inherits all public members of the base class via the `implements` keyword.",
+            "It is a class completely restricted from accessing any private variables of another class.",
+            "It is a class granted explicit access to the `private` and `protected` members of the class that declared it as a friend.",
+            "It acts as a virtual fallback to solve the diamond problem."
+          ],
+          "correct": 2,
+          "explanation": "Declaring `friend class ClassB;` inside `ClassA` grants all member functions of `ClassB` full access to the private and protected encapsulation boundaries of `ClassA`.",
+          "optionExplanations": [
+            "Why A is wrong — `implements` relates to Java interfaces, not C++ friend classes.",
+            "Why B is wrong — The primary purpose of a friend class is to BYPASS privacy restrictions, not enforce them.",
+            "Why C is correct — It explicitly overrides standard encapsulation to allow deep inter-class interaction.",
+            "Why D is wrong — Virtual base classes solve the diamond problem; friend classes do not."
+          ]
+        },
+        {
+          "question": "In Java, if a class `C` tries to inherit classes `A` and `B` using `class C extends A, B { }`, what error conceptually prevents this from compiling?",
+          "options": [
+            "The Diamond Problem / Multiple Inheritance Ambiguity",
+            "Method Overloading Collision",
+            "Encapsulation Failure",
+            "Object Slicing Error"
+          ],
+          "correct": 0,
+          "explanation": "Java forbids Multiple Class Inheritance (extending two or more classes) specifically to avoid the complexity and ambiguity of the Diamond Problem, where the compiler cannot determine which parent's methods or fields to inherit if they overlap.",
+          "optionExplanations": [
+            "Why A is correct — Multiple inheritance ambiguity is the exact reason Java designers banned this syntax.",
+            "Why B is wrong — Overloading is an acceptable practice within a single class scope.",
+            "Why C is wrong — Encapsulation deals with access modifiers, not inheritance structure logic.",
+            "Why D is wrong — Object slicing is a C++ issue when assigning a derived object to a base value type."
+          ]
+        },
+        {
+          "question": "In C++, what does the syntax `class Derived : protected Base` enforce regarding access control?",
+          "options": [
+            "Public members of the Base class become private in the Derived class.",
+            "Public and protected members of the Base class become protected in the Derived class.",
+            "All members of the Base class become completely inaccessible.",
+            "It forces the Base class to utilize the `super` pointer."
+          ],
+          "correct": 1,
+          "explanation": "Under `protected` inheritance in C++, all `public` and `protected` members of the base class are absorbed into the derived class as `protected` members, hiding them from the global scope but keeping them available for further inheritance.",
+          "optionExplanations": [
+            "Why A is wrong — This occurs under `private` inheritance.",
+            "Why B is correct — It downgrades public members to protected, securing them from `main()` while allowing multi-level inheritance.",
+            "Why C is wrong — Private members are inaccessible, but public/protected are successfully inherited.",
+            "Why D is wrong — C++ doesn't use the `super` pointer."
+          ]
+        },
+        {
+          "question": "Which of the following describes the 'Object Upcasting' scenario frequently seen in Run-time Polymorphism?",
+          "options": [
+            "Storing a Base class object inside a Derived class reference variable.",
+            "Using the scope resolution operator to assign static variables.",
+            "Instantiating a Derived class object but assigning it to a reference variable of the Base class type.",
+            "Generating an identity hashmap before calling `super()`."
+          ],
+          "correct": 2,
+          "explanation": "Upcasting occurs when a parent class reference variable points to a child class object (e.g., `Vehicle v1 = new Car();` in Java). This allows polymorphic method overriding to execute the child's dynamic behavior.",
+          "optionExplanations": [
+            "Why A is wrong — This is Downcasting, which is generally unsafe and requires explicit typecasting.",
+            "Why B is wrong — Scope resolution handles naming, not object references.",
+            "Why C is correct — Pointing a superclass reference at a subclass object is the definition of Upcasting.",
+            "Why D is wrong — Hashmaps are automatic JVM tracking tools unrelated to the structural act of casting."
+          ]
+        },
+        {
+          "question": "A developer working on a Payroll system writes a base class `Employee`. If `PermanentEmployee` and `ContractEmployee` both inherit from `Employee`, what type of inheritance is utilized?",
+          "options": [
+            "Single Inheritance",
+            "Multiple Inheritance",
+            "Hierarchical Inheritance",
+            "Hybrid Inheritance"
+          ],
+          "correct": 2,
+          "explanation": "This demonstrates Hierarchical inheritance. A single base class (`Employee`) is serving as the parent for multiple, separate derived classes (`PermanentEmployee`, `ContractEmployee`).",
+          "optionExplanations": [
+            "Why A is wrong — Single inheritance involves exactly one child class.",
+            "Why B is wrong — Multiple inheritance involves one child having multiple parents.",
+            "Why C is correct — One parent branching into multiple children defines a hierarchy.",
+            "Why D is wrong — Hybrid inheritance requires blending multiple and hierarchical shapes."
+          ]
+        },
+        {
+          "question": "Examine this C++ snippet:\n\nclass Base { private: int data; };\nclass Derived : public Base { void print() { cout << data; } };\n\nWhy will this cause a compilation error?",
+          "options": [
+            "Because `Derived` did not use the `virtual` keyword.",
+            "Because `data` is `private` in the Base class, rendering it completely inaccessible to the Derived class.",
+            "Because C++ defaults to `protected` inheritance when left blank.",
+            "Because the `this->data` pointer was omitted."
+          ],
+          "correct": 1,
+          "explanation": "Private members of a base class are strictly hidden. Even if a derived class publicly inherits the base class, it CANNOT directly access or modify the parent's private variables. They must be modified via public/protected getter and setter methods.",
+          "optionExplanations": [
+            "Why A is wrong — `virtual` is used for overriding polymorphic functions, not resolving variable access.",
+            "Why B is correct — Encapsulation ensures private data remains entirely hidden, even from child classes.",
+            "Why C is wrong — C++ defaults to `private` inheritance, but the keyword `public` is explicitly present here anyway.",
+            "Why D is wrong — The `this` pointer cannot bypass private access restrictions."
+          ]
+        },
+        {
+          "question": "What is the equivalent concept in Java to the C++ 'Base class' and 'Derived class'?",
+          "options": [
+            "Driver class and Target class",
+            "Abstract class and Virtual class",
+            "Superclass and Subclass",
+            "Parent object and Identity Hashmap"
+          ],
+          "correct": 2,
+          "explanation": "Java documentation universally refers to the class being inherited from as the 'Superclass' and the class doing the inheriting as the 'Subclass'.",
+          "optionExplanations": [
+            "Why A is wrong — Driver class refers to the class containing `main()`.",
+            "Why B is wrong — Abstract classes define deferred methods; 'Virtual' is C++ syntax.",
+            "Why C is correct — Superclass/Subclass directly maps to Base/Derived terminology.",
+            "Why D is wrong — Hashmaps manage object uniqueness, not inheritance architecture."
+          ]
+        },
+        {
+          "question": "How does C++ handle constructor execution when Class `C` inherits Class `B`, which inherits Class `A` (Multilevel)?",
+          "options": [
+            "Constructor `C`, then `B`, then `A`.",
+            "Constructor `A`, then `B`, then `C`.",
+            "Only Constructor `C` executes.",
+            "Constructors are ignored in multilevel hierarchies."
+          ],
+          "correct": 1,
+          "explanation": "In inheritance, object construction strictly works from the top down (Base to Derived). The compiler must build the foundational Base elements (`A`), then intermediate elements (`B`), before assembling the final Derived layer (`C`).",
+          "optionExplanations": [
+            "Why A is wrong — This reverse top-down sequence is how Destructors execute.",
+            "Why B is correct — The foundational parent class is constructed first.",
+            "Why C is wrong — Child classes cannot exist without their parent attributes being initialized.",
+            "Why D is wrong — Constructors are fundamental to object instantiation."
+          ]
+        },
+        {
+          "question": "In Java, what happens if an object of subclass `B` invokes a method `display()` that exists in both `B` and its superclass `A`?",
+          "options": [
+            "The method in superclass `A` executes because it was compiled first.",
+            "An ambiguity error halts the program.",
+            "The method in subclass `B` overrides `A`'s method and executes.",
+            "The compiler prompts the user to input the `super` command."
+          ],
+          "correct": 2,
+          "explanation": "This demonstrates Method Overriding. Because the object was instantiated under the subclass `B`, its own specific version of the `display()` method overrides the superclass version at runtime.",
+          "optionExplanations": [
+            "Why A is wrong — Compilation order does not dictate run-time method resolution.",
+            "Why B is wrong — Overriding is legal and expected; it does not cause ambiguity errors.",
+            "Why C is correct — Run-time polymorphism executes the most specific overridden method available to the object.",
+            "Why D is wrong — The execution happens automatically without prompt. `super` is only needed if B explicitly wants to run A's method internally."
+          ]
+        },
+        {
+          "question": "If a C++ class `Student` inherits from `Person` via `class Student : Person {}`, what is the accessibility of `Person`'s public members inside `Student`?",
+          "options": [
+            "They remain `public`.",
+            "They become `private`.",
+            "They become `protected`.",
+            "They cause a compilation exception."
+          ],
+          "correct": 1,
+          "explanation": "Because no access specifier (like `public` or `protected`) is written before `Person`, C++ defaults to `private` inheritance. Consequently, all inherited public members from `Person` become private inside `Student`.",
+          "optionExplanations": [
+            "Why A is wrong — They only remain public if the syntax was `class Student : public Person`.",
+            "Why B is correct — Class inheritance defaults to private mode, absorbing public base elements as private.",
+            "Why C is wrong — This would happen if the syntax was `: protected Person`.",
+            "Why D is wrong — The syntax is completely valid."
+          ]
+        },
+        {
+          "question": "Which of the following accurately describes a Java method declaration that MUST be overridden in the subclass?",
+          "options": [
+            "A standard method containing a `System.out.println` statement.",
+            "An `abstract` method lacking a definition body.",
+            "A method utilizing the `super` keyword.",
+            "A method defined with the `protected` access specifier."
+          ],
+          "correct": 1,
+          "explanation": "Abstract methods act as placeholders (e.g., `abstract void draw();`). They possess no method body. Any subclass extending this abstract class is strictly required to override and define this method to compile.",
+          "optionExplanations": [
+            "Why A is wrong — Standard methods can be inherited seamlessly without needing an override.",
+            "Why B is correct — Abstract methods dictate a mandatory contract that child classes must fulfill via overriding.",
+            "Why C is wrong — `super` invokes parent methods; it doesn't force children to override.",
+            "Why D is wrong — Protected methods secure data, but do not force overriding logic."
+          ]
+        },
+        {
+          "question": "In Java, what is the primary function of the `super(name, id);` statement inside a derived class constructor?",
+          "options": [
+            "It extracts the JVM identity hashmap for the `name` and `id` objects.",
+            "It overrides the variables `name` and `id` across all sibling subclasses.",
+            "It passes the arguments up the hierarchy to invoke the immediate superclass's parameterized constructor.",
+            "It forces the compiler to treat `name` and `id` as static variables."
+          ],
+          "correct": 2,
+          "explanation": "The `super(arguments)` syntax is used explicitly inside a child's constructor to securely pass initialized data up to the parent's matching constructor.",
+          "optionExplanations": [
+            "Why A is wrong — Hashmaps manage object tracking internally, unrelated to constructor variable passing.",
+            "Why B is wrong — It does not affect sibling classes at all.",
+            "Why C is correct — It invokes the parent constructor, ensuring base state variables are initialized correctly.",
+            "Why D is wrong — Passing arguments does not alter their memory allocation to `static`."
+          ]
+        },
+        {
+          "question": "Consider C++ syntax: A developer creates a pointer `Base* bptr = new Derived();`. If they call `bptr->show();`, which function executes assuming `show()` is NOT marked virtual?",
+          "options": [
+            "The `Derived` class function due to late binding.",
+            "The `Base` class function due to early binding.",
+            "A compilation crash due to identity mismatch.",
+            "Both functions execute concurrently."
+          ],
+          "correct": 1,
+          "explanation": "Without the `virtual` keyword, C++ relies on Early Binding (Compile-time resolution). The compiler looks at the pointer type (`Base*`), ignores the physical object type, and statically binds the execution to the `Base` class method.",
+          "optionExplanations": [
+            "Why A is wrong — Late binding (Runtime Polymorphism) strictly requires the `virtual` keyword in C++.",
+            "Why B is correct — Lacking `virtual`, the compiler early-binds execution strictly based on the pointer's static type.",
+            "Why C is wrong — Upcasting a derived object to a base pointer is perfectly legal.",
+            "Why D is wrong — Only one method executes in a non-threaded polymorphic call."
+          ]
+        },
+        {
+          "question": "What specifically does a C++ `friend` function bypass to achieve its design purpose?",
+          "options": [
+            "It bypasses the need to write the `main()` driver function.",
+            "It bypasses compiler errors associated with infinite recursive loops.",
+            "It bypasses the data hiding restrictions enforced by `private` and `protected` access specifiers.",
+            "It bypasses the identity hashmap generation process."
+          ],
+          "correct": 2,
+          "explanation": "Encapsulation secures data via private/protected labels. However, an external function declared as a `friend` inside a class is granted special compiler permission to bypass these locks and access hidden data directly.",
+          "optionExplanations": [
+            "Why A is wrong — Every C++ program still requires a `main()` function.",
+            "Why B is wrong — It has no logic to resolve recursion.",
+            "Why C is correct — Overriding strict access modifier security is its exact definition.",
+            "Why D is wrong — Hashmaps are a JVM Java feature, not C++."
+          ]
+        },
+        {
+          "question": "When defining the `calculateArea()` method for a `Circle` class that extends an abstract `Shape` class, which keyword signifies that the logic is replacing the abstract parent placeholder?",
+          "options": [
+            "extends",
+            "implements",
+            "overloads",
+            "overrides"
+          ],
+          "correct": 3,
+          "explanation": "Method Overriding is the concept of a derived class replacing or detailing a method signature provided by the parent. In Java, this is often marked with the `@Override` annotation.",
+          "optionExplanations": [
+            "Why A is wrong — `extends` links the classes, not the specific methods.",
+            "Why B is wrong — `implements` links interfaces to classes.",
+            "Why C is wrong — Overloading uses the same method name with different parameters.",
+            "Why D is correct — Overriding actively substitutes the parent method's execution path."
+          ]
+        },
+        {
+          "question": "If Java completely omits Multiple Inheritance for classes, what architectural alternative does it provide to allow a class to inherit diverse functional contracts?",
+          "options": [
+            "Virtual destructors",
+            "Interfaces",
+            "Scope resolution blocks",
+            "Early binding templates"
+          ],
+          "correct": 1,
+          "explanation": "Because multiple class inheritance causes the Diamond Problem, Java removes it. Instead, a class can use the `implements` keyword to inherit abstract method contracts from multiple `Interfaces`, solving the ambiguity.",
+          "optionExplanations": [
+            "Why A is wrong — Virtual destructors manage memory cleanup in C++ polymorphic objects.",
+            "Why B is correct — Interfaces safely mimic multiple inheritance by omitting conflicting method bodies.",
+            "Why C is wrong — Scope resolution `::` is the C++ workaround for ambiguity.",
+            "Why D is wrong — Templates/Generics handle data types, not class hierarchy branching."
+          ]
+        },
+        {
+          "question": "Which of the following is NOT required for Method Overriding (Run-time Polymorphism) to occur?",
+          "options": [
+            "A base class and a derived class connected via inheritance.",
+            "An identically named method in both the base and derived classes.",
+            "A differing number of parameters or parameter data types in the derived method.",
+            "Upcasting an object or invoking the method via the specific derived object."
+          ],
+          "correct": 2,
+          "explanation": "Differing parameter lists define Method Overloading (Compile-time polymorphism). Method Overriding strictly requires the method signatures (name, parameters, and return type) to be exactly identical.",
+          "optionExplanations": [
+            "Why A is wrong — Inheritance is a mandatory prerequisite for overriding.",
+            "Why B is wrong — The names must match exactly to override.",
+            "Why C is correct — If parameters differ, the method is overloaded, not overridden.",
+            "Why D is wrong — Upcasting correctly triggers dynamic method dispatch to find the overridden method."
+          ]
+        },
+        {
+          "question": "In a C++ multiple inheritance context, how does `class C : public A, private B` affect the access levels of inherited members?",
+          "options": [
+            "All members from A and B become public in C.",
+            "Public members of A remain public in C, while public members of B become private in C.",
+            "The compiler throws an error because mixed access modifiers are illegal.",
+            "Members of A are deleted, leaving only members of B."
+          ],
+          "correct": 1,
+          "explanation": "C++ applies inheritance visibility individually per base class. Class A is inherited publicly, maintaining its public access. Class B is inherited privately, degrading all its inherited members to private within C.",
+          "optionExplanations": [
+            "Why A is wrong — B's members degrade to private due to the `private B` instruction.",
+            "Why B is correct — Access rules independently apply to each listed base class path.",
+            "Why C is wrong — Mixed access specifiers are completely legal and common in complex C++ architectures.",
+            "Why D is wrong — Both sets of properties are inherited successfully."
+          ]
+        },
+        {
+          "question": "Consider a C++ friend class defined as: `class A { friend class B; private: int secret; };`. What is true about class B?",
+          "options": [
+            "Class B publicly inherits Class A, granting access to `secret`.",
+            "Class B becomes an abstract base class overriding `secret`.",
+            "Class B's member functions can directly access the private variable `secret` of Class A objects.",
+            "Class B deletes Class A's memory allocation using late binding."
+          ],
+          "correct": 2,
+          "explanation": "Declaring `Class B` as a friend inside `Class A` grants every single member function of B direct, unrestricted access to the private and protected internal boundaries of A.",
+          "optionExplanations": [
+            "Why A is wrong — Friendship is NOT inheritance. B does not absorb A's traits; it is just permitted to look at them.",
+            "Why B is wrong — Friendship has nothing to do with abstraction or overriding.",
+            "Why C is correct — Bypassing standard data hiding encapsulation is the definition of friendship.",
+            "Why D is wrong — Destructors handle memory, not friend classes."
+          ]
+        },
+        {
+          "question": "In Java, what occurs if a derived class constructor explicitly calls `super(5);` but the base class only has a default no-argument constructor?",
+          "options": [
+            "The program defaults to early binding and compiles seamlessly.",
+            "A compilation error triggers because no matching parameterized constructor exists in the base class.",
+            "The JVM dynamically generates a hashmap to hold the integer `5`.",
+            "The integer `5` is safely ignored, and the default constructor executes."
+          ],
+          "correct": 1,
+          "explanation": "If a child constructor commands `super(5)`, it instructs the compiler to find a parent constructor accepting one integer. If the parent class only has `Parent()`, the call fails to match, throwing a compilation error.",
+          "optionExplanations": [
+            "Why A is wrong — Overloading resolution fails if a matching signature doesn't exist.",
+            "Why B is correct — The explicit `super` call strictly demands a matching signature in the superclass.",
+            "Why C is wrong — Hashmaps handle tracking, not resolving broken method signatures.",
+            "Why D is wrong — Java never ignores explicit programmer instructions like `super(5)`."
+          ]
+        },
+        {
+          "question": "Which of the following best outlines the 'Design Advantage' provided by OOP inheritance over procedural C functions?",
+          "options": [
+            "Inheritance allows complex algorithms to be written using Turing Machines rather than loops.",
+            "Inheritance forces all memory to be allocated dynamically at runtime, speeding up execution.",
+            "Inheritance provides a modular, hierarchical blueprint where common logic is centralized in base classes and reused, reducing redundant code.",
+            "Inheritance automatically deletes variables that share identical names."
+          ],
+          "correct": 2,
+          "explanation": "The core design advantage of Inheritance is Code Reusability and modularity. By centralizing common code in a base class, derived classes avoid rewriting logic, leading to cleaner, more maintainable architectures.",
+          "optionExplanations": [
+            "Why A is wrong — Turing machines are foundational computing models, not practical software design advantages.",
+            "Why B is wrong — C++ allows static stack allocation; dynamic memory doesn't inherently speed up execution.",
+            "Why C is correct — Hierarchical centralization and reuse define the major structural benefit of OOP.",
+            "Why D is wrong — Variable scoping resolves naming conflicts, but inheritance doesn't delete them."
+          ]
+        },
+        {
+          "question": "Examine this C++ scenario modeling a University: `class GraduateStudent : public Student`. What describes the physical object creation when `GraduateStudent g1;` runs?",
+          "options": [
+            "Memory is dynamically allocated for `Student` via the `new` operator, ignoring `GraduateStudent`.",
+            "Memory is allocated on the stack. The `Student` base constructor executes first, followed by the `GraduateStudent` child constructor.",
+            "The object relies on a Java identity hashmap to bypass the parent constructor.",
+            "The `GraduateStudent` child constructor executes first to lock the memory, followed by `Student`."
+          ],
+          "correct": 1,
+          "explanation": "In C++, statically allocating an object (`g1`) uses stack memory. The construction process strictly flows top-down: the Base class (`Student`) initializes its inherited portion first, then the Derived class (`GraduateStudent`) finishes the object.",
+          "optionExplanations": [
+            "Why A is wrong — Static stack allocation `GraduateStudent g1;` does not use the `new` operator.",
+            "Why B is correct — It accurately states stack allocation and the Base-then-Derived constructor order.",
+            "Why C is wrong — Hashmaps are a Java concept.",
+            "Why D is wrong — Derived constructors always fire AFTER their Base constructors complete."
+          ]
+        },
+        {
+          "question": "A developer working in Java defines a method `void deposit(int amount)` in `class Account`. A subclass `SavingsAccount` defines `void deposit(int amount)` differently. Which concept dictates that the subclass method executes at runtime?",
+          "options": [
+            "Data Security Encapsulation",
+            "Compile-Time Method Overloading",
+            "Late Binding / Dynamic Method Dispatch",
+            "Abstract Interface Implementation"
+          ],
+          "correct": 2,
+          "explanation": "Because the method signatures are identical across an inheritance chain, this is Method Overriding. The JVM determines exactly which object was instantiated during execution (late binding) and dispatches the call dynamically to that specific subclass's method.",
+          "optionExplanations": [
+            "Why A is wrong — Encapsulation hides variables; it does not route method execution.",
+            "Why B is wrong — Overloading occurs during compilation when parameter lists differ.",
+            "Why C is correct — Dynamic Method Dispatch is the formal Java mechanism driving Run-time Polymorphism via overriding.",
+            "Why D is wrong — The base class here is a concrete class with an active method, not an interface."
+          ]
+        },
+        {
+          "question": "How does C++ 'Hybrid Inheritance' cause a structural problem if not implemented carefully?",
+          "options": [
+            "It strips all member data of their access modifiers, making them globally public.",
+            "It merges two disparate procedural programs, breaking encapsulation.",
+            "It combines hierarchical and multiple inheritance, which can result in a derived class inheriting two duplicate copies of a grand-parent class.",
+            "It forces the compiler to rely exclusively on identity hashmaps for polymorphism."
+          ],
+          "correct": 2,
+          "explanation": "Hybrid inheritance mixes branching (hierarchical) and joining (multiple). If D inherits B and C, and B and C both inherit A, D receives two independent copies of A. This is the infamous Diamond Problem.",
+          "optionExplanations": [
+            "Why A is wrong — Access modifiers remain rigidly enforced regardless of inheritance topology.",
+            "Why B is wrong — It does not merge procedural code; it links object-oriented blueprints.",
+            "Why C is correct — It directly describes the topological cause of the ambiguous Diamond Problem.",
+            "Why D is wrong — Hashmaps are a Java tracking concept."
+          ]
+        },
+        {
+          "question": "In Java, what is the default superclass for all newly created classes if `extends` is not explicitly written?",
+          "options": [
+            "The `java.util.Scanner` class",
+            "The `Main` Driver class",
+            "The `Object` class",
+            "The `System.out` class"
+          ],
+          "correct": 2,
+          "explanation": "Although not deeply covered in basic syntax, the foundational rule of Java inheritance is that every class implicitly extends the overarching `Object` class, granting them universal base methods like `.toString()`.",
+          "optionExplanations": [
+            "Why A is wrong — Scanner is a utility for user input, not a structural parent.",
+            "Why B is wrong — The Driver class just holds `main()`; it isn't a universal parent.",
+            "Why C is correct — The `Object` class sits at the very top of Java's entire inheritance hierarchy.",
+            "Why D is wrong — `System.out` is the output stream."
+          ]
+        },
+        {
+          "question": "Which operator provides a syntactical 'bridge' allowing a C++ pointer to invoke a virtual overridden method?",
+          "options": [
+            "The colon `:` operator",
+            "The dot `.` operator",
+            "The arrow `->` operator",
+            "The scope resolution `::` operator"
+          ],
+          "correct": 2,
+          "explanation": "If a developer uses a pointer (e.g., `Base* ptr = new Derived();`), they must use the arrow operator (`->`) to bridge the pointer to the object's methods, such as `ptr->show();`.",
+          "optionExplanations": [
+            "Why A is wrong — The colon handles inheritance definitions and initializer lists.",
+            "Why B is wrong — The dot operator bridges standard instantiated objects, not pointers.",
+            "Why C is correct — The arrow operator dereferences a C++ pointer to access its internal members.",
+            "Why D is wrong — Scope resolution is for static class references, not live pointers."
+          ]
+        },
+        {
+          "question": "When debugging a C++ derived class, a programmer notices that `c1.display()` crashes because the base class variables are inaccessible. The base class variables are written before the `public:` tag. What is the solution?",
+          "options": [
+            "Write the `new` keyword during instantiation.",
+            "Move the base variables beneath a `protected:` or `public:` access specifier to allow inheritance access.",
+            "Convert the derived class to use Java's `extends` keyword.",
+            "Attach an identity hashmap to the variables."
+          ],
+          "correct": 1,
+          "explanation": "Members declared before an explicit access specifier in a C++ class default to `private`. Private members are strictly hidden from derived classes. Changing them to `protected:` safely exposes them to the derived class while maintaining global security.",
+          "optionExplanations": [
+            "Why A is wrong — Memory allocation logic does not bypass compiler visibility constraints.",
+            "Why B is correct — `protected:` explicitly grants visibility downwards to child classes.",
+            "Why C is wrong — `extends` is invalid C++ syntax.",
+            "Why D is wrong — Hashmaps have no relation to resolving compile-time visibility constraints."
+          ]
+        },
+        {
+          "question": "What is the architectural purpose of declaring an abstract class using a pure virtual function (e.g., `virtual void draw() = 0;`) in C++?",
+          "options": [
+            "To allow the compiler to automatically allocate memory using identity hashmaps.",
+            "To force derived classes to provide their own specific implementation of the method, establishing a guaranteed polymorphic contract.",
+            "To bypass private access restrictions without using the `friend` keyword.",
+            "To ensure the base class is instantiated directly by the driver function."
+          ],
+          "correct": 1,
+          "explanation": "A pure virtual function makes a class Abstract. It cannot be instantiated itself. It acts purely as a blueprint template, enforcing a strict rule that any derived child class MUST write a definition for that specific method to compile.",
+          "optionExplanations": [
+            "Why A is wrong — Identity hashmaps track Java objects, not handle C++ polymorphism.",
+            "Why B is correct — It sets up a mandatory contract for child classes, driving run-time polymorphism.",
+            "Why C is wrong — It has no bearing on visibility bypassing.",
+            "Why D is wrong — Abstract classes CANNOT be instantiated directly; they block this action."
+          ]
+        },
+        {
+          "question": "Regarding the Java `super` keyword inside a derived class, which statement is INCORRECT?",
+          "options": [
+            "It can be used to invoke a parent class's specific method if it was overridden by the child.",
+            "It can be used to safely access a parent class's variable if it was shadowed by the child.",
+            "It acts as a substitute for the `implements` keyword to achieve multiple inheritance.",
+            "It can be used to pass data parameters up to the parent's constructor."
+          ],
+          "correct": 2,
+          "explanation": "The `super` keyword has three main uses: calling parent constructors (`super()`), accessing parent variables (`super.speed`), and invoking parent methods (`super.display()`). It has absolutely no ability to enable multiple class inheritance.",
+          "optionExplanations": [
+            "Why A is wrong — This is a valid use case for `super.methodName()`.",
+            "Why B is wrong — This is a valid use case for `super.variableName`.",
+            "Why C is correct — This statement is FALSE. `super` traverses an existing hierarchy; it doesn't construct multiple inheritance links.",
+            "Why D is wrong — This is a valid use case for `super(args)`."
+          ]
+        },
+        {
+          "question": "If a C++ programmer writes `class B : public A`, and later writes `class C : public A`, what type of inheritance does this model represent?",
+          "options": [
+            "Single Inheritance",
+            "Hierarchical Inheritance",
+            "Multilevel Inheritance",
+            "Hybrid Inheritance"
+          ],
+          "correct": 1,
+          "explanation": "This demonstrates one base class (`A`) branching out into multiple independent derived classes (`B` and `C`). This tree-like structure is the definition of Hierarchical Inheritance.",
+          "optionExplanations": [
+            "Why A is wrong — Single inheritance requires exactly one derived class.",
+            "Why B is correct — One parent supporting multiple separate children defines hierarchical inheritance.",
+            "Why C is wrong — Multilevel implies a sequential chain (A -> B -> C).",
+            "Why D is wrong — Hybrid mixes hierarchical and multiple simultaneously."
+          ]
+        },
+        {
+          "question": "Which of the following describes the C++ Constructor Initializer List syntax used when inheriting a base class?",
+          "options": [
+            "Derived(int a, int b) { super(a); var = b; }",
+            "Derived(int a, int b) : Base(a) { var = b; }",
+            "Derived(int a, int b) -> Base(a) { var = b; }",
+            "Derived(int a, int b) :: Base(a) { var = b; }"
+          ],
+          "correct": 1,
+          "explanation": "In C++, to pass parameters up to a Base class constructor from a Derived class, developers append a colon to the constructor signature followed by the base class call. E.g., `Derived(int x) : Base(x) {}`.",
+          "optionExplanations": [
+            "Why A is wrong — The `super` function call is used exclusively in Java.",
+            "Why B is correct — The colon `:` correctly implements the C++ constructor initializer list.",
+            "Why C is wrong — The arrow operator `->` is for pointer member access.",
+            "Why D is wrong — The scope resolution `::` is for out-of-class definitions, not initializer lists."
+          ]
+        },
+        {
+          "question": "A developer complains that their Java code `class D extends B, C` is throwing a compilation error. What is the fundamental OOP reason for this block?",
+          "options": [
+            "The compiler cannot resolve whether the identity hashmap should be generated early or late.",
+            "Java blocks the creation of abstract interface classes.",
+            "Java prevents multiple class inheritance to avoid the ambiguity of identical methods conflicting (Diamond Problem).",
+            "The `extends` keyword is deprecated and replaced by the dot operator."
+          ],
+          "correct": 2,
+          "explanation": "Multiple Class Inheritance is completely illegal in Java. The language designers blocked it to prevent the severe ambiguity problems that occur if Class B and C possess identical method signatures.",
+          "optionExplanations": [
+            "Why A is wrong — Hashmap generation has no bearing on compilation structure restrictions.",
+            "Why B is wrong — Java heavily relies on interfaces precisely to bypass this issue.",
+            "Why C is correct — Preventing the Diamond Problem's severe ambiguity is the explicit reason for the ban.",
+            "Why D is wrong — `extends` is fully active and fundamentally required for single inheritance."
+          ]
+        },
+        {
+          "question": "In the C++ snippet:\n\nclass Vehicle { public: void honk() { cout << \"Beep\"; } };\nclass Car : public Vehicle {};\nint main() { Car c1; c1.honk(); }\n\nWhy does `c1.honk()` execute flawlessly?",
+          "options": [
+            "Because early binding guesses the output based on class naming conventions.",
+            "Because `c1` uses the scope resolution operator to locate the global function.",
+            "Because `Car` inherits all `public` properties and behaviors from its base class `Vehicle`, providing deep code reusability.",
+            "Because the C++ compiler automatically writes an implicit `honk()` function into the empty class body."
+          ],
+          "correct": 2,
+          "explanation": "This demonstrates Single Inheritance Reusability. The derived class (`Car`) inherently absorbs all the `public` logic (`honk()`) from the base class, so the `Car` object `c1` can trigger it without rewriting the code.",
+          "optionExplanations": [
+            "Why A is wrong — Compilers strictly follow logic rules, never linguistic guessing.",
+            "Why B is wrong — The dot operator handles standard inheritance seamlessly without needing `::` here.",
+            "Why C is correct — Public inheritance explicitly allows the child object to reuse parent functionality natively.",
+            "Why D is wrong — The compiler doesn't write new code; it links the object to the existing base code."
+          ]
+        }
+      ]
     }
   ]
 };
+
 
