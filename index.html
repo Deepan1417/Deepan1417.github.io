@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MCQ Platform</title>
 <script src="questions.js"></script>
+<script src="theory.js"></script>
 <style>
-  /* ── Reset & Base ── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
@@ -28,6 +28,9 @@
     --blue:      #58a6ff;
     --blue-bg:   #0d1f38;
     --blue-br:   #1f4070;
+    --purple:    #bc8cff;
+    --purple-bg: #1a1030;
+    --purple-br: #4a2080;
     --radius:    10px;
     --radius-lg: 14px;
     --shadow:    0 4px 24px rgba(0,0,0,.45);
@@ -41,7 +44,6 @@
     line-height: 1.6;
   }
 
-  /* ── Layout ── */
   .page { display: none; }
   .page.active { display: block; }
   .container { max-width: 820px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
@@ -58,17 +60,8 @@
     top: 0;
     z-index: 100;
   }
-  .topbar-logo {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: -.3px;
-  }
-  .topbar-course {
-    font-size: 13px;
-    color: var(--muted);
-    flex: 1;
-  }
+  .topbar-logo { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: -.3px; }
+  .topbar-course { font-size: 13px; color: var(--muted); flex: 1; }
   .topbar-btn {
     background: none;
     border: 1px solid var(--border2);
@@ -82,6 +75,41 @@
   }
   .topbar-btn:hover { border-color: var(--accent); color: var(--accent); }
   .topbar-btn.visible { display: block; }
+
+  /* ── MODE SWITCHER ── */
+  .mode-switcher {
+    display: flex;
+    gap: .5rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: .35rem;
+    margin-bottom: 2rem;
+    width: fit-content;
+  }
+  .mode-btn {
+    padding: .55rem 1.4rem;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+  }
+  .mode-btn:hover { color: var(--text); }
+  .mode-btn.active {
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: 0 1px 8px rgba(0,0,0,.4);
+  }
+  .mode-btn.active.theory-mode { color: var(--purple); }
+  .mode-btn.active.qbank-mode  { color: var(--accent); }
 
   /* ── Dashboard ── */
   .hero {
@@ -98,23 +126,9 @@
     color: var(--accent);
     margin-bottom: .5rem;
   }
-  .hero-title {
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: -.5px;
-    color: var(--text);
-    margin-bottom: .3rem;
-  }
-  .hero-sub {
-    font-size: 14px;
-    color: var(--muted);
-  }
-  .hero-stats {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 1.25rem;
-    flex-wrap: wrap;
-  }
+  .hero-title { font-size: 32px; font-weight: 700; letter-spacing: -.5px; color: var(--text); margin-bottom: .3rem; }
+  .hero-sub { font-size: 14px; color: var(--muted); }
+  .hero-stats { display: flex; gap: 1.5rem; margin-top: 1.25rem; flex-wrap: wrap; }
   .hero-stat { font-size: 13px; color: var(--muted); }
   .hero-stat span { color: var(--text); font-weight: 600; }
 
@@ -127,12 +141,12 @@
     margin-bottom: 1rem;
   }
 
+  /* ── Unit cards (shared) ── */
   .units-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: .75rem;
   }
-
   .unit-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -153,336 +167,367 @@
     opacity: 0;
     transition: opacity .15s;
   }
+  .unit-card.theory-card::before {
+    background: linear-gradient(90deg, var(--purple), #e0b4ff);
+  }
   .unit-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow); }
+  .unit-card.theory-card:hover { border-color: var(--purple); }
   .unit-card:hover::before { opacity: 1; }
 
-  .unit-index {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: .5px;
-    text-transform: uppercase;
-    margin-bottom: .4rem;
-  }
-  .unit-name {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-    line-height: 1.35;
-    margin-bottom: .75rem;
-  }
-  .unit-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .unit-qcount {
-    font-size: 13px;
-    color: var(--muted);
-  }
+  .unit-index { font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: .5px; text-transform: uppercase; margin-bottom: .4rem; }
+  .unit-card.theory-card .unit-index { color: var(--purple); }
+  .unit-name { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.35; margin-bottom: .75rem; }
+  .unit-footer { display: flex; align-items: center; justify-content: space-between; }
+  .unit-qcount { font-size: 13px; color: var(--muted); }
   .unit-qcount b { color: var(--text); font-size: 16px; }
-  .unit-score-badge {
-    font-size: 11px;
-    font-weight: 600;
-    padding: 3px 9px;
-    border-radius: 20px;
-    display: none;
-  }
+  .unit-score-badge { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 20px; display: none; }
   .unit-score-badge.show { display: block; }
   .badge-good { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-br); }
   .badge-ok   { background: var(--blue-bg);  color: var(--blue);  border: 1px solid var(--blue-br); }
   .badge-low  { background: var(--red-bg);   color: var(--red);   border: 1px solid var(--red-br); }
 
   /* ── Quiz page ── */
-  .quiz-topbar {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-  }
-  .quiz-unit-label {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--accent);
-    flex: 1;
-  }
-  .quiz-counter {
-    font-size: 13px;
-    color: var(--muted);
-    font-variant-numeric: tabular-nums;
-  }
+  .quiz-topbar { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .quiz-unit-label { font-size: 13px; font-weight: 600; color: var(--accent); flex: 1; }
+  .quiz-counter { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
 
-  .progress-bar {
-    width: 100%;
-    height: 4px;
-    background: var(--surface2);
-    border-radius: 2px;
-    margin-bottom: 2rem;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    border-radius: 2px;
-    transition: width .35s ease;
-  }
+  .progress-bar { width: 100%; height: 4px; background: var(--surface2); border-radius: 2px; margin-bottom: 2rem; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px; transition: width .35s ease; }
 
-  .question-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.75rem 1.75rem 1.5rem;
-    margin-bottom: 1rem;
-  }
-  .q-type-tag {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: .6rem;
-  }
-  .q-text {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 1.55;
-    color: var(--text);
-    margin-bottom: 1.5rem;
-    letter-spacing: -.1px;
-  }
+  .question-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem 1.75rem 1.5rem; margin-bottom: 1rem; }
+  .q-type-tag { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: .6rem; }
+  .q-text { font-size: 18px; font-weight: 500; line-height: 1.55; color: var(--text); margin-bottom: 1.5rem; letter-spacing: -.1px; }
 
-  .options-list {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-  }
-
+  .options-list { display: flex; flex-direction: column; gap: .5rem; }
   .option-btn {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    width: 100%;
-    padding: .9rem 1.1rem;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    cursor: pointer;
-    text-align: left;
+    display: flex; align-items: flex-start; gap: 1rem;
+    width: 100%; padding: .9rem 1.1rem;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--radius); cursor: pointer; text-align: left;
     transition: border-color .12s, background .12s;
-    color: var(--text);
-    font-size: 14px;
-    line-height: 1.45;
-    font-family: inherit;
+    color: var(--text); font-size: 14px; line-height: 1.45; font-family: inherit;
   }
-  .option-btn:hover:not(.locked) {
-    border-color: var(--accent);
-    background: rgba(240,168,50,.06);
-  }
+  .option-btn:hover:not(.locked) { border-color: var(--accent); background: rgba(240,168,50,.06); }
   .option-btn.locked { cursor: default; }
-
   .opt-letter {
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
+    width: 26px; height: 26px; border-radius: 50%;
     border: 1px solid var(--border2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
-    flex-shrink: 0;
-    margin-top: 1px;
-    transition: all .15s;
-    color: var(--muted);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    transition: all .15s; color: var(--muted);
   }
   .opt-body { flex: 1; }
   .opt-text { color: var(--text); }
-  .opt-explain {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: .35rem;
-    line-height: 1.55;
-    display: none;
-  }
+  .opt-explain { font-size: 12px; color: var(--muted); margin-top: .35rem; line-height: 1.55; display: none; }
 
-  /* States after answering */
-  .option-btn.state-correct {
-    background: var(--green-bg);
-    border-color: var(--green-br);
-  }
-  .option-btn.state-correct .opt-letter {
-    background: var(--green);
-    border-color: var(--green);
-    color: #0d1117;
-  }
-  .option-btn.state-wrong {
-    background: var(--red-bg);
-    border-color: var(--red-br);
-  }
-  .option-btn.state-wrong .opt-letter {
-    background: var(--red);
-    border-color: var(--red);
-    color: #fff;
-  }
-  .option-btn.state-neutral {
-    opacity: .45;
-  }
+  .option-btn.state-correct { background: var(--green-bg); border-color: var(--green-br); }
+  .option-btn.state-correct .opt-letter { background: var(--green); border-color: var(--green); color: #0d1117; }
+  .option-btn.state-wrong { background: var(--red-bg); border-color: var(--red-br); }
+  .option-btn.state-wrong .opt-letter { background: var(--red); border-color: var(--red); color: #fff; }
+  .option-btn.state-neutral { opacity: .45; }
   .option-btn.state-correct .opt-explain,
   .option-btn.state-wrong .opt-explain,
   .option-btn.state-neutral .opt-explain { display: block; }
 
-  /* Explanation box */
-  .explanation-box {
-    background: var(--blue-bg);
-    border: 1px solid var(--blue-br);
-    border-radius: var(--radius);
-    padding: 1rem 1.1rem;
-    margin-top: 1rem;
-    display: none;
-  }
+  .explanation-box { background: var(--blue-bg); border: 1px solid var(--blue-br); border-radius: var(--radius); padding: 1rem 1.1rem; margin-top: 1rem; display: none; }
   .explanation-box.show { display: block; }
-  .exp-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--blue);
-    margin-bottom: .4rem;
-  }
-  .exp-text {
-    font-size: 13px;
-    color: var(--text);
-    line-height: 1.65;
-  }
+  .exp-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--blue); margin-bottom: .4rem; }
+  .exp-text { font-size: 13px; color: var(--text); line-height: 1.65; }
 
-  /* Feedback row */
-  .feedback-row {
-    display: none;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: .75rem;
-    flex-wrap: wrap;
-    gap: .75rem;
-  }
+  .feedback-row { display: none; align-items: center; justify-content: space-between; margin-top: .75rem; flex-wrap: wrap; gap: .75rem; }
   .feedback-row.show { display: flex; }
-  .feedback-msg {
-    font-size: 14px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: .4rem;
-  }
+  .feedback-msg { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: .4rem; }
   .feedback-msg.correct { color: var(--green); }
   .feedback-msg.wrong   { color: var(--red); }
+
   .btn-next {
-    padding: .55rem 1.4rem;
-    background: var(--accent);
-    color: #0d1117;
-    border: none;
-    border-radius: var(--radius);
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: opacity .15s, transform .1s;
-    font-family: inherit;
-    letter-spacing: .1px;
+    padding: .55rem 1.4rem; background: var(--accent); color: #0d1117;
+    border: none; border-radius: var(--radius); font-size: 14px; font-weight: 700;
+    cursor: pointer; transition: opacity .15s, transform .1s; font-family: inherit; letter-spacing: .1px;
   }
   .btn-next:hover { opacity: .88; transform: translateY(-1px); }
   .btn-next:active { transform: translateY(0); }
 
   /* ── Results ── */
-  .results-wrap {
-    max-width: 560px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 3rem 0 2rem;
-  }
-
-  .score-ring {
-    width: 140px;
-    height: 140px;
-    margin: 0 auto 1.5rem;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .score-ring svg {
-    position: absolute;
-    top: 0; left: 0;
-    transform: rotate(-90deg);
-  }
+  .results-wrap { max-width: 560px; margin: 0 auto; text-align: center; padding: 3rem 0 2rem; }
+  .score-ring { width: 140px; height: 140px; margin: 0 auto 1.5rem; position: relative; display: flex; align-items: center; justify-content: center; }
+  .score-ring svg { position: absolute; top: 0; left: 0; transform: rotate(-90deg); }
   .score-inner { position: relative; z-index: 1; }
   .score-pct { font-size: 38px; font-weight: 700; letter-spacing: -2px; color: var(--text); }
   .score-lbl { font-size: 12px; color: var(--muted); margin-top: -.2rem; }
-
-  .result-grade {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: .3rem;
-    letter-spacing: -.3px;
-  }
+  .result-grade { font-size: 22px; font-weight: 700; margin-bottom: .3rem; letter-spacing: -.3px; }
   .result-unit { font-size: 14px; color: var(--muted); margin-bottom: 2rem; }
-
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: .75rem;
-    margin-bottom: 1.75rem;
-  }
-  .stat-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: .9rem .5rem;
-    text-align: center;
-  }
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin-bottom: 1.75rem; }
+  .stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .9rem .5rem; text-align: center; }
   .stat-num { font-size: 28px; font-weight: 700; }
   .stat-lbl { font-size: 11px; color: var(--muted); margin-top: .15rem; }
   .stat-num.c { color: var(--green); }
   .stat-num.w { color: var(--red); }
-
   .review-section { text-align: left; margin-bottom: 1.5rem; }
-  .review-title {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: .75rem;
-    text-align: center;
-  }
-  .review-list {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    max-height: 280px;
-    overflow-y: auto;
-  }
-  .review-item {
-    padding: .65rem 1rem;
-    border-bottom: 1px solid var(--border);
-    font-size: 13px;
-    display: flex;
-    gap: .6rem;
-    align-items: flex-start;
-  }
+  .review-title { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: .75rem; text-align: center; }
+  .review-list { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; max-height: 280px; overflow-y: auto; }
+  .review-item { padding: .65rem 1rem; border-bottom: 1px solid var(--border); font-size: 13px; display: flex; gap: .6rem; align-items: flex-start; }
   .review-item:last-child { border-bottom: none; }
-  .review-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    margin-top: 4px;
-  }
+  .review-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
   .rdot-c { background: var(--green); }
   .rdot-w { background: var(--red); }
   .review-item-q { color: var(--muted); line-height: 1.4; }
   .review-item-q b { color: var(--text); font-weight: 500; }
-
   .result-btns { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
-  .btn-secondary {
+  .btn-secondary { padding: .55rem 1.2rem; background: var(--surface2); border: 1px solid var(--border2); border-radius: var(--radius); color: var(--text); font-size: 14px; font-weight: 500; cursor: pointer; font-family: inherit; transition: border-color .15s; }
+  .btn-secondary:hover { border-color: var(--muted); }
+
+  /* ══════════════════════════════════════════
+     THEORY STYLES
+  ══════════════════════════════════════════ */
+
+  /* Theory unit page header */
+  .theory-unit-header {
+    padding: 1.75rem 0 1.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.75rem;
+  }
+  .theory-unit-tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--purple); margin-bottom: .4rem;
+  }
+  .theory-unit-title { font-size: 26px; font-weight: 700; letter-spacing: -.4px; color: var(--text); margin-bottom: .3rem; }
+  .theory-unit-meta { font-size: 13px; color: var(--muted); }
+
+  /* Topic nav strip */
+  .topic-nav-strip {
+    display: flex;
+    gap: .4rem;
+    overflow-x: auto;
+    padding-bottom: .4rem;
+    margin-bottom: 1.75rem;
+    scrollbar-width: none;
+  }
+  .topic-nav-strip::-webkit-scrollbar { display: none; }
+  .topic-pill {
+    padding: .35rem .9rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all .15s;
+    flex-shrink: 0;
+  }
+  .topic-pill:hover { border-color: var(--purple); color: var(--purple); }
+  .topic-pill.active { background: var(--purple-bg); border-color: var(--purple-br); color: var(--purple); font-weight: 600; }
+
+  /* Concept card */
+  .concept-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+  }
+
+  .concept-header {
+    padding: 1.25rem 1.5rem 1rem;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, rgba(188,140,255,.07), transparent);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .concept-num {
+    width: 34px; height: 34px; border-radius: 8px;
+    background: var(--purple-bg); border: 1px solid var(--purple-br);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: var(--purple);
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .concept-title-wrap { flex: 1; }
+  .concept-emoji { font-size: 11px; color: var(--muted); margin-bottom: .2rem; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
+  .concept-title { font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: -.2px; }
+
+  /* Parts inside concept */
+  .concept-body { padding: 0; }
+
+  .part-block {
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .part-block:last-child { border-bottom: none; }
+
+  .part-label {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: .65rem;
+  }
+  .part-label-icon { font-size: 14px; }
+  .part-label-text { color: var(--muted); }
+
+  .part-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.75;
+  }
+  .part-text p { margin-bottom: .6rem; }
+  .part-text p:last-child { margin-bottom: 0; }
+
+  /* Syntax tabs */
+  .syntax-tabs { display: flex; gap: .4rem; margin-bottom: .75rem; }
+  .syn-tab {
+    padding: .25rem .75rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all .15s;
+    font-family: inherit;
+  }
+  .syn-tab:hover { border-color: var(--border2); color: var(--text); }
+  .syn-tab.active { background: var(--purple-bg); border-color: var(--purple-br); color: var(--purple); }
+
+  .code-block {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+    font-family: 'Consolas', 'SF Mono', 'Fira Code', monospace;
+    font-size: 13px;
+    line-height: 1.65;
+    color: #e6edf3;
+    overflow-x: auto;
+    white-space: pre;
+    display: none;
+  }
+  .code-block.active { display: block; }
+
+  /* keyword colors */
+  .kw  { color: #ff7b72; }   /* keywords */
+  .ty  { color: #79c0ff; }   /* types */
+  .fn  { color: #d2a8ff; }   /* functions */
+  .st  { color: #a5d6ff; }   /* strings */
+  .cm  { color: #8b949e; font-style: italic; } /* comments */
+  .nm  { color: #f8e3a1; }   /* numbers */
+
+  /* Lists */
+  .part-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .45rem;
+  }
+  .part-list li {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .part-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--purple);
+    font-size: 11px;
+    top: 3px;
+  }
+  .part-list.mistakes li::before { content: '⚠'; color: var(--red); font-size: 10px; top: 4px; }
+
+  /* MCQ trap */
+  .trap-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: .8rem 1rem;
+    margin-bottom: .5rem;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .trap-item:last-child { margin-bottom: 0; }
+  .trap-q { color: var(--text); font-weight: 500; margin-bottom: .3rem; }
+  .trap-a { color: var(--accent); font-size: 12px; }
+
+  /* Mini quiz */
+  .mini-quiz-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
+    border-radius: var(--radius);
+    padding: .8rem 1rem;
+    margin-bottom: .5rem;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.55;
+  }
+  .mini-quiz-item:last-child { margin-bottom: 0; }
+
+  /* Memory trick */
+  .memory-trick-box {
+    background: linear-gradient(135deg, rgba(240,168,50,.08), rgba(188,140,255,.06));
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    padding: .9rem 1rem;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.65;
+    font-style: italic;
+  }
+  .memory-trick-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: .4rem;
+    font-style: normal;
+  }
+
+  /* Compare table */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .compare-table th {
+    background: var(--surface2);
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    padding: .6rem .8rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-table td {
+    padding: .55rem .8rem;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table td:first-child { color: var(--muted); font-weight: 500; width: 30%; }
+
+  /* Theory nav footer */
+  .theory-nav-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 0;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-theory-nav {
     padding: .55rem 1.2rem;
     background: var(--surface2);
     border: 1px solid var(--border2);
@@ -492,20 +537,41 @@
     font-weight: 500;
     cursor: pointer;
     font-family: inherit;
-    transition: border-color .15s;
+    transition: all .15s;
   }
-  .btn-secondary:hover { border-color: var(--muted); }
+  .btn-theory-nav:hover { border-color: var(--purple); color: var(--purple); }
+  .btn-theory-nav.primary {
+    background: var(--purple-bg);
+    border-color: var(--purple-br);
+    color: var(--purple);
+    font-weight: 600;
+  }
+  .btn-theory-nav.primary:hover { background: rgba(188,140,255,.15); }
+  .btn-theory-nav:disabled { opacity: .35; cursor: default; pointer-events: none; }
+
+  .theory-topic-progress {
+    font-size: 12px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Inline highlight */
+  .hl { color: var(--accent); font-weight: 600; }
+  .hl-blue { color: var(--blue); font-weight: 600; }
+  .hl-purple { color: var(--purple); font-weight: 600; }
+  .hl-green { color: var(--green); font-weight: 600; }
 
   /* ── Scrollbar ── */
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
 
-  /* ── Responsive ── */
   @media(max-width: 520px) {
     .hero-title { font-size: 24px; }
     .q-text { font-size: 16px; }
     .units-grid { grid-template-columns: 1fr; }
+    .concept-header { padding: 1rem; }
+    .part-block { padding: .9rem 1rem; }
   }
 </style>
 </head>
@@ -522,7 +588,7 @@
 <div class="page active" id="page-dashboard">
   <div class="container">
     <div class="hero">
-      <div class="hero-tag">Question Bank</div>
+      <div class="hero-tag">NPTEL Exam Prep</div>
       <div class="hero-title" id="dash-course-name"></div>
       <div class="hero-sub" id="dash-course-sub"></div>
       <div class="hero-stats">
@@ -531,8 +597,24 @@
         <div class="hero-stat">Attempted: <span id="stat-attempted">0</span></div>
       </div>
     </div>
-    <div class="section-label">Select a unit to practice</div>
-    <div class="units-grid" id="units-grid"></div>
+
+    <!-- MODE SWITCHER -->
+    <div class="mode-switcher">
+      <button class="mode-btn qbank-mode active" id="mode-qbank">📝 Question Bank</button>
+      <button class="mode-btn theory-mode" id="mode-theory">🧠 Theory</button>
+    </div>
+
+    <!-- Question Bank panel -->
+    <div id="panel-qbank">
+      <div class="section-label">Select a unit to practice</div>
+      <div class="units-grid" id="units-grid"></div>
+    </div>
+
+    <!-- Theory panel -->
+    <div id="panel-theory" style="display:none">
+      <div class="section-label">Select a unit to study</div>
+      <div class="units-grid" id="theory-units-grid"></div>
+    </div>
   </div>
 </div>
 
@@ -597,31 +679,63 @@
   </div>
 </div>
 
+<!-- PAGE: THEORY UNIT -->
+<div class="page" id="page-theory">
+  <div class="container">
+    <div class="theory-unit-header">
+      <div class="theory-unit-tag" id="th-unit-tag">Unit 1 · Theory</div>
+      <div class="theory-unit-title" id="th-unit-title"></div>
+      <div class="theory-unit-meta" id="th-unit-meta"></div>
+    </div>
+
+    <!-- Topic pill nav -->
+    <div class="topic-nav-strip" id="topic-nav-strip"></div>
+
+    <!-- Progress bar (purple) -->
+    <div class="progress-bar" style="margin-bottom:1.5rem">
+      <div class="progress-fill" id="theory-progress-fill"
+           style="background: linear-gradient(90deg, var(--purple), #e0b4ff)"></div>
+    </div>
+
+    <!-- Concept display area -->
+    <div id="theory-concept-area"></div>
+
+    <!-- Nav footer -->
+    <div class="theory-nav-footer">
+      <button class="btn-theory-nav" id="btn-th-prev">← Previous</button>
+      <div class="theory-topic-progress" id="th-topic-counter"></div>
+      <button class="btn-theory-nav primary" id="btn-th-next">Next →</button>
+    </div>
+  </div>
+</div>
+
 <script>
-// ── State ──────────────────────────────────────────────────
+// ══════════════════════════════════════════════════
+//  QUIZ LOGIC (original – unchanged)
+// ══════════════════════════════════════════════════
 const LETTERS = ['A','B','C','D'];
 let activeUnit  = 0;
 let currentQ    = 0;
 let score       = 0;
 let answered    = false;
 let sessionAnswers = [];
-const unitHistory = {};   // unitIdx → { score, total }
+const unitHistory = {};
 
-// ── Init ───────────────────────────────────────────────────
 function init() {
   if (typeof COURSE_DATA === 'undefined') {
     document.body.innerHTML = '<div style="padding:3rem;color:#f85149;font-family:sans-serif"><h2>⚠️ questions.js not found</h2><p style="margin-top:.5rem;color:#8b949e">Make sure questions.js is in the same folder as this HTML file.</p></div>';
     return;
   }
-
   const totalQ = COURSE_DATA.units.reduce((s,u)=>s+u.questions.length, 0);
-  document.title = COURSE_DATA.courseName + ' — MCQ';
+  document.title = COURSE_DATA.courseName + ' — ExamPrep';
   document.getElementById('topbar-course-name').textContent = COURSE_DATA.courseName;
   document.getElementById('dash-course-name').textContent   = COURSE_DATA.courseName;
   document.getElementById('dash-course-sub').textContent    = COURSE_DATA.subtitle || 'MCQ Question Bank';
   document.getElementById('stat-units').textContent         = COURSE_DATA.units.length;
   document.getElementById('stat-questions').textContent     = totalQ;
   buildUnitGrid();
+  buildTheoryGrid();
+  initModeSwitcher();
 }
 
 function buildUnitGrid() {
@@ -643,16 +757,13 @@ function buildUnitGrid() {
       </div>
     </div>`;
   }).join('');
-
   grid.querySelectorAll('.unit-card').forEach(el =>
     el.addEventListener('click', () => startUnit(parseInt(el.dataset.unit)))
   );
-
   const done = Object.keys(unitHistory).length;
   document.getElementById('stat-attempted').textContent = done;
 }
 
-// ── Navigation ─────────────────────────────────────────────
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -666,10 +777,10 @@ document.getElementById('btn-next').addEventListener('click', nextQuestion);
 
 function toDashboard() {
   buildUnitGrid();
+  buildTheoryGrid();
   showPage('page-dashboard');
 }
 
-// ── Quiz Logic ─────────────────────────────────────────────
 function startUnit(idx) {
   activeUnit = idx;
   currentQ   = 0;
@@ -681,16 +792,14 @@ function startUnit(idx) {
 }
 
 function renderQuestion() {
-  const unit = COURSE_DATA.units[activeUnit];
-  const q    = unit.questions[currentQ];
+  const unit  = COURSE_DATA.units[activeUnit];
+  const q     = unit.questions[currentQ];
   const total = unit.questions.length;
-
   document.getElementById('quiz-unit-label').textContent = unit.name;
   document.getElementById('quiz-counter').textContent    = `Q ${currentQ+1} / ${total}`;
-  document.getElementById('progress-fill').style.width  = `${(currentQ/total)*100}%`;
-  document.getElementById('q-text').textContent         = q.question;
+  document.getElementById('progress-fill').style.width   = `${(currentQ/total)*100}%`;
+  document.getElementById('q-text').textContent          = q.question;
 
-  // Options
   const ol = document.getElementById('options-list');
   ol.innerHTML = q.options.map((opt, i) => `
     <button class="option-btn" data-idx="${i}">
@@ -700,12 +809,9 @@ function renderQuestion() {
         <div class="opt-explain" id="opt-exp-${i}"></div>
       </div>
     </button>`).join('');
-
   ol.querySelectorAll('.option-btn').forEach(btn =>
     btn.addEventListener('click', () => selectOption(parseInt(btn.dataset.idx)))
   );
-
-  // Hide feedback
   document.getElementById('explanation-box').classList.remove('show');
   document.getElementById('feedback-row').classList.remove('show');
   answered = false;
@@ -714,7 +820,6 @@ function renderQuestion() {
 function selectOption(chosen) {
   if (answered) return;
   answered = true;
-
   const unit = COURSE_DATA.units[activeUnit];
   const q    = unit.questions[currentQ];
   const correct = q.correct;
@@ -722,37 +827,25 @@ function selectOption(chosen) {
   if (isCorrect) score++;
   sessionAnswers.push({ chosen, correct: q.correct, question: q.question, correctText: q.options[q.correct] });
 
-  // Style options
   const btns = document.querySelectorAll('.option-btn');
   btns.forEach((btn, i) => {
     btn.classList.add('locked');
-    if (i === correct) {
-      btn.classList.add('state-correct');
-    } else if (i === chosen) {
-      btn.classList.add('state-wrong');
-    } else {
-      btn.classList.add('state-neutral');
-    }
-    // Reveal per-option explanation
+    if (i === correct) btn.classList.add('state-correct');
+    else if (i === chosen) btn.classList.add('state-wrong');
+    else btn.classList.add('state-neutral');
     const expEl = document.getElementById(`opt-exp-${i}`);
-    if (expEl && q.optionExplanations && q.optionExplanations[i]) {
+    if (expEl && q.optionExplanations && q.optionExplanations[i])
       expEl.textContent = q.optionExplanations[i];
-    }
   });
-
-  // Main explanation
   if (q.explanation) {
     document.getElementById('exp-text').textContent = q.explanation;
     document.getElementById('explanation-box').classList.add('show');
   }
-
-  // Feedback
   const fbMsg = document.getElementById('feedback-msg');
   fbMsg.className = 'feedback-msg ' + (isCorrect ? 'correct' : 'wrong');
   fbMsg.innerHTML  = isCorrect
     ? '<span style="font-size:18px">✓</span> Correct!'
     : `<span style="font-size:18px">✗</span> Incorrect — correct was <b>${LETTERS[correct]}</b>`;
-
   const total = unit.questions.length;
   document.getElementById('btn-next').textContent = currentQ < total-1 ? 'Next →' : 'See Results →';
   document.getElementById('feedback-row').classList.add('show');
@@ -770,37 +863,23 @@ function nextQuestion() {
   }
 }
 
-// ── Results ────────────────────────────────────────────────
 function showResults() {
   const unit   = COURSE_DATA.units[activeUnit];
   const total  = unit.questions.length;
   const pct    = Math.round((score / total) * 100);
-  const circ   = 2 * Math.PI * 58;  // r=58
-
+  const circ   = 2 * Math.PI * 58;
   unitHistory[activeUnit] = { score, total };
-
-  // Ring
   const arc = document.getElementById('ring-arc');
   arc.style.strokeDashoffset = circ - (pct / 100) * circ;
   arc.style.stroke = pct >= 70 ? '#3fb950' : pct >= 40 ? '#58a6ff' : '#f85149';
-
   document.getElementById('res-pct').textContent     = pct + '%';
   document.getElementById('res-frac').textContent    = `${score} / ${total}`;
   document.getElementById('res-correct').textContent = score;
   document.getElementById('res-wrong').textContent   = total - score;
   document.getElementById('res-total').textContent   = total;
   document.getElementById('res-unit').textContent    = unit.name;
-
-  const grades = [
-    [90, '🏆 Outstanding!'],
-    [75, '🌟 Excellent work!'],
-    [60, '👍 Good job!'],
-    [40, '📖 Keep studying!'],
-    [0,  '🔄 Needs revision']
-  ];
+  const grades = [[90,'🏆 Outstanding!'],[75,'🌟 Excellent work!'],[60,'👍 Good job!'],[40,'📖 Keep studying!'],[0,'🔄 Needs revision']];
   document.getElementById('res-grade').textContent = grades.find(([t]) => pct >= t)[1];
-
-  // Review list
   const rl = document.getElementById('review-list');
   rl.innerHTML = sessionAnswers.map((a, i) => {
     const ok = a.chosen === a.correct;
@@ -812,21 +891,270 @@ function showResults() {
       </div>
     </div>`;
   }).join('');
-
   showPage('page-results');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function esc(s) {
-  if (!s) return '';
-  return String(s)
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;');
+// ══════════════════════════════════════════════════
+//  MODE SWITCHER
+// ══════════════════════════════════════════════════
+function initModeSwitcher() {
+  const btnQ = document.getElementById('mode-qbank');
+  const btnT = document.getElementById('mode-theory');
+  btnQ.addEventListener('click', () => {
+    btnQ.classList.add('active');
+    btnT.classList.remove('active');
+    document.getElementById('panel-qbank').style.display = '';
+    document.getElementById('panel-theory').style.display = 'none';
+  });
+  btnT.addEventListener('click', () => {
+    btnT.classList.add('active');
+    btnQ.classList.remove('active');
+    document.getElementById('panel-theory').style.display = '';
+    document.getElementById('panel-qbank').style.display = 'none';
+  });
 }
 
-// Start
+// ══════════════════════════════════════════════════
+//  THEORY LOGIC
+// ══════════════════════════════════════════════════
+let theoryUnitIdx   = 0;
+let theoryTopicIdx  = 0;
+
+function buildTheoryGrid() {
+  const grid = document.getElementById('theory-units-grid');
+  if (typeof THEORY_DATA === 'undefined') {
+    grid.innerHTML = `<div style="grid-column:1/-1;padding:2rem;text-align:center;color:var(--muted);font-size:14px">
+      ⚠️ <b style="color:var(--text)">theory.js not found.</b><br>
+      <span style="font-size:12px;margin-top:.4rem;display:block">Create theory.js with THEORY_DATA in the same folder.</span>
+    </div>`;
+    return;
+  }
+  grid.innerHTML = THEORY_DATA.units.map((u, i) => `
+    <div class="unit-card theory-card" data-tunit="${i}">
+      <div class="unit-index">Unit ${i+1} · Theory</div>
+      <div class="unit-name">${esc(u.name)}</div>
+      <div class="unit-footer">
+        <div class="unit-qcount"><b>${u.topics.length}</b> concepts</div>
+      </div>
+    </div>`).join('');
+  grid.querySelectorAll('.unit-card').forEach(el =>
+    el.addEventListener('click', () => startTheoryUnit(parseInt(el.dataset.tunit)))
+  );
+}
+
+function startTheoryUnit(idx) {
+  theoryUnitIdx  = idx;
+  theoryTopicIdx = 0;
+  showPage('page-theory');
+  renderTheoryUnit();
+}
+
+function renderTheoryUnit() {
+  const unit = THEORY_DATA.units[theoryUnitIdx];
+  document.getElementById('th-unit-tag').textContent  = `Unit ${theoryUnitIdx+1} · Theory`;
+  document.getElementById('th-unit-title').textContent = unit.name;
+  document.getElementById('th-unit-meta').textContent  = `${unit.topics.length} concepts`;
+
+  // Pill nav
+  const strip = document.getElementById('topic-nav-strip');
+  strip.innerHTML = unit.topics.map((t, i) => `
+    <div class="topic-pill ${i===theoryTopicIdx?'active':''}" data-tidx="${i}">${esc(t.title)}</div>`).join('');
+  strip.querySelectorAll('.topic-pill').forEach(el =>
+    el.addEventListener('click', () => {
+      theoryTopicIdx = parseInt(el.dataset.tidx);
+      renderTheoryTopic();
+    })
+  );
+  renderTheoryTopic();
+}
+
+function renderTheoryTopic() {
+  const unit   = THEORY_DATA.units[theoryUnitIdx];
+  const topic  = unit.topics[theoryTopicIdx];
+  const total  = unit.topics.length;
+
+  // Update pill active state
+  document.querySelectorAll('.topic-pill').forEach((el, i) =>
+    el.classList.toggle('active', i === theoryTopicIdx)
+  );
+
+  // Progress
+  document.getElementById('theory-progress-fill').style.width = `${((theoryTopicIdx+1)/total)*100}%`;
+  document.getElementById('th-topic-counter').textContent     = `Concept ${theoryTopicIdx+1} of ${total}`;
+
+  // Nav buttons
+  document.getElementById('btn-th-prev').disabled = theoryTopicIdx === 0;
+  const isLast = theoryTopicIdx === total - 1;
+  const btnNext = document.getElementById('btn-th-next');
+  btnNext.textContent = isLast ? 'All Units ←' : 'Next →';
+
+  // Render concept card
+  const p = topic.parts;
+  const area = document.getElementById('theory-concept-area');
+
+  area.innerHTML = `
+    <div class="concept-card">
+      <div class="concept-header">
+        <div class="concept-num">${theoryTopicIdx+1}</div>
+        <div class="concept-title-wrap">
+          <div class="concept-emoji">🔥 CONCEPT ${theoryTopicIdx+1}</div>
+          <div class="concept-title">${esc(topic.title)}</div>
+        </div>
+      </div>
+      <div class="concept-body">
+        ${renderPart('📌', 'PART 1 — Definition', renderText(p.definition))}
+        ${renderPart('💡', 'PART 2 — Why Needed', renderText(p.whyNeeded))}
+        ${renderPart('🌍', 'PART 3 — Intuition', renderText(p.intuition))}
+        ${p.syntax ? renderSyntaxPart(p.syntax) : ''}
+        ${p.compileRuntime ? renderPart('⚙️', 'PART 5 — Compile Time vs Runtime', renderText(p.compileRuntime)) : ''}
+        ${p.memoryModel ? renderPart('🧩', 'PART 6 — Memory Model / Execution', renderText(p.memoryModel)) : ''}
+        ${p.commonMistakes ? renderListPart('⚠️', 'PART 7 — Common Mistakes', p.commonMistakes, 'mistakes') : ''}
+        ${p.mcqTrapZone ? renderTrapsPart(p.mcqTrapZone) : ''}
+        ${p.miniQuiz ? renderMiniQuizPart(p.miniQuiz) : ''}
+        ${p.memoryTrick ? renderMemoryTrick(p.memoryTrick) : ''}
+        ${p.compareTable ? renderCompareTable(p.compareTable) : ''}
+      </div>
+    </div>`;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderPart(icon, label, content) {
+  return `<div class="part-block">
+    <div class="part-label">
+      <span class="part-label-icon">${icon}</span>
+      <span class="part-label-text">${label}</span>
+    </div>
+    <div class="part-text">${content}</div>
+  </div>`;
+}
+
+function renderText(text) {
+  if (!text) return '';
+  if (Array.isArray(text)) return text.map(t => `<p>${esc(t)}</p>`).join('');
+  return `<p>${esc(text)}</p>`;
+}
+
+function renderListPart(icon, label, items, cls='') {
+  return `<div class="part-block">
+    <div class="part-label">
+      <span class="part-label-icon">${icon}</span>
+      <span class="part-label-text">${label}</span>
+    </div>
+    <ul class="part-list ${cls}">
+      ${items.map(it => `<li>${esc(it)}</li>`).join('')}
+    </ul>
+  </div>`;
+}
+
+function renderSyntaxPart(syntax) {
+  const langs = Object.keys(syntax);
+  const labels = { cpp: 'C++', java: 'Java', python: 'Python', c: 'C', js: 'JavaScript' };
+  const tabId = 'st-' + Math.random().toString(36).slice(2,7);
+  return `<div class="part-block">
+    <div class="part-label">
+      <span class="part-label-icon">💻</span>
+      <span class="part-label-text">PART 4 — Syntax / Implementation</span>
+    </div>
+    <div class="syntax-tabs" id="tabs-${tabId}">
+      ${langs.map((l,i) => `<button class="syn-tab ${i===0?'active':''}" data-lang="${l}" data-tabgroup="${tabId}">${labels[l]||l}</button>`).join('')}
+    </div>
+    ${langs.map((l,i) => `<pre class="code-block ${i===0?'active':''}" id="${tabId}-${l}">${esc(syntax[l])}</pre>`).join('')}
+  </div>`;
+}
+
+function renderTrapsPart(traps) {
+  const items = traps.map(t => {
+    if (typeof t === 'string') return `<div class="trap-item"><div class="trap-q">${esc(t)}</div></div>`;
+    return `<div class="trap-item">
+      <div class="trap-q">❓ ${esc(t.q)}</div>
+      ${t.a ? `<div class="trap-a">✔ ${esc(t.a)}</div>` : ''}
+    </div>`;
+  }).join('');
+  return `<div class="part-block">
+    <div class="part-label">
+      <span class="part-label-icon">🎯</span>
+      <span class="part-label-text">PART 8 — MCQ Trap Zone</span>
+    </div>
+    ${items}
+  </div>`;
+}
+
+function renderMiniQuizPart(questions) {
+  return `<div class="part-block">
+    <div class="part-label">
+      <span class="part-label-icon">🧪</span>
+      <span class="part-label-text">PART 9 — Mini Quiz</span>
+    </div>
+    ${questions.map((q,i) => `<div class="mini-quiz-item"><b>Q${i+1}.</b> ${esc(q)}</div>`).join('')}
+  </div>`;
+}
+
+function renderMemoryTrick(trick) {
+  return `<div class="part-block">
+    <div class="part-label">
+      <span class="part-label-icon">🧠</span>
+      <span class="part-label-text">PART 10 — Memory Trick</span>
+    </div>
+    <div class="memory-trick-box">
+      <div class="memory-trick-label">⚡ Fast Recall</div>
+      ${esc(trick)}
+    </div>
+  </div>`;
+}
+
+function renderCompareTable(table) {
+  const cols = table.headers;
+  return `<div class="part-block">
+    <div class="part-label">
+      <span class="part-label-icon">📊</span>
+      <span class="part-label-text">Comparison Table</span>
+    </div>
+    <table class="compare-table">
+      <thead><tr>${cols.map(c=>`<th>${esc(c)}</th>`).join('')}</tr></thead>
+      <tbody>${table.rows.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody>
+    </table>
+  </div>`;
+}
+
+// Theory nav buttons
+document.getElementById('btn-th-prev').addEventListener('click', () => {
+  if (theoryTopicIdx > 0) {
+    theoryTopicIdx--;
+    renderTheoryTopic();
+  }
+});
+document.getElementById('btn-th-next').addEventListener('click', () => {
+  const unit = THEORY_DATA.units[theoryUnitIdx];
+  if (theoryTopicIdx < unit.topics.length - 1) {
+    theoryTopicIdx++;
+    renderTheoryTopic();
+  } else {
+    toDashboard();
+    // switch to theory tab
+    document.getElementById('mode-theory').click();
+  }
+});
+
+// Syntax tab switching (event delegation)
+document.addEventListener('click', e => {
+  const tab = e.target.closest('.syn-tab');
+  if (!tab) return;
+  const group = tab.dataset.tabgroup;
+  const lang  = tab.dataset.lang;
+  document.querySelectorAll(`.syn-tab[data-tabgroup="${group}"]`).forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  document.querySelectorAll(`[id^="${group}-"]`).forEach(b => {
+    b.classList.toggle('active', b.id === `${group}-${lang}`);
+  });
+});
+
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
 init();
 </script>
 </body>
