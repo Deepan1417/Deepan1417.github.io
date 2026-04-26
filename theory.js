@@ -239,7 +239,263 @@ const THEORY_DATA = {
           }
         }
       ]
+    },
+    {
+      unit: 10,
+      name: "Unit 10: Standard Template Library (STL)",
+      topics: [
+        {
+          id: 1,
+          title: "STL Containers: Sequence, Associative & Unordered",
+          parts: {
+            definition: "Containers are data structures that manage collections of objects. Sequence containers (vector, list, deque) store data linearly. Associative containers (set, map) store data in sorted trees using keys. Unordered containers (unordered_set, unordered_map) use hash tables for fast, randomized access.",
+            whyNeeded: [
+              "Eliminates the need to manually write complex data structures like linked lists or Red-Black trees from scratch.",
+              "Provides highly optimized, memory-safe memory allocation dynamically.",
+              "Offers uniform interfaces (like .size(), .empty()) across wildly different underlying data architectures."
+            ],
+            intuition: "A Vector is like a stack of plates (fast at the end). A List is a scavenger hunt where each clue points to the next (fast insertion anywhere). A Map is a dictionary organized alphabetically. An Unordered Map is a valet parking system using a ticket stub (hash) to instantly grab your car.",
+            syntax: {
+              cpp: "/* Sequence Container */\nstd::vector<int> v = {10, 20, 30};\n\n/* Associative Container */\nstd::set<int> s;\ns.insert(40); // Auto-sorts, rejects duplicates\n\n/* Unordered Container */\nstd::unordered_map<std::string, int> umap;\numap[\"Alice\"] = 25; // O(1) hash access",
+              java: "/* Java equivalents (Collections Framework) */\nArrayList<Integer> list = new ArrayList<>();\nTreeSet<Integer> set = new TreeSet<>();\nHashMap<String, Integer> map = new HashMap<>();",
+              python: "# Python equivalents\nmy_list = [10, 20, 30]\nmy_set = {10, 20, 30}\nmy_dict = {\"Alice\": 25}"
+            },
+            compileRuntime: "Templates for containers are instantiated at compile time, providing strict type safety. Dynamic memory expansion (like a vector doubling in capacity) occurs at runtime.",
+            memoryModel: "Vectors use contiguous heap blocks. Lists allocate scattered nodes connected by dual pointers (prev/next). Sets/Maps build balanced binary trees in memory. Unordered Maps allocate an array of 'buckets' mapping to hash codes.",
+            commonMistakes: [
+              "Trying to use the index operator [] on a std::list (lists do not support direct access by index).",
+              "Assuming an unordered_map will print its elements in the order they were inserted.",
+              "Inserting duplicate keys into a std::set or std::map and expecting them to be stored (duplicates are ignored unless using multiset/multimap)."
+            ],
+            mcqTrapZone: [
+              {
+                q: "Which of the following is an associative container in STL?",
+                a: "std::set. (Vectors, deques, and lists are sequence containers)."
+              },
+              {
+                q: "Which container allows bidirectional iterators but does NOT support direct access by index?",
+                a: "std::list (Doubly linked list)."
+              }
+            ],
+            miniQuiz: [
+              "What is the primary difference between std::set and std::multiset?",
+              "Why might you choose an unordered_map over a standard map?",
+              "Which sequence container allows fast insertion at both the front and the back?"
+            ],
+            memoryTrick: "Sequence = Straight line. Associative = Alphabetical (Tree). Unordered = Unpredictable (Hash).",
+            compareTable: {
+              headers: ["Feature", "Vector", "List", "Deque"],
+              rows: [
+                ["Memory Layout", "Contiguous block", "Scattered nodes", "Chunked arrays"],
+                ["Random Access (v)", "Supported (O(1))", "Not supported", "Supported (O(1))"],
+                ["Push/Pop Front", "Very slow (O(n))", "Very fast (O(1))", "Very fast (O(1))"]
+              ]
+            }
+          }
+        },
+        {
+          id: 2,
+          title: "Iterators: Forward, Reverse & Inserters",
+          parts: {
+            definition: "Iterators are objects that act like pointers, allowing programs to safely traverse containers. They bridge the gap between containers and algorithms without exposing the container's internal memory layout.",
+            whyNeeded: [
+              "Provides a universal syntax (++it, *it) to loop through any container, whether it's an array or a complex tree.",
+              "Establishes safe boundaries (begin and end) to prevent out-of-bounds memory crashes.",
+              "Allows algorithms to operate generically on partial ranges of data."
+            ],
+            intuition: "An iterator is a digital cursor. begin() puts the cursor on the first letter. end() puts the cursor immediately AFTER the last letter (the blinking space). reverse_iterator reads the text right-to-left.",
+            syntax: {
+              cpp: "std::vector<int> vec = {10, 20, 30};\n\n/* Forward Iterator */\nfor(auto it = vec.begin(); it != vec.end(); ++it) {\n    std::cout << *it << \" \";\n}\n\n/* Reverse Iterator */\nfor(auto rit = vec.rbegin(); rit != vec.rend(); ++rit) {\n    std::cout << *rit << \" \";\n}",
+              java: "/* Java Iterator */\nIterator<Integer> it = list.iterator();\nwhile(it.hasNext()) {\n    System.out.println(it.next());\n}"
+            },
+            compileRuntime: "Iterator types are deduced at compile-time (often heavily relying on the 'auto' keyword). Dereferencing an invalid iterator triggers a fatal runtime segmentation fault.",
+            memoryModel: "Iterators wrap raw memory pointers. .end() acts as a strict memory boundary marker pointing to an invalid address exactly one step past the final valid element.",
+            commonMistakes: [
+              "Dereferencing the .end() iterator expecting the last element.",
+              "Using arithmetic (it + 5) on a list iterator (lists only support stepping one-by-one via ++ or --).",
+              "Thinking ++rit on a reverse iterator moves it to the right (it actually moves it backward toward the start of the container)."
+            ],
+            mcqTrapZone: [
+              {
+                q: "What does the rend() function return in an STL container?",
+                a: "A reverse iterator pointing to the theoretical element BEFORE the first element."
+              },
+              {
+                q: "If an element is not found using std::find, what does the function return?",
+                a: "It returns the container's .end() iterator as a failure flag."
+              }
+            ],
+            miniQuiz: [
+              "What is the difference between begin() and rbegin()?",
+              "Why must you use the * operator with an iterator to get its value?",
+              "What happens if you run std::advance(it, 2) on a vector iterator?"
+            ],
+            memoryTrick: "begin() is the first bite. end() is the empty plate. rbegin() eats dessert first."
+          }
+        },
+        {
+          id: 3,
+          title: "STL Algorithms",
+          parts: {
+            definition: "STL Algorithms are global, generic functions (like sort, find, count) that process sequences of data. They are heavily decoupled from containers and rely exclusively on iterators to access the data.",
+            whyNeeded: [
+              "Prevents developers from manually rewriting standard sorting or searching logic.",
+              "Highly optimized by compiler engineers for maximum performance.",
+              "Works uniformly across wildly different data structures via iterator abstraction."
+            ],
+            intuition: "If containers are cooking pots, and data is the food, Algorithms are the chefs. The chef (std::sort) doesn't care if the food is in a pan (vector) or a bowl (deque)—as long as the waiter (iterator) hands them the ingredients.",
+            syntax: {
+              cpp: "#include <algorithm>\nstd::vector<int> v = {40, 10, 30, 20};\n\n/* Modifying: Sorting */\nstd::sort(v.begin(), v.end());\n\n/* Non-Modifying: Find */\nauto it = std::find(v.begin(), v.end(), 30);\nif(it != v.end()) std::cout << \"Found: \" << *it;\n\n/* Modifying: Transform */\nstd::transform(v.begin(), v.end(), v.begin(), [](int x){ return x + 5; });"
+            },
+            compileRuntime: "Algorithms compile down to highly optimized loop structures. Custom comparator logic (like Lambda functions) is evaluated and inlined at compile-time.",
+            memoryModel: "Non-modifying algorithms (find, count) only read values without shifting memory. Modifying algorithms (sort, replace, partition) actively shuffle or overwrite memory blocks within the container.",
+            commonMistakes: [
+              "Trying to use std::sort() on a std::list. (Lists don't support random access; you must use the list's member function list.sort()).",
+              "Forgetting to capture variables properly when passing Lambda functions to algorithms.",
+              "Not checking if an algorithm returned .end() before dereferencing the iterator."
+            ],
+            mcqTrapZone: [
+              {
+                q: "Which of the following is a non-modifying algorithm in STL?",
+                a: "std::find() (Algorithms like sort, replace, and remove are modifying)."
+              },
+              {
+                q: "What does the std::partition() algorithm do?",
+                a: "It reorders elements so that those satisfying a specific condition come before those that do not."
+              }
+            ],
+            miniQuiz: [
+              "What is the default sorting order of std::sort?",
+              "How does std::count differ from std::find?",
+              "Why can't you use std::sort on a std::list?"
+            ],
+            memoryTrick: "Algorithms are verbs. Containers are nouns. Iterators are the grammar connecting them."
+          }
+        }
+      ]
+    },
+    {
+      unit: 11,
+      name: "Unit 11: Design Patterns",
+      topics: [
+        {
+          id: 1,
+          title: "Creational Patterns: Singleton & Factory",
+          parts: {
+            definition: "Creational patterns abstract the object instantiation process. Singleton guarantees a class has exactly one instance and provides global access to it. Factory defines an interface for creating objects, but lets subclasses decide which concrete class to instantiate.",
+            whyNeeded: [
+              "Singleton manages shared global resources (like a database connection or logger) without wasting memory on duplicates.",
+              "Factory decouples client code from knowing the exact classes being instantiated, enhancing code flexibility.",
+              "Provides centralized control over the 'new' keyword."
+            ],
+            intuition: "Singleton is an office printer: everyone sends print jobs to the exact same physical machine. Factory is a coffee shop: you ask the barista for a 'Latte', and the barista handles the complex creation steps without you caring how it's done.",
+            syntax: {
+              cpp: "/* Singleton Pattern */\nclass Singleton {\nprivate:\n    static Singleton* instance;\n    Singleton() {} // Private Constructor\npublic:\n    static Singleton* getInstance() {\n        if (!instance) instance = new Singleton();\n        return instance;\n    }\n};\nSingleton* Singleton::instance = nullptr;",
+              java: "/* Factory Pattern Snippet */\nProduct p = ProductFactory.createProduct(\"Electronics\");"
+            },
+            compileRuntime: "Factory relies heavily on runtime polymorphism—returning base class pointers that point to newly minted derived objects in dynamic memory.",
+            memoryModel: "Singleton uses a static pointer that lives in the global data segment. Factory dynamically allocates memory on the heap (using 'new') and passes the pointer back to the client.",
+            commonMistakes: [
+              "Failing to implement thread-safety locks in a Singleton's getInstance() method, causing race conditions that create two instances.",
+              "Forgetting to make the Singleton's constructor private, allowing clients to accidentally bypass the pattern.",
+              "Creating massive if-else chains inside the client code instead of moving that logic into a Factory."
+            ],
+            mcqTrapZone: [
+              {
+                q: "What is the primary purpose of the Singleton pattern?",
+                a: "To restrict a class to a single instance and provide global access to it."
+              },
+              {
+                q: "Is the Factory pattern a structural or creational pattern?",
+                a: "Creational. It creates objects without exposing instantiation logic."
+              }
+            ],
+            miniQuiz: [
+              "Why must the constructor of a Singleton be private?",
+              "What does the Factory pattern return to the client?",
+              "What happens if two threads call a naive Singleton's getInstance() simultaneously?"
+            ],
+            memoryTrick: "Singleton = SINGLE instance. Factory = Manufactures objects blindly for the client."
+          }
+        },
+        {
+          id: 2,
+          title: "Behavioral Patterns: Observer",
+          parts: {
+            definition: "The Observer pattern establishes a one-to-many relationship where a central 'Subject' automatically notifies a list of registered 'Observers' whenever its internal state changes.",
+            whyNeeded: [
+              "Decouples publishers from subscribers (the subject doesn't need to know the specific concrete classes of its observers).",
+              "Creates reactive, event-driven architectures (like UI buttons or live stock tickers).",
+              "Eliminates the need for observers to constantly poll the subject asking 'Did you update yet?'"
+            ],
+            intuition: "It's like a YouTube subscription. The YouTuber (Subject) uploads a video. YouTube iterates through the subscriber list (Observers) and automatically pushes a notification to everyone's phone.",
+            syntax: {
+              cpp: "class Observer {\npublic: virtual void update(float temp) = 0;\n};\n\nclass Subject {\n    std::vector<Observer*> observers;\npublic:\n    void attach(Observer* o) { observers.push_back(o); }\n    void notify(float temp) {\n        for(auto o : observers) o->update(temp);\n    }\n};"
+            },
+            compileRuntime: "Observers register at runtime. Notifications use dynamic dispatch (virtual function calls) to trigger the specific update() logic of each unique observer at runtime.",
+            memoryModel: "The Subject stores pointers/references to the Observers in a dynamic array (vector/list). If an observer is deleted from memory without detaching from the subject, the subject will hold a dangerous dangling pointer.",
+            commonMistakes: [
+              "Dangling Pointers: Destroying an observer object without calling subject.detach(), leading to segmentation faults during the next notification loop.",
+              "Creating an infinite notification loop if an observer's update() method accidentally triggers another state change in the subject."
+            ],
+            mcqTrapZone: [
+              {
+                q: "Which of the following correctly implements the notify() method in a Subject?",
+                a: "Iterating through the internal list of observers and calling their update() method."
+              },
+              {
+                q: "What type of relationship does the Observer pattern form?",
+                a: "A one-to-many dependency."
+              }
+            ],
+            miniQuiz: [
+              "What is the role of the 'attach' method?",
+              "How does the subject communicate with the observers?",
+              "Why is the Observer pattern considered a Behavioral pattern?"
+            ],
+            memoryTrick: "Subject = The Newsletter. Observers = The Mailing List."
+          }
+        },
+        {
+          id: 3,
+          title: "Structural Patterns: Adapter, Decorator, Composite, Proxy",
+          parts: {
+            definition: "Structural patterns organize relationships between entities. Adapter bridges incompatible interfaces. Decorator dynamically wraps objects to add behavior. Composite builds part-whole tree hierarchies. Proxy controls or delays access to a heavy object.",
+            whyNeeded: [
+              "Adapter integrates legacy code with modern APIs.",
+              "Decorator prevents a massive explosion of rigid subclasses by allowing modular, stackable features.",
+              "Composite allows clients to treat individual files and entire nested folders with the exact same logic.",
+              "Proxy saves memory by deferring the instantiation of heavy objects until the exact moment they are needed (Lazy Loading)."
+            ],
+            intuition: "Adapter = Travel plug converter. Decorator = Adding layers of clothing (jacket over shirt). Composite = A Russian nesting doll of files and folders. Proxy = A bouncer checking VIP lists before letting you into the real club.",
+            syntax: {
+              cpp: "/* Adapter Example */\nclass PrinterAdapter : public ModernPrinterInterface {\nprivate:\n    OldPrinter* oldPrinter;\npublic:\n    PrinterAdapter(OldPrinter* p) : oldPrinter(p) {}\n    void print() override { oldPrinter->legacyPrint(); }\n};"
+            },
+            compileRuntime: "Decorators and Adapters are wired together at runtime through composition (passing object pointers into constructors).",
+            memoryModel: "Decorator relies on an object wrapping another object inside it via a pointer. Proxy holds a null pointer until requested, then allocates heap memory for the Real Subject.",
+            commonMistakes: [
+              "Confusing Decorator with Inheritance (Decorator wraps objects at runtime; inheritance rigidly locks them at compile-time).",
+              "Using Proxy when a simple direct instantiation is cheap and fast, adding unnecessary architectural overhead."
+            ],
+            mcqTrapZone: [
+              {
+                q: "Which statement is true about the Adapter pattern?",
+                a: "It allows a legacy object (like oldPrinter) to be used directly without any modifications to its original class."
+              },
+              {
+                q: "What is the primary purpose of the Proxy pattern?",
+                a: "To provide a surrogate or placeholder for another object to control access and defer instantiation."
+              }
+            ],
+            miniQuiz: [
+              "Which pattern would you use to add a scrollbar to a window dynamically?",
+              "How does the Composite pattern treat leaf nodes vs branch nodes?",
+              "What is the difference between Adapter and Proxy?"
+            ],
+            memoryTrick: "Adapter translates. Decorator dresses up. Composite branches. Proxy guards."
+          }
+        }
+      ]
     }
   ]
 };
-
