@@ -7986,7 +7986,860 @@ optionExplanations: [
           ]
         }
       ]
+    },{
+      name: "Unit 10: Standard Template Library (STL)",
+      questions: [
+        {
+          "question": "What are the three major foundational components of the C++ Standard Template Library (STL)?",
+          "options": [
+            "Classes, Objects, and Polymorphism",
+            "Containers, Iterators, and Algorithms",
+            "Vectors, Maps, and Sets",
+            "Pointers, References, and Arrays"
+          ],
+          "correct": 1,
+          "explanation": "The STL is built on three major components: Containers (to store data), Iterators (to traverse data), and Algorithms (to perform operations like sorting and searching on the data).",
+          "optionExplanations": [
+            "Why A is wrong — These are general OOP concepts, not the specific components of the STL framework.",
+            "Why B is correct — The STL is formally divided into these three synergistic components.",
+            "Why C is wrong — These are examples of specific containers, not the broad architectural components.",
+            "Why D is wrong — These are basic C++ memory and data types."
+          ]
+        },
+        {
+          "question": "How do 'Containers' function within the STL framework?",
+          "options": [
+            "They execute mathematical transformations on generic data.",
+            "They are objects that store and manage a collection of data, handling internal memory allocation and deallocation automatically.",
+            "They act strictly as pointers to memory addresses.",
+            "They translate C++ code into machine-readable binary files."
+          ],
+          "correct": 1,
+          "explanation": "Containers are data structures (like vectors, lists, or maps) designed to store and organize collections of objects. They automatically manage the underlying dynamic memory allocation and deallocation.",
+          "optionExplanations": [
+            "Why A is wrong — Mathematical transformations are handled by STL Algorithms, not Containers.",
+            "Why B is correct — Managing and storing collections of data safely is the core purpose of a container.",
+            "Why C is wrong — Pointers/traversal tools are Iterators, not Containers.",
+            "Why D is wrong — Translation is the compiler's job."
+          ]
+        },
+        {
+          "question": "Which of the following correctly lists the three broad categories of STL Containers?",
+          "options": [
+            "Sequence Containers, Associative Containers, and Unordered Containers",
+            "Static Containers, Dynamic Containers, and Linked Containers",
+            "Integer Containers, String Containers, and Float Containers",
+            "Primary Containers, Secondary Containers, and Tertiary Containers"
+          ],
+          "correct": 0,
+          "explanation": "STL containers are categorized based on their structural organization into Sequence (linear order), Associative (sorted keys), and Unordered (hash-table based) containers.",
+          "optionExplanations": [
+            "Why A is correct — This matches the official classification taught in the lectures.",
+            "Why B is wrong — This is a fabricated classification.",
+            "Why C is wrong — Containers are generic and can hold any data type; they aren't categorized by data type.",
+            "Why D is wrong — These categories do not exist in STL."
+          ]
+        },
+        {
+          "question": "What is the defining characteristic of a 'Sequence Container' in STL?",
+          "options": [
+            "Elements are mapped to unique hash values.",
+            "Elements are automatically sorted in ascending order.",
+            "Elements are arranged in a strict linear, sequential fashion (contiguous or linked), allowing ideal sequential access.",
+            "Elements are stored as key-value pairs."
+          ],
+          "correct": 2,
+          "explanation": "Sequence containers (like `vector`, `list`, and `deque`) maintain elements in a linear order, making them ideal for sequential traversal and standard sequential operations.",
+          "optionExplanations": [
+            "Why A is wrong — This describes Unordered Containers.",
+            "Why B is wrong — Associative containers (like `set`) automatically sort elements, not Sequence containers.",
+            "Why C is correct — Linear arrangement is the defining trait of Sequence Containers.",
+            "Why D is wrong — Key-value pairs describe `map` and `unordered_map`."
+          ]
+        },
+        {
+          "question": "Which STL sequence container represents a 'Dynamic Array' that allows efficient insertions and deletions strictly at the end?",
+          "options": [
+            "std::list",
+            "std::map",
+            "std::vector",
+            "std::deque"
+          ],
+          "correct": 2,
+          "explanation": "The `std::vector` acts as a dynamic array. It resizes automatically and provides extremely efficient operations at the back (e.g., `push_back`), though inserting at the front is inefficient.",
+          "optionExplanations": [
+            "Why A is wrong — `list` is a doubly-linked list, not a dynamic array.",
+            "Why B is wrong — `map` is an associative container.",
+            "Why C is correct — `vector` is the standard dynamic array implementation in STL.",
+            "Why D is wrong — `deque` allows efficient insertions at both ends, not just the end."
+          ]
+        },
+        {
+          "question": "In a `std::vector`, which function safely extracts an element at a specific index while performing bounds checking?",
+          "options": [
+            "extract()",
+            "pop_back()",
+            "at()",
+            "fetch()"
+          ],
+          "correct": 2,
+          "explanation": "The `.at(index)` function safely accesses an element at the specified index and will throw an `std::out_of_range` exception if the index is invalid.",
+          "optionExplanations": [
+            "Why A is wrong — This is not a standard vector method.",
+            "Why B is wrong — `pop_back()` deletes the last element; it doesn't extract by index.",
+            "Why C is correct — `.at()` is the safe index-access method.",
+            "Why D is wrong — This method does not exist in `std::vector`."
+          ]
+        },
+        {
+          "question": "What is the internal data structure used to implement the STL `std::list` container?",
+          "options": [
+            "A Single contiguous memory block",
+            "A Doubly Linked List",
+            "A Binary Search Tree",
+            "A Hash Table"
+          ],
+          "correct": 1,
+          "explanation": "The `std::list` container is implemented as a Doubly Linked List, where each node contains data and two pointers (one pointing forward, one pointing backward).",
+          "optionExplanations": [
+            "Why A is wrong — This describes a `std::vector`.",
+            "Why B is correct — Doubly linked lists allow efficient insertion/deletion anywhere, which is the hallmark of `std::list`.",
+            "Why C is wrong — Trees are used for associative containers like `set`.",
+            "Why D is wrong — Hash tables are used for unordered containers."
+          ]
+        },
+        {
+          "question": "Which of the following functions is available in `std::list` but is conceptually avoided or unavailable in `std::vector` because of performance costs?",
+          "options": [
+            "push_back()",
+            "push_front()",
+            "size()",
+            "clear()"
+          ],
+          "correct": 1,
+          "explanation": "Inserting an element at the very front of a vector requires shifting every single existing element down by one, which is extremely slow (O(n)). A doubly linked list (`std::list`) can do `push_front()` instantly (O(1)) by just rewiring pointers.",
+          "optionExplanations": [
+            "Why A is wrong — Both containers use `push_back()` heavily.",
+            "Why B is correct — `push_front()` is native and efficient in lists, but heavily discouraged/omitted in vectors.",
+            "Why C is wrong — Both have `.size()`.",
+            "Why D is wrong — Both have `.clear()`."
+          ]
+        },
+        {
+          "question": "What does the abbreviation `deque` stand for in the context of STL containers?",
+          "options": [
+            "Dynamic Equation",
+            "Double-Ended Queue",
+            "Direct Element Query",
+            "Data Extractor Queue"
+          ],
+          "correct": 1,
+          "explanation": "A `deque` (pronounced 'deck') stands for Double-Ended Queue, which allows efficient random access as well as fast insertions and deletions at both the front and the back.",
+          "optionExplanations": [
+            "Why A is wrong — Incorrect expansion.",
+            "Why B is correct — Double-Ended Queue is the exact definition.",
+            "Why C is wrong — Incorrect expansion.",
+            "Why D is wrong — Incorrect expansion."
+          ]
+        },
+        {
+          "question": "If a programmer needs to frequently insert data at both the absolute beginning and the absolute end of a dynamic array-like structure, which sequence container is the most optimal choice?",
+          "options": [
+            "std::vector",
+            "std::deque",
+            "std::map",
+            "std::stack"
+          ],
+          "correct": 1,
+          "explanation": "The `std::deque` is optimized specifically to allow fast `push_front()` and `push_back()` operations while still maintaining random-access indexing like an array.",
+          "optionExplanations": [
+            "Why A is wrong — Vectors are terrible for front insertions.",
+            "Why B is correct — Deques specialize in two-way edge insertions.",
+            "Why C is wrong — Maps are sorted associative containers, not sequence queues.",
+            "Why D is wrong — A stack only allows insertion at one end (LIFO)."
+          ]
+        },
+        {
+          "question": "What is the primary defining feature of 'Associative Containers' like `std::set` and `std::map`?",
+          "options": [
+            "They store elements in random, unpredictable memory locations.",
+            "They maintain elements in a strict sorted order automatically, allowing for highly efficient retrieval.",
+            "They can only store primitive data types, not objects.",
+            "They are strictly read-only and cannot be modified after creation."
+          ],
+          "correct": 1,
+          "explanation": "Associative containers automatically arrange their elements in sorted order (usually ascending, using a tree structure) based on keys, resulting in logarithmic (O(log n)) search and insertion times.",
+          "optionExplanations": [
+            "Why A is wrong — This loosely describes unordered (hash) containers.",
+            "Why B is correct — Automatic sorting and fast retrieval via keys defines associative containers.",
+            "Why C is wrong — They can store custom objects if a comparison operator is provided.",
+            "Why D is wrong — Elements can be inserted and erased dynamically."
+          ]
+        },
+        {
+          "question": "What is the Big-O time complexity for inserting or retrieving an element in standard Associative Containers (`std::set`, `std::map`)?",
+          "options": [
+            "O(1) - Constant Time",
+            "O(n) - Linear Time",
+            "O(log n) - Logarithmic Time",
+            "O(n^2) - Quadratic Time"
+          ],
+          "correct": 2,
+          "explanation": "Because they are typically implemented as balanced binary search trees (like Red-Black Trees), basic dictionary operations (insert, erase, lookup) take logarithmic time.",
+          "optionExplanations": [
+            "Why A is wrong — Constant time belongs to unordered (hash) containers.",
+            "Why B is wrong — Linear time applies to searching an unsorted vector.",
+            "Why C is correct — Tree-based sorting guarantees O(log n) performance.",
+            "Why D is wrong — Quadratic time is associated with poor sorting algorithms (like bubble sort)."
+          ]
+        },
+        {
+          "question": "If you write the following code: `std::set<int> s; s.insert(10); s.insert(10); s.insert(5);`, what will be the final contents of the set?",
+          "options": [
+            "10, 10, 5",
+            "5, 10, 10",
+            "5, 10",
+            "10, 5"
+          ],
+          "correct": 2,
+          "explanation": "A `std::set` automatically sorts elements in ascending order and strictly rejects duplicate values. Therefore, the second `10` is ignored, resulting in `5, 10`.",
+          "optionExplanations": [
+            "Why A is wrong — Sets auto-sort and reject duplicates.",
+            "Why B is wrong — Sets reject duplicate keys.",
+            "Why C is correct — Sorted (5 then 10) and unique.",
+            "Why D is wrong — It must be sorted in ascending order."
+          ]
+        },
+        {
+          "question": "How does `std::multiset` fundamentally differ from `std::set`?",
+          "options": [
+            "Multiset stores multiple data types at once, while Set stores only one type.",
+            "Multiset allows duplicate key values, while Set strictly enforces uniqueness.",
+            "Multiset uses hash tables, while Set uses binary trees.",
+            "Multiset sorts in descending order by default."
+          ],
+          "correct": 1,
+          "explanation": "The 'multi' prefix in STL associative containers indicates that duplicate keys are permitted. A `multiset` will store and sort multiple identical values (e.g., 10, 10, 20).",
+          "optionExplanations": [
+            "Why A is wrong — Both are tied to a single generic type `T`.",
+            "Why B is correct — The allowance of duplicates is the sole structural difference.",
+            "Why C is wrong — Both use tree structures.",
+            "Why D is wrong — Both sort ascending by default."
+          ]
+        },
+        {
+          "question": "Which STL container is specifically designed to store data as 'Key-Value' pairs where every key must be entirely unique?",
+          "options": [
+            "std::vector",
+            "std::list",
+            "std::map",
+            "std::multiset"
+          ],
+          "correct": 2,
+          "explanation": "A `std::map` stores pairs (like a dictionary). The 'Key' is used to sort and search, and the 'Value' is the associated data (e.g., `ageMap[\"Alice\"] = 25;`). Keys must be unique.",
+          "optionExplanations": [
+            "Why A is wrong — Stores single sequential elements.",
+            "Why B is wrong — Stores single sequential elements.",
+            "Why C is correct — Designed exclusively for unique Key-Value pairings.",
+            "Why D is wrong — Stores single keys, allows duplicates."
+          ]
+        },
+        {
+          "question": "In a C++ `std::map<string, int> m;`, if you execute `m[\"Bob\"] = 25;` and then later execute `m[\"Bob\"] = 30;`, what is the result?",
+          "options": [
+            "The map will contain two entries for \"Bob\": 25 and 30.",
+            "The program will throw a runtime duplication exception.",
+            "The new assignment will safely overwrite the old one, leaving a single entry for \"Bob\" with the value 30.",
+            "The compiler will ignore the second assignment to preserve the unique key."
+          ],
+          "correct": 2,
+          "explanation": "In a standard `std::map`, duplicate keys are forbidden. Re-assigning a value to an existing key simply overwrites the old value associated with that key.",
+          "optionExplanations": [
+            "Why A is wrong — This would happen in a `multimap`.",
+            "Why B is wrong — No exception is thrown; overwrite is the default behavior.",
+            "Why C is correct — The key \"Bob\" is unique, so its value updates to 30.",
+            "Why D is wrong — It actively updates; it doesn't ignore the command."
+          ]
+        },
+        {
+          "question": "What happens if you insert duplicate keys into a `std::multimap`?",
+          "options": [
+            "The older keys are overwritten.",
+            "A compilation error occurs.",
+            "The keys are stored successfully alongside the older ones, allowing one key to map to multiple different values.",
+            "The duplicate key is silently ignored."
+          ],
+          "correct": 2,
+          "explanation": "A `multimap` is explicitly designed to allow duplicate keys. Inserting `m.insert({\"Alice\", 25})` and `m.insert({\"Alice\", 28})` will successfully store both pairs.",
+          "optionExplanations": [
+            "Why A is wrong — Overwriting happens in a standard `map`.",
+            "Why B is wrong — It is syntactically legal.",
+            "Why C is correct — Duplicates are fully supported and retained.",
+            "Why D is wrong — Ignorance happens with duplicate keys in `set`."
+          ]
+        },
+        {
+          "question": "What underlying internal architecture powers 'Unordered Containers' like `std::unordered_map`?",
+          "options": [
+            "Red-Black Binary Trees",
+            "Hash Tables",
+            "Doubly Linked Lists",
+            "Contiguous Dynamic Arrays"
+          ],
+          "correct": 1,
+          "explanation": "Unordered containers use Hash Tables. A hash function converts the key into a numerical index, allowing elements to be dropped into 'buckets' for extremely fast access.",
+          "optionExplanations": [
+            "Why A is wrong — Powers standard associative containers (`map`, `set`).",
+            "Why B is correct — Hash Tables enable the O(1) performance of unordered containers.",
+            "Why C is wrong — Powers `std::list`.",
+            "Why D is wrong — Powers `std::vector`."
+          ]
+        },
+        {
+          "question": "What is the average time complexity for insertions and lookups in an `std::unordered_map`?",
+          "options": [
+            "O(log n)",
+            "O(n)",
+            "O(1) - Constant Time",
+            "O(n log n)"
+          ],
+          "correct": 2,
+          "explanation": "Because they use hash tables, the mathematical hash function can compute the exact memory bucket almost instantly, yielding an average time complexity of O(1) constant time.",
+          "optionExplanations": [
+            "Why A is wrong — This is the complexity for ordered `std::map`.",
+            "Why B is wrong — This is sequential search speed.",
+            "Why C is correct — Constant time is the major performance benefit of hash structures.",
+            "Why D is wrong — This is the speed of fast sorting algorithms."
+          ]
+        },
+        {
+          "question": "When you iterate over an `std::unordered_set` and print its contents, in what order will the elements appear?",
+          "options": [
+            "Strictly ascending order.",
+            "Strictly descending order.",
+            "The exact order in which they were inserted.",
+            "An unpredictable, unsorted order based on the internal hash bucket distribution."
+          ],
+          "correct": 3,
+          "explanation": "As the name implies, 'unordered' containers do not track insertion order or sorted order. Elements are scattered based on their hash values, making traversal output completely randomized from a user's perspective.",
+          "optionExplanations": [
+            "Why A is wrong — This is true for `std::set`.",
+            "Why B is wrong — Unordered sets don't sort.",
+            "Why C is wrong — They do not retain sequential history.",
+            "Why D is correct — Output relies entirely on hash distribution logic."
+          ]
+        },
+        {
+          "question": "In the Real-Time Stock Tracker case study, why was `std::unordered_map` chosen over `std::map`?",
+          "options": [
+            "Because stock tickers must be printed in alphabetical order.",
+            "Because `unordered_map` requires significantly less RAM.",
+            "Because updating fast-moving stock prices requires the absolute fastest O(1) constant-time lookups and insertions.",
+            "Because `std::map` cannot store string variables."
+          ],
+          "correct": 2,
+          "explanation": "In high-frequency financial systems, speed is paramount. `unordered_map` offers O(1) access times, which is faster than the O(log n) tree traversals required by `std::map`.",
+          "optionExplanations": [
+            "Why A is wrong — If alphabetical order was needed, `std::map` would be required.",
+            "Why B is wrong — Hash tables actually often consume slightly more memory due to bucket overhead.",
+            "Why C is correct — Performance (O(1)) is the key reason for tracking real-time systems.",
+            "Why D is wrong — `std::map` handles strings perfectly."
+          ]
+        },
+        {
+          "question": "How does a conceptual 'Hash Function' work within an `unordered_set`?",
+          "options": [
+            "It compares elements sequentially until it finds a match.",
+            "It splits the array into two halves repeatedly (binary search).",
+            "It takes the key, applies a mathematical formula (like modulo) to generate a numeric index, and places the element directly into that resulting bucket location.",
+            "It converts primitive integers into string objects."
+          ],
+          "correct": 2,
+          "explanation": "A hash function takes a key (e.g., `65`), performs math (e.g., `65 mod 11 = 10`), and directly jumps to index `10` in the hash table, bypassing the need to search sequentially.",
+          "optionExplanations": [
+            "Why A is wrong — This describes a linear search.",
+            "Why B is wrong — This describes a binary tree search.",
+            "Why C is correct — Hash functions act as mathematical map-makers to exact memory indices.",
+            "Why D is wrong — Hashing maps to indices, it doesn't convert data types."
+          ]
+        },
+        {
+          "question": "What is an 'Iterator' in the context of the C++ STL?",
+          "options": [
+            "A loop structure similar to `while` or `for`.",
+            "An object that acts like a pointer, providing a generic, abstract way to safely navigate and access elements inside any STL container.",
+            "A function that automatically deletes memory leaks.",
+            "A specific algorithm used to sort arrays."
+          ],
+          "correct": 1,
+          "explanation": "Iterators act as abstract pointers. They allow algorithms to travel through different containers (vectors, lists, maps) using a uniform syntax (`++`, `*`), without needing to know how the container is built internally.",
+          "optionExplanations": [
+            "Why A is wrong — It is used *inside* loops, but is not a loop itself.",
+            "Why B is correct — It bridges containers and algorithms by acting as a smart pointer.",
+            "Why C is wrong — Memory management is handled by destructors and smart pointers.",
+            "Why D is wrong — Sorting is an Algorithm, not an Iterator."
+          ]
+        },
+        {
+          "question": "Which STL container function returns an iterator pointing to the very first element?",
+          "options": [
+            ".start()",
+            ".front()",
+            ".begin()",
+            ".first()"
+          ],
+          "correct": 2,
+          "explanation": "The `.begin()` member function returns an iterator pointing precisely to the first valid element inside the container.",
+          "optionExplanations": [
+            "Why A is wrong — Not a standard STL function.",
+            "Why B is wrong — `.front()` returns a *reference* to the first element's value, not an iterator.",
+            "Why C is correct — `.begin()` explicitly returns the iterator.",
+            "Why D is wrong — Not a standard STL container method."
+          ]
+        },
+        {
+          "question": "Where does the iterator returned by `.end()` point to in an STL container?",
+          "options": [
+            "The exact last element in the container.",
+            "The position immediately AFTER the last element, acting as a boundary marker.",
+            "The exact middle element of the container.",
+            "A null memory block."
+          ],
+          "correct": 1,
+          "explanation": "The `.end()` iterator does NOT point to the last element. It points one step past the last element. It serves as a strict stopping boundary for loops (e.g., `it != vec.end()`).",
+          "optionExplanations": [
+            "Why A is wrong — That would be accessed via `.back()` or `rbegin()`.",
+            "Why B is correct — It represents the 'past-the-end' boundary.",
+            "Why C is wrong — Iterators don't point to the middle by default.",
+            "Why D is wrong — It points to an invalid but identifiable bound, not necessarily null."
+          ]
+        },
+        {
+          "question": "If `it` is an iterator pointing to a specific element in a vector, what syntax is used to extract the actual value of that element?",
+          "options": [
+            "it.value()",
+            "&it",
+            "*it",
+            "it->get()"
+          ],
+          "correct": 2,
+          "explanation": "Because iterators mimic standard C++ pointers, you must use the dereference operator `*` (e.g., `cout << *it;`) to access the underlying value stored at that memory location.",
+          "optionExplanations": [
+            "Why A is wrong — Iterators don't use a `.value()` method for extraction.",
+            "Why B is wrong — `&` returns the memory address of the iterator itself.",
+            "Why C is correct — `*` dereferences the iterator pointer.",
+            "Why D is wrong — Used for accessing class members, not raw primitive values."
+          ]
+        },
+        {
+          "question": "How do you advance a standard forward iterator to point to the next consecutive element in a container?",
+          "options": [
+            "it.next()",
+            "it = it + 1",
+            "it >> 1",
+            "++it"
+          ],
+          "correct": 3,
+          "explanation": "Iterators overload the increment operator. Using `++it` or `it++` forces the iterator to traverse forward to the next element, accommodating whatever internal pointer shifts the container requires.",
+          "optionExplanations": [
+            "Why A is wrong — `.next()` is not a C++ iterator method (more common in Java).",
+            "Why B is wrong — Adding integers only works for random-access iterators (like vector), not all iterators.",
+            "Why C is wrong — Bitwise shifting is invalid for iteration.",
+            "Why D is correct — Pre/post-increment operators safely advance all valid forward iterators."
+          ]
+        },
+        {
+          "question": "What is the purpose of the `.rbegin()` and `.rend()` functions in STL containers?",
+          "options": [
+            "They shuffle the elements in random order.",
+            "They create 'Reverse Iterators' that allow a loop to traverse the container backward from the last element to the first.",
+            "They return iterators restricted exclusively to read-only access.",
+            "They reorganize the container into a binary tree."
+          ],
+          "correct": 1,
+          "explanation": "Reverse Iterators move backward. `.rbegin()` points to the actual last element, and `.rend()` points to the position just before the first element. Executing `++rit` moves it backward towards the front.",
+          "optionExplanations": [
+            "Why A is wrong — 'r' stands for reverse, not random.",
+            "Why B is correct — They establish backward traversal boundaries.",
+            "Why C is wrong — Read-only iterators are called `const_iterators` (`cbegin()`).",
+            "Why D is wrong — Iterators navigate; they don't restructure the architecture."
+          ]
+        },
+        {
+          "question": "Which category of STL iterators allows jumping directly to any element in constant time (e.g., `it = it + 5;`)?",
+          "options": [
+            "Forward Iterators",
+            "Input Iterators",
+            "Random Access Iterators",
+            "Bidirectional Iterators"
+          ],
+          "correct": 2,
+          "explanation": "Random Access Iterators (supported by `std::vector` and `std::deque`) behave like standard array pointers, allowing arbitrary jumps using integer arithmetic.",
+          "optionExplanations": [
+            "Why A is wrong — Forward iterators can only step one by one using `++`.",
+            "Why B is wrong — Input iterators read sequentially once.",
+            "Why C is correct — They support random jumping and index math.",
+            "Why D is wrong — Bidirectional iterators (like in `list`) can step forward (`++`) and backward (`--`), but cannot jump arbitrarily."
+          ]
+        },
+        {
+          "question": "In C++, when declaring an iterator for a complex container like a map, what modern keyword is heavily utilized to prevent typing out the massive, complex type signature?",
+          "options": [
+            "var",
+            "dynamic",
+            "let",
+            "auto"
+          ],
+          "correct": 3,
+          "explanation": "The `auto` keyword tells the C++ compiler to automatically deduce the data type. Instead of writing `std::map<std::string, int>::iterator it = m.begin();`, a programmer can elegantly write `auto it = m.begin();`.",
+          "optionExplanations": [
+            "Why A is wrong — `var` is used in C# and JavaScript.",
+            "Why B is wrong — Not a type-deduction keyword in C++.",
+            "Why C is wrong — `let` is used in JavaScript and Swift.",
+            "Why D is correct — `auto` dynamically assigns the compile-time type."
+          ]
+        },
+        {
+          "question": "How do STL Algorithms interact with STL Containers?",
+          "options": [
+            "Algorithms are written specifically as inner member functions of each unique container class.",
+            "Algorithms operate completely independently of the container structure by receiving Iterators as generic arguments to access the data.",
+            "Algorithms convert all containers into basic C-arrays before processing them.",
+            "Algorithms bypass containers entirely and read directly from the hard drive."
+          ],
+          "correct": 1,
+          "explanation": "STL is designed for modularity. Algorithms (like `std::sort`) are separate, independent functions. You pass iterators (`vec.begin()`, `vec.end()`) to the algorithm, allowing one algorithm to process data safely regardless of whether it's in a vector or deque.",
+          "optionExplanations": [
+            "Why A is wrong — If they were member functions, you'd have to write `sort()` uniquely for every single container class.",
+            "Why B is correct — Iterators act as the universal bridge connecting generic algorithms to specific containers.",
+            "Why C is wrong — Algorithms operate on the live container data without massive conversions.",
+            "Why D is wrong — Algorithms process active memory structures."
+          ]
+        },
+        {
+          "question": "Which of the following is an example of a 'Non-Modifying' STL Algorithm?",
+          "options": [
+            "std::transform()",
+            "std::replace()",
+            "std::find()",
+            "std::remove()"
+          ],
+          "correct": 2,
+          "explanation": "Non-modifying algorithms scan or analyze data without changing the underlying values. `std::find()` simply searches for a target element and returns an iterator pointing to it.",
+          "optionExplanations": [
+            "Why A is wrong — `transform()` explicitly alters data by applying a function.",
+            "Why B is wrong — `replace()` overwrites existing data.",
+            "Why C is correct — `find()` only reads and searches.",
+            "Why D is wrong — `remove()` actively strips items out of the sequence."
+          ]
+        },
+        {
+          "question": "If `std::find(vec.begin(), vec.end(), 30)` fails to locate the number 30 in the vector, what exactly does the function return?",
+          "options": [
+            "-1",
+            "A null pointer",
+            "The `vec.end()` iterator",
+            "A runtime exception"
+          ],
+          "correct": 2,
+          "explanation": "When an STL search algorithm fails to locate the target, it returns the boundary iterator passed as the end parameter (`vec.end()`). Programmers check success using `if (it != vec.end())`.",
+          "optionExplanations": [
+            "Why A is wrong — Algorithms return iterators, not primitive integers like -1.",
+            "Why B is wrong — Iterators use `.end()` to signal termination, not null.",
+            "Why C is correct — Returning `.end()` is the standard STL failure flag.",
+            "Why D is wrong — Failed searches are normal events and do not throw crash exceptions."
+          ]
+        },
+        {
+          "question": "What is the primary function of the `std::count()` algorithm?",
+          "options": [
+            "It counts the total capacity of the container.",
+            "It counts how many times a specific targeted value appears within a given iterator range.",
+            "It counts the number of bytes the container occupies in RAM.",
+            "It iterates backwards to count reverse elements."
+          ],
+          "correct": 1,
+          "explanation": "The `std::count(begin, end, value)` algorithm scans the specified range and returns an integer representing the exact number of times 'value' exists in the container.",
+          "optionExplanations": [
+            "Why A is wrong — That is achieved using the `.size()` or `.capacity()` member functions.",
+            "Why B is correct — It tallies occurrences of a specific element.",
+            "Why C is wrong — Memory byte counting requires the `sizeof()` operator.",
+            "Why D is wrong — Reversing requires reverse iterators."
+          ]
+        },
+        {
+          "question": "What is the default sorting behavior when `std::sort(vec.begin(), vec.end())` is invoked on a container of integers?",
+          "options": [
+            "It sorts the elements in descending order (highest to lowest).",
+            "It shuffles the elements randomly.",
+            "It sorts the elements in ascending order (lowest to highest) using the `<` operator.",
+            "It sorts elements based on memory address locations."
+          ],
+          "correct": 2,
+          "explanation": "By default, `std::sort` relies on the less-than (`<`) operator to organize elements. Consequently, numbers go from lowest to highest, and strings sort alphabetically.",
+          "optionExplanations": [
+            "Why A is wrong — Descending order requires a custom comparator argument.",
+            "Why B is wrong — Shuffling requires `std::random_shuffle()`.",
+            "Why C is correct — Ascending is the strict default standard.",
+            "Why D is wrong — Sorting evaluates values, not hardware memory maps."
+          ]
+        },
+        {
+          "question": "How can a developer force `std::sort()` to sort elements in descending order instead of ascending?",
+          "options": [
+            "By replacing `std::sort` with `std::reverse_sort`.",
+            "By providing a custom comparator function or a Lambda function (e.g., `[](int a, int b) { return a > b; }`) as the third argument.",
+            "By setting the compiler flag `-descending`.",
+            "By calling `.reverse()` on the vector first."
+          ],
+          "correct": 1,
+          "explanation": "STL algorithms are highly extensible. By passing a custom comparator (like a lambda function returning `a > b`), `std::sort()` evaluates the overriding logic and sorts descending.",
+          "optionExplanations": [
+            "Why A is wrong — No such standard function exists.",
+            "Why B is correct — Custom comparators override the default `<` logic.",
+            "Why C is wrong — Compiler flags dictate system architecture, not code logic.",
+            "Why D is wrong — Reversing an unsorted array just flips the random order."
+          ]
+        },
+        {
+          "question": "What does a 'Lambda Function' look like syntactically in C++?",
+          "options": [
+            "`lambda x, y: x > y`",
+            "`function(int a, int b) { return a > b; }`",
+            "`[](int a, int b) { return a > b; }`",
+            "`def lambda(a, b): return a > b`"
+          ],
+          "correct": 2,
+          "explanation": "In C++, lambda functions (anonymous inline functions) are denoted by a capture clause `[]`, followed by parameter arguments `()`, and then the logic body `{}`.",
+          "optionExplanations": [
+            "Why A is wrong — This is Python lambda syntax.",
+            "Why B is wrong — This is JavaScript/PHP style anonymous syntax.",
+            "Why C is correct — `[](){}` is the distinct C++ lambda signature.",
+            "Why D is wrong — This mixes Python `def` with lambda."
+          ]
+        },
+        {
+          "question": "What is the specific action of the Modifying Algorithm `std::transform()`?",
+          "options": [
+            "It converts integers to strings automatically.",
+            "It mathematically compresses an array into a single summary variable.",
+            "It applies a specified function or operation to every element in an input range and stores the result into an output range (e.g., squaring every number).",
+            "It swaps the positions of the first and last elements."
+          ],
+          "correct": 2,
+          "explanation": "`std::transform` iterates through a range, applies a provided logic block (like a lambda function) to each individual element, and records the transformed output into a destination range.",
+          "optionExplanations": [
+            "Why A is wrong — Data casting requires specific functions, not just the generic transform shell.",
+            "Why B is wrong — That describes the `std::accumulate` or reduce algorithm.",
+            "Why C is correct — It applies uniform mutation to a sequence.",
+            "Why D is wrong — That describes `std::swap`."
+          ]
+        },
+        {
+          "question": "If you have a vector `10, 20, 20, 30` and you want to cleanly change all instances of `20` to `99` without using manual loops, which algorithm is best?",
+          "options": [
+            "std::find()",
+            "std::replace()",
+            "std::swap()",
+            "std::partition()"
+          ],
+          "correct": 1,
+          "explanation": "The `std::replace(begin, end, old_val, new_val)` algorithm sweeps through the specified range and automatically overwrites every occurrence of `old_val` with `new_val`.",
+          "optionExplanations": [
+            "Why A is wrong — `find` locates elements but doesn't change them.",
+            "Why B is correct — `replace` explicitly handles blanket targeted substitutions.",
+            "Why C is wrong — `swap` exchanges two targeted variables.",
+            "Why D is wrong — `partition` reorganizes sequence groups based on boolean conditions."
+          ]
+        },
+        {
+          "question": "What is the primary conceptual role of an 'Insert Iterator' like `std::back_inserter`?",
+          "options": [
+            "It prevents elements from being added to a container to preserve memory.",
+            "It acts as a destination iterator for algorithms (like `copy`), automatically calling `push_back()` under the hood to dynamically expand the receiving container.",
+            "It randomly injects elements into the middle of a sequence.",
+            "It deletes elements starting from the back."
+          ],
+          "correct": 1,
+          "explanation": "Algorithms like `std::copy` will overwrite existing data by default. To safely append copied data into a new, potentially empty container, `std::back_inserter` translates the write action into safe `push_back()` commands.",
+          "optionExplanations": [
+            "Why A is wrong — It facilitates addition, not prevention.",
+            "Why B is correct — It securely expands containers during algorithm writes.",
+            "Why C is wrong — Back inserters strictly add to the end.",
+            "Why D is wrong — It inserts; it doesn't delete."
+          ]
+        },
+        {
+          "question": "When iterating through a `std::map<int, string>` using a modern range-based for loop `for(auto& pair : myMap)`, how do you access the key and the value respectively?",
+          "options": [
+            "`pair.key()` and `pair.value()`",
+            "`pair` and `pair`",
+            "`pair.first` and `pair.second`",
+            "`pair->k` and `pair->v`"
+          ],
+          "correct": 2,
+          "explanation": "Elements in a `std::map` are strictly stored as `std::pair` objects. You extract the key using the `.first` property, and the associated value using the `.second` property.",
+          "optionExplanations": [
+            "Why A is wrong — These methods belong to other languages (like Java's Map.Entry).",
+            "Why B is wrong — Pairs do not use array index notation.",
+            "Why C is correct — `.first` holds the key; `.second` holds the value.",
+            "Why D is wrong — This is fabricated syntax."
+          ]
+        },
+        {
+          "question": "In C++ STL, what is the core advantage of using `emplace_back()` instead of `push_back()` when adding complex objects to a vector?",
+          "options": [
+            "`emplace_back()` ignores memory limits.",
+            "`emplace_back()` automatically sorts the vector upon insertion.",
+            "`emplace_back()` constructs the object completely in-place directly in the vector's memory, bypassing the creation and copying of temporary objects.",
+            "`emplace_back()` forces the object to be private."
+          ],
+          "correct": 2,
+          "explanation": "While `push_back()` takes an already constructed object and copies/moves it into the container, `emplace_back()` takes raw arguments and perfectly constructs the object inside the container's pre-allocated memory, optimizing execution speed.",
+          "optionExplanations": [
+            "Why A is wrong — All operations respect heap memory limits.",
+            "Why B is wrong — Neither operation sorts the container.",
+            "Why C is correct — In-place construction is the specific performance advantage of emplace commands.",
+            "Why D is wrong — Container functions do not alter access modifiers."
+          ]
+        },
+        {
+          "question": "In the 'Library Management System' case study, how was the `std::map` container uniquely utilized?",
+          "options": [
+            "To physically print the books on a networked printer.",
+            "To store book records where an integer 'Book ID' served as the fast-lookup Key, and the 'Book Object' itself served as the Value.",
+            "To randomly shuffle the library catalog every day.",
+            "To generate random ISBN numbers for new books."
+          ],
+          "correct": 1,
+          "explanation": "The `map` effectively created a lookup dictionary. By mapping an integer ID (key) to a Book Object (value), the program could instantly retrieve all details of a book simply by inputting its ID.",
+          "optionExplanations": [
+            "Why A is wrong — Maps manage data relationships, not hardware printing.",
+            "Why B is correct — Key-Value association is exactly how the catalog was mapped.",
+            "Why C is wrong — Maps organize deterministically, they don't shuffle.",
+            "Why D is wrong — Maps don't generate random data."
+          ]
+        },
+        {
+          "question": "How did the 'Library Management System' simplify finding a specific book ID?",
+          "options": [
+            "By writing a manual `for` loop to check every single book sequentially.",
+            "By using the map's native `find(id)` method, which leverages the internal tree structure to locate the key in logarithmic time.",
+            "By downloading an external search engine API.",
+            "By converting the map into a vector and using random access."
+          ],
+          "correct": 1,
+          "explanation": "Instead of writing inefficient manual `if-else` loops, associative containers provide a native `.find()` method. Using `libraryMap.find(2)` efficiently searches the internal tree hierarchy for Key `2`.",
+          "optionExplanations": [
+            "Why A is wrong — Manual sequential searching defeats the purpose of an associative map.",
+            "Why B is correct — The native `.find()` takes full advantage of the map's O(log n) sorting architecture.",
+            "Why C is wrong — Everything was handled natively in STL.",
+            "Why D is wrong — Converting to a vector destroys the key-value search capability."
+          ]
+        },
+        {
+          "question": "What C++ feature was utilized in the Library case study to seamlessly compare two separate Book objects to see which one had a lower ID?",
+          "options": [
+            "Pointer Arithmetic",
+            "Exception Handling",
+            "Operator Overloading (specifically the `<` operator)",
+            "Template Specialization"
+          ],
+          "correct": 2,
+          "explanation": "By implementing `bool operator<(const Book& other)`, the programmer overrode the standard `<` symbol. This allowed the system or sorting algorithms to instantly assess `book1 < book2` based exclusively on their internal ID values.",
+          "optionExplanations": [
+            "Why A is wrong — Math pointers do not compare object states.",
+            "Why B is wrong — Exceptions handle crashes, not sorting evaluations.",
+            "Why C is correct — Overloading symbols provides intuitive, seamless object comparisons.",
+            "Why D is wrong — Templates handle generic types, not specific behavioral comparisons."
+          ]
+        },
+        {
+          "question": "In the context of iterators, what defines an 'Input Iterator'?",
+          "options": [
+            "It writes data strictly into an active file stream.",
+            "It traverses a container in a single forward pass, providing strictly read-only access to the elements.",
+            "It allows a programmer to jump backwards 5 steps.",
+            "It inputs custom lambda functions into the container."
+          ],
+          "correct": 1,
+          "explanation": "An Input Iterator provides the most restrictive level of access. It can only move forward step-by-step (`++`) and can only read (`*it`), making it ideal for processing data streams once.",
+          "optionExplanations": [
+            "Why A is wrong — This describes an Output Iterator.",
+            "Why B is correct — Single-pass, read-only behavior defines an Input Iterator.",
+            "Why C is wrong — Jumping backward requires Random Access or Bidirectional iterators.",
+            "Why D is wrong — Iterators don't inject logic functions."
+          ]
+        },
+        {
+          "question": "Which of the following creates a clean and optimal C++ `std::pair` without requiring explicit template type definitions?",
+          "options": [
+            "std::create_pair(10, \"Alice\")",
+            "std::make_pair(10, \"Alice\")",
+            "std::pair_up(10, \"Alice\")",
+            "new Pair(10, \"Alice\")"
+          ],
+          "correct": 1,
+          "explanation": "The `std::make_pair()` utility function automatically deduces the data types from the passed arguments, allowing developers to cleanly link two values without manually typing `std::pair<int, std::string>(10, \"Alice\")`.",
+          "optionExplanations": [
+            "Why A is wrong — Invalid function name.",
+            "Why B is correct — `make_pair` securely and cleanly constructs pair tuples.",
+            "Why C is wrong — Invalid function name.",
+            "Why D is wrong — This is Java-style object instantiation syntax."
+          ]
+        },
+        {
+          "question": "Which of the following is true about STL Container Adapters?",
+          "options": [
+            "They are completely standalone containers written from scratch.",
+            "They use fundamental sequence containers (like deque or vector) as an underlying structure and restrict their interface to provide specific behaviors like LIFO or FIFO.",
+            "They exclusively manage file I/O streams.",
+            "They are strictly used for sorting strings."
+          ],
+          "correct": 1,
+          "explanation": "Container adapters (`stack`, `queue`, `priority_queue`) do not build new data structures from scratch. They 'adapt' existing structures (usually `deque` or `vector`) by limiting the user to specific methods (like `push` and `pop`) to enforce architectural rules.",
+          "optionExplanations": [
+            "Why A is wrong — They 'adapt' existing base containers.",
+            "Why B is correct — They restrict access to enforce LIFO (stack) or FIFO (queue) architectures.",
+            "Why C is wrong — File IO is handled by fstream.",
+            "Why D is wrong — They manage structural flow, not specific string sorting."
+          ]
+        },
+        {
+          "question": "In a `std::priority_queue`, how are the elements internally managed by default?",
+          "options": [
+            "First In, First Out (FIFO) exactly like a standard queue.",
+            "The largest/highest-priority element is continually sorted to the absolute front (top) of the queue.",
+            "They are shuffled randomly upon every insertion.",
+            "The smallest element is permanently locked at the front."
+          ],
+          "correct": 1,
+          "explanation": "A priority queue guarantees that the element with the highest priority (by default, the largest value via the `<` operator) is always accessible immediately at the `.top()`, utilizing an internal heap structure.",
+          "optionExplanations": [
+            "Why A is wrong — That is a standard `std::queue`.",
+            "Why B is correct — Priority sorts the 'greatest' value to the top automatically.",
+            "Why C is wrong — It strictly maintains a heap priority, never random shuffling.",
+            "Why D is wrong — A `std::greater` comparator is required to sort the smallest to the front (Min-Heap)."
+          ]
+        },
+        {
+          "question": "Examine this syntax: `std::partition(vec.begin(), vec.end(), [](int n){ return n % 2 == 0; });` What will this achieve?",
+          "options": [
+            "It will completely delete all odd numbers from the vector.",
+            "It will mathematically divide every number in the vector by 2.",
+            "It will reshuffle the vector so that all even numbers are grouped at the front of the array, and all odd numbers are pushed to the back.",
+            "It will throw a runtime exception."
+          ],
+          "correct": 2,
+          "explanation": "The `partition` algorithm takes a boolean condition (the lambda checks for even numbers: `n % 2 == 0`). It guarantees all elements evaluating to `true` (evens) will be shifted to precede all elements evaluating to `false` (odds).",
+          "optionExplanations": [
+            "Why A is wrong — Elements are not deleted; they are just reordered.",
+            "Why B is wrong — This condition returns a true/false boolean; it doesn't divide the base values.",
+            "Why C is correct — Partitioning groups data cleanly based on the provided condition.",
+            "Why D is wrong — It is perfectly valid STL syntax."
+          ]
+        }
+      ]
     }
   ]
 };
-
