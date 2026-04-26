@@ -7351,6 +7351,642 @@ optionExplanations: [
           ]
         }
       ]
+    },{
+      name: "Unit 9: Templates and Generics",
+      questions: [
+        {
+          "question": "What are the two primary advantages of using Templates in C++ and Generics in Java?",
+          "options": [
+            "Memory compression and automatic garbage collection.",
+            "Code reusability and compile-time type safety.",
+            "Runtime polymorphism and dynamic memory allocation.",
+            "Execution speed doubling and automatic multi-threading."
+          ],
+          "correct": 1,
+          "explanation": "Templates and generics allow developers to write a single piece of code that handles multiple data types (Code Reusability) while simultaneously allowing the compiler to strictly check for data type mismatches before the program runs (Compile-time Type Safety).",
+          "optionExplanations": [
+            "Why A is wrong — Templates do not compress memory or manage garbage collection.",
+            "Why B is correct — Reusing a generic algorithm safely across various types is the core design purpose of these features.",
+            "Why C is wrong — Templates provide compile-time (static) polymorphism, not runtime (dynamic) polymorphism.",
+            "Why D is wrong — They do not inherently execute twice as fast or create threads."
+          ]
+        },
+        {
+          "question": "In C++, how is a standard function template defined?",
+          "options": [
+            "`template (typename T) T findMax(T a, T b)`",
+            "`generic <T> T findMax(T a, T b)`",
+            "`template <typename T> T findMax(T a, T b)`",
+            "`template [class T] T findMax(T a, T b)`"
+          ],
+          "correct": 2,
+          "explanation": "In C++, a template is prefixed with the `template` keyword, followed by angle brackets `< >` containing the type parameter (either `typename T` or `class T`).",
+          "optionExplanations": [
+            "Why A is wrong — Angle brackets `< >` are required, not parentheses `( )`.",
+            "Why B is wrong — `generic` is not a valid C++ keyword.",
+            "Why C is correct — This is the exact, standard C++ syntax for a function template.",
+            "Why D is wrong — Angle brackets must be used, not square brackets `[ ]`."
+          ]
+        },
+        {
+          "question": "When declaring a C++ template, what is the functional difference between `template <typename T>` and `template <class T>`?",
+          "options": [
+            "`typename` is for primitive types (int, float), while `class` is strictly for user-defined object classes.",
+            "There is no functional difference; both keywords are completely interchangeable in this context.",
+            "`class` allows multiple parameters, while `typename` allows only one.",
+            "`typename` enforces type safety, whereas `class` bypasses it."
+          ],
+          "correct": 1,
+          "explanation": "In the context of defining a template parameter list in C++, the keywords `typename` and `class` mean the exact same thing and can be used interchangeably.",
+          "optionExplanations": [
+            "Why A is wrong — Both can accept primitive and user-defined types.",
+            "Why B is correct — Historically `class` was used first, and `typename` was added later for clarity, but they function identically here.",
+            "Why C is wrong — Both allow multiple parameters.",
+            "Why D is wrong — Both enforce identical type safety rules."
+          ]
+        },
+        {
+          "question": "What internal compiler process occurs when a C++ template function is called with different data types (e.g., once with `int` and once with `double`)?",
+          "options": [
+            "The compiler uses Type Erasure to treat everything as a generic `Object`.",
+            "The compiler generates a completely separate, physically distinct copy of the function's machine code for each unique data type.",
+            "The compiler dynamically casts everything to strings for execution.",
+            "The compiler throws an error because a template can only be bound to one data type per program."
+          ],
+          "correct": 1,
+          "explanation": "C++ uses 'Template Instantiation'. When a template is invoked with an `int`, the compiler writes an entire function specifically for integers. If called later with a `double`, it writes a second, entirely separate function for doubles, which can lead to larger binary files (code bloat).",
+          "optionExplanations": [
+            "Why A is wrong — Type Erasure is a Java concept, not C++.",
+            "Why B is correct — C++ creates separate, optimized implementations for every specific type used.",
+            "Why C is wrong — Casting to strings does not happen.",
+            "Why D is wrong — A template's primary purpose is to be bound to multiple types throughout a single program."
+          ]
+        },
+        {
+          "question": "What is 'Template Specialization' in C++?",
+          "options": [
+            "A feature that restricts a template so it can only accept primitive data types.",
+            "A technique where you provide a specific, customized implementation of a template for a particular data type (e.g., `std::string`) while letting the generic template handle all other types.",
+            "A keyword that forces a template to execute during runtime rather than compile-time.",
+            "The process of combining two templates into one."
+          ],
+          "correct": 1,
+          "explanation": "Template specialization allows a programmer to say, 'Use the generic logic for most data types, but if the user passes a `string` (or a specific type), use this custom, specialized block of code instead.'",
+          "optionExplanations": [
+            "Why A is wrong — It does not restrict primitive types.",
+            "Why B is correct — Providing a specific override for a specific data type is the exact definition of template specialization.",
+            "Why C is wrong — All templates are resolved at compile-time.",
+            "Why D is wrong — This does not describe template combinations."
+          ]
+        },
+        {
+          "question": "Which of the following lines correctly defines a C++ Template Specialization for the `std::string` data type for a generic class `Storage`?",
+          "options": [
+            "`template <typename std::string> class Storage { ... };`",
+            "`class Storage<std::string> extends Template { ... };`",
+            "`template <> class Storage<std::string> { ... };`",
+            "`specialized <std::string> class Storage { ... };`"
+          ],
+          "correct": 2,
+          "explanation": "To define a specialized template in C++, you leave the template parameter list empty (`template <>`) and attach the specific type to the class name being specialized (`class Storage<std::string>`).",
+          "optionExplanations": [
+            "Why A is wrong — You cannot put specific types inside the initial `typename` declaration.",
+            "Why B is wrong — This mixes Java inheritance syntax incorrectly.",
+            "Why C is correct — The empty angle brackets `template <>` followed by the specified type is the strict C++ syntax.",
+            "Why D is wrong — `specialized` is not a C++ keyword."
+          ]
+        },
+        {
+          "question": "In C++, how do you correctly instantiate an object from a template class that has default parameters defined as `template <typename T = int, typename U = double> class DataPair`?",
+          "options": [
+            "`DataPair myPair;`",
+            "`DataPair<> myPair;`",
+            "`DataPair<default, default> myPair;`",
+            "`DataPair<T, U> myPair;`"
+          ],
+          "correct": 1,
+          "explanation": "To utilize the default parameters of a C++ template class without overriding them, you must instantiate the object using empty angle brackets `<>` to signal the compiler to fetch the defaults.",
+          "optionExplanations": [
+            "Why A is wrong — Omitting the angle brackets entirely is illegal syntax for class templates in standard C++.",
+            "Why B is correct — Empty angle brackets securely trigger the default typenames.",
+            "Why C is wrong — `default` is not a valid keyword for template type assignment.",
+            "Why D is wrong — `T` and `U` are unknown variables in the `main()` scope."
+          ]
+        },
+        {
+          "question": "How does Java's approach to Generics fundamentally differ from C++ Templates under the hood?",
+          "options": [
+            "Java uses 'Type Erasure', stripping the generic type information during compilation to ensure backward compatibility and prevent creating multiple specific class copies in memory.",
+            "Java creates larger binary files than C++ because it saves a copy of the generic class for every type used.",
+            "Java evaluates generics during runtime, whereas C++ evaluates them dynamically.",
+            "Java allows primitive data types in generics, while C++ strictly forbids them."
+          ],
+          "correct": 0,
+          "explanation": "Unlike C++ which physically duplicates code for every type used, Java compiles the generic code once. It checks for type safety at compile-time, then 'erases' the `<T>` type information, replacing it with the `Object` class (or bound limits) in the final bytecode.",
+          "optionExplanations": [
+            "Why A is correct — Type Erasure is Java's unique architectural approach to generics, favoring smaller binaries and compatibility.",
+            "Why B is wrong — Java creates smaller binaries specifically because it avoids C++'s duplication method.",
+            "Why C is wrong — Both languages verify type safety heavily at compile-time.",
+            "Why D is wrong — C++ allows primitive types (int, float) in templates; Java generics require wrapper classes (Integer, Double)."
+          ]
+        },
+        {
+          "question": "If a developer attempts to declare `ArrayList<int> list = new ArrayList<>();` in Java, what will occur?",
+          "options": [
+            "The JVM converts the array to C++ format.",
+            "The program complies successfully and creates an integer list.",
+            "A compilation error occurs because Java Generics do not support primitive data types; a wrapper class like `Integer` must be used.",
+            "An `IndexOutOfBoundsException` is thrown."
+          ],
+          "correct": 2,
+          "explanation": "Because Java generics rely on Type Erasure (which substitutes the generic type with `Object`), only reference types (Objects) can be passed. Primitive types like `int` or `double` cannot be treated as `Object` directly in this context, requiring wrapper classes like `Integer` or `Double`.",
+          "optionExplanations": [
+            "Why A is wrong — Java does not convert code to C++ formats.",
+            "Why B is wrong — Primitive types are strictly forbidden in Java generic declarations.",
+            "Why C is correct — Primitives must be substituted with their corresponding Object wrappers.",
+            "Why D is wrong — This is a syntax failure, not a runtime index error."
+          ]
+        },
+        {
+          "question": "In Java Generics, what does the 'Bounded Type' syntax `<T extends Number>` achieve?",
+          "options": [
+            "It automatically casts integers into strings.",
+            "It restricts the generic type `T` so that it can ONLY accept classes that are children of the `Number` class (like `Integer` or `Double`).",
+            "It allows the generic type to bypass compile-time safety checks.",
+            "It forces the class to use multiple inheritance."
+          ],
+          "correct": 1,
+          "explanation": "Bounded types place a ceiling on what types are allowed. By using `<T extends Number>`, the compiler guarantees that whatever object is passed in will possess the numerical properties defined in the `Number` superclass, rejecting completely incompatible types like `String`.",
+          "optionExplanations": [
+            "Why A is wrong — It enforces numeric types; it does not cast to strings.",
+            "Why B is correct — It restricts the generic parameter to a specific hierarchy.",
+            "Why C is wrong — It actively strengthens and enforces compile-time type safety.",
+            "Why D is wrong — It enforces inheritance boundaries, not multiple inheritance itself."
+          ]
+        },
+        {
+          "question": "Why is it often necessary to use `<T extends Comparable<T>>` when writing a generic function to find the maximum of two values in Java?",
+          "options": [
+            "Because standard generic objects cannot be evaluated using primitive arithmetic operators like `>` or `<`; they must use the `compareTo()` method guaranteed by the `Comparable` interface.",
+            "Because `Comparable` converts the generic objects into integers automatically.",
+            "Because Java requires all generics to extend at least two interfaces.",
+            "Because it prevents the garbage collector from deleting the variables."
+          ],
+          "correct": 0,
+          "explanation": "In Java, you cannot mathematically say `if (obj1 > obj2)` because they are object references. To compare them, the objects must implement the `Comparable` interface, which provides the `.compareTo()` logic. Bounding `<T>` to `Comparable` guarantees this method is available.",
+          "optionExplanations": [
+            "Why A is correct — The bound guarantees the existence of the `compareTo()` method required for non-primitive sorting/finding logic.",
+            "Why B is wrong — Interfaces do not convert data types; they enforce behavior contracts.",
+            "Why C is wrong — There is no rule requiring multiple bounds.",
+            "Why D is wrong — Generics do not alter garbage collection rules."
+          ]
+        },
+        {
+          "question": "What is the purpose of the 'Wildcard' (`?`) in Java Generics?",
+          "options": [
+            "It represents an unknown type, allowing a method to accept a collection of various generic types (e.g., `List<?>`) for more flexible parameter handling.",
+            "It is used to denote an optional parameter that can be skipped during function calls.",
+            "It randomly assigns a data type at runtime.",
+            "It forces a compilation error to pause the program."
+          ],
+          "correct": 0,
+          "explanation": "The wildcard `?` in Java is used when you want a method to operate on a generic class, but you don't care exactly what the specific generic type is. For example, `public void printList(List<?> list)` can accept a `List<Integer>`, `List<String>`, or any other list.",
+          "optionExplanations": [
+            "Why A is correct — `?` specifically designates an unknown/flexible generic type.",
+            "Why B is wrong — Java does not use `?` for optional method arguments.",
+            "Why C is wrong — Types are strictly managed, not randomly assigned.",
+            "Why D is wrong — It is a valid syntactical feature, not an error trigger."
+          ]
+        },
+        {
+          "question": "Examine this Java method signature: `public void processList(List<? extends Number> list)`. What is this an example of?",
+          "options": [
+            "An Unbounded Wildcard",
+            "A Lower Bounded Wildcard",
+            "An Upper Bounded Wildcard",
+            "Type Erasure Failure"
+          ],
+          "correct": 2,
+          "explanation": "The syntax `? extends ClassName` establishes an Upper Bounded Wildcard. It means the unknown type `?` is restricted to being a specific class (`Number`) or any of its subclasses (like `Integer`, `Float`), setting an 'upper ceiling' on the hierarchy.",
+          "optionExplanations": [
+            "Why A is wrong — Unbounded is just `?` with no `extends` or `super`.",
+            "Why B is wrong — Lower bounded uses the `super` keyword (e.g., `? super Integer`).",
+            "Why C is correct — `extends` creates a strict upper boundary for the wildcard.",
+            "Why D is wrong — This is standard, successful generic programming, not a failure."
+          ]
+        },
+        {
+          "question": "How do you declare a generic method inside a standard (non-generic) Java class?",
+          "options": [
+            "`public void <T> printArray(T[] array) { ... }`",
+            "`public <T> void printArray(T[] array) { ... }`",
+            "`public void printArray(<T>[] array) { ... }`",
+            "`<T> public void printArray(T[] array) { ... }`"
+          ],
+          "correct": 1,
+          "explanation": "In Java, the generic type declaration `<T>` must precede the return type of the method. Thus, `public <T> void methodName(...)` is the strict syntax.",
+          "optionExplanations": [
+            "Why A is wrong — The generic tag must come before the return type (`void`).",
+            "Why B is correct — The generic type `<T>` properly precedes the return type.",
+            "Why C is wrong — Angle brackets are incorrectly placed inside the parameters.",
+            "Why D is wrong — The access modifier (`public`) generally precedes the generic tag."
+          ]
+        },
+        {
+          "question": "In Python, which module must be imported to utilize explicit generic type variables?",
+          "options": [
+            "`from sys import Generics`",
+            "`from math import TypeVar`",
+            "`from typing import TypeVar, Generic`",
+            "`from python_generics import Template`"
+          ],
+          "correct": 2,
+          "explanation": "Python introduced type hinting and generics in its `typing` module. To define generic classes and type variables, programmers must explicitly import tools like `TypeVar` and `Generic` from `typing`.",
+          "optionExplanations": [
+            "Why A is wrong — The `sys` module handles system-level operations.",
+            "Why B is wrong — The `math` module handles calculations.",
+            "Why C is correct — The `typing` module is the official library for type hints and generics.",
+            "Why D is wrong — There is no `python_generics` standard module."
+          ]
+        },
+        {
+          "question": "How is a generic class formally declared in Python?",
+          "options": [
+            "`class Container<T>:`",
+            "`template <T> class Container:`",
+            "`class Container(Generic[T]):`",
+            "`class Container extends Generic:`"
+          ],
+          "correct": 2,
+          "explanation": "In Python, generic classes are declared by inheriting from the `Generic` base class (imported from `typing`) and passing the type variable inside square brackets: `class Container(Generic[T]):`.",
+          "optionExplanations": [
+            "Why A is wrong — This is Java syntax.",
+            "Why B is wrong — This is pseudo C++ syntax.",
+            "Why C is correct — Passing `Generic[T]` as the inherited superclass is the official Python syntax.",
+            "Why D is wrong — Python does not use the `extends` keyword; it uses parentheses for inheritance."
+          ]
+        },
+        {
+          "question": "Examine this Python generic method signature: `def first_element(lst: List[T]) -> T:` What does `-> T` indicate?",
+          "options": [
+            "That the function is casting all list items to type T.",
+            "That the function is using an arrow operator to access memory pointers.",
+            "That the function's official return type is expected to be a single element of generic type T.",
+            "That the function extends the T class."
+          ],
+          "correct": 2,
+          "explanation": "In Python type hinting, the arrow `->` indicates the expected return type of the function. `-> T` informs developers and static type checkers that the function will return an object matching the generic type variable `T`.",
+          "optionExplanations": [
+            "Why A is wrong — Type hinting does not perform any casting.",
+            "Why B is wrong — Python does not use C++ style pointer arrow operators.",
+            "Why C is correct — The arrow points to the expected return data type.",
+            "Why D is wrong — Extension/inheritance is handled in the class definition, not function signatures."
+          ]
+        },
+        {
+          "question": "What is a major architectural disadvantage of C++ Templates when compared to Java Generics?",
+          "options": [
+            "C++ templates evaluate dynamically at runtime, causing severe execution lag.",
+            "Because C++ creates separate physical machine-code implementations for every unique type passed to the template, it can lead to massive code bloat and larger compiled binary files.",
+            "C++ templates cannot accept primitive data types like integers.",
+            "C++ templates automatically delete objects from memory unexpectedly."
+          ],
+          "correct": 1,
+          "explanation": "C++ prioritizes execution speed by doing separate instantiations at compile-time (writing an `int` version, a `double` version, etc.). The downside is 'code bloat', resulting in significantly larger executable files compared to Java's single-compiled Type Erasure approach.",
+          "optionExplanations": [
+            "Why A is wrong — C++ templates run extremely fast because they are resolved strictly at compile-time.",
+            "Why B is correct — Separate instantiations for every type lead to larger binary files.",
+            "Why C is wrong — C++ perfectly handles primitive types in templates.",
+            "Why D is wrong — Memory deletion is governed by destructors, not templates."
+          ]
+        },
+        {
+          "question": "Consider a generic C++ function: `template <typename T1, typename T2> T1 findMax(T1 a, T2 b) { return (a > b) ? a : static_cast<T1>(b); }`. If called with `findMax(5, 5.2)`, what is the potential error in logic?",
+          "options": [
+            "The compiler will crash completely because multiple generic types are forbidden.",
+            "The program will permanently change `b` to an integer in the main function.",
+            "Because the return type is bound to `T1` (which is an `int`), the larger double value `5.2` is typecast down to an integer, returning `5` and resulting in a silent loss of precision.",
+            "The function will automatically upgrade `T1` to a double to match `T2`."
+          ],
+          "correct": 2,
+          "explanation": "When forcing mixed data types (an `int 5` and a `double 5.2`) to return as `T1` (integer), the C++ compiler strictly obeys the `static_cast<T1>`. It chops the `.2` off the double, incorrectly returning `5` as the maximum due to precision loss.",
+          "optionExplanations": [
+            "Why A is wrong — Multiple typenames are fully supported.",
+            "Why B is wrong — Variables passed by value do not change in the calling function.",
+            "Why C is correct — Forcing a double into an integer return type truncates the decimal.",
+            "Why D is wrong — C++ templates follow exact explicit typecasts; they do not auto-upgrade the declared generic return type."
+          ]
+        },
+        {
+          "question": "What is the result of applying 'Type Hints' to Python Generics?",
+          "options": [
+            "They enforce strict, mandatory compiler-level type safety, preventing code from running if types clash.",
+            "They dramatically speed up the execution time of Python scripts.",
+            "They vastly improve code readability and allow external tools to detect type mismatches, but Python fundamentally remains dynamically typed and will ignore mismatches during runtime.",
+            "They convert Python code directly into Java bytecode."
+          ],
+          "correct": 2,
+          "explanation": "Python is an interpreted, dynamically typed language. Adding `T = TypeVar('T')` and `List[T]` provides 'hints' for developers and IDE static-checkers to spot bugs, but the runtime interpreter will not actively halt execution over type errors the way a C++ or Java compiler would.",
+          "optionExplanations": [
+            "Why A is wrong — Python does not enforce strict compile-time checks.",
+            "Why B is wrong — Type hints have no impact on execution speed.",
+            "Why C is correct — They act as documentation and static-tool guides, but do not override dynamic typing.",
+            "Why D is wrong — Python does not compile to Java bytecode."
+          ]
+        },
+        {
+          "question": "In Java, what happens if you use a Generic class without providing its type parameter (e.g., `ArrayList list = new ArrayList();` instead of `ArrayList<Integer>`)?",
+          "options": [
+            "The compiler dynamically generates a default string type.",
+            "This creates a 'Raw Type'. It compiles but bypasses all generic compile-time type safety checks, leaving the code vulnerable to runtime casting errors.",
+            "The program refuses to compile, citing missing syntax.",
+            "The Java Virtual Machine converts it to a C++ template."
+          ],
+          "correct": 1,
+          "explanation": "Using generic structures without angle brackets results in 'Raw Types'. They exist solely for legacy compatibility with older Java versions. Using them abandons all generic type-safety benefits, reverting the collection to storing generic, unsafe `Object` references.",
+          "optionExplanations": [
+            "Why A is wrong — The default erasure fallback is `Object`, not `String`.",
+            "Why B is correct — Raw types compile successfully but actively disable generic safety protections.",
+            "Why C is wrong — It is legal (though warned against) for backward compatibility.",
+            "Why D is wrong — Java does not convert code to C++."
+          ]
+        },
+        {
+          "question": "In Python, which built-in data types are commonly used with Generics via the `typing` module?",
+          "options": [
+            "`Array`, `Pointer`, `Stack`",
+            "`List`, `Dict`, `Tuple`",
+            "`Vector`, `Queue`, `Map`",
+            "`String`, `Integer`, `Float`"
+          ],
+          "correct": 1,
+          "explanation": "The Python `typing` module explicitly provides capital-letter versions of core generic collections: `List[T]`, `Dict[K, V]`, and `Tuple[T, ...]`, allowing developers to hint at the generic contents of these standard structures.",
+          "optionExplanations": [
+            "Why A is wrong — Pointers are not a standard Python data type.",
+            "Why B is correct — Lists, Dictionaries, and Tuples are the most common generic containers in Python.",
+            "Why C is wrong — Vectors and Maps relate more to C++ STL and Java.",
+            "Why D is wrong — These are primitive equivalent base types, not generic container types."
+          ]
+        },
+      
+     
+        {
+          "question": "In C++, which of the following stream classes is correctly paired with its exact functional capability?",
+          "options": [
+            "`ifstream` can be used to both read from and write to files dynamically.",
+            "`ofstream` is strictly used to create an output stream that writes a sequence of bytes from main memory to a file.",
+            "`fstream` is an abstract base class that cannot be directly instantiated.",
+            "`ostream` is exclusively used for reading file metadata and directory structures."
+          ],
+          "correct": 1,
+          "explanation": "In C++, `ofstream` (Output File Stream) handles writing data to files. `ifstream` is strictly for input/reading, and `fstream` is a concrete class capable of both reading and writing.",
+          "optionExplanations": [
+            "Why A is wrong — `ifstream` is strictly for reading (Input File Stream).",
+            "Why B is correct — `ofstream` accurately maps to writing data from memory to a file.",
+            "Why C is wrong — `fstream` is a concrete class that can be instantiated for bidirectional I/O.",
+            "Why D is wrong — `ostream` is a general output stream base, not a metadata reader."
+          ]
+        },
+        {
+          "question": "What is the primary architectural difference between Java and C++ regarding error handling during file operations (e.g., opening a file)?",
+          "options": [
+            "C++ uses the Garbage Collector to handle missing files, whereas Java uses manual memory allocation.",
+            "Java treats file operations as 'Checked Exceptions' (e.g., `IOException`), forcing the compiler to mandate a `try-catch` block or `throws` declaration, whereas C++ relies on manual conditional checks like `.is_open()`.",
+            "C++ automatically crashes the operating system if a file is missing, whereas Java automatically creates a blank file in its place.",
+            "There is no difference; both languages mandate the use of the `try-catch-finally` block for file streams."
+          ],
+          "correct": 1,
+          "explanation": "Java strictly enforces the 'Handle or Declare' rule for file I/O because it throws `IOException` (a checked exception). C++ does not force exception handling for files; instead, programmers manually check the stream state using `if (myfile.is_open())`.",
+          "optionExplanations": [
+            "Why A is wrong — C++ does not have a Garbage Collector.",
+            "Why B is correct — This defines the fundamental difference between Java's compiler-enforced exceptions and C++'s manual state checking.",
+            "Why C is wrong — C++ simply fails the stream state; it doesn't crash the OS. Java throws an error; it doesn't auto-create files during a read.",
+            "Why D is wrong — C++ does not mandate `try-catch` for file openings."
+          ]
+        },
+        {
+          "question": "If a developer wants to add new log entries to the end of an existing text file without overwriting the previous data, what is the correct syntax in C++ and Java respectively?",
+          "options": [
+            "C++: `open(\"log.txt\", std::ios::end)` | Java: `new FileWriter(\"log.txt\", \"append\")`",
+            "C++: `open(\"log.txt\", std::ios::app)` | Java: `new FileWriter(\"log.txt\", true)`",
+            "C++: `open(\"log.txt\", std::ios::write)` | Java: `new FileWriter(\"log.txt\", false)`",
+            "C++: `open(\"log.txt\", ios::binary)` | Java: `new BufferedWriter(\"log.txt\")`"
+          ],
+          "correct": 1,
+          "explanation": "To append data, C++ uses the `std::ios::app` mode flag. In Java, the `FileWriter` constructor takes an overloaded boolean parameter; passing `true` activates append mode.",
+          "optionExplanations": [
+            "Why A is wrong — `ios::end` is not standard for appending (`ate` seeks to end, but `app` guarantees append). Java doesn't use an \"append\" string.",
+            "Why B is correct — These are the exact standard syntaxes for activating append mode in both languages.",
+            "Why C is wrong — `ios::write` is not a standard flag; `false` in Java overwrites the file.",
+            "Why D is wrong — Binary mode does not inherently append. `BufferedWriter` requires a `Writer` object, not just a string."
+          ]
+        },
+        {
+          "question": "When parsing a Comma-Separated Values (CSV) file in C++, what is the standard standard-library combination used to split a single string line into individual tokens (cells)?",
+          "options": [
+            "`std::split` paired with the `,` character.",
+            "`std::vector` paired with the `tokenize()` method.",
+            "`std::stringstream` combined with `getline(stream, variable, ',')`.",
+            "`std::csv_parser` paired with `readCell()`."
+          ],
+          "correct": 2,
+          "explanation": "In C++, the standard way to tokenize a string by a specific delimiter (like a comma) is to load the string into a `std::stringstream` and then use `getline()` with the comma specified as the third argument (the custom delimiter).",
+          "optionExplanations": [
+            "Why A is wrong — `std::split` does not exist in the standard C++ library.",
+            "Why B is wrong — `vector` does not have a built-in `tokenize` method.",
+            "Why C is correct — This is the exact mechanical approach for C++ CSV parsing.",
+            "Why D is wrong — C++ has no native `std::csv_parser`."
+          ]
+        },
+        {
+          "question": "In Java, what is the most efficient and standard way to read a text file line-by-line?",
+          "options": [
+            "Wrapping a `FileReader` object inside a `BufferedReader`, and using the `readLine()` method in a while loop until it returns `null`.",
+            "Using `FileInputStream` and reading byte-by-byte until a `\\n` character is manually detected.",
+            "Using `Scanner` and calling `nextByte()`.",
+            "Wrapping a `BufferedReader` inside a `FileReader` and calling `readString()`."
+          ],
+          "correct": 0,
+          "explanation": "For character-based text files, the most efficient standard approach is to wrap the raw `FileReader` in a `BufferedReader`. This minimizes disk I/O hits and provides the highly convenient `readLine()` method, which returns `null` at the end of the file.",
+          "optionExplanations": [
+            "Why A is correct — This perfectly describes the standard Java buffered reading idiom.",
+            "Why B is wrong — Reading byte-by-byte manually is highly inefficient and ignores character encoding.",
+            "Why C is wrong — `nextByte()` reads numbers, not full text lines.",
+            "Why D is wrong — The wrapping order is reversed, and `readString()` is not a standard method here."
+          ]
+        },
+        {
+          "question": "In C++, why must a programmer use the `myfile.get(c)` method instead of the standard extraction operator (`myfile >> c`) when reading a text file character-by-character to preserve formatting?",
+          "options": [
+            "Because `>>` automatically decrypts the file, altering its contents.",
+            "Because `>>` implicitly skips all leading whitespace (spaces, tabs, newlines), whereas `get()` extracts the exact literal ASCII character from the stream buffer.",
+            "Because `get()` is the only method that can read integers.",
+            "Because `>>` causes a memory leak if used in a while loop."
+          ],
+          "correct": 1,
+          "explanation": "The stream extraction operator `>>` is designed to parse tokens (like words or numbers), so it inherently skips over any whitespace. To read every single character identically to how it appears on disk (including spaces and new lines), `get()` must be used.",
+          "optionExplanations": [
+            "Why A is wrong — C++ streams do not perform native encryption/decryption.",
+            "Why B is correct — `get()` captures absolute literal characters without skipping whitespace.",
+            "Why C is wrong — `>>` is actually preferred for reading formatted integers.",
+            "Why D is wrong — It does not cause a memory leak."
+          ]
+        },
+        {
+          "question": "What does the concept of 'Serialization' specifically refer to in Object-Oriented Programming?",
+          "options": [
+            "The process of sorting an array of objects in memory sequentially.",
+            "The process of assigning a unique integer ID to every instantiated class.",
+            "The process of converting a live object's internal state (its data) into a byte stream so it can be persistently stored in a file or transmitted across a network.",
+            "The compiler's process of converting Java bytecode into C++ machine code."
+          ],
+          "correct": 2,
+          "explanation": "Serialization is the formal architectural process of \"flattening\" an object in memory into a linear sequence of bytes (a byte stream). This allows the object to survive outside the running program (persisted to a hard drive or sent over a socket) and later be reconstructed (Deserialization).",
+          "optionExplanations": [
+            "Why A is wrong — Sorting objects is algorithmic arrangement, not serialization.",
+            "Why B is wrong — Assigning IDs is hashing/tracking, not serialization.",
+            "Why C is correct — State-to-byte-stream conversion is the exact definition.",
+            "Why D is wrong — Bytecode translation is a JVM interpreter/JIT function."
+          ]
+        },
+        {
+          "question": "In Java, what is unique about the `java.io.Serializable` interface required to make an object serializable?",
+          "options": [
+            "It requires the programmer to manually implement complex encryption algorithms.",
+            "It forces the class to override the `toString()` method.",
+            "It is a 'Marker Interface', meaning it contains absolutely no methods to implement; it simply acts as a flag to notify the JVM that the object is allowed to be serialized.",
+            "It automatically converts all private variables to public variables."
+          ],
+          "correct": 2,
+          "explanation": "The `Serializable` interface has no body (no abstract methods). By appending `implements Serializable` to a class, the developer is simply placing a 'marker' or 'tag' on the class, giving the JVM explicit permission to access and serialize its internal state.",
+          "optionExplanations": [
+            "Why A is wrong — It does not require custom encryption.",
+            "Why B is wrong — It has no relation to `toString()`.",
+            "Why C is correct — Marker interfaces flag compiler/JVM behavior without enforcing method contracts.",
+            "Why D is wrong — Access modifiers are unaffected by serialization."
+          ]
+        },
+        {
+          "question": "During Java serialization, if a developer wants to prevent a sensitive variable (like `String password`) from being written to the output file, which keyword must be used?",
+          "options": [
+            "volatile",
+            "transient",
+            "private",
+            "abstract"
+          ],
+          "correct": 1,
+          "explanation": "The `transient` keyword explicitly instructs the JVM's serialization mechanism to ignore that specific member variable. When the object is later deserialized, the transient variable will revert to its default value (e.g., `null` for objects, `0` for integers).",
+          "optionExplanations": [
+            "Why A is wrong — `volatile` relates to thread-safe memory synchronization.",
+            "Why B is correct — `transient` explicitly blocks a variable from the serialized byte stream.",
+            "Why C is wrong — `private` variables ARE serialized by default to preserve the object's internal state.",
+            "Why D is wrong — `abstract` applies to unimplemented classes/methods."
+          ]
+        },
+        {
+          "question": "Because C++ lacks Java's automatic reflection and `Serializable` interface, what is the raw, standard method for serializing a C++ object to a binary file?",
+          "options": [
+            "Using `std::serialize(object)`.",
+            "Using `ofstream::write()` combined with a `reinterpret_cast<char*>` to grab the object's memory address, and `sizeof()` to determine how many bytes to write.",
+            "Converting the object to a `std::string` and using the `<<` insertion operator.",
+            "Overriding the `+` operator."
+          ],
+          "correct": 1,
+          "explanation": "C++ performs primitive serialization by taking the exact starting memory address of the object, casting it to a byte/character pointer (`reinterpret_cast<const char*>(&obj)`), and copying the exact raw memory block of `sizeof(obj)` directly to the file stream.",
+          "optionExplanations": [
+            "Why A is wrong — There is no built-in `std::serialize` function in standard C++.",
+            "Why B is correct — This is the manual, memory-dump approach required in C++.",
+            "Why C is wrong — Converting to string is text-based formatting, not binary object state serialization.",
+            "Why D is wrong — Operator overloading doesn't natively handle binary file writing."
+          ]
+        },
+        {
+          "question": "What is the fundamental difference between reading a file in 'Text Mode' versus 'Binary Mode' in C++?",
+          "options": [
+            "Text mode translates operating-system-specific line-ending characters (like `\\r\\n` to `\\n`), whereas Binary mode disables all formatting translations, reading the exact raw bytes from the disk.",
+            "Text mode can only read English characters, whereas Binary mode supports all languages.",
+            "Binary mode compresses the file size by 50%.",
+            "Text mode requires `ifstream`, while Binary mode requires `ofstream`."
+          ],
+          "correct": 0,
+          "explanation": "By default, streams operate in text mode, which performs implicit character translations (especially for newline carriage returns on Windows). Opening a file with `std::ios::binary` forces the stream to read and write exact, unadulterated bytes, which is mandatory for images, executables, or serialized objects.",
+          "optionExplanations": [
+            "Why A is correct — This defines the implicit OS-level translation difference.",
+            "Why B is wrong — Both modes can handle multi-byte Unicode depending on the library, but binary doesn't alter bytes.",
+            "Why C is wrong — Binary mode does not inherently compress data.",
+            "Why D is wrong — Both `ifstream` and `ofstream` support both modes."
+          ]
+        },
+        {
+          "question": "In Java, what mandatory step must a programmer perform when retrieving a saved object using `ObjectInputStream.readObject()`?",
+          "options": [
+            "They must call `.toString()` to decode the binary data.",
+            "They must explicitly cast the returned generic `Object` back to its original class type (e.g., `(Employee) in.readObject();`).",
+            "They must pass the object through a `Scanner`.",
+            "They must restart the JVM."
+          ],
+          "correct": 1,
+          "explanation": "The `readObject()` method is designed to be universal, so it returns the highest-level reference possible: a generic `Object`. Because the JVM does not automatically know what specific class was saved, the programmer must explicitly downcast it back to the original type to use its specific methods.",
+          "optionExplanations": [
+            "Why A is wrong — Calling `toString()` yields a descriptive string, not a usable object instance.",
+            "Why B is correct — Explicit downcasting is structurally required to restore original functionality.",
+            "Why C is wrong — Scanners process character text, not serialized binary objects.",
+            "Why D is wrong — Deserialization happens dynamically during runtime without restarting."
+          ]
+        },
+        {
+          "question": "When formatting text output to a file in C++ (e.g., forcing floating-point numbers to strictly two decimal places), what header file and function combination is used?",
+          "options": [
+            "`<fstream>` and `setformat()`",
+            "`<string>` and `truncate()`",
+            "`<cmath>` and `floor()`",
+            "`<iomanip>` and `std::setprecision()`"
+          ],
+          "correct": 3,
+          "explanation": "C++ stream styling is handled by the Input/Output Manipulation library (`<iomanip>`). Pairing the stream with manipulators like `std::fixed` and `std::setprecision(2)` alters how the `ofstream` physically renders the output text.",
+          "optionExplanations": [
+            "Why A is wrong — Function does not exist.",
+            "Why B is wrong — Truncating alters strings, it doesn't format stream rendering dynamically.",
+            "Why C is wrong — Math functions alter the underlying value, not the stream's presentation format.",
+            "Why D is correct — `<iomanip>` manipulators govern stream formatting."
+          ]
+        },
+        {
+          "question": "What is the purpose of explicitly declaring a `serialVersionUID` inside a Java class that implements `Serializable`?",
+          "options": [
+            "To encrypt the byte stream with a unique digital signature.",
+            "To assign the object a specific memory address in the JVM.",
+            "To ensure version control and backward compatibility; if the class structure changes later, a matching ID ensures the JVM doesn't throw an `InvalidClassException` during deserialization.",
+            "To bypass the `transient` keyword."
+          ],
+          "correct": 2,
+          "explanation": "When a class is serialized, Java implicitly assigns it a hash version based on its structure. If you later add a new variable to the class and try to deserialize an older file, the JVM detects a structural mismatch and crashes. Explicitly defining a constant `serialVersionUID` tells the JVM, 'These versions are compatible, proceed with deserialization.'",
+          "optionExplanations": [
+            "Why A is wrong — It is a version tag, not a cryptographic key.",
+            "Why B is wrong — The JVM manages memory addresses dynamically.",
+            "Why C is correct — It prevents compatibility crashes as the software evolves.",
+            "Why D is wrong — It has no effect on the `transient` keyword."
+          ]
+        },
+        {
+          "question": "In C++ file handling, what is the difference between the `seekg()` and `seekp()` functions?",
+          "options": [
+            "`seekg()` searches for text strings, while `seekp()` searches for binary patterns.",
+            "`seekg()` moves the 'get' pointer (used to set the reading position in an `ifstream`), while `seekp()` moves the 'put' pointer (used to set the writing position in an `ofstream`).",
+            "`seekg()` moves the cursor to the beginning of the file, while `seekp()` moves it to the end.",
+            "There is no difference; they are aliases."
+          ],
+          "correct": 1,
+          "explanation": "C++ streams maintain internal cursors indicating where the next byte will be read or written. The 'g' stands for 'get' (input/reading), and the 'p' stands for 'put' (output/writing). These functions allow random access seeking within the file.",
+          "optionExplanations": [
+            "Why A is wrong — They move cursors, they don't perform string searches.",
+            "Why B is correct — Correctly distinguishes the input cursor from the output cursor.",
+            "Why C is wrong — Both functions require byte offset arguments; they don't inherently jump to ends.",
+            "Why D is wrong — They operate on completely different stream buffers."
+          ]
+        }
+      ]
     }
   ]
 };
+
