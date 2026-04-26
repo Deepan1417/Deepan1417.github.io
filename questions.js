@@ -6117,6 +6117,861 @@ optionExplanations: [
           ]
         }
       ]
+    },
+    {
+      name: "Unit 7: Exception Handling",
+      questions: [
+        {
+          "question": "What is the primary definition of an 'Exception' in Object-Oriented Programming?",
+          "options": [
+            "A syntax error identified by the compiler before execution.",
+            "An event that disrupts the normal flow of the program, represented as an object thrown at runtime.",
+            "A logical flaw that produces incorrect mathematical outputs without crashing.",
+            "A feature that allows a single function to accept multiple data types."
+          ],
+          "correct": 1,
+          "explanation": "An exception is a runtime event that disrupts the normal procedural flow of a program. It is treated as an object thrown during execution when an unexpected circumstance (like dividing by zero) occurs.",
+          "optionExplanations": [
+            "Why A is wrong — Syntax errors are compilation issues, not runtime exceptions.",
+            "Why B is correct — This exactly aligns with the OOP definition of an exception.",
+            "Why C is wrong — Semantic/logical errors yield wrong results but do not inherently throw exception objects.",
+            "Why D is wrong — This defines compile-time polymorphism (templates/overloading)."
+          ]
+        },
+        {
+          "question": "Which of the following errors is explicitly managed using Exception Handling?",
+          "options": [
+            "Missing semicolons (Syntax Error)",
+            "Incorrect algorithm logic (Semantic Error)",
+            "Memory exhaustion during dynamic allocation (Runtime Error)",
+            "Mismatched variable names across files (Linker Error)"
+          ],
+          "correct": 2,
+          "explanation": "Exception handling is explicitly designed to catch and manage Runtime Errors, such as exhausting memory (`bad_alloc`), dividing by zero, or accessing missing files.",
+          "optionExplanations": [
+            "Why A is wrong — Missing semicolons fail at compile-time.",
+            "Why B is wrong — The program will run flawlessly but output wrong answers; exceptions don't catch bad math logic.",
+            "Why C is correct — Memory exhaustion happens dynamically during execution, triggering a catchable runtime exception.",
+            "Why D is wrong — Linker errors prevent the executable from being built."
+          ]
+        },
+        {
+          "question": "What are the three foundational keywords used to implement exception handling in C++?",
+          "options": [
+            "try, catch, finally",
+            "try, catch, throw",
+            "try, throw, throws",
+            "catch, final, error"
+          ],
+          "correct": 1,
+          "explanation": "In C++, the exception handling mechanism relies strictly on three keywords: `try` (to monitor code), `throw` (to emit an error), and `catch` (to handle the error).",
+          "optionExplanations": [
+            "Why A is wrong — `finally` is a Java keyword; it does not exist in standard C++ exception handling.",
+            "Why B is correct — These are the exact three keywords used in C++.",
+            "Why C is wrong — `throws` is a Java keyword used for method signatures.",
+            "Why D is wrong — `final` and `error` are not C++ exception keywords."
+          ]
+        },
+        {
+          "question": "What is the specific role of the `throw` keyword in an exception handling block?",
+          "options": [
+            "It defines the block of code that is being monitored for potential errors.",
+            "It silently ignores the error and continues normal execution.",
+            "It instantiates an exception object and signals that a problem has occurred, transferring control to the nearest handler.",
+            "It terminates the entire operating system process."
+          ],
+          "correct": 2,
+          "explanation": "The `throw` keyword actively flags that an anomaly has occurred. It creates an exception object and \"throws\" it out of the normal execution flow to be caught by a `catch` block.",
+          "optionExplanations": [
+            "Why A is wrong — The `try` block monitors the code.",
+            "Why B is wrong — `throw` actively disrupts execution; it does not ignore errors.",
+            "Why C is correct — It explicitly emits the exception object and transfers control.",
+            "Why D is wrong — Unhandled exceptions might crash the program, but `throw` itself just transfers control."
+          ]
+        },
+        {
+          "question": "In the C++ Standard Library, what is the parent class for all standard exceptions?",
+          "options": [
+            "std::runtime_error",
+            "std::logic_error",
+            "std::exception",
+            "std::bad_alloc"
+          ],
+          "correct": 2,
+          "explanation": "The `std::exception` class serves as the universal base class from which all other standard C++ exception classes (like `logic_error` and `runtime_error`) inherit.",
+          "optionExplanations": [
+            "Why A is wrong — `runtime_error` inherits from `std::exception`.",
+            "Why B is wrong — `logic_error` inherits from `std::exception`.",
+            "Why C is correct — It is the root of the C++ standard exception hierarchy.",
+            "Why D is wrong — `bad_alloc` is a specific child exception."
+          ]
+        },
+        {
+          "question": "If a C++ program attempts to dynamically allocate memory using the `new` operator and fails due to insufficient RAM, which standard exception is thrown?",
+          "options": [
+            "std::bad_cast",
+            "std::out_of_range",
+            "std::bad_alloc",
+            "std::overflow_error"
+          ],
+          "correct": 2,
+          "explanation": "When the `new` operator fails to allocate heap memory, it throws the `std::bad_alloc` exception to indicate memory exhaustion.",
+          "optionExplanations": [
+            "Why A is wrong — Thrown by a failed `dynamic_cast`.",
+            "Why B is wrong — Thrown by accessing invalid indices in vectors.",
+            "Why C is correct — Explicitly tied to failed dynamic memory allocation.",
+            "Why D is wrong — Thrown during mathematical overflow."
+          ]
+        },
+        {
+          "question": "According to the C++ standard exception hierarchy, what is the fundamental difference between `std::logic_error` and `std::runtime_error`?",
+          "options": [
+            "Logic errors trigger at compile-time, while runtime errors trigger during execution.",
+            "Logic errors are theoretical flaws that could be detected by reading the code, while runtime errors occur due to unpredictable external events during execution.",
+            "Logic errors relate to file input/output, while runtime errors relate to GUI rendering.",
+            "There is no difference; they are synonymous."
+          ],
+          "correct": 1,
+          "explanation": "A `logic_error` (like an invalid argument) is an avoidable flaw in the program's logic. A `runtime_error` (like hardware overflow) is caused by uncontrollable variables during execution.",
+          "optionExplanations": [
+            "Why A is wrong — All exceptions are runtime events.",
+            "Why B is correct — This accurately reflects the C++ standard definitions provided in the lectures.",
+            "Why C is wrong — The distinction is based on predictability, not specific modules like I/O.",
+            "Why D is wrong — They are distinct sub-hierarchies under `std::exception`."
+          ]
+        },
+        {
+          "question": "Which C++ exception is typically thrown when passing a character to a function that explicitly requires a numeric integer?",
+          "options": [
+            "std::length_error",
+            "std::invalid_argument",
+            "std::bad_typeid",
+            "std::underflow_error"
+          ],
+          "correct": 1,
+          "explanation": "Passing incompatible data (like a character where a number is strictly required) throws an `invalid_argument` exception, which is a child of `logic_error`.",
+          "optionExplanations": [
+            "Why A is wrong — Thrown when creating a string that exceeds maximum size.",
+            "Why B is correct — Incompatible parameter types trigger `invalid_argument`.",
+            "Why C is wrong — Tied to the `typeid` operator failing.",
+            "Why D is wrong — Tied to mathematical underflow."
+          ]
+        },
+        {
+          "question": "When creating a user-defined custom exception in C++, which method of the `std::exception` base class is typically overridden to return the error message?",
+          "options": [
+            "getMessage()",
+            "printStackTrace()",
+            "what()",
+            "error_str()"
+          ],
+          "correct": 2,
+          "explanation": "In C++, the `std::exception` base class defines a virtual function named `what()` that returns a `const char*` explaining the error. Developers override this to provide custom messages.",
+          "optionExplanations": [
+            "Why A is wrong — `getMessage()` is used in Java.",
+            "Why B is wrong — `printStackTrace()` is a Java method.",
+            "Why C is correct — Overriding `what()` is the standard C++ practice.",
+            "Why D is wrong — This is a fabricated function name."
+          ]
+        },
+        {
+          "question": "Examine this C++ snippet:\n`try { throw std::runtime_error(\"Division by Zero\"); } catch (const std::exception& e) { std::cerr << e.what(); }`\nWhat is the purpose of `std::cerr`?",
+          "options": [
+            "It acts as a dynamic array storing the error objects.",
+            "It is the standard error stream used to print error messages immediately, unbuffered.",
+            "It clears the console screen.",
+            "It returns the memory back to the heap."
+          ],
+          "correct": 1,
+          "explanation": "While `std::cout` is used for standard output, `std::cerr` is the standard error stream in C++, explicitly intended to output diagnostic and error messages immediately.",
+          "optionExplanations": [
+            "Why A is wrong — It is an output stream, not a storage array.",
+            "Why B is correct — It outputs the message strictly to the error console.",
+            "Why C is wrong — It prints text; it does not clear the screen.",
+            "Why D is wrong — Memory release is handled by `delete`."
+          ]
+        },
+        {
+          "question": "In Java, exception handling introduces two major categories. What are they?",
+          "options": [
+            "Internal Exceptions and External Exceptions",
+            "Static Exceptions and Dynamic Exceptions",
+            "Checked Exceptions and Unchecked Exceptions",
+            "Throw Exceptions and Throws Exceptions"
+          ],
+          "correct": 2,
+          "explanation": "Java officially categorizes exceptions into Checked Exceptions (which the compiler forces you to handle) and Unchecked Exceptions (which occur dynamically at runtime and are not compiler-forced).",
+          "optionExplanations": [
+            "Why A is wrong — These are not Java terminologies.",
+            "Why B is wrong — While exceptions are dynamic, these aren't the category names.",
+            "Why C is correct — Checked and Unchecked are the two primary Java exception categories.",
+            "Why D is wrong — `throw` and `throws` are keywords, not exception categories."
+          ]
+        },
+        {
+          "question": "Which of the following perfectly describes a 'Checked Exception' in Java?",
+          "options": [
+            "An exception that inherits directly from `RuntimeException`.",
+            "An exception that is completely ignored by the compiler during the build process.",
+            "An exception that the Java compiler checks at compile-time, forcing the programmer to either catch it or declare it using `throws`.",
+            "An error that represents severe hardware failures like `VirtualMachineError`."
+          ],
+          "correct": 2,
+          "explanation": "Checked exceptions (like `IOException`) represent anticipated issues outside the program's direct control. The Java compiler strictly enforces that developers either handle them with a try-catch block or pass them up using `throws`.",
+          "optionExplanations": [
+            "Why A is wrong — `RuntimeException` subclasses are Unchecked.",
+            "Why B is wrong — The compiler actively flags Checked exceptions, preventing compilation if unhandled.",
+            "Why C is correct — The compiler mandates handling or declaration for Checked exceptions.",
+            "Why D is wrong — Hardware failures represent `Error`, which is unchecked and unrecoverable."
+          ]
+        },
+        {
+          "question": "Which of the following is an example of an 'Unchecked Exception' in Java?",
+          "options": [
+            "IOException",
+            "SQLException",
+            "ClassNotFoundException",
+            "ArithmeticException"
+          ],
+          "correct": 3,
+          "explanation": "Unchecked exceptions inherit from `RuntimeException`. They usually represent programming bugs, such as `ArithmeticException` (dividing by zero) or `NullPointerException`.",
+          "optionExplanations": [
+            "Why A is wrong — `IOException` is a Checked exception.",
+            "Why B is wrong — `SQLException` is a Checked exception.",
+            "Why C is wrong — `ClassNotFoundException` is Checked.",
+            "Why D is correct — `ArithmeticException` is Unchecked; the compiler doesn't force you to write a try-catch for division."
+          ]
+        },
+        {
+          "question": "In the Java class hierarchy, what is the absolute root parent class of both `Exception` and `Error`?",
+          "options": [
+            "Object",
+            "Throwable",
+            "RuntimeException",
+            "System"
+          ],
+          "correct": 1,
+          "explanation": "The `Throwable` class sits at the top of the exception handling hierarchy in Java. Both the `Exception` class (recoverable) and `Error` class (unrecoverable system crashes) extend `Throwable`.",
+          "optionExplanations": [
+            "Why A is wrong — While everything inherits from `Object`, `Throwable` is the specific root of the error hierarchy.",
+            "Why B is correct — `Throwable` is the direct parent of all exceptions and errors.",
+            "Why C is wrong — `RuntimeException` is a child of `Exception`.",
+            "Why D is wrong — `System` manages standard input/output streams."
+          ]
+        },
+        {
+          "question": "If a Java programmer writes `int a = 50 / 0;` without any `try-catch` block, what will happen?",
+          "options": [
+            "The program will compile, but output 0 at runtime.",
+            "The program will compile, but throw an unhandled `ArithmeticException` at runtime, causing the default handler to crash the thread and print a stack trace.",
+            "The compiler will throw a Checked Exception error, refusing to compile the code.",
+            "The JVM will automatically convert the output to floating-point infinity."
+          ],
+          "correct": 1,
+          "explanation": "Because division by zero triggers an `ArithmeticException` (an Unchecked exception), the compiler does not force a try-catch. However, at runtime, the JVM encounters the error, finds no handler, and uses the Default Exception Handler to terminate the program.",
+          "optionExplanations": [
+            "Why A is wrong — It does not return 0; it throws an exception.",
+            "Why B is correct — Unhandled unchecked exceptions crash the executing thread at runtime.",
+            "Why C is wrong — `ArithmeticException` is Unchecked, so the compiler does not flag it.",
+            "Why D is wrong — Integer division by zero throws an exception; floating-point division by zero yields infinity."
+          ]
+        },
+        {
+          "question": "What Java exception is thrown when code attempts to execute `String s = null; System.out.println(s.length());`?",
+          "options": [
+            "NumberFormatException",
+            "NullPointerException",
+            "StringIndexOutOfBoundsException",
+            "IOException"
+          ],
+          "correct": 1,
+          "explanation": "Attempting to invoke a method (like `.length()`) on an object reference that is currently pointing to `null` strictly throws a `NullPointerException`.",
+          "optionExplanations": [
+            "Why A is wrong — Tied to failing conversions (e.g., \"abc\" to int).",
+            "Why B is correct — The object reference `s` is empty (null).",
+            "Why C is wrong — Tied to requesting a character index that doesn't exist.",
+            "Why D is wrong — Tied to file system access failures."
+          ]
+        },
+        {
+          "question": "Examine this Java code: `int[] A = new int; A = 50;`. What exception is thrown during runtime?",
+          "options": [
+            "ArrayIndexOutOfBoundsException",
+            "OutOfMemoryError",
+            "InvalidIndexException",
+            "TypeMismatchException"
+          ],
+          "correct": 0,
+          "explanation": "The array `A` only allocates space for indices 0 through 4. Accessing index 10 breaches the array boundaries, triggering Java's strict `ArrayIndexOutOfBoundsException`.",
+          "optionExplanations": [
+            "Why A is correct — Explicitly thrown when accessing invalid array indices.",
+            "Why B is wrong — Thrown when the heap is full, not for index tracking.",
+            "Why C is wrong — This is not a standard Java exception name.",
+            "Why D is wrong — The data type `50` perfectly matches `int[]`."
+          ]
+        },
+        {
+          "question": "Which of the following accurately describes the syntactical difference between the `throw` and `throws` keywords in Java?",
+          "options": [
+            "`throw` delegates the exception to the JVM, while `throws` prints the stack trace.",
+            "`throw` is used to instantiate and physically emit an exception object inside a block, whereas `throws` is used in a method signature to declare that the method might emit an exception.",
+            "`throw` is used for Checked exceptions, while `throws` is used for Unchecked exceptions.",
+            "There is no functional difference; they are interchangeable."
+          ],
+          "correct": 1,
+          "explanation": "`throw new Exception();` actively creates and launches the error. Conversely, `void myMethod() throws IOException` acts as a warning label on the method's signature, informing callers they must be prepared to handle the declared error.",
+          "optionExplanations": [
+            "Why A is wrong — Neither keyword prints the stack trace directly.",
+            "Why B is correct — Action (inside the method) vs Declaration (on the signature).",
+            "Why C is wrong — Both can be used with both types of exceptions.",
+            "Why D is wrong — They have entirely different syntactical rules and placements."
+          ]
+        },
+        {
+          "question": "If a Java method is declared as `void readFile() throws IOException`, what happens if the exception does NOT occur during execution?",
+          "options": [
+            "The program throws a `NullPointerException`.",
+            "The program will halt because the promised exception wasn't thrown.",
+            "The code executes completely fine without any issues.",
+            "The `finally` block gets skipped."
+          ],
+          "correct": 2,
+          "explanation": "Declaring `throws` simply warns the compiler that an exception *might* happen. If normal operations succeed and the error never triggers, the program executes smoothly and ignores the warning.",
+          "optionExplanations": [
+            "Why A is wrong — Warnings don't trigger phantom exceptions.",
+            "Why B is wrong — Exceptions are unwanted events; avoiding them is the goal.",
+            "Why C is correct — Normal execution flow is maintained flawlessly.",
+            "Why D is wrong — The `finally` block executes regardless of whether an error occurred."
+          ]
+        },
+        {
+          "question": "When implementing multiple `catch` blocks for a single `try` block, what critical hierarchy rule must be followed?",
+          "options": [
+            "General superclass exceptions must be placed before specific subclass exceptions.",
+            "Specific subclass exceptions must be placed before general superclass exceptions.",
+            "The blocks must be ordered alphabetically by exception name.",
+            "All catch blocks must use the exact same exception parameter."
+          ],
+          "correct": 1,
+          "explanation": "Exception handling matches top-to-bottom. If a superclass (like `Exception`) is placed first, it will catch *everything*, rendering any specific subclasses (like `ArithmeticException`) below it completely unreachable.",
+          "optionExplanations": [
+            "Why A is wrong — This guarantees the specific subclasses will never be reached.",
+            "Why B is correct — The specific exceptions (Subclass) must be filtered first before the general fallback (Superclass).",
+            "Why C is wrong — Alphabetical order has no bearing on object-oriented inheritance logic.",
+            "Why D is wrong — Multiple catch blocks exist precisely to handle different parameter types."
+          ]
+        },
+        {
+          "question": "What happens in Java if you violate the hierarchy rule by placing `catch(Exception e)` before `catch(ArithmeticException e)`?",
+          "options": [
+            "The compiler automatically reorganizes the blocks to the correct order.",
+            "The program compiles but runs slightly slower due to dynamic checking.",
+            "The program throws a `Compilation Error: Unreachable code` because the subclass catch block can never be executed.",
+            "The JVM executes both catch blocks simultaneously."
+          ],
+          "correct": 2,
+          "explanation": "Java strictly enforces unreachable code checks. Because `Exception` captures all errors, the `ArithmeticException` block beneath it is mathematically impossible to reach, forcing a compilation failure.",
+          "optionExplanations": [
+            "Why A is wrong — The compiler never rewrites structural architecture.",
+            "Why B is wrong — The code will not successfully compile.",
+            "Why C is correct — Unreachable code explicitly stops Java compilation.",
+            "Why D is wrong — Only one catch block is ever executed per exception."
+          ]
+        },
+        {
+          "question": "Consider a `try` block that triggers an exception. If there are five multiple `catch` blocks below it, how many of those `catch` blocks will execute?",
+          "options": [
+            "All five will execute in sequence.",
+            "Only the single catch block that first matches the exception type will execute.",
+            "None, because multiple catch blocks cause ambiguity.",
+            "The specific block and the general `Exception` block will both execute."
+          ],
+          "correct": 1,
+          "explanation": "The exception matching process acts like a switch statement. It checks top-to-bottom, executes the *first* matching `catch` block, and then immediately bypasses all remaining catch blocks to continue normal execution.",
+          "optionExplanations": [
+            "Why A is wrong — Only one block ever executes.",
+            "Why B is correct — The first valid match consumes the error.",
+            "Why C is wrong — Multiple catches are fully supported and legal.",
+            "Why D is wrong — It does not cascade; the first match stops the process."
+          ]
+        },
+        {
+          "question": "What is meant by 'Nested Try Statements' in exception handling?",
+          "options": [
+            "Writing a `try` block inside a `finally` block exclusively.",
+            "A `try` block placed entirely within the boundaries of another `try` block.",
+            "Using multiple catch statements for one try statement.",
+            "Delegating the try logic using the `throws` keyword."
+          ],
+          "correct": 1,
+          "explanation": "Nested try blocks occur when a complete `try-catch` structure is enclosed within the `try` block of an outer `try-catch` structure. This allows developers to isolate specific inner logic while maintaining a broader outer safety net.",
+          "optionExplanations": [
+            "Why A is wrong — It can be inside a `finally` block, but nesting specifically refers to try-within-try.",
+            "Why B is correct — This accurately defines structural nesting.",
+            "Why C is wrong — This defines multiple catches, not nested tries.",
+            "Why D is wrong — `throws` delegates to external methods."
+          ]
+        },
+        {
+          "question": "In a nested `try` structure, what happens if the inner `try` block throws an exception but its immediate inner `catch` block does NOT match the exception type?",
+          "options": [
+            "The JVM immediately crashes.",
+            "The exception is permanently deleted from memory.",
+            "The stack is unwound, and the JVM checks the outer enclosing `try` block's catch handlers for a match.",
+            "The compiler creates an automatic implicit handler to resolve it."
+          ],
+          "correct": 2,
+          "explanation": "This is known as Stack Unwinding. If the inner handler fails to catch the error, the exception cascades upward to the outer scope to see if the parent `try-catch` block can handle it.",
+          "optionExplanations": [
+            "Why A is wrong — The JVM will check parent scopes before resorting to a crash.",
+            "Why B is wrong — Exceptions persist until handled or the program dies.",
+            "Why C is correct — Unwinding pushes the error outward to broader scopes.",
+            "Why D is wrong — Handlers must be written explicitly."
+          ]
+        },
+        {
+          "question": "What is the core guarantee of the Java `finally` block?",
+          "options": [
+            "It automatically fixes corrupted memory variables.",
+            "It will strictly execute ONLY if an exception occurred.",
+            "It will always execute regardless of whether an exception was thrown, caught, or ignored, ensuring crucial cleanup code runs.",
+            "It intercepts system crashes and restarts the program."
+          ],
+          "correct": 2,
+          "explanation": "The `finally` block is designed for mandatory cleanup (like closing files or database connections). It is guaranteed to execute after the `try` and `catch` blocks, no matter the outcome of the program.",
+          "optionExplanations": [
+            "Why A is wrong — It executes code; it does not auto-fix memory.",
+            "Why B is wrong — It executes on both success and failure paths.",
+            "Why C is correct — Unconditional execution is its primary defining trait.",
+            "Why D is wrong — It cannot prevent hard OS crashes or `System.exit()`."
+          ]
+        },
+        {
+          "question": "Which of the following is a strict syntactical rule regarding the placement of the `finally` block in Java?",
+          "options": [
+            "It must be placed at the very beginning of the method.",
+            "It must immediately follow a `try` block or a `catch` block.",
+            "It must be placed inside the parent class constructor.",
+            "It must be preceded by the `throws` keyword."
+          ],
+          "correct": 1,
+          "explanation": "The `finally` block is structurally bound to the exception handling sequence. It cannot exist independently; it must append directly to the end of a `try` block or a sequence of `catch` blocks.",
+          "optionExplanations": [
+            "Why A is wrong — It belongs at the end of the error-handling structure.",
+            "Why B is correct — It finalizes the try-catch sequence.",
+            "Why C is wrong — It is tied to functional blocks, not strictly constructors.",
+            "Why D is wrong — `throws` handles signature declarations, completely unrelated to structural placement."
+          ]
+        },
+        {
+          "question": "Examine this Java scenario: A `try` block throws an `ArithmeticException`. There is no `catch` block, but there IS a `finally` block. What is the execution sequence?",
+          "options": [
+            "The program crashes immediately, skipping the `finally` block.",
+            "The `finally` block executes, prints its contents, and then the Default Exception Handler crashes the program due to the unhandled exception.",
+            "The `finally` block executes and completely neutralizes the exception, allowing normal flow to continue.",
+            "The JVM converts the `finally` block into a `catch` block automatically."
+          ],
+          "correct": 1,
+          "explanation": "Even if the exception remains unhandled (acting as a fatal error), the JVM strictly honors the `finally` block guarantee. It executes the cleanup code first, and *then* the thread terminates from the unhandled error.",
+          "optionExplanations": [
+            "Why A is wrong — The `finally` block is never skipped under standard exceptions.",
+            "Why B is correct — Cleanup code executes prior to the thread dying.",
+            "Why C is wrong — `finally` cleans up; it does not 'handle' or neutralize errors.",
+            "Why D is wrong — The JVM does not rewrite code functions."
+          ]
+        },
+        {
+          "question": "Why is Exception Handling functionally preferred over procedural 'If-Else' return code checking (e.g., returning -1 for an error)?",
+          "options": [
+            "Because exceptions drastically speed up CPU performance.",
+            "Because exceptions allow programmers to cleanly separate the core logic (try) from the error-handling logic (catch), maintaining program flow and readability.",
+            "Because exceptions prevent the creation of infinite loops.",
+            "Because procedural languages cannot perform division."
+          ],
+          "correct": 1,
+          "explanation": "Procedural code clutters the main logic with constant validation checks (`if error == -1`). Exception handling provides an elegant separation, putting all 'happy path' code in the `try` block and all error resolution in the `catch` block.",
+          "optionExplanations": [
+            "Why A is wrong — Exceptions inherently incur a slight performance overhead.",
+            "Why B is correct — Separation of concerns and code cleanliness is the primary architectural benefit.",
+            "Why C is wrong — Logic loops are unrelated to anomaly management.",
+            "Why D is wrong — Procedural languages perform math perfectly fine."
+          ]
+        },
+        {
+          "question": "How do you define a Custom (User-Defined) Exception in Java?",
+          "options": [
+            "By inheriting properties from the standard `Exception` class using the `extends` keyword.",
+            "By implementing the `Runnable` interface.",
+            "By using the `#include <exception>` directive.",
+            "By declaring a variable as `volatile`."
+          ],
+          "correct": 0,
+          "explanation": "To create a user-defined exception in Java, the new class must integrate into the exception hierarchy by extending the standard `Exception` class (or `RuntimeException`).",
+          "optionExplanations": [
+            "Why A is correct — `class MyException extends Exception` is the correct syntax.",
+            "Why B is wrong — `Runnable` is used for multithreading.",
+            "Why C is wrong — This is the C++ method for importing exceptions.",
+            "Why D is wrong — `volatile` relates to thread-safe memory handling."
+          ]
+        },
+        {
+          "question": "In a Custom Java Exception, what is the purpose of writing `super(message);` inside the constructor?",
+          "options": [
+            "It upgrades the exception to a critical System Error.",
+            "It prints the message directly to the GUI interface.",
+            "It passes the custom error string up to the parent `Exception` class, ensuring the standard `getMessage()` method can retrieve it later.",
+            "It prevents the exception from unwinding the stack."
+          ],
+          "correct": 2,
+          "explanation": "The `super` keyword invokes the parent class's constructor. Passing the string message to `Exception` ensures that when `catch (Exception e)` triggers, `e.getMessage()` successfully outputs the custom string.",
+          "optionExplanations": [
+            "Why A is wrong — `Error` is a separate hierarchy; it does not upgrade status.",
+            "Why B is wrong — It stores the message; it does not print it.",
+            "Why C is correct — It delegates data storage to the established parent blueprint.",
+            "Why D is wrong — Constructor initialization has no effect on stack unwinding logic."
+          ]
+        },
+        {
+          "question": "Examine this C++ snippet:\n`catch (const std::exception& e)`\nWhy is the exception caught by reference (`&`) rather than by value?",
+          "options": [
+            "To prevent the compiler from throwing a syntax error.",
+            "To avoid the performance overhead of copying the exception object and to prevent 'object slicing' in cases of polymorphism.",
+            "To ensure the exception is permanently deleted from memory.",
+            "To convert the object into an identity hashmap."
+          ],
+          "correct": 1,
+          "explanation": "Catching by reference (`&`) ensures the specific derived exception object is accessed directly. Catching by value would create a copy, wasting memory and potentially stripping away subclass data (object slicing).",
+          "optionExplanations": [
+            "Why A is wrong — Catching by value compiles legally but is architecturally flawed.",
+            "Why B is correct — It preserves exact polymorphism and optimizes memory.",
+            "Why C is wrong — Garbage collection/destruction handles deletion.",
+            "Why D is wrong — Hashmaps are Java mechanisms."
+          ]
+        },
+        {
+          "question": "In the C++ Standard Exception Library, `std::overflow_error` and `std::underflow_error` directly inherit from which parent class?",
+          "options": [
+            "std::logic_error",
+            "std::runtime_error",
+            "std::bad_alloc",
+            "std::out_of_range"
+          ],
+          "correct": 1,
+          "explanation": "Mathematical overflows and underflows are unpredictable environmental circumstances that occur during calculation, categorizing them strictly under `std::runtime_error`.",
+          "optionExplanations": [
+            "Why A is wrong — Logic errors are predictable code flaws (e.g., invalid arguments).",
+            "Why B is correct — They represent uncontrollable runtime anomalies.",
+            "Why C is wrong — Tied to memory allocation.",
+            "Why D is wrong — Tied to index array violations."
+          ]
+        },
+        {
+          "question": "Which of the following scenarios describes Java 'Stack Unwinding'?",
+          "options": [
+            "The JVM clears unused memory blocks to free up space.",
+            "A `try` block checks its inner `catch` blocks; if no match is found, control is passed upward to the calling method's outer `catch` blocks until a match is found.",
+            "A multithreading process terminates unneeded background tasks.",
+            "The compiler optimizes nested loops."
+          ],
+          "correct": 1,
+          "explanation": "Stack unwinding refers to the process where the execution stack (LIFO) is searched sequentially backward from the point of failure. The JVM 'unwinds' through caller methods trying to find a valid `catch` block to handle the anomaly.",
+          "optionExplanations": [
+            "Why A is wrong — This describes Garbage Collection.",
+            "Why B is correct — Passing control upward through enclosing handlers is the definition of stack unwinding.",
+            "Why C is wrong — Related to concurrency management.",
+            "Why D is wrong — Related to code optimization."
+          ]
+        },
+        {
+          "question": "A Java program encounters a `StackOverflowError` due to infinite recursion. Can the programmer effectively manage this using a `try-catch` block?",
+          "options": [
+            "Yes, by catching `ArithmeticException`.",
+            "Yes, by utilizing the `finally` keyword.",
+            "No, because it falls under the `Error` hierarchy, which represents catastrophic, unrecoverable JVM conditions that should not be caught.",
+            "No, because recursive functions bypass all exception handlers."
+          ],
+          "correct": 2,
+          "explanation": "In Java's `Throwable` hierarchy, `Error` subclasses (like `VirtualMachineError` or `StackOverflowError`) indicate critical environmental breakdowns that applications cannot and should not attempt to recover from using standard catch blocks.",
+          "optionExplanations": [
+            "Why A is wrong — It is not an arithmetic logic issue.",
+            "Why B is wrong — The thread crashes too severely for recovery.",
+            "Why C is correct — `Error` indicates uncontrollable, catastrophic failures.",
+            "Why D is wrong — Recursion doesn't bypass handlers; the error type itself is unmanageable."
+          ]
+        },
+        {
+          "question": "If a C++ program attempts to use `dynamic_cast` to cast a base class reference into an invalid derived class reference, what standard exception is thrown?",
+          "options": [
+            "std::bad_cast",
+            "std::bad_alloc",
+            "std::invalid_argument",
+            "std::logic_error"
+          ],
+          "correct": 0,
+          "explanation": "The `std::bad_cast` exception is specifically thrown by the C++ runtime system when an illegal `dynamic_cast` fails to accurately convert reference types.",
+          "optionExplanations": [
+            "Why A is correct — This explicitly tracks bad reference casting.",
+            "Why B is wrong — Tied to `new` allocation failure.",
+            "Why C is wrong — Tied to passing wrong data types to functions.",
+            "Why D is wrong — The parent class for predictable logic flaws."
+          ]
+        },
+        {
+          "question": "In Java, what happens to the remaining code *inside* the `try` block immediately after an exception is thrown?",
+          "options": [
+            "The remaining code is skipped, and control instantly transfers to the matching `catch` block.",
+            "The code continues executing, and the exception is processed at the end of the block.",
+            "The JVM temporarily stores the exception and executes the `finally` block first.",
+            "The remaining code executes twice to verify the error."
+          ],
+          "correct": 0,
+          "explanation": "The `throw` action is immediate and disruptive. Any lines of code written below the error-causing line inside the `try` block are completely ignored as execution instantly jumps out to the `catch` block.",
+          "optionExplanations": [
+            "Why A is correct — The anomaly triggers an immediate exit from the `try` scope.",
+            "Why B is wrong — Code does not continue past the throw point.",
+            "Why C is wrong — `finally` triggers after the catch block (or if no catch exists).",
+            "Why D is wrong — Code execution does not repeat."
+          ]
+        },
+        {
+          "question": "When designing a banking application, why might a programmer create a custom `InsufficientFundsException` rather than just using a standard `RuntimeException`?",
+          "options": [
+            "Because custom exceptions execute significantly faster in the CPU.",
+            "Because it provides highly specific, meaningful error tracing related directly to the business logic, making the code much easier to debug and maintain.",
+            "Because Java restricts `RuntimeException` to strictly mathematical calculations.",
+            "Because custom exceptions bypass standard memory limits."
+          ],
+          "correct": 1,
+          "explanation": "Custom exceptions drastically improve code clarity. Seeing `InsufficientFundsException` in a stack trace immediately tells the developer exactly which business rule was violated, whereas a generic `Exception` is vague and harder to track.",
+          "optionExplanations": [
+            "Why A is wrong — Exceptions don't increase CPU speed.",
+            "Why B is correct — Domain-specific clarity is the core reason for custom exceptions.",
+            "Why C is wrong — Generic exceptions can be used anywhere.",
+            "Why D is wrong — Exceptions do not bypass hardware limitations."
+          ]
+        },
+        {
+          "question": "Examine this Java signature: `public void readFile() throws IOException`. What compiler-enforced obligation does this place on any other method that calls `readFile()`?",
+          "options": [
+            "The calling method must use a `finally` block to close the file.",
+            "The calling method must declare all variables as static.",
+            "The calling method must either surround the invocation with a `try-catch` block handling `IOException`, or it must also declare `throws IOException` to pass the responsibility up.",
+            "The calling method must throw a `RuntimeException`."
+          ],
+          "correct": 2,
+          "explanation": "Because `IOException` is a Checked Exception, Java enforces a strict chain of responsibility. The caller is warned and must either provide the safety net (catch) or warn its own callers (re-declare throws).",
+          "optionExplanations": [
+            "Why A is wrong — While good practice, the compiler doesn't enforce `finally`.",
+            "Why B is wrong — Static variables are unrelated to error routing.",
+            "Why C is correct — The 'Handle or Declare' rule is absolute for Checked exceptions.",
+            "Why D is wrong — Checked exceptions don't force unchecked errors."
+          ]
+        },
+        {
+          "question": "What is the result of placing a `try` block inside a loop without any exception occurring?",
+          "options": [
+            "The loop functions normally, processing the `try` block sequentially without performance loss.",
+            "The loop immediately terminates after the first iteration.",
+            "The loop crashes due to memory overflow.",
+            "The compiler throws a syntax error banning tries in loops."
+          ],
+          "correct": 0,
+          "explanation": "A `try` block simply acts as a monitoring wrapper. If no exceptions are triggered, the code executes smoothly and sequentially just like any normal block of code.",
+          "optionExplanations": [
+            "Why A is correct — The 'happy path' proceeds unimpeded.",
+            "Why B is wrong — Loops are not broken by empty try blocks.",
+            "Why C is wrong — Monitoring code does not cause memory leaks.",
+            "Why D is wrong — Try blocks are fully legal inside iteration loops."
+          ]
+        },
+        {
+          "question": "Which of the following C++ standard exceptions is logically thrown when dealing with `std::vector` indexing out of bounds?",
+          "options": [
+            "std::range_error",
+            "std::bad_cast",
+            "std::out_of_range",
+            "std::domain_error"
+          ],
+          "correct": 2,
+          "explanation": "In C++, attempting to access an invalid index using the `.at()` method of a `std::vector` or `std::bitset` securely throws an `std::out_of_range` exception.",
+          "optionExplanations": [
+            "Why A is wrong — Relates to general range limit violations, not specifically container indexing.",
+            "Why B is wrong — Relates to dynamic casting.",
+            "Why C is correct — This explicitly guards data container bounds.",
+            "Why D is wrong — Relates to mathematically invalid inputs."
+          ]
+        },
+        {
+          "question": "In Java, what happens to the execution flow if an exception is caught and fully resolved within a `catch` block?",
+          "options": [
+            "The program crashes and prints a stack trace.",
+            "Control returns to the beginning of the `try` block to attempt execution again.",
+            "Control jumps to the statement immediately following the entire `try-catch` structure, continuing normal execution.",
+            "The program automatically invokes the garbage collector."
+          ],
+          "correct": 2,
+          "explanation": "The goal of exception handling is recovery. Once the `catch` block resolves the issue, the program exits the error structure and resumes normal, sequential execution on the lines below it.",
+          "optionExplanations": [
+            "Why A is wrong — Crashes only occur if the exception is NOT caught.",
+            "Why B is wrong — Execution does not magically loop backwards.",
+            "Why C is correct — Normal operational flow is safely restored.",
+            "Why D is wrong — Memory management operates independently."
+          ]
+        },
+        {
+          "question": "What is meant by the concept of 'Rethrowing' an exception?",
+          "options": [
+            "Catching an exception in a block, logging it, and then using the `throw` keyword to pass that exact same exception up to the next higher-level handler.",
+            "Converting a Checked exception into an Unchecked exception.",
+            "Forcing the JVM to execute a try block twice.",
+            "Deleting the exception object and generating a generic Error."
+          ],
+          "correct": 0,
+          "explanation": "Rethrowing is used when a local `catch` block wants to record the error (like logging) but cannot fully resolve it. It uses `throw e;` (or just `throw;` in C++) to escalate the problem to a parent handler.",
+          "optionExplanations": [
+            "Why A is correct — Escalating a caught error upward is the definition of rethrowing.",
+            "Why B is wrong — The exception type remains unchanged.",
+            "Why C is wrong — Try blocks are never repeated automatically.",
+            "Why D is wrong — Objects are escalated, not destroyed and replaced."
+          ]
+        },
+        {
+          "question": "Which specific C++ exception is triggered if a programmer writes a logic formula where a mathematical argument falls completely outside the valid mathematical domain (e.g., negative square roots)?",
+          "options": [
+            "std::underflow_error",
+            "std::domain_error",
+            "std::length_error",
+            "std::bad_alloc"
+          ],
+          "correct": 1,
+          "explanation": "The `std::domain_error` (a child of `logic_error`) is specifically designed to be thrown when a function receives mathematical parameters that fall outside the defined algorithmic domain.",
+          "optionExplanations": [
+            "Why A is wrong — Deals with floating point numbers dropping below representable values.",
+            "Why B is correct — Explicitly tied to mathematically invalid inputs.",
+            "Why C is wrong — Relates to exceeding max string lengths.",
+            "Why D is wrong — Relates to heap memory."
+          ]
+        },
+        {
+          "question": "If a developer writes `catch(Exception e)` as the first block and `catch(IOException e)` as the second block in Java, what fundamental OOP principle is causing the compilation error?",
+          "options": [
+            "Encapsulation, because variables are hidden.",
+            "Operator Overloading, because commas are misinterpreted.",
+            "Polymorphism, because an `Exception` reference can inherently catch and hold any subclass object like `IOException`, making the second block useless.",
+            "Multiple Inheritance, because exceptions cannot have two parents."
+          ],
+          "correct": 2,
+          "explanation": "Through polymorphism (upcasting), a superclass reference variable (`Exception e`) can point to any subclass object. Thus, the first block acts as a universal net, consuming everything and blocking subsequent specific filters.",
+          "optionExplanations": [
+            "Why A is wrong — Encapsulation protects variable access.",
+            "Why B is wrong — Exception catching has nothing to do with symbols.",
+            "Why C is correct — Polymorphic upcasting causes the superclass to consume all subclass instances.",
+            "Why D is wrong — Java bans multiple class inheritance, but this is a sequential filtering issue, not structural inheritance."
+          ]
+        },
+        {
+          "question": "How does Java format the console output when printing a caught exception using `System.out.println(e);`?",
+          "options": [
+            "It prints the exact memory address hashmap of the error.",
+            "It prints the fully qualified class name of the exception followed by the specific error message (e.g., `java.lang.ArithmeticException: / by zero`).",
+            "It prints a numeric binary error code.",
+            "It prints a blank line."
+          ],
+          "correct": 1,
+          "explanation": "When an exception object `e` is passed directly to the standard print stream, Java implicitly calls its `.toString()` method, which outputs the formal class classification and the specific message attached.",
+          "optionExplanations": [
+            "Why A is wrong — It outputs diagnostic text, not raw memory identities.",
+            "Why B is correct — Class classification + specific message is the standard format.",
+            "Why C is wrong — It does not return procedural integer error codes.",
+            "Why D is wrong — Text is explicitly printed."
+          ]
+        },
+        {
+          "question": "In C++, what does the syntax `throw;` (without an object specified) achieve when placed inside a catch block?",
+          "options": [
+            "It throws a generic system error.",
+            "It terminates the `main()` driver function.",
+            "It re-throws the exact same exception currently being handled, preserving its original type and data, passing it up to the next enclosing try-catch level.",
+            "It clears the screen buffer."
+          ],
+          "correct": 2,
+          "explanation": "In C++, an empty `throw;` statement inside a catch block is the formal syntax for rethrowing. It takes the currently caught anomaly and escalates it upwards intact.",
+          "optionExplanations": [
+            "Why A is wrong — It re-emits the existing specific object.",
+            "Why B is wrong — Termination requires unhandled errors or explicit `exit()`.",
+            "Why C is correct — It perfectly escalates the current exception.",
+            "Why D is wrong — It manages flow, not console rendering."
+          ]
+        },
+        {
+          "question": "Which of the following is true about utilizing multiple exceptions in a Java `throws` declaration?",
+          "options": [
+            "A method can only declare one single exception type.",
+            "A method can declare multiple exception types separated by commas (e.g., `throws IOException, SQLException`).",
+            "A method must use the `extends` keyword to link multiple exceptions.",
+            "A method must declare them in alphabetical order."
+          ],
+          "correct": 1,
+          "explanation": "Java allows a single method to anticipate and declare multiple distinct checked exceptions. The programmer simply lists them separated by commas in the method signature.",
+          "optionExplanations": [
+            "Why A is wrong — Java explicitly supports multiple declarations.",
+            "Why B is correct — Comma separation is the standard valid syntax.",
+            "Why C is wrong — `extends` governs class hierarchy.",
+            "Why D is wrong — Alphabetical order is not enforced."
+          ]
+        },
+        {
+          "question": "What primary advantage does a `try-catch` block have over standard procedural programming when handling a file read operation that might fail?",
+          "options": [
+            "It bypasses operating system security permissions.",
+            "It prevents the program from abnormally terminating by elegantly catching the failure event and allowing the execution to cleanly branch into an error-resolution pathway.",
+            "It guarantees that the missing file is automatically created.",
+            "It significantly compresses the size of the text file."
+          ],
+          "correct": 1,
+          "explanation": "Without a try-catch, a missing file triggers a fatal runtime crash. With it, the program intercepts the crash, prints a polite user warning, and continues running other tasks smoothly.",
+          "optionExplanations": [
+            "Why A is wrong — Exceptions don't hack OS access restrictions.",
+            "Why B is correct — Clean structural recovery is the main advantage.",
+            "Why C is wrong — Programs don't magically write missing data.",
+            "Why D is wrong — Algorithms handle compression, not exception blocks."
+          ]
+        },
+        {
+          "question": "Consider a case where a Java method throws an exception but there is absolutely no `try-catch` mechanism in the method, nor any calling method. What ultimately catches it?",
+          "options": [
+            "The `java.lang.System` class.",
+            "The Java Default Exception Handler, which aborts the thread and dumps the stack trace.",
+            "The compiler, which halts the executable.",
+            "The Garbage Collector."
+          ],
+          "correct": 1,
+          "explanation": "If an exception bubbles all the way up the stack without finding a handler, the JVM's Default Exception Handler acts as the final safety net. It prints the red error trace to the console and forcefully kills the program.",
+          "optionExplanations": [
+            "Why A is wrong — System streams I/O, it doesn't handle final runtime traces.",
+            "Why B is correct — The Default Handler is the absolute final destination.",
+            "Why C is wrong — Unchecked errors bypass the compiler entirely.",
+            "Why D is wrong — Garbage collection sweeps memory; it does not process error stacks."
+          ]
+        },
+        {
+          "question": "In Java, what occurs if the `finally` block itself triggers an unhandled exception?",
+          "options": [
+            "The exception is silently suppressed.",
+            "The original exception in the `try` block overrides it.",
+            "The `finally` exception propagates outward, potentially masking or overriding any initial exception thrown by the `try` block.",
+            "The compiler prevents exceptions from being written inside `finally` blocks."
+          ],
+          "correct": 2,
+          "explanation": "If a `finally` block throws an exception before resolving the original `try` exception, the new error takes precedence and bubbles up, often overriding the original error. (This is why cleanup code must be written very carefully).",
+          "optionExplanations": [
+            "Why A is wrong — Exceptions are never silently ignored.",
+            "Why B is wrong — The new error aggressively overrides the old one.",
+            "Why C is correct — The new anomaly propagates and masks previous states.",
+            "Why D is wrong — The compiler allows any valid code inside `finally`."
+          ]
+        }
+      ]
     }
   ]
 };
