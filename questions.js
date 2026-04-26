@@ -8840,6 +8840,860 @@ optionExplanations: [
           ]
         }
       ]
+    },{
+      name: "Unit 11: Design Patterns",
+      questions: [
+        {
+          "question": "What are Design Patterns in the context of object-oriented programming?",
+          "options": [
+            "Specific implementations of algorithms written exclusively in C++.",
+            "Reusable solutions to common problems in software design that serve as a blueprint or guide for structuring code.",
+            "Compiler features that automatically detect and correct semantic syntax errors.",
+            "Hardware-level protocols used to establish secure network connections."
+          ],
+          "correct": 1,
+          "explanation": "Design patterns are defined as reusable solutions to common recurring problems in software design. They are not specific, rigid code implementations, but rather serve as a structural blueprint or guide to solve issues related to object creation, communication, and behavior.",
+          "optionExplanations": [
+            "Why A is wrong — They are conceptual blueprints, not language-specific concrete algorithms.",
+            "Why B is correct — This exactly aligns with the course definition of design patterns providing structured, reusable blueprints.",
+            "Why C is wrong — Compilers handle syntax; design patterns handle high-level software architecture.",
+            "Why D is wrong — They are software design concepts, not hardware or networking protocols."
+          ]
+        },
+        {
+          "question": "Which of the following is considered a primary advantage of utilizing design patterns in a project?",
+          "options": [
+            "They physically increase the execution clock speed of the CPU.",
+            "They automatically convert procedural C code into object-oriented Java code.",
+            "They provide a common vocabulary for developers and significantly improve code reusability and maintainability.",
+            "They allow programs to bypass the compiler entirely."
+          ],
+          "correct": 2,
+          "explanation": "Design patterns provide numerous architectural benefits including code reusability, ease of maintenance, and improved communication by establishing a common vocabulary among developers.",
+          "optionExplanations": [
+            "Why A is wrong — Patterns optimize software structure, not hardware clock speeds.",
+            "Why B is wrong — Code translation is a manual or tool-based process, unrelated to design patterns.",
+            "Why C is correct — A common vocabulary and reusability are explicitly cited as primary benefits of design patterns.",
+            "Why D is wrong — All OOP code must still be compiled."
+          ]
+        },
+        {
+          "question": "Software design patterns are broadly categorized into which three main types based on their purpose?",
+          "options": [
+            "Creational, Structural, and Behavioral patterns",
+            "Static, Dynamic, and Abstract patterns",
+            "Sequential, Associative, and Unordered patterns",
+            "Private, Public, and Protected patterns"
+          ],
+          "correct": 0,
+          "explanation": "Design patterns are classified by their purpose and usage into three main categories: Creational patterns, Structural patterns, and Behavioral patterns.",
+          "optionExplanations": [
+            "Why A is correct — These are the three official categories taught in the course.",
+            "Why B is wrong — These are programming concepts/keywords, not pattern categories.",
+            "Why C is wrong — These categorize STL containers, not design patterns.",
+            "Why D is wrong — These categorize access modifiers, not design patterns."
+          ]
+        },
+        {
+          "question": "Which category of design patterns deals specifically with the mechanisms of object instantiation and creation?",
+          "options": [
+            "Structural Patterns",
+            "Behavioral Patterns",
+            "Creational Patterns",
+            "Concurrency Patterns"
+          ],
+          "correct": 2,
+          "explanation": "Creational patterns (such as Singleton, Factory, and Builder) deal specifically with object creation mechanisms, abstracting the instantiation process.",
+          "optionExplanations": [
+            "Why A is wrong — Structural patterns handle how classes and objects are composed.",
+            "Why B is wrong — Behavioral patterns handle object communication and interaction.",
+            "Why C is correct — Creational patterns explicitly govern how objects are safely and dynamically created.",
+            "Why D is wrong — Concurrency deals with multithreading, which is a separate advanced topic."
+          ]
+        },
+        {
+          "question": "The Adapter, Decorator, Composite, and Proxy patterns belong to which category of design patterns?",
+          "options": [
+            "Creational Patterns",
+            "Structural Patterns",
+            "Behavioral Patterns",
+            "Architectural Patterns"
+          ],
+          "correct": 1,
+          "explanation": "Structural patterns include Adapter, Decorator, Composite, Proxy, Bridge, and Flyweight. They focus on class and object composition to form larger, flexible structures.",
+          "optionExplanations": [
+            "Why A is wrong — Creational patterns include Singleton and Factory.",
+            "Why B is correct — These patterns explicitly define how objects and classes can be combined structurally.",
+            "Why C is wrong — Behavioral patterns include Observer and Strategy.",
+            "Why D is wrong — Architectural patterns are broader system-wide templates (like MVC), distinct from these OOP patterns."
+          ]
+        },
+        {
+          "question": "What is the core architectural purpose of the Singleton pattern?",
+          "options": [
+            "To ensure that a class has only one instance globally and to provide a global point of access to it.",
+            "To automatically create multiple identical copies of an object for multithreaded processing.",
+            "To allow a child class to inherit from multiple parent base classes simultaneously.",
+            "To securely hide all member data from being accessed by any external function."
+          ],
+          "correct": 0,
+          "explanation": "The Singleton pattern explicitly ensures that a class has only one instance globally (like a single coffee machine in an office) and provides a unified global access point (usually via `getInstance()`).",
+          "optionExplanations": [
+            "Why A is correct — This is the exact definition and purpose of the Singleton pattern.",
+            "Why B is wrong — Singleton specifically restricts creation to exactly *one* instance.",
+            "Why C is wrong — That describes multiple inheritance, not a design pattern.",
+            "Why D is wrong — That describes data encapsulation/hiding, not Singleton."
+          ]
+        },
+        {
+          "question": "Which real-world analogy perfectly describes the concept of the Singleton pattern?",
+          "options": [
+            "A barista at a coffee shop making different types of coffee based on specific customer orders.",
+            "A single shared coffee machine in a department office that provides functionality to everyone without needing multiple machines.",
+            "A set of Russian nesting dolls where smaller dolls fit inside larger ones.",
+            "A laundry service where you drop off clothes and don't care about the internal washing mechanism."
+          ],
+          "correct": 1,
+          "explanation": "The course specifically uses the analogy of an office coffee machine. Having multiple machines is a waste of money and resources. A single, shared machine provides the required functionality consistently to everyone, mirroring a single shared object instance.",
+          "optionExplanations": [
+            "Why A is wrong — This describes the Factory pattern.",
+            "Why B is correct — A single shared resource avoiding redundancy perfectly analogizes Singleton.",
+            "Why C is wrong — This loosely describes the Composite or Decorator pattern.",
+            "Why D is wrong — This describes Abstraction or the Facade pattern."
+          ]
+        },
+        {
+          "question": "Which of the following scenarios is a common practical use case for applying the Singleton pattern?",
+          "options": [
+            "Creating dynamically varying UI components for different operating systems.",
+            "Managing a shared configuration file or a centralized logging service across an entire application.",
+            "Adding a visual scrollbar to a text window at runtime.",
+            "Notifying multiple registered investors simultaneously when a stock price changes."
+          ],
+          "correct": 1,
+          "explanation": "Singleton is commonly used for global resource management where a single consistent state is required, such as database connections, caching, centralized logging systems, and configuration managers.",
+          "optionExplanations": [
+            "Why A is wrong — This is a use case for the Factory pattern.",
+            "Why B is correct — Shared resources like configuration files and loggers mandate a single global instance.",
+            "Why C is wrong — This is a use case for the Decorator pattern.",
+            "Why D is wrong — This is a use case for the Observer pattern."
+          ]
+        },
+        {
+          "question": "To absolutely prevent external client code from directly instantiating an object of a Singleton class using the `new` keyword, what structural step must be taken?",
+          "options": [
+            "The class constructor must be declared with a `public` access modifier.",
+            "The class constructor must be declared with a `protected` access modifier.",
+            "The class constructor must be declared with a `private` access modifier.",
+            "The class constructor must be entirely deleted."
+          ],
+          "correct": 2,
+          "explanation": "The key to enforcing the Singleton pattern is to make the constructor private. This prevents any direct instantiation of the class from outside, forcing users to call the public `getInstance()` method instead.",
+          "optionExplanations": [
+            "Why A is wrong — A public constructor allows infinite object creation, breaking the pattern.",
+            "Why B is wrong — Protected allows derived subclasses to instantiate it, which can also break strict Singleton constraints.",
+            "Why C is correct — A private constructor locks instantiation strictly to the inside of the class itself.",
+            "Why D is wrong — Without a constructor, the inner logic cannot eventually create the single instance."
+          ]
+        },
+        {
+          "question": "In a standard C++ or Java Singleton implementation, what specific type of variable is used to permanently hold the single instance of the class?",
+          "options": [
+            "A private static pointer/reference variable",
+            "A public dynamic array",
+            "A volatile global constant",
+            "A transient floating-point variable"
+          ],
+          "correct": 0,
+          "explanation": "A Singleton requires a private static instance (pointer in C++, reference in Java). The `static` keyword ensures the variable belongs to the class itself rather than any specific object, allowing it to persist globally.",
+          "optionExplanations": [
+            "Why A is correct — A private static variable securely holds the one globally shared instance.",
+            "Why B is wrong — Arrays hold multiple elements; Singleton holds exactly one.",
+            "Why C is wrong — A constant cannot be lazily initialized later.",
+            "Why D is wrong — Transients are for bypassing serialization, unrelated to Singleton structure."
+          ]
+        },
+        {
+          "question": "What is the precise logical function of the `getInstance()` method inside a Singleton class?",
+          "options": [
+            "To aggressively delete the current instance from memory to free up RAM.",
+            "To forcefully create a brand new, separate object instance every single time it is called.",
+            "To check if the instance is null; if it is, create the instance and return it. If it already exists, simply return the existing instance.",
+            "To copy the existing instance into a new memory block to prevent data corruption."
+          ],
+          "correct": 2,
+          "explanation": "The `getInstance()` method provides the controlled access point. It checks if the static instance is pointing to null. If so, it invokes the private constructor to create the instance. If not, it safely returns the already created instance, guaranteeing only one object ever exists.",
+          "optionExplanations": [
+            "Why A is wrong — It manages creation and access, not destruction.",
+            "Why B is wrong — Creating a new instance every time defeats the entire purpose of Singleton.",
+            "Why C is correct — This conditional logic perfectly defines the Singleton retrieval process.",
+            "Why D is wrong — Copying the object creates multiple instances, breaking the pattern."
+          ]
+        },
+        {
+          "question": "What does the term 'Lazy Initialization' specifically refer to when implementing the Singleton pattern?",
+          "options": [
+            "The instance is forcefully created immediately at the exact moment the program starts.",
+            "The instance is created only when the `getInstance()` method is called for the very first time, delaying memory allocation until it is actually needed.",
+            "The instance is automatically deleted when the CPU detects idle time.",
+            "The class refuses to compile unless a sleep timer is added."
+          ],
+          "correct": 1,
+          "explanation": "Lazy initialization delays object creation. The instance is not created when the class loads, but rather at the exact moment the client requests it via `getInstance()` (checking if it is null first). This saves memory if the object is never actually used during execution.",
+          "optionExplanations": [
+            "Why A is wrong — Creating it immediately at startup is called 'Eager Initialization'.",
+            "Why B is correct — Waiting until it is strictly required is the definition of 'Lazy'.",
+            "Why C is wrong — Memory deletion is handled by destructors or garbage collectors.",
+            "Why D is wrong — Sleep timers have no relation to OOP structural patterns."
+          ]
+        },
+        {
+          "question": "In contrast to Lazy Initialization, what characterizes 'Eager Initialization' in a Singleton?",
+          "options": [
+            "The instance is created at the time of class loading, guaranteeing the instance exists before any method requests it.",
+            "The instance is created right before the program terminates to save final states.",
+            "The instance is dynamically allocated every single time a new variable is declared.",
+            "The instance creation is permanently delayed until an external API call is received."
+          ],
+          "correct": 0,
+          "explanation": "Eager initialization creates the instance immediately at the time of class loading (`static Singleton instance = new Singleton();`). This ensures the object exists unconditionally, avoiding the need for null-checking inside `getInstance()`.",
+          "optionExplanations": [
+            "Why A is correct — The instance is built immediately as the class loads.",
+            "Why B is wrong — Objects are needed during execution, not at termination.",
+            "Why C is wrong — Multiple creations violate the Singleton rule.",
+            "Why D is wrong — Eager means immediately, not delayed."
+          ]
+        },
+        {
+          "question": "What is a major architectural drawback of using Eager Initialization for a heavily-resourced Singleton class?",
+          "options": [
+            "It automatically triggers infinite recursive loops.",
+            "It disables the ability to use the `static` keyword.",
+            "It may lead to significant resource overhead and wasted memory if the program never actually ends up using the instance during execution.",
+            "It mathematically limits the program to a single thread."
+          ],
+          "correct": 2,
+          "explanation": "Because Eager Initialization creates the object immediately upon loading, it consumes memory upfront. If the Singleton is a massive, resource-heavy object (like a complex database manager) and the specific program run never actually requires it, that allocated memory is completely wasted.",
+          "optionExplanations": [
+            "Why A is wrong — It does not cause logic loops.",
+            "Why B is wrong — It actively relies on the `static` keyword.",
+            "Why C is correct — Pre-allocating heavy objects that go unused is a massive resource drain.",
+            "Why D is wrong — It actually avoids some basic multithreading null-check issues, it doesn't limit threads."
+          ]
+        },
+        {
+          "question": "While powerful, which of the following is a widely recognized limitation or drawback of the Singleton pattern?",
+          "options": [
+            "It can lead to tightly coupled code, thread-safety issues (if not implemented carefully), and makes unit testing difficult due to global state access.",
+            "It requires the programmer to instantiate at least five helper classes simultaneously.",
+            "It randomly alters the access modifiers of its internal member variables.",
+            "It drastically increases the size of the compiled binary executable file compared to standard classes."
+          ],
+          "correct": 0,
+          "explanation": "Singletons introduce global state into an application. This makes isolating components for unit testing very difficult, creates tightly coupled dependencies, and can cause race conditions in multithreaded environments if `getInstance()` is not synchronized safely.",
+          "optionExplanations": [
+            "Why A is correct — Global state testing issues and thread safety are the primary known flaws of Singleton.",
+            "Why B is wrong — It is completely self-contained.",
+            "Why C is wrong — Patterns do not randomly alter code structures.",
+            "Why D is wrong — Singleton code footprint is incredibly small."
+          ]
+        },
+        {
+          "question": "What is the primary architectural purpose of the Factory Pattern?",
+          "options": [
+            "To guarantee that a specific class can only ever be instantiated exactly once.",
+            "To provide a central interface for creating objects in a superclass, while allowing subclasses to alter the type of objects that will be created, completely hiding the specific instantiation logic.",
+            "To securely notify multiple observer objects whenever a variable changes state.",
+            "To dynamically wrap an object in multiple layers to add new methods."
+          ],
+          "correct": 1,
+          "explanation": "The Factory pattern abstracts object creation. It delegates the decision of which specific class to instantiate to a dedicated factory method, allowing client code to request objects via a unified interface without knowing the exact concrete class names (like `createShape(\"circle\")`).",
+          "optionExplanations": [
+            "Why A is wrong — This defines the Singleton pattern.",
+            "Why B is correct — Decoupling the 'new' keyword logic from the client code is the definition of Factory.",
+            "Why C is wrong — This defines the Observer pattern.",
+            "Why D is wrong — This defines the Decorator pattern."
+          ]
+        },
+        {
+          "question": "Which real-world analogy is used in the course to perfectly explain the Factory Pattern?",
+          "options": [
+            "A single shared office printer on a network.",
+            "A laundry service that returns ironed clothes without explaining how they were washed.",
+            "A coffee shop where you order a 'coffee', and the barista encapsulates the complex logic of mixing the specific type (Espresso or Cappuccino) to give you the final product.",
+            "A set of interconnected traffic lights controlling road flow."
+          ],
+          "correct": 2,
+          "explanation": "The coffee shop analogy explains that the client (customer) just requests a generic product (coffee). The factory (barista) encapsulates the complex creation logic (mixing milk, sugar, espresso) and simply returns the finished object, abstracting the process.",
+          "optionExplanations": [
+            "Why A is wrong — Shared network resources describe Singleton.",
+            "Why B is wrong — Laundry describes pure Abstraction/Interfaces.",
+            "Why C is correct — The barista acting as an object generator hides the creation complexity, matching the Factory pattern perfectly.",
+            "Why D is wrong — Traffic lights are state machines."
+          ]
+        },
+        {
+          "question": "How does the Factory pattern promote the programming principle of 'loose coupling'?",
+          "options": [
+            "By completely separating the object creation logic from the main application (client) logic, meaning the client code doesn't need to know concrete class names.",
+            "By ensuring all classes use only public data members for easy access.",
+            "By using global variables instead of restricted class methods.",
+            "By forcing all functions to be virtual, empty, and undefined."
+          ],
+          "correct": 0,
+          "explanation": "Loose coupling means components rely less on each other's internal workings. By delegating instantiation to a Factory class, the client code (like `main()`) never calls `new ConcreteClass()`, meaning you can change or add new classes without ever modifying the client code.",
+          "optionExplanations": [
+            "Why A is correct — The client only interacts with the generic interface, severing direct dependencies on concrete classes.",
+            "Why B is wrong — Using public data breaks encapsulation and increases tight coupling.",
+            "Why C is wrong — Global variables increase tight coupling.",
+            "Why D is wrong — Making functions empty defines interfaces, but doesn't inherently handle instantiation decoupling."
+          ]
+        },
+        {
+          "question": "In a C++ implementation of the Factory Pattern, what is typically returned by the factory method (e.g., `createVehicle`)?",
+          "options": [
+            "A primitive integer representing a success status code.",
+            "A raw string containing the exact name of the instantiated class.",
+            "A pointer or reference to the abstract base class, which points to the newly instantiated concrete subclass object in memory.",
+            "A compressed zip file of the object's local memory."
+          ],
+          "correct": 2,
+          "explanation": "Factory methods utilize polymorphism. They create a specific concrete object (like a `Car`) but return a pointer to the generic abstract base class (like `Vehicle*`). This allows the client to use the object generically without knowing its exact type.",
+          "optionExplanations": [
+            "Why A is wrong — It returns an actual usable object, not an error code.",
+            "Why B is wrong — Returning a string doesn't provide a functional object.",
+            "Why C is correct — Returning a base class pointer leverages polymorphism for loose coupling.",
+            "Why D is wrong — Object creation deals with live memory, not file compression."
+          ]
+        },
+        {
+          "question": "In the Factory pattern, what happens if the client requests an unknown string type (e.g., passing \"Bus\" to a factory that only knows \"Car\" and \"Bike\")?",
+          "options": [
+            "The program automatically generates a generic 'Bus' class at compile-time.",
+            "The factory method evaluates the failure and safely returns a `nullptr` (null pointer) or null reference.",
+            "The program formats the hard drive.",
+            "The factory returns a generic string message instead of an object."
+          ],
+          "correct": 1,
+          "explanation": "A robust Factory method checks the requested type using conditional logic. If the requested string does not match any known concrete class, it falls back to returning a null pointer (or `null` in Java), which the client code can then safely check against before using.",
+          "optionExplanations": [
+            "Why A is wrong — Compilers cannot magically write new logical classes based on runtime strings.",
+            "Why B is correct — Returning a null pointer is the standard, safe fallback for an unrecognized creation request.",
+            "Why C is wrong — Unrecognized inputs do not trigger malicious OS commands.",
+            "Why D is wrong — It must return the declared return type (a pointer), not a string."
+          ]
+        },
+        {
+          "question": "Which of the following scenarios is an ideal real-world use case for applying the Factory Pattern?",
+          "options": [
+            "Instantiating database connectors (MySQL, PostgreSQL, Oracle) dynamically at runtime based on user configuration settings.",
+            "Ensuring a global application log file cannot be opened twice simultaneously.",
+            "Applying a sequence of mathematical filters to a continuous data stream.",
+            "Sorting a large array of random integers from lowest to highest."
+          ],
+          "correct": 0,
+          "explanation": "The Factory pattern is ideal for dynamic object selection. When an application needs to connect to a database, it doesn't know which brand until runtime. A `DatabaseFactory` can read the config and return the correct specific connector class seamlessly.",
+          "optionExplanations": [
+            "Why A is correct — Dynamic object selection with a unified interface is the hallmark of the Factory pattern.",
+            "Why B is wrong — Restricting instances is the job of the Singleton pattern.",
+            "Why C is wrong — Filtering sequences describes the Decorator or Pipeline patterns.",
+            "Why D is wrong — Sorting relies on Algorithms, not creational patterns."
+          ]
+        },
+        {
+          "question": "What is a recognized limitation of utilizing the Factory Pattern extensively?",
+          "options": [
+            "It explicitly prevents the use of abstract base classes and polymorphism.",
+            "It inherently causes massive, unavoidable memory leaks in all object-oriented languages.",
+            "It increases the overall complexity of the code due to the requirement of building and maintaining additional factory classes.",
+            "It restricts the program to processing only primitive data types like `int` and `float`."
+          ],
+          "correct": 2,
+          "explanation": "While factories decouple code, they require creating an entirely separate class just to handle instantiation. Overusing this in simple scenarios can bloat the architecture with unnecessary files and structural complexity.",
+          "optionExplanations": [
+            "Why A is wrong — It heavily relies on abstract classes and polymorphism.",
+            "Why B is wrong — Memory leaks are handled by destructors, completely unrelated to the pattern itself.",
+            "Why C is correct — The overhead of managing extra factory classes can be a bottleneck in simple programs.",
+            "Why D is wrong — It is specifically designed to process complex custom objects."
+          ]
+        },
+        {
+          "question": "The Observer Pattern is formally categorized under which type of design patterns?",
+          "options": [
+            "Creational Patterns",
+            "Structural Patterns",
+            "Behavioral Patterns",
+            "Concurrency Patterns"
+          ],
+          "correct": 2,
+          "explanation": "Because it handles communication, event tracking, and interactions between objects, the Observer pattern is strictly classified as a Behavioral design pattern.",
+          "optionExplanations": [
+            "Why A is wrong — Creational deals with object instantiation (Singleton/Factory).",
+            "Why B is wrong — Structural deals with object composition (Adapter/Decorator).",
+            "Why C is correct — Behavioral patterns specifically govern object interactions and state communications.",
+            "Why D is wrong — Concurrency deals with multithreading."
+          ]
+        },
+        {
+          "question": "What core architectural relationship does the Observer Pattern establish between objects?",
+          "options": [
+            "A strict one-to-one relationship.",
+            "A dynamic one-to-many relationship.",
+            "An isolated many-to-many relationship.",
+            "A closed many-to-one relationship."
+          ],
+          "correct": 1,
+          "explanation": "The Observer pattern establishes a one-to-many relationship. One specific object (the Subject) is monitored by many other objects (the Observers), who all wait for updates.",
+          "optionExplanations": [
+            "Why A is wrong — A subject can have infinite observers, not just one.",
+            "Why B is correct — A single central subject updating multiple waiting observers is the core definition.",
+            "Why C is wrong — It flows outward from one central state source.",
+            "Why D is wrong — The flow of data goes from one to many."
+          ]
+        },
+        {
+          "question": "What is the core functional mechanism of the Observer pattern?",
+          "options": [
+            "When a subject mathematically changes its state, all its registered observers are notified and updated automatically.",
+            "It creates a brand new observer object every time a subject variable is queried.",
+            "It translates raw data from a legacy format into a modern JSON format.",
+            "It securely locks the system, allowing exactly one observer to view the data at a time."
+          ],
+          "correct": 0,
+          "explanation": "The entire purpose of the Observer pattern is reactive state management. When the central Subject experiences a state change (like a temperature change or stock price shift), it automatically iterates through its list and calls the update method on all registered observers.",
+          "optionExplanations": [
+            "Why A is correct — Automated broadcast notification upon state changes defines the pattern.",
+            "Why B is wrong — Observers are registered beforehand, not created upon queries.",
+            "Why C is wrong — Translation is the job of the Adapter pattern.",
+            "Why D is wrong — It explicitly broadcasts to *all* registered observers."
+          ]
+        },
+        {
+          "question": "Which of the following scenarios is the most ideal application for the Observer pattern?",
+          "options": [
+            "Connecting a legacy 1990s payment gateway to a modern 2024 smartphone app.",
+            "A real-time stock market tracker where multiple individual investors must receive instant alerts when a specific company's stock price fluctuates.",
+            "Guaranteeing that an application has only one active database connection globally.",
+            "Dynamically wrapping a generic text window with a visual border and a scrollbar at runtime."
+          ],
+          "correct": 1,
+          "explanation": "Real-time systems, such as stock market trackers, weather stations, and event-driven UIs rely heavily on the Observer pattern. When the stock price (Subject) updates, all investors (Observers) are instantly notified.",
+          "optionExplanations": [
+            "Why A is wrong — Connecting incompatible systems is the Adapter pattern.",
+            "Why B is correct — Real-time reactive notification to multiple subscribers is the exact use case.",
+            "Why C is wrong — Global instance management is the Singleton pattern.",
+            "Why D is wrong — Dynamic wrapping is the Decorator pattern."
+          ]
+        },
+        {
+          "question": "In the Observer pattern, what is the specific role of the `attach()` method inside the Subject class?",
+          "options": [
+            "To permanently delete an observer from memory.",
+            "To add a new observer object into the Subject's internal tracking list (e.g., a `std::vector`) so it can receive future updates.",
+            "To securely encrypt the observer's transmission data.",
+            "To forcefully halt the program execution and debug."
+          ],
+          "correct": 1,
+          "explanation": "The Subject class must maintain a list of who wants to be updated. The `attach()` method takes an observer and pushes it into the internal array or vector so it is registered for future notifications.",
+          "optionExplanations": [
+            "Why A is wrong — Deletion is handled by `detach()` or destructors.",
+            "Why B is correct — Attaching registers the observer to the notification list.",
+            "Why C is wrong — Encryption is unrelated to pattern structure.",
+            "Why D is wrong — It manages array lists, not execution halting."
+          ]
+        },
+        {
+          "question": "When the Subject invokes its `notify()` method, what structural action occurs internally to broadcast the data?",
+          "options": [
+            "It iterates sequentially through its internal list of registered observers and invokes the `update()` method on each one, passing the new data.",
+            "It triggers a complete shutdown of the operating system to secure the data.",
+            "It throws an unhandled exception to pause code execution.",
+            "It randomly selects a single observer from the list and updates only that one."
+          ],
+          "correct": 0,
+          "explanation": "The `notify()` method uses a loop (like a range-based for loop) to iterate over every single observer stored in its list. For each observer in the array, it executes `observer->update(data)`, cascading the new information to everyone.",
+          "optionExplanations": [
+            "Why A is correct — Looping through registered objects and calling update is the core mechanic.",
+            "Why B is wrong — Notification is a data transfer, not a system termination.",
+            "Why C is wrong — Standard notifications are normal events, not error exceptions.",
+            "Why D is wrong — It is a one-to-*many* broadcast, all observers are updated."
+          ]
+        },
+        {
+          "question": "When implementing the Observer Pattern in Java, how is the 'Observer' entity structurally defined?",
+          "options": [
+            "By declaring a final class with only static variables.",
+            "By defining a pure `Observer` interface containing an abstract `update()` method, which all concrete observer classes must forcefully implement.",
+            "By directly extending the `java.util.Scanner` class.",
+            "By adding the `transient` keyword to a private array."
+          ],
+          "correct": 1,
+          "explanation": "In Java, an Observer is established by creating a 100% abstract interface (`interface Observer`). It mandates an `update()` method. Any concrete class (like `EmailNotification`) that wants to act as an observer must `implements Observer` and define that update logic.",
+          "optionExplanations": [
+            "Why A is wrong — Final static classes cannot be inherited or overridden.",
+            "Why B is correct — Interfaces guarantee that the `update` blueprint is securely enforced across all varying concrete observers.",
+            "Why C is wrong — `Scanner` is for terminal input.",
+            "Why D is wrong — `transient` is for serialization."
+          ]
+        },
+        {
+          "question": "What is the primary architectural difference between the standard Observer Pattern and the Publish-Subscribe Pattern?",
+          "options": [
+            "The Observer pattern is strictly locked to C++, while Publish-Subscribe is strictly locked to Java.",
+            "In the Observer pattern, observers are directly tied to and registered with the subject. In Publish-Subscribe, they are completely decoupled via an intermediary 'message broker'.",
+            "The Publish-Subscribe pattern is only allowed to have exactly one subscriber.",
+            "The Observer pattern forces a central database storage, whereas Publish-Subscribe uses local text files."
+          ],
+          "correct": 1,
+          "explanation": "While similar, the Observer pattern requires the Subject to hold the list of Observers directly. Publish-Subscribe inserts a middleman (a message broker/event bus), meaning the publisher and subscriber never actually know about each other's existence.",
+          "optionExplanations": [
+            "Why A is wrong — Both patterns can be written in any OOP language.",
+            "Why B is correct — The presence of the intermediary 'message broker' defines Pub-Sub and decouples the relationship further.",
+            "Why C is wrong — Both patterns support multiple subscribers/observers.",
+            "Why D is wrong — Neither pattern mandates specific hardware storage formats."
+          ]
+        },
+        {
+          "question": "Which of the following is a recognized potential drawback of utilizing the Observer pattern?",
+          "options": [
+            "It inherently triggers a 'diamond problem' in multiple inheritance.",
+            "It poses a high risk of memory leaks if observers are destroyed but not properly detached from the Subject's internal list.",
+            "It strictly forbids the use of dynamic memory allocation (`new` operator).",
+            "It forces all involved classes to automatically become Singletons."
+          ],
+          "correct": 1,
+          "explanation": "Because the Subject maintains strong references (pointers/lists) to the observers, if an observer is deleted elsewhere in the program without explicitly calling `detach()`, the Subject's list holds a dangling pointer. This can cause severe memory leaks or crashes during notification.",
+          "optionExplanations": [
+            "Why A is wrong — The diamond problem is related to multiple inheritance structures, not observer lists.",
+            "Why B is correct — Memory leaks via dangling references are the primary risk of the Observer pattern.",
+            "Why C is wrong — It actively relies on dynamically allocated observer objects.",
+            "Why D is wrong — Observer objects are highly instantiated, completely opposing the Singleton rule."
+          ]
+        },
+        {
+          "question": "In software design, what is the primary focus of 'Structural Patterns'?",
+          "options": [
+            "Optimizing the logic of mathematical and statistical algorithms.",
+            "Creating complex, highly secure object instantiation hiding mechanisms.",
+            "Defining how objects and classes can be combined and composed to form larger, more flexible, and modular structures.",
+            "Overriding the built-in garbage collection routines of the JVM."
+          ],
+          "correct": 2,
+          "explanation": "Structural patterns (like Adapter, Decorator, Composite) define how classes and objects are assembled into larger structures. They focus on simplifying relationships between entities to ensure the system is flexible, modular, and easy to maintain.",
+          "optionExplanations": [
+            "Why A is wrong — Algorithmic logic optimization belongs to specific functional logic, not structural patterns.",
+            "Why B is wrong — Hiding instantiation mechanisms is the role of Creational patterns (Factory).",
+            "Why C is correct — Composition and flexible relationship structuring is the definition of Structural Patterns.",
+            "Why D is wrong — Memory management routines are handled by the system architecture, not OOP design patterns."
+          ]
+        },
+        {
+          "question": "Which structural design pattern is explicitly utilized to convert the interface of a class into another interface that clients expect, thereby enabling incompatible interfaces to work together seamlessly?",
+          "options": [
+            "Decorator Pattern",
+            "Composite Pattern",
+            "Proxy Pattern",
+            "Adapter Pattern"
+          ],
+          "correct": 3,
+          "explanation": "The Adapter pattern functions exactly like a real-world electrical adapter. It wraps an incompatible class and translates the interface so that the client can interact with it using the expected format.",
+          "optionExplanations": [
+            "Why A is wrong — Decorator adds functionality dynamically; it doesn't translate incompatible interfaces.",
+            "Why B is wrong — Composite manages tree structures.",
+            "Why C is wrong — Proxy manages access control.",
+            "Why D is correct — Adapting incompatible interfaces to work together is the exact definition of the Adapter pattern."
+          ]
+        },
+        {
+          "question": "A massive enterprise is upgrading its software and needs to connect an old legacy payment processing system with a highly modern web API. Which design pattern provides the structural blueprint to solve this incompatibility?",
+          "options": [
+            "Singleton Pattern",
+            "Adapter Pattern",
+            "Observer Pattern",
+            "Factory Pattern"
+          ],
+          "correct": 1,
+          "explanation": "The primary real-world example used for the Adapter pattern is connecting legacy systems with modern APIs. The Adapter class acts as a translator, receiving modern API requests and translating them into the legacy system's specific method calls.",
+          "optionExplanations": [
+            "Why A is wrong — Singleton handles global instantiation.",
+            "Why B is correct — Bridging legacy code with modern interfaces is the textbook Adapter use case.",
+            "Why C is wrong — Observer handles broadcast notifications.",
+            "Why D is wrong — Factory handles object creation."
+          ]
+        },
+        {
+          "question": "In the architecture of the Adapter Pattern, what does the term 'Adaptee' represent?",
+          "options": [
+            "The new, modern interface that the client code originally expects to interact with.",
+            "The existing, incompatible class (e.g., the `LegacySystem`) that contains the core functionality but needs its interface translated.",
+            "The factory class responsible for instantiating the objects.",
+            "The pure virtual abstract base class."
+          ],
+          "correct": 1,
+          "explanation": "The 'Adaptee' is the old, incompatible object that needs to be adapted. The 'Adapter' wraps around the 'Adaptee' to translate the requests from the client's expected format into the Adaptee's specific format.",
+          "optionExplanations": [
+            "Why A is wrong — The modern interface is called the 'Target'.",
+            "Why B is correct — The Adaptee is the legacy component being wrapped and translated.",
+            "Why C is wrong — Factory classes belong to the Factory pattern.",
+            "Why D is wrong — The abstract base class is usually the 'Target' interface."
+          ]
+        },
+        {
+          "question": "What is the primary objective of the Decorator Pattern in object-oriented design?",
+          "options": [
+            "To enforce a strict rule that a class can only be instantiated once globally.",
+            "To add new responsibilities, features, or functionalities to an object dynamically at runtime without needing to modify the underlying class or create complex subclasses.",
+            "To translate raw data streams between two incompatible hardware systems.",
+            "To automatically notify all logged-in users of database state changes."
+          ],
+          "correct": 1,
+          "explanation": "The Decorator pattern is used for dynamic extension. Instead of creating a massive static inheritance tree (e.g., `WindowWithScrollbarAndBorder`), it dynamically wraps the base object in decorators, layering new functionalities on top at runtime.",
+          "optionExplanations": [
+            "Why A is wrong — This defines the Singleton pattern.",
+            "Why B is correct — Dynamic, layered addition of functionality without subclassing defines Decorator.",
+            "Why C is wrong — Translation is the Adapter pattern.",
+            "Why D is wrong — Notifications belong to the Observer pattern."
+          ]
+        },
+        {
+          "question": "A developer wants to take a standard UI `Window` object and dynamically add a 'ScrollBar' and a 'Border' to it at runtime based on user preferences. Which structural pattern prevents the developer from having to hardcode dozens of subclass variations?",
+          "options": [
+            "Decorator Pattern",
+            "Composite Pattern",
+            "Proxy Pattern",
+            "Adapter Pattern"
+          ],
+          "correct": 0,
+          "explanation": "Adding visual components (like scrollbars and borders) to a base UI element dynamically is the classic application of the Decorator pattern. It nests objects inside each other (e.g., `new BorderDecorator(new ScrollbarDecorator(new Window()))`) to accumulate features.",
+          "optionExplanations": [
+            "Why A is correct — Layering features like UI components dynamically requires Decorator.",
+            "Why B is wrong — Composite builds rigid tree structures.",
+            "Why C is wrong — Proxy delays loading or secures access.",
+            "Why D is wrong — Adapter translates interfaces."
+          ]
+        },
+        {
+          "question": "How does the Decorator class achieve its layered functionality logically within object-oriented structures?",
+          "options": [
+            "By utilizing multiple inheritance to merge dozens of unrelated classes into one massive object.",
+            "By completely destroying the original object in memory and rebuilding it with new parameters.",
+            "By inheriting from the same base interface as the component AND simultaneously holding a reference/pointer to an object of that component (wrapping it).",
+            "By using a static global variable to track all state changes universally."
+          ],
+          "correct": 2,
+          "explanation": "The key to the Decorator pattern is that the `Decorator` class 'is-a' component (inheritance) AND 'has-a' component (composition). It inherits the base interface so it can act like the object, but it holds a pointer to the inner object so it can delegate calls and add its own behavior before or after.",
+          "optionExplanations": [
+            "Why A is wrong — Multiple inheritance creates rigid, bloated compile-time structures, which this avoids.",
+            "Why B is wrong — It wraps the existing object; it does not destroy it.",
+            "Why C is correct — Inheriting the type while wrapping the instance is the exact architectural secret of Decorator.",
+            "Why D is wrong — Global state tracking is unrelated to structural wrapping."
+          ]
+        },
+        {
+          "question": "Which structural pattern is used to compose individual objects and grouped objects into tree structures, allowing clients to treat both individual elements and complex compositions uniformly?",
+          "options": [
+            "Decorator Pattern",
+            "Adapter Pattern",
+            "Composite Pattern",
+            "Proxy Pattern"
+          ],
+          "correct": 2,
+          "explanation": "The Composite pattern creates part-whole hierarchies. It allows a client to execute a command on a single leaf node or an entire branch of nodes interchangeably, treating both the individual parts and the massive tree structure exactly the same.",
+          "optionExplanations": [
+            "Why A is wrong — Decorator adds features; it doesn't build branching tree structures.",
+            "Why B is wrong — Adapter translates interfaces.",
+            "Why C is correct — Tree structures and part-whole hierarchy uniformity define the Composite pattern.",
+            "Why D is wrong — Proxy controls access."
+          ]
+        },
+        {
+          "question": "Which of the following is the most accurate real-world representation of the Composite Pattern?",
+          "options": [
+            "A computer file system containing Files (leaves) and Folders (composites), where a Folder can universally contain both Files or nested Folders.",
+            "A weather station broadcasting real-time temperature updates to a network of smartphones.",
+            "A coffee machine in a breakroom that serves the entire department.",
+            "A database connector that seamlessly translates requests between MySQL and Oracle."
+          ],
+          "correct": 0,
+          "explanation": "A file system is a perfect tree hierarchy. A 'Folder' (composite) implements the same base interface as a 'File' (leaf). When you delete or display a Folder, it iterates and recursively deletes/displays all Files and Folders inside it, executing uniformly.",
+          "optionExplanations": [
+            "Why A is correct — The File/Folder tree structure perfectly visualizes part-whole Composite hierarchies.",
+            "Why B is wrong — This illustrates the Observer pattern.",
+            "Why C is wrong — This illustrates the Singleton pattern.",
+            "Why D is wrong — This illustrates the Factory or Adapter pattern."
+          ]
+        },
+        {
+          "question": "In a Composite Pattern implementation involving a 'Folder' class, what occurs mathematically when the `display()` method is called on the root Folder object?",
+          "options": [
+            "It throws an `UnsupportedOperationException` and crashes.",
+            "It only displays the title of the root folder and immediately stops.",
+            "It uses a loop to iterate through its internal list of children (which could be Files or sub-Folders) and recursively calls their respective `display()` methods.",
+            "It securely encrypts all files located inside the folder."
+          ],
+          "correct": 2,
+          "explanation": "The composite node (Folder) maintains a list of children. When its `display()` method is invoked, it delegates the action down the tree, using a loop to call `child.display()` on every item inside it, cascading the command through the entire hierarchy.",
+          "optionExplanations": [
+            "Why A is wrong — It is a fully supported, core operation.",
+            "Why B is wrong — It must cascade down to the leaves to be effective.",
+            "Why C is correct — Recursive iteration over internal children is how composite branches operate.",
+            "Why D is wrong — Encryption is unrelated to tree composition algorithms."
+          ]
+        },
+        {
+          "question": "What is the definitive purpose of the Proxy Pattern in software architecture?",
+          "options": [
+            "To dynamically attach visual boundaries or responsibilities to a UI object.",
+            "To provide a surrogate, placeholder, or 'stand-in' for another object in order to control access to it, delay its creation, or log its usage.",
+            "To broadcast asynchronous messages to multiple registered subscribers.",
+            "To create dynamic families of related objects without specifying their classes."
+          ],
+          "correct": 1,
+          "explanation": "The Proxy pattern creates a lightweight stand-in object that mimics the real object. It controls access to the heavy real object, often delaying its costly instantiation until the exact moment it is actually needed (lazy loading).",
+          "optionExplanations": [
+            "Why A is wrong — Adding visual boundaries is the Decorator pattern.",
+            "Why B is correct — Acting as a placeholder to control or delay access defines Proxy.",
+            "Why C is wrong — Broadcasting messages defines the Observer pattern.",
+            "Why D is wrong — Creating object families defines the Abstract Factory pattern."
+          ]
+        },
+        {
+          "question": "A graphical web application needs to display a document containing many massive, high-resolution images. Loading them all simultaneously crashes the browser's memory. The developer uses a lightweight placeholder that only loads the actual 4K image when it scrolls into view. Which structural pattern solves this?",
+          "options": [
+            "Proxy Pattern",
+            "Singleton Pattern",
+            "Composite Pattern",
+            "Observer Pattern"
+          ],
+          "correct": 0,
+          "explanation": "Loading large images lazily is the classic textbook use case for the Proxy pattern. The `ProxyImage` object loads instantly, and only when `display()` is called (e.g., scrolling into view) does it actually instantiate the heavy `RealImage` object.",
+          "optionExplanations": [
+            "Why A is correct — The Proxy provides a cheap surrogate to defer the expensive loading of the real image.",
+            "Why B is wrong — Singleton limits instances; it doesn't defer memory loading dynamically.",
+            "Why C is wrong — Composite builds trees.",
+            "Why D is wrong — Observer manages notifications."
+          ]
+        },
+        {
+          "question": "In the Proxy Pattern example provided in the course, at what exact moment is the heavy `RealImage` object finally instantiated into memory?",
+          "options": [
+            "At the exact moment the program compiles.",
+            "Immediately when the `ProxyImage` constructor is initially called.",
+            "Only when the `display()` method is explicitly invoked by the client and the internal `RealImage` pointer is verified to be null.",
+            "It is completely bypassed and never instantiated."
+          ],
+          "correct": 2,
+          "explanation": "The proxy holds a null pointer to the real object. It checks `if (realImage == nullptr)` inside its `display()` method. Only if that condition is true does it execute `new RealImage(filename)`, deferring the memory allocation until the exact moment the image must be rendered.",
+          "optionExplanations": [
+            "Why A is wrong — Objects are created at runtime, not compile-time.",
+            "Why B is wrong — This would be eager loading, defeating the purpose of the Proxy's memory saving.",
+            "Why C is correct — Lazy loading inside the requested action method defines the Proxy's delayed instantiation.",
+            "Why D is wrong — The real image must eventually be shown."
+          ]
+        },
+        {
+          "question": "Which structural design pattern is fundamentally utilized to separate a conceptual abstraction from its physical implementation, ensuring that the two can vary or evolve independently (e.g., separating Shape logic from Rendering platform logic)?",
+          "options": [
+            "Proxy Pattern",
+            "Bridge Pattern",
+            "Flyweight Pattern",
+            "Composite Pattern"
+          ],
+          "correct": 1,
+          "explanation": "The Bridge pattern explicitly decouples an abstraction (like a Shape hierarchy) from its implementation (like an OS-specific drawing API), allowing both to be extended independently without causing an exponential explosion of subclasses (like `WindowsCircle`, `LinuxCircle`).",
+          "optionExplanations": [
+            "Why A is wrong — Proxy controls access to an object.",
+            "Why B is correct — Separating abstraction from implementation for independent evolution defines Bridge.",
+            "Why C is wrong — Flyweight minimizes memory via sharing.",
+            "Why D is wrong — Composite builds tree structures."
+          ]
+        },
+        {
+          "question": "Which structural pattern is architecturally designed to minimize memory usage by sharing as much data as possible among a massive number of highly similar objects (e.g., reusing character objects in a word processor)?",
+          "options": [
+            "Flyweight Pattern",
+            "Adapter Pattern",
+            "Observer Pattern",
+            "Decorator Pattern"
+          ],
+          "correct": 0,
+          "explanation": "The Flyweight pattern optimizes RAM. Instead of creating 100,000 individual 'A' character objects in a text editor, it creates one 'A' object and shares it 100,000 times, only storing the distinct external states (like coordinates) separately.",
+          "optionExplanations": [
+            "Why A is correct — Maximizing sharing to minimize memory footprint is the definition of Flyweight.",
+            "Why B is wrong — Adapter translates interfaces.",
+            "Why C is wrong — Observer manages state notifications.",
+            "Why D is wrong — Decorator adds visual/behavioral layers."
+          ]
+        },
+        {
+          "question": "According to the course guidelines, which of the following is considered a 'common misuse' of software design patterns?",
+          "options": [
+            "Combining two or more different design patterns to solve a highly complex, multifaceted problem.",
+            "Treating design patterns as flexible guidelines rather than strict programming rules.",
+            "Overusing patterns in excessively simple scenarios, which leads to unnecessary code bloat and unreadable complexity.",
+            "Regularly reviewing and refactoring legacy code to optimize it."
+          ],
+          "correct": 2,
+          "explanation": "Applying design patterns where they aren't needed (like using a Factory or Observer for a simple script) introduces massive architectural overhead, additional files, and structural complexity that makes the code harder to read and maintain.",
+          "optionExplanations": [
+            "Why A is wrong — Combining patterns for complex problems is actually a recommended best practice.",
+            "Why B is wrong — Treating them as flexible guidelines is a recommended best practice.",
+            "Why C is correct — Over-engineering simple problems is the classic misuse of design patterns.",
+            "Why D is wrong — Refactoring is a standard, positive development practice."
+          ]
+        },
+        {
+          "question": "When professionally implementing design patterns in a modern development environment, what is widely considered a 'best practice'?",
+          "options": [
+            "To use patterns as conceptual guidelines and templates, rather than strict, inflexible, mandatory rules.",
+            "To force the application of every possible pattern into a single project to ensure maximum robustness.",
+            "To permanently mandate Eager Initialization for all Singletons, regardless of their memory footprint.",
+            "To explicitly ban the combination of multiple patterns together to avoid compiler confusion."
+          ],
+          "correct": 0,
+          "explanation": "Design patterns are meant to be blueprints. The best practice is to understand the core problem, keep implementation focused, and adapt the pattern as a flexible guideline to fit the specific needs of the application, not as rigid dogma.",
+          "optionExplanations": [
+            "Why A is correct — Flexibility and adaptation are key to successful pattern implementation.",
+            "Why B is wrong — Forcing patterns leads to over-engineering and severe code bloat.",
+            "Why C is wrong — Eager initialization wastes memory for heavy, unused objects.",
+            "Why D is wrong — Combining patterns (like MVC) is standard and highly effective."
+          ]
+        },
+        {
+          "question": "When configuring a Factory Pattern in C++, if a programmer declares `virtual void type() = 0;` inside the base class `Vehicle`, what architectural characteristic does this enforce on the `Vehicle` class?",
+          "options": [
+            "It turns `Vehicle` into a final Singleton class that cannot be inherited.",
+            "It establishes `Vehicle` as a concrete wrapper class.",
+            "It structurally enforces `Vehicle` as an Abstract Class (specifically, containing a pure virtual function) that cannot be directly instantiated.",
+            "It converts `Vehicle` into a static global structure."
+          ],
+          "correct": 2,
+          "explanation": "In C++, appending `= 0` to a virtual function makes it a 'pure virtual function'. This immediately renders the enclosing class an Abstract Class. Abstract classes cannot be instantiated with `new`, forcing the developer to inherit from it and create concrete subclasses (like `Car` or `Bike`) for the Factory to generate.",
+          "optionExplanations": [
+            "Why A is wrong — Pure virtual functions enforce inheritance, completely opposing Singleton logic.",
+            "Why B is wrong — It prevents the class from being concrete.",
+            "Why C is correct — `= 0` defines a pure virtual function, which creates an uninstantiable Abstract base class.",
+            "Why D is wrong — Virtual functions govern polymorphism, not static memory allocation."
+          ]
+        },
+        {
+          "question": "In a multi-threaded application environment, what specific architectural hazard must developers strictly safeguard against when implementing a Singleton pattern utilizing 'Lazy Initialization'?",
+          "options": [
+            "Severe memory exhaustion due to the system spawning thousands of Singletons.",
+            "Race conditions where two concurrent threads simultaneously check if the instance is null, evaluate it as true, and accidentally create two separate, conflicting instances.",
+            "The compiler outright rejecting the private constructor due to multithreading access violations.",
+            "The Singleton object randomly altering its class type during execution."
+          ],
+          "correct": 1,
+          "explanation": "In a multithreaded environment, if Thread A and Thread B reach `if (instance == null)` at the exact same microsecond, both will read it as true. Both will then execute `new Singleton()`, overwriting memory and creating two distinct objects, fundamentally destroying the Singleton constraint. This requires strict synchronization/locking mechanisms.",
+          "optionExplanations": [
+            "Why A is wrong — Singletons specifically prevent multiple instantiations, limiting memory use.",
+            "Why B is correct — Concurrent thread access to the null-check causes race conditions, creating duplicate objects.",
+            "Why C is wrong — Compilers do not police runtime thread behaviors.",
+            "Why D is wrong — Class types are immutable at runtime in statically typed OOP languages."
+          ]
+        }
+      ]
     }
   ]
 };
