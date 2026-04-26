@@ -9694,6 +9694,861 @@ optionExplanations: [
           ]
         }
       ]
+    },{
+      name: "Unit 12: Advanced Topics — Multithreading and Case Studies",
+      questions: [
+        {
+          "question": "Which of the following analogies best describes the architectural difference between a Process and a Thread?",
+          "options": [
+            "A Process is a single car, while a Thread is the engine inside it.",
+            "A Process is like an isolated house with its own resources, while Threads are like the rooms inside that house sharing those resources.",
+            "A Process is a folder on a hard drive, while a Thread is a file inside that folder.",
+            "A Process is a book, while a Thread is a single page."
+          ],
+          "correct": 1,
+          "explanation": "A process is a heavier, isolated execution environment (like a house) with its own memory space. Threads are lightweight sub-processes (like rooms) that share the same memory and resources within that process.",
+          "optionExplanations": [
+            "Why A is wrong — While a thread runs within a process, the house/room analogy specifically highlights the concept of shared versus isolated resources.",
+            "Why B is correct — This is the exact analogy provided in the course to explain memory isolation versus memory sharing.",
+            "Why C is wrong — Folders and files represent data storage hierarchies, not execution architectures.",
+            "Why D is wrong — Books and pages represent structural grouping, not dynamic execution states."
+          ]
+        },
+        {
+          "question": "What is the key difference between Concurrency and Parallelism?",
+          "options": [
+            "Concurrency runs multiple tasks simultaneously on multiple CPU cores, while Parallelism handles multiple tasks by switching context rapidly on a single core.",
+            "Concurrency focuses on task switching and dealing with multiple tasks at once (responsiveness), while Parallelism executes multiple tasks simultaneously on multiple hardware cores (speed).",
+            "Concurrency only works in Java, while Parallelism only works in C++.",
+            "There is no difference; they are synonymous terms for the exact same CPU behavior."
+          ],
+          "correct": 1,
+          "explanation": "Concurrency is about dealing with multiple tasks concurrently (often through rapid context switching on a single core for responsiveness), while parallelism requires multiple hardware cores to execute tasks literally at the exact same time.",
+          "optionExplanations": [
+            "Why A is wrong — The definitions are reversed.",
+            "Why B is correct — This accurately defines the distinction between responsiveness (concurrency) and raw simultaneous execution (parallelism).",
+            "Why C is wrong — Both concepts apply universally across modern programming languages.",
+            "Why D is wrong — They define structurally different execution mechanisms."
+          ]
+        },
+        {
+          "question": "In the lifecycle of a thread, what does the 'Runnable' state signify?",
+          "options": [
+            "The thread is currently executing instructions on the CPU.",
+            "The thread has completed its execution and is waiting to be deleted.",
+            "The thread is ready to run and is waiting in a queue for the CPU scheduler to allocate processing time.",
+            "The thread is paused, waiting for an external resource like a file to open."
+          ],
+          "correct": 2,
+          "explanation": "When a thread is 'Runnable', it has been started and is ready to execute, but it is currently waiting for the operating system's CPU scheduler to grant it processing time.",
+          "optionExplanations": [
+            "Why A is wrong — This describes the 'Running' state.",
+            "Why B is wrong — This describes the 'Terminated' state.",
+            "Why C is correct — Runnable means ready to run but awaiting CPU scheduling.",
+            "Why D is wrong — This describes the 'Blocked' or 'Waiting' state."
+          ]
+        },
+        {
+          "question": "In C++, how do you guarantee that the main program waits for a thread named `t1` to finish its execution before the program terminates?",
+          "options": [
+            "`t1.wait();`",
+            "`t1.stop();`",
+            "`t1.join();`",
+            "`t1.terminate();`"
+          ],
+          "correct": 2,
+          "explanation": "The `.join()` method is called on a thread object in C++ to block the execution of the calling thread (usually the main thread) until the target thread (`t1`) has completely finished its execution.",
+          "optionExplanations": [
+            "Why A is wrong — `.wait()` is not a valid method for `std::thread`.",
+            "Why B is wrong — `.stop()` is not standard C++ syntax for threads.",
+            "Why C is correct — `.join()` perfectly ensures the main thread waits for `t1` to finish.",
+            "Why D is wrong — `.terminate()` forces an unsafe abort; it doesn't gracefully wait."
+          ]
+        },
+        {
+          "question": "In Java, what is the correct method to successfully transition a thread from the 'New' state to the 'Runnable' state?",
+          "options": [
+            "Calling `thread.run();` directly.",
+            "Calling `thread.start();`.",
+            "Calling `thread.init();`.",
+            "Calling `thread.execute();`."
+          ],
+          "correct": 1,
+          "explanation": "In Java, invoking `thread.start()` allocates a new call stack for the thread and transitions it to the runnable state, automatically calling its `run()` method in the background. Calling `run()` directly does not create a new thread.",
+          "optionExplanations": [
+            "Why A is wrong — Calling `run()` directly executes it in the current main thread, bypassing multithreading entirely.",
+            "Why B is correct — `.start()` handles the internal thread registration and invokes `run()` concurrently.",
+            "Why C is wrong — Not a valid Java thread method.",
+            "Why D is wrong — Used in thread pooling (`ExecutorService`), not raw thread objects."
+          ]
+        },
+        {
+          "question": "What is a 'Race Condition' in multithreaded programming?",
+          "options": [
+            "A software bug where two threads compete to be the first to reach the `join()` statement.",
+            "A hardware failure caused by CPU overheating during parallel processing.",
+            "A scenario where multiple threads access and modify shared data simultaneously, leading to unpredictable conflicts and data corruption.",
+            "A state where a thread runs infinitely in a loop."
+          ],
+          "correct": 2,
+          "explanation": "A race condition occurs when two or more threads attempt to read and write to a shared resource at the exact same time without proper synchronization, corrupting the final value.",
+          "optionExplanations": [
+            "Why A is wrong — It has nothing to do with execution speed reaching `join()`.",
+            "Why B is wrong — It is a software logic error, not a hardware issue.",
+            "Why C is correct — This is the textbook definition of a race condition on shared resources.",
+            "Why D is wrong — This describes an infinite loop, not a thread conflict."
+          ]
+        },
+        {
+          "question": "To prevent race conditions in C++, which synchronization mechanism is explicitly designed to ensure only one thread can access a critical section of code at a time?",
+          "options": [
+            "`std::async`",
+            "`std::mutex`",
+            "`std::future`",
+            "`std::parallel`"
+          ],
+          "correct": 1,
+          "explanation": "A Mutex (Mutual Exclusion) acts as a lock. When a thread locks the mutex, all other threads attempting to enter that section must wait until the mutex is unlocked, guaranteeing safe, sequential access.",
+          "optionExplanations": [
+            "Why A is wrong — `async` is used to launch asynchronous tasks.",
+            "Why B is correct — `mutex` strictly enforces one-thread-at-a-time mutual exclusion.",
+            "Why C is wrong — `future` retrieves data from asynchronous operations.",
+            "Why D is wrong — Not a standard C++ synchronization primitive."
+          ]
+        },
+        {
+          "question": "In C++, what is the primary advantage of using `std::lock_guard<std::mutex>` over manually calling `mutex.lock()` and `mutex.unlock()`?",
+          "options": [
+            "It executes the locked code 50% faster.",
+            "It allows multiple threads to bypass the mutex securely.",
+            "It utilizes RAII (Resource Acquisition Is Initialization), automatically unlocking the mutex when the block goes out of scope, preventing permanent deadlocks if an exception occurs.",
+            "It automatically converts standard variables into atomic variables."
+          ],
+          "correct": 2,
+          "explanation": "`std::lock_guard` is a smart wrapper. It locks the mutex when created and guarantees the mutex is unlocked when the object is destroyed (goes out of scope), eliminating the risk of a programmer forgetting to write `unlock()` or an exception bypassing it.",
+          "optionExplanations": [
+            "Why A is wrong — It has no impact on execution speed.",
+            "Why B is wrong — It strictly enforces the lock; it doesn't bypass it.",
+            "Why C is correct — RAII automated cleanup ensures absolute lock safety.",
+            "Why D is wrong — Atomic variables are a completely separate concept."
+          ]
+        },
+        {
+          "question": "How do you ensure a method (e.g., `increment()`) is thread-safe in Java, preventing multiple threads from executing it simultaneously?",
+          "options": [
+            "By prepending the `synchronized` keyword to the method declaration.",
+            "By importing `java.util.Mutex`.",
+            "By wrapping the method body in a `try-catch` block.",
+            "By using the `volatile` keyword on the method."
+          ],
+          "correct": 0,
+          "explanation": "In Java, the `synchronized` keyword applied to a method automatically acts as an implicit monitor lock (intrinsic lock), ensuring only one thread can execute that method for a given object at any time.",
+          "optionExplanations": [
+            "Why A is correct — `synchronized` is the native Java keyword for implicit locking (monitors).",
+            "Why B is wrong — Standard Java uses intrinsic locks or `ReentrantLock`, not a basic `Mutex` import.",
+            "Why C is wrong — `try-catch` handles exceptions, not thread concurrency.",
+            "Why D is wrong — `volatile` applies to variables to ensure memory visibility, not methods for execution locking."
+          ]
+        },
+        {
+          "question": "Which synchronization tool is specifically designed to control access to a shared resource with a *limited capacity* (e.g., allowing exactly 3 threads to access a database connection pool at once)?",
+          "options": [
+            "A Mutex",
+            "A Semaphore",
+            "An Atomic Variable",
+            "A Monitor"
+          ],
+          "correct": 1,
+          "explanation": "While a mutex restricts access to exactly 1 thread, a Semaphore maintains a count (e.g., capacity of 3). It allows a fixed, limited number of threads to acquire access simultaneously before blocking others.",
+          "optionExplanations": [
+            "Why A is wrong — Mutex strictly enforces a capacity of 1.",
+            "Why B is correct — Semaphores govern multiple permits for limited-capacity resources.",
+            "Why C is wrong — Atomic variables ensure thread-safe read/writes of primitive types.",
+            "Why D is wrong — Monitors are implicit locks for singular access."
+          ]
+        },
+        {
+          "question": "What is the classic 'Deadlock' state in multithreading?",
+          "options": [
+            "When the main CPU thread crashes and forces a system reboot.",
+            "When two or more threads are blocked indefinitely, each waiting for a resource that the other thread is currently holding (e.g., Circular Wait).",
+            "When a thread successfully finishes its task and releases all its memory.",
+            "When a thread processes data so quickly that it locks out the operating system."
+          ],
+          "correct": 1,
+          "explanation": "Deadlock happens when threads enter a stalemate. Thread A holds Lock 1 and waits for Lock 2, while Thread B holds Lock 2 and waits for Lock 1. Neither can proceed, freezing the application indefinitely.",
+          "optionExplanations": [
+            "Why A is wrong — Deadlocks freeze threads, they don't natively reboot systems.",
+            "Why B is correct — Circular Wait and Hold-and-Wait uniquely define deadlocks.",
+            "Why C is wrong — That is standard termination.",
+            "Why D is wrong — That is an exaggeration of thread priorities."
+          ]
+        },
+        {
+          "question": "Which of the following is a highly recommended strategy for preventing Deadlocks?",
+          "options": [
+            "Using randomly generated locking sequences.",
+            "Allowing threads to hold infinite locks simultaneously.",
+            "Enforcing a strict, consistent locking order across all threads, or using timeout-based locking mechanisms.",
+            "Disabling the JVM Garbage Collector."
+          ],
+          "correct": 2,
+          "explanation": "If every thread must lock Resource A before locking Resource B (consistent ordering), circular waits are mathematically impossible. Additionally, timeout mechanisms force a thread to release its locks if it waits too long.",
+          "optionExplanations": [
+            "Why A is wrong — Random locking guarantees unpredictable deadlocks.",
+            "Why B is wrong — Holding multiple locks increases deadlock probability.",
+            "Why C is correct — Strict ordering eliminates circular dependencies.",
+            "Why D is wrong — Garbage collection is unrelated to execution locking logic."
+          ]
+        },
+        {
+          "question": "What is the primary benefit of using 'Thread Pooling' (e.g., Java's `ExecutorService`) instead of manually creating a new thread for every single task?",
+          "options": [
+            "It guarantees that race conditions will never occur.",
+            "It automatically writes the code for the `run()` methods.",
+            "It drastically reduces CPU and memory overhead by reusing a pre-created pool of worker threads rather than destroying and instantiating hundreds of new threads continuously.",
+            "It forces all threads to execute strictly in sequential order, removing concurrency."
+          ],
+          "correct": 2,
+          "explanation": "Creating and destroying a thread is computationally expensive. A Thread Pool pre-allocates a set number of threads (e.g., 5). When a task finishes, the thread isn't destroyed; it's simply assigned the next pending task, massively optimizing performance.",
+          "optionExplanations": [
+            "Why A is wrong — Programmers must still implement synchronization to prevent race conditions.",
+            "Why B is wrong — The developer must still provide the `Runnable` task logic.",
+            "Why C is correct — Thread reuse minimizes OS-level thread-creation overhead.",
+            "Why D is wrong — Thread pools maintain robust concurrent execution."
+          ]
+        },
+        {
+          "question": "In C++, what pair of standard library classes allows a programmer to launch a background task concurrently and easily retrieve its returned value later?",
+          "options": [
+            "`std::background` and `std::retrieve`",
+            "`std::async` and `std::future`",
+            "`std::thread` and `std::fetch`",
+            "`std::promise` and `std::get`"
+          ],
+          "correct": 1,
+          "explanation": "`std::async` automatically spawns the task (often on a new thread or pool) and instantly returns a `std::future` object. Later, the main program can call `future.get()` to securely wait for and extract the return value.",
+          "optionExplanations": [
+            "Why A is wrong — These are not C++ classes.",
+            "Why B is correct — This is the standard C++ pattern for asynchronous return values.",
+            "Why C is wrong — Raw `std::thread` cannot cleanly return variables without complex shared pointers.",
+            "Why D is wrong — While promises exist, `async`/`future` is the paired launching/retrieving API."
+          ]
+        },
+        {
+          "question": "Which class provides a fully thread-safe Map structure in Java, designed to prevent race conditions without needing explicit `synchronized` blocks?",
+          "options": [
+            "`java.util.HashMap`",
+            "`java.util.TreeMap`",
+            "`java.util.concurrent.ConcurrentHashMap`",
+            "`java.util.SafeMap`"
+          ],
+          "correct": 2,
+          "explanation": "The standard `HashMap` will crash or corrupt if modified by multiple threads simultaneously. `ConcurrentHashMap` is a highly optimized, lock-based internal structure provided specifically for safe multithreaded operations.",
+          "optionExplanations": [
+            "Why A is wrong — Completely unsafe for concurrent modification.",
+            "Why B is wrong — Unsafe for concurrent modification.",
+            "Why C is correct — Built explicitly for thread-safe concurrent access.",
+            "Why D is wrong — Class does not exist."
+          ]
+        },
+        {
+          "question": "When setting up a C++ Server socket, what specific sequence of functions must typically be called to properly initialize the server and wait for a client?",
+          "options": [
+            "`socket()` → `bind()` → `listen()` → `accept()`",
+            "`accept()` → `socket()` → `bind()` → `listen()`",
+            "`listen()` → `bind()` → `accept()` → `socket()`",
+            "`connect()` → `socket()` → `bind()` → `listen()`"
+          ],
+          "correct": 0,
+          "explanation": "The mandatory lifecycle of a server socket is: create the socket (`socket`), bind it to a local port/IP (`bind`), place it in listening mode (`listen`), and finally block execution while waiting to accept a client connection (`accept`).",
+          "optionExplanations": [
+            "Why A is correct — This is the exact linear sequence required for socket initialization.",
+            "Why B is wrong — You cannot accept a connection on a socket that doesn't exist yet.",
+            "Why C is wrong — You must create and bind before listening.",
+            "Why D is wrong — `connect()` is used strictly by the Client, not the Server."
+          ]
+        },
+        {
+          "question": "In Python network programming, what do the parameters `socket.AF_INET` and `socket.SOCK_STREAM` specifically establish when calling `socket.socket()`?",
+          "options": [
+            "IPv6 addressing and UDP protocol.",
+            "MAC addressing and FTP protocol.",
+            "IPv4 addressing and TCP protocol.",
+            "Local file transfer and HTTP protocol."
+          ],
+          "correct": 2,
+          "explanation": "`AF_INET` dictates that the socket will communicate over IPv4 networks (using IPs like 192.168.x.x). `SOCK_STREAM` mandates that the socket will use the reliable, connection-oriented TCP protocol.",
+          "optionExplanations": [
+            "Why A is wrong — IPv6 is `AF_INET6`, UDP is `SOCK_DGRAM`.",
+            "Why B is wrong — Neither parameter dictates MAC routing or FTP.",
+            "Why C is correct — They perfectly map to the IPv4 and TCP architecture.",
+            "Why D is wrong — HTTP is an application layer above raw TCP sockets."
+          ]
+        },
+        {
+          "question": "In a Server-Client socket relationship, what is the specific role of the server's `bind()` function?",
+          "options": [
+            "To encrypt the data using an SSL certificate.",
+            "To link the newly created socket strictly to a specified IP address and local port number (e.g., 8080) so it knows exactly where to listen for traffic.",
+            "To connect directly to the client's IP address.",
+            "To gracefully shut down the server connection."
+          ],
+          "correct": 1,
+          "explanation": "When a socket is created, it exists in a namespace but has no assigned address. The `bind()` function explicitly associates that raw socket with a network interface (IP) and a specific port (like 8080 or 12345).",
+          "optionExplanations": [
+            "Why A is wrong — SSL requires separate libraries.",
+            "Why B is correct — Binding maps the abstract socket to a physical network port.",
+            "Why C is wrong — Connecting to remote IPs is the role of the Client's `connect()` function.",
+            "Why D is wrong — Shutdown is handled by `close()`."
+          ]
+        },
+        {
+          "question": "What does the integer argument in the C++ or Python `listen(1)` function specifically represent?",
+          "options": [
+            "The number of megabytes the server can receive.",
+            "The maximum number of pending client connection requests allowed in the queue before the server starts rejecting them.",
+            "The exact number of seconds the server will wait before shutting down.",
+            "The port number it should listen on."
+          ],
+          "correct": 1,
+          "explanation": "The argument to `listen()` defines the 'backlog' queue. Passing `1` means the server will hold exactly one pending connection in the waiting queue while it processes the current client. Additional clients will be rejected.",
+          "optionExplanations": [
+            "Why A is wrong — Byte limits are defined in `recv()` or `read()`.",
+            "Why B is correct — It specifies the backlog queue capacity for pending connections.",
+            "Why C is wrong — Sockets block indefinitely unless a specific timeout is configured.",
+            "Why D is wrong — The port is specified earlier in the `bind()` function."
+          ]
+        },
+        {
+          "question": "In Java network programming, what distinct class does a Server use to initially listen for incoming traffic, compared to the class the Client uses to connect?",
+          "options": [
+            "Server uses `ServerSocket`, Client uses `Socket`.",
+            "Server uses `Socket`, Client uses `ServerSocket`.",
+            "Server uses `NetworkListener`, Client uses `NetworkSender`.",
+            "Both strictly use the exact same `Socket` class."
+          ],
+          "correct": 0,
+          "explanation": "Java abstracts network roles. A server must instantiate a `ServerSocket(port)` to listen for traffic. Once a client successfully connects using a standard `Socket(ip, port)`, the `ServerSocket.accept()` method returns a standard `Socket` for the server to talk back to the client.",
+          "optionExplanations": [
+            "Why A is correct — This accurately maps Java's distinct API architecture for Servers vs. Clients.",
+            "Why B is wrong — The roles are reversed.",
+            "Why C is wrong — These are fabricated class names.",
+            "Why D is wrong — Servers require the specialized listening class `ServerSocket`."
+          ]
+        },
+        {
+          "question": "What is a defining characteristic of the HTTP protocol used in web communication?",
+          "options": [
+            "It maintains a permanent, infinite connection tracking all past user behavior automatically.",
+            "It only transfers encrypted binary data, never plaintext.",
+            "It is a 'stateless' protocol, meaning each request-response cycle is independent, and the server retains no memory of previous requests natively.",
+            "It completely replaces the TCP protocol."
+          ],
+          "correct": 2,
+          "explanation": "HTTP is inherently stateless. When a browser requests a webpage, the server delivers it and forgets the transaction. This is why technologies like 'Cookies' had to be invented to artificially remember user sessions.",
+          "optionExplanations": [
+            "Why A is wrong — It expressly forgets past behavior (stateless).",
+            "Why B is wrong — Standard HTTP transfers raw plaintext.",
+            "Why C is correct — Stateless, independent transactions define HTTP.",
+            "Why D is wrong — HTTP operates on top of TCP; it doesn't replace it."
+          ]
+        },
+        {
+          "question": "In REST API architecture, which standard HTTP methods strictly correspond to the CRUD operations 'Read' and 'Create' respectively?",
+          "options": [
+            "`UPDATE` and `DELETE`",
+            "`GET` and `POST`",
+            "`PUT` and `FETCH`",
+            "`PULL` and `PUSH`"
+          ],
+          "correct": 1,
+          "explanation": "In standard REST principles, `GET` is used to retrieve/read data from the server, and `POST` is used to submit data to the server to create a new record.",
+          "optionExplanations": [
+            "Why A is wrong — These map to Update and Delete.",
+            "Why B is correct — GET maps perfectly to Read, and POST maps to Create.",
+            "Why C is wrong — FETCH is an API, PUT is generally for updates.",
+            "Why D is wrong — PULL and PUSH are Git commands, not REST HTTP methods."
+          ]
+        },
+        {
+          "question": "When a Python client successfully executes `client_socket.recv(1024)`, what does the integer `1024` dictate?",
+          "options": [
+            "The specific network port it should read from.",
+            "The maximum number of bytes the program is allowed to read from the socket buffer in this single execution.",
+            "An encryption decryption key.",
+            "The exact number of seconds to wait before disconnecting."
+          ],
+          "correct": 1,
+          "explanation": "The argument to `recv()` sets the buffer size constraint. `1024` means the application will extract a maximum of 1024 bytes of payload data from the network card's incoming stream during that call.",
+          "optionExplanations": [
+            "Why A is wrong — Port routing happens previously during the connection phase.",
+            "Why B is correct — It specifies the maximum byte extraction buffer limit.",
+            "Why C is wrong — Plain sockets do not use decryption keys.",
+            "Why D is wrong — Wait times are configured via `settimeout()`."
+          ]
+        },
+        {
+          "question": "In Java's Asynchronous Networking framework (NIO), what does the 'N' officially stand for?",
+          "options": [
+            "Network",
+            "Native",
+            "New",
+            "Node"
+          ],
+          "correct": 2,
+          "explanation": "The standard Java input/output library is `java.io`. To handle high-performance, non-blocking asynchronous channels, Java introduced `java.nio`, which officially stands for 'New Input/Output'.",
+          "optionExplanations": [
+            "Why A is wrong — It relates to networking, but stands for New.",
+            "Why B is wrong — Not Native.",
+            "Why C is correct — 'New Input/Output' is the official expansion.",
+            "Why D is wrong — Node refers to JavaScript environments."
+          ]
+        },
+        {
+          "question": "What is the specific architectural role of the `Selector` class in Java NIO?",
+          "options": [
+            "It acts as a multiplexer, allowing a single thread to actively monitor multiple network channels for incoming events (like read, write, or accept) simultaneously.",
+            "It selects a random IP address from a server pool to balance traffic.",
+            "It deletes idle connections automatically to save memory.",
+            "It filters out malicious hacking requests using basic firewall logic."
+          ],
+          "correct": 0,
+          "explanation": "Without NIO, a server requires one thread for every single connected client, causing massive overhead. The `Selector` is a multiplexer. One single thread can ask the Selector, 'Which of my 10,000 connected clients has new data waiting to be read right now?' ensuring massive scalability.",
+          "optionExplanations": [
+            "Why A is correct — The Selector multiplexes events, allowing single-thread management of massive connections.",
+            "Why B is wrong — This describes a Load Balancer.",
+            "Why C is wrong — Deletions must be handled logically by the program.",
+            "Why D is wrong — It does not perform security filtering."
+          ]
+        },
+        {
+          "question": "To enable asynchronous behavior in a Java `SocketChannel`, what method must be executed immediately after opening the channel?",
+          "options": [
+            "`channel.setAsynchronous(true);`",
+            "`channel.configureBlocking(false);`",
+            "`channel.startThread();`",
+            "`channel.bypassWait();`"
+          ],
+          "correct": 1,
+          "explanation": "By default, network sockets are 'blocking' (they freeze the program while waiting for data). To engage the high-speed NIO behavior, the programmer must explicitly command `configureBlocking(false)`, allowing the program to continue executing even if no data is currently arriving.",
+          "optionExplanations": [
+            "Why A is wrong — Method does not exist in `SocketChannel`.",
+            "Why B is correct — `configureBlocking(false)` forces the socket into non-blocking asynchronous mode.",
+            "Why C is wrong — Channels do not start threads.",
+            "Why D is wrong — Method does not exist."
+          ]
+        },
+        {
+          "question": "In Java NIO, what specialized class must be used to hold and format the raw bytes being sent or received over a `SocketChannel`?",
+          "options": [
+            "`java.util.Scanner`",
+            "`java.lang.String`",
+            "`java.nio.ByteBuffer`",
+            "`java.io.DataOutputStream`"
+          ],
+          "correct": 2,
+          "explanation": "Standard strings or streams don't interface directly with NIO channels. Data must be precisely wrapped and allocated inside a `ByteBuffer` (e.g., `ByteBuffer.allocate(256)`) before it can be fed into or read out of the channel.",
+          "optionExplanations": [
+            "Why A is wrong — Scanner is for blocking IO text parsing.",
+            "Why B is wrong — Channels require raw byte structures, not high-level strings.",
+            "Why C is correct — `ByteBuffer` is the mandatory carrier for NIO payload data.",
+            "Why D is wrong — `DataOutputStream` belongs to the older, blocking `java.io` framework."
+          ]
+        },
+        {
+          "question": "When registering a server socket with a Java NIO `Selector`, what does the constant `SelectionKey.OP_ACCEPT` specifically signal?",
+          "options": [
+            "That the server has accepted a fatal error and is shutting down.",
+            "That the server's channel is actively registering an event interest, telling the Selector to notify it whenever a new, incoming client connection is ready to be accepted.",
+            "That the client has accepted the server's data payload.",
+            "That the firewall has accepted the port binding."
+          ],
+          "correct": 1,
+          "explanation": "The `OP_ACCEPT` operation flag tells the multiplexer: 'Wake me up specifically when a brand new user is knocking on the door trying to establish a connection.'",
+          "optionExplanations": [
+            "Why A is wrong — Acceptance here means network connections, not error handling.",
+            "Why B is correct — `OP_ACCEPT` represents the physical event of a new client connection arriving.",
+            "Why C is wrong — Reading data payloads triggers `OP_READ`, not `OP_ACCEPT`.",
+            "Why D is wrong — Port bindings occur before selector registration."
+          ]
+        },
+        {
+          "question": "In the Mathematical Computation Framework C++ Case Study, what object-oriented principle was actively utilized to structure the `MatrixOperations` and `EquationSolver` components efficiently?",
+          "options": [
+            "Singletons, to prevent multiple math equations.",
+            "Multithreading, to slow down calculations.",
+            "Inheritance and polymorphism, to create a modular framework where a generic base class handles broad computations and derived classes handle specific rules.",
+            "Friend functions, to completely bypass class security."
+          ],
+          "correct": 2,
+          "explanation": "The case study leverages Inheritance and Polymorphism heavily, creating base classes for mathematical computations and branching into specialized modules (like Statistics or Equation Solvers) for highly modular and extensible code.",
+          "optionExplanations": [
+            "Why A is wrong — Mathematical calculations require many instances, violating Singleton needs.",
+            "Why B is wrong — Multithreading speeds things up, it doesn't slow them down.",
+            "Why C is correct — Inheritance provides modularity, and polymorphism provides extensibility for future math modules.",
+            "Why D is wrong — While friends can bypass security, it wasn't the core structural principle emphasized."
+          ]
+        },
+        {
+          "question": "What common challenge arises when building Matrix computations in C++, and what was the suggested solution?",
+          "options": [
+            "C++ cannot perform multiplication; solution is to use Java.",
+            "Handling massive arrays (e.g., 3000x3000 matrices) is computationally heavy and difficult to optimize natively; the solution is to integrate an optimized external library like 'Eigen'.",
+            "C++ erases matrices randomly; solution is to use `const` variables.",
+            "Matrices must be stored as strings; solution is `std::stoi`."
+          ],
+          "correct": 1,
+          "explanation": "While basic array math works, solving massive 3000x3000 systems or finding eigenvalues requires extreme hardware optimization. The course advises plugging in highly specialized, pre-optimized C++ math libraries like `Eigen` for production efficiency.",
+          "optionExplanations": [
+            "Why A is wrong — C++ is famous for blazing fast multiplication.",
+            "Why B is correct — Heavy mathematical lifting in C++ is best offloaded to specialized matrix libraries like Eigen.",
+            "Why C is wrong — C++ memory is extremely stable.",
+            "Why D is wrong — Matrices are stored as numeric vectors, not strings."
+          ]
+        },
+        {
+          "question": "In the Hotel Reservation System C++ Case Study, how was memory for the core `Room` objects safely managed across the entire application?",
+          "options": [
+            "By strictly using global variables.",
+            "By using raw `new` and `delete` pointers exclusively inside the `main()` function.",
+            "By utilizing `std::shared_ptr<Room>`, which automates garbage collection using reference counting.",
+            "By converting the objects into static strings."
+          ],
+          "correct": 2,
+          "explanation": "To prevent memory leaks when managing complex relationships (a reservation links a room and a customer), the system uses `std::shared_ptr<Room>`. This smart pointer tracks how many entities are using the room, and safely deletes it from RAM automatically when the count hits zero.",
+          "optionExplanations": [
+            "Why A is wrong — Global variables destroy encapsulation.",
+            "Why B is wrong — Raw pointers are prone to memory leaks in complex architectures.",
+            "Why C is correct — `shared_ptr` provides robust, automated memory safety.",
+            "Why D is wrong — Strings cannot act as complex objects."
+          ]
+        },
+        {
+          "question": "How did the Hotel Reservation Case Study implement 'Dynamic Pricing' for different room categories (Standard, Deluxe, Suite)?",
+          "options": [
+            "By writing a massive `if-else` statement in the `main` function.",
+            "By using an abstract pure virtual function `calculateRate(nights) = 0;` in the base `Room` class, which was then uniquely overridden by each derived room subclass.",
+            "By randomly generating prices using the `<random>` library.",
+            "By applying the Singleton pattern to lock the price."
+          ],
+          "correct": 1,
+          "explanation": "Polymorphism drove the dynamic pricing. The base class declared an abstract `calculateRate`. The `SuiteRoom` derived class overrode it to return `$250 * nights`, while `StandardRoom` overrode it to return `$100 * nights`, encapsulating the pricing logic perfectly.",
+          "optionExplanations": [
+            "Why A is wrong — This violates OOP decoupling principles.",
+            "Why B is correct — Polymorphic overriding is the textbook solution for category-specific calculations.",
+            "Why C is wrong — Prices are structured, not randomized.",
+            "Why D is wrong — Singleton limits instantiation, unrelated to rate calculations."
+          ]
+        },
+        {
+          "question": "In the Hotel Reservation Case Study, what logical mechanism updated the availability of a room when a reservation was canceled?",
+          "options": [
+            "The `cancelReservation()` method executed `room->freeRoom()`, which flipped the internal boolean flag `isAvailable` back to `true`.",
+            "The program formatted the text file holding the reservations.",
+            "The room object was permanently deleted from memory.",
+            "The customer object was assigned a negative room ID."
+          ],
+          "correct": 0,
+          "explanation": "When a cancellation occurs, the system must retain the physical room object but mark it as vacant. Calling `freeRoom()` accesses the room's encapsulated state and changes its internal boolean `isAvailable` variable from `false` back to `true`.",
+          "optionExplanations": [
+            "Why A is correct — Flipping the boolean state safely opens the room for new bookings.",
+            "Why B is wrong — Formatting deletes all reservations.",
+            "Why C is wrong — The physical room still exists in the hotel; only the booking is cleared.",
+            "Why D is wrong — Negative IDs would cause indexing crashes."
+          ]
+        },
+        {
+          "question": "In the Online Shopping Cart Java Case Study, what happened structurally when the programmer attempted to invoke `addProduct(null)`?",
+          "options": [
+            "The system added a blank space to the array list.",
+            "The compiler halted before the program could execute.",
+            "The method evaluated `if (product == null)` and explicitly threw a `NullPointerException` with a warning message.",
+            "The system generated a fake 'Free Item'."
+          ],
+          "correct": 2,
+          "explanation": "The cart system heavily utilized robust Exception Handling. To prevent the program from crashing later when trying to calculate the price of an empty item, the `addProduct` method proactively caught the `null` argument and threw a controlled `NullPointerException`.",
+          "optionExplanations": [
+            "Why A is wrong — Adding null to a List causes fatal crashes during iteration.",
+            "Why B is wrong — The compiler allows passing `null` to object references.",
+            "Why C is correct — Explicit conditional throwing ensures robust error trapping.",
+            "Why D is wrong — It actively blocks the addition, it doesn't invent items."
+          ]
+        },
+        {
+          "question": "If a user tried to call `removeProduct()` on a laptop that was *not* currently inside their Shopping Cart, how did the Java application handle the scenario?",
+          "options": [
+            "It threw an `IllegalArgumentException` indicating the product was not found in the cart.",
+            "It successfully removed the next closest item.",
+            "It charged the user for the item anyway.",
+            "It bypassed the operation silently without warning."
+          ],
+          "correct": 0,
+          "explanation": "The `ArrayList.remove(object)` method returns a boolean. If it evaluates to `false` (meaning the item wasn't there to be removed), the program intelligently throws an `IllegalArgumentException` to warn the user or front-end system of the logic error.",
+          "optionExplanations": [
+            "Why A is correct — Catching failed removal attempts with an exception ensures robust state tracking.",
+            "Why B is wrong — It does not delete random items.",
+            "Why C is wrong — It rejects the command.",
+            "Why D is wrong — Silently failing makes UI debugging incredibly difficult."
+          ]
+        },
+        {
+          "question": "How did the Shopping Cart system apply a 10% discount to Clothing items but not Electronics?",
+          "options": [
+            "By writing `if(type == \"clothing\")` in the `main` method.",
+            "By utilizing Polymorphism; the `Clothing` subclass overrode the base `calculatePrice()` method to return `getPrice() * 0.90`.",
+            "By creating a completely separate `Cart` class just for clothes.",
+            "By lowering the base price directly in the database."
+          ],
+          "correct": 1,
+          "explanation": "Polymorphism allows objects to dictate their own rules. When the cart loop calls `product.calculatePrice()` on every item, the `Clothing` object autonomously intercepts that call with its own overridden logic, inherently applying the 0.90 multiplier.",
+          "optionExplanations": [
+            "Why A is wrong — Type checking in loops destroys OOP decoupling.",
+            "Why B is correct — Overriding abstract methods for specific math calculations defines Polymorphism.",
+            "Why C is wrong — Carts handle generics, treating all items uniformly.",
+            "Why D is wrong — Dynamic pricing happens at runtime, preserving the original retail database value."
+          ]
+        },
+        {
+          "question": "In the Java Shopping Cart Case Study, what was the mechanism used for 'Persistent Order Storage', saving the receipt so it survived after the program closed?",
+          "options": [
+            "Saving the array in the CPU Cache.",
+            "Using the Singleton pattern.",
+            "Utilizing Java File Handling (specifically `FileWriter` wrapped in a `BufferedWriter`) to physically write the receipt text to an `order.txt` file on the hard drive.",
+            "Uploading the strings to an SQL cloud database natively."
+          ],
+          "correct": 2,
+          "explanation": "Data persistence requires saving RAM data to physical disk storage. The application utilized `FileWriter` and `write()` methods inside a `try-catch` block to export the cart summary out to a `.txt` file, ensuring the order was permanently saved.",
+          "optionExplanations": [
+            "Why A is wrong — CPU caches are completely volatile and wipe instantly.",
+            "Why B is wrong — Singleton handles memory instances, not hard drive writes.",
+            "Why C is correct — Basic File I/O operations provided the data persistence.",
+            "Why D is wrong — While possible in production, the case study specifically utilized local text file handling."
+          ]
+        },
+        {
+          "question": "In the Employee Payroll System Java Case Study, which of the following perfectly describes the core class hierarchy?",
+          "options": [
+            "`Employee` is a concrete base class; `Manager` is the only subclass.",
+            "`Employee` is an Abstract base class; `PermanentEmployee`, `ContractEmployee`, and `Intern` are derived subclasses.",
+            "`Payroll` is the base class; `Employee` is the subclass.",
+            "`Intern` is the base class; `Employee` inherits from it."
+          ],
+          "correct": 1,
+          "explanation": "The system demanded a central blueprint that could not be instantiated on its own (a generic 'Employee' doesn't exist). The abstract `Employee` class housed common traits (Name, ID), while the derived classes (`Permanent`, `Contract`, `Intern`) held specific traits (Base Salary, Hourly Rate, Stipend).",
+          "optionExplanations": [
+            "Why A is wrong — The base class was abstract, and there were three distinct subclasses.",
+            "Why B is correct — This defines the exact inheritance tree utilized in the payroll case study.",
+            "Why C is wrong — Payroll is a separate manager class, not part of the inheritance tree.",
+            "Why D is wrong — The hierarchy is reversed."
+          ]
+        },
+        {
+          "question": "When the Payroll `DataHandler` was saving employee data to a text file, how did the program successfully determine exactly which type of employee it was currently looping over?",
+          "options": [
+            "By checking the file extension.",
+            "By mathematically dividing the salary by the hours worked.",
+            "By utilizing the Java `instanceof` keyword (e.g., `if (emp instanceof PermanentEmployee)`).",
+            "By executing a C++ `dynamic_cast`."
+          ],
+          "correct": 2,
+          "explanation": "Because the array list held generic `Employee` objects (upcasting), the program needed to verify the specific runtime subclass before extracting specialized data (like hourly rate). The `instanceof` keyword reliably evaluates if a generic object is actually a specific subclass.",
+          "optionExplanations": [
+            "Why A is wrong — Files do not dictate live memory object types.",
+            "Why B is wrong — Mathematical deductions are unreliable and error-prone.",
+            "Why C is correct — `instanceof` is the standard Java operator for runtime type checking.",
+            "Why D is wrong — The program was written in Java; `dynamic_cast` is C++."
+          ]
+        },
+        {
+          "question": "In the Employee Payroll System, to achieve absolute 100% abstraction for the salary computation logic, what specific Java OOP structure was implemented?",
+          "options": [
+            "A standard class.",
+            "An Abstract Class.",
+            "An Interface.",
+            "A Protected struct."
+          ],
+          "correct": 2,
+          "explanation": "While Abstract classes allow a mix of defined and undefined methods, an Interface guarantees 100% pure abstraction. The case study notes the use of an Interface to rigidly enforce that every employee type must completely define its own salary logic from scratch.",
+          "optionExplanations": [
+            "Why A is wrong — Standard classes provide 0% abstraction by default.",
+            "Why B is wrong — Abstract classes provide 0% to 100% abstraction.",
+            "Why C is correct — Interfaces guarantee strict 100% blueprint enforcement.",
+            "Why D is wrong — Java does not have `structs`."
+          ]
+        },
+        {
+          "question": "What advanced serialization concept was mentioned to effectively handle saving and loading the complex `Employee` objects directly to disk in the Payroll Case Study?",
+          "options": [
+            "Converting all employee names to binary strings manually.",
+            "Utilizing the `java.io.Serializable` interface to allow the JVM to seamlessly stream the active objects to and from the data file.",
+            "Storing the data in an HTML web page.",
+            "Taking a screenshot of the output."
+          ],
+          "correct": 1,
+          "explanation": "To bypass the tedious process of writing text lines and parsing commas (`split(\",\")`), the case study touches on Serialization, which automatically converts the live Java object structure into a byte stream for perfect storage and recreation.",
+          "optionExplanations": [
+            "Why A is wrong — Manual conversion is tedious; serialization automates this.",
+            "Why B is correct — The `Serializable` interface enables direct object-to-byte-stream persistence.",
+            "Why C is wrong — HTML is for web rendering, not raw data persistence.",
+            "Why D is wrong — Visually unreadable to a data parser."
+          ]
+        },
+        {
+          "question": "In the Image Classification Tool Python Case Study, what was the stated main objective of the application?",
+          "options": [
+            "To draw graphics on the screen.",
+            "To edit and crop photographs like Photoshop.",
+            "To create a modular tool utilizing pre-trained AI models (like MobileNet) to automatically classify and categorize digital images.",
+            "To compress video files into MP4 format."
+          ],
+          "correct": 2,
+          "explanation": "The Python case study combined object-oriented design with AI. It used classes to manage loading images and sending them through a pre-trained neural network (MobileNet) to output classification probabilities (e.g., Cat: 98%).",
+          "optionExplanations": [
+            "Why A is wrong — It analyzes images, it doesn't draw them.",
+            "Why B is wrong — It classifies content, it doesn't alter visual pixels.",
+            "Why C is correct — Automated AI categorization was the stated objective.",
+            "Why D is wrong — It processes static images, not video compression."
+          ]
+        },
+        {
+          "question": "What does a Thread Pool explicitly prevent?",
+          "options": [
+            "Network packet loss.",
+            "The performance overhead of constantly destroying and creating new threads for every minor execution task.",
+            "Hard drive formatting errors.",
+            "Race conditions on shared integers."
+          ],
+          "correct": 1,
+          "explanation": "OS-level thread creation is notoriously slow. A thread pool spins up 5 threads once. They stay alive, picking up new tasks from a queue as they finish old ones, totally eliminating the creation/destruction bottleneck.",
+          "optionExplanations": [
+            "Why A is wrong — Thread pools process local data, not network routing protocols.",
+            "Why B is correct — Reusing live threads drastically reduces architectural CPU overhead.",
+            "Why C is wrong — Unrelated to disk operations.",
+            "Why D is wrong — You must still use locks/mutexes; pools don't inherently stop race conditions."
+          ]
+        },
+        {
+          "question": "When working with Semaphores and Mutexes together, what is the architectural advantage?",
+          "options": [
+            "It turns a C++ program into a Java program.",
+            "The Semaphore dictates *how many* total threads can enter the broader resource area, while the Mutex ensures that once inside, they don't overwrite each other's exact memory lines (ensuring perfect sequential console output).",
+            "The Mutex increases the capacity of the Semaphore to infinity.",
+            "It disables multithreading entirely, ensuring absolute safety."
+          ],
+          "correct": 1,
+          "explanation": "In the lecture's worker thread example, a Semaphore of 3 allowed 3 threads to run concurrently. However, without a Mutex, their print statements scrambled together. Wrapping the `cout` inside a Mutex ensured that while 3 threads were active, their console output printed perfectly one-by-one.",
+          "optionExplanations": [
+            "Why A is wrong — Impossible syntax conversion.",
+            "Why B is correct — The Semaphore throttles broad capacity, the Mutex enforces strict microscopic alignment.",
+            "Why C is wrong — Mutexes have a strict capacity of 1.",
+            "Why D is wrong — Multithreading remains highly active, just safely orchestrated."
+          ]
+        },
+        {
+          "question": "When using `std::counting_semaphore<3> sem(3);` in C++, what happens when a fourth thread calls `sem.acquire();`?",
+          "options": [
+            "It instantly bypasses the lock.",
+            "It deletes one of the active threads.",
+            "It crashes the application.",
+            "It enters a Blocked/Waiting state until one of the first three threads calls `sem.release();`.",
+          ],
+          "correct": 3,
+          "explanation": "A counting semaphore initialized to 3 holds three permits. Threads 1, 2, and 3 acquire them and proceed. Thread 4 attempts to acquire, sees 0 permits left, and is put to sleep (blocked) until a permit frees up.",
+          "optionExplanations": [
+            "Why A is wrong — Semaphores strictly enforce blocking on zero permits.",
+            "Why B is wrong — Threads are never deleted by a semaphore check.",
+            "Why C is wrong — Blocking is a safe, intended mechanic, not a crash.",
+            "Why D is correct — It waits gracefully for a release signal."
+          ]
+        },
+        {
+          "question": "Which of the following is considered a 'Best Practice' when writing multithreaded applications?",
+          "options": [
+            "Minimize shared states between threads as much as possible to inherently reduce the opportunity for race conditions.",
+            "Force every variable to be global.",
+            "Use thousands of threads simultaneously for maximum speed.",
+            "Never use lock guards."
+          ],
+          "correct": 0,
+          "explanation": "The golden rule of concurrency is 'Don't share state if you don't have to.' If threads process independent, localized data, race conditions mathematically cannot occur, removing the need for complex, performance-sapping mutex locks.",
+          "optionExplanations": [
+            "Why A is correct — Isolating thread memory structurally eliminates conflict risks.",
+            "Why B is wrong — Global variables maximize race condition risks.",
+            "Why C is wrong — Excessive threads cause 'context-switching hell', killing performance.",
+            "Why D is wrong — Lock guards are a primary safety best practice."
+          ]
+        },
+        {
+          "question": "In Java's `ExecutorService`, what is the function of the `shutdown()` method?",
+          "options": [
+            "It immediately terminates the entire Java Virtual Machine.",
+            "It signals the thread pool to stop accepting new tasks, but allows previously submitted tasks to finish their execution before shutting the pool down gracefully.",
+            "It turns off the computer.",
+            "It forces the threads into an infinite loop."
+          ],
+          "correct": 1,
+          "explanation": "A thread pool runs continuously. `shutdown()` is the graceful termination command. It closes the intake queue, but promises to finish processing any jobs already running or waiting in the line.",
+          "optionExplanations": [
+            "Why A is wrong — Only the thread pool stops, the `main` program can continue.",
+            "Why B is correct — Graceful termination after completing current queues defines `shutdown()`.",
+            "Why C is wrong — Software methods do not power off hardware directly.",
+            "Why D is wrong — It actively ends execution loops."
+          ]
+        },
+        {
+          "question": "In the context of the C++ Socket Workflow, what does the `accept()` function return upon a successful client connection?",
+          "options": [
+            "A boolean 'true'.",
+            "A new, entirely distinct socket file descriptor specifically dedicated to communicating back and forth with that single connected client.",
+            "A copy of the server's hard drive.",
+            "A string containing the client's password."
+          ],
+          "correct": 1,
+          "explanation": "The server's original socket continues to listen for new knocks on the door. When a knock is accepted, the OS generates a brand-new, private communication socket just for that conversation, which `accept()` returns.",
+          "optionExplanations": [
+            "Why A is wrong — It returns an integer socket descriptor, not a boolean.",
+            "Why B is correct — Creating a new dedicated socket enables concurrent multi-client handling.",
+            "Why C is wrong — Data exchange must be programmed manually.",
+            "Why D is wrong — Payloads must be extracted using `recv()`."
+          ]
+        },
+        {
+          "question": "What Java class provides a high-level approach to reading text strictly line-by-line during network or file operations, preventing the need to process raw bytes manually?",
+          "options": [
+            "`java.net.RawReader`",
+            "`java.io.BufferedReader`",
+            "`java.lang.Thread`",
+            "`java.util.Queue`"
+          ],
+          "correct": 1,
+          "explanation": "Whether reading from a hard drive or an active `Socket` input stream, wrapping the stream in a `BufferedReader` unlocks the `.readLine()` method, seamlessly converting raw data chunks into formatted strings.",
+          "optionExplanations": [
+            "Why A is wrong — Class does not exist.",
+            "Why B is correct — Buffered character reading is the standard high-level text extraction method.",
+            "Why C is wrong — Threads handle execution, not data parsing.",
+            "Why D is wrong — Queues are data structures, not stream readers."
+          ]
+        },
+        {
+          "question": "When building an HTTP Server from scratch using raw sockets, what format must the initial response string follow so the Web Browser (client) recognizes it as a successful transmission?",
+          "options": [
+            "`HTTP/1.1 200 OK`",
+            "`SERVER READY 100`",
+            "`SUCCESS: TRUE`",
+            "`HTML IS INCOMING`"
+          ],
+          "correct": 0,
+          "explanation": "Web browsers obey strict HTTP protocol standards. If a raw Python or C++ socket sends data to Google Chrome, the very first line of the string must be the HTTP status code (e.g., `HTTP/1.1 200 OK`) so the browser knows how to parse the following HTML.",
+          "optionExplanations": [
+            "Why A is correct — This is the universal standard header for successful HTTP transmissions.",
+            "Why B is wrong — This is fabricated syntax.",
+            "Why C is wrong — Browsers cannot parse arbitrary success strings.",
+            "Why D is wrong — Browsers demand strict protocol formatting."
+          ]
+        }
+      ]
     }
   ]
 };
+
